@@ -85,7 +85,7 @@
 	</address>
 	</author>
 
-  <author role="editor" fullname="Jouni Korhonen" initials="J." surname="Korhonen">
+  <author fullname="Jouni Korhonen" initials="J." surname="Korhonen">
    <!--organization abbrev="Nordic">Nordic Semiconductor</organization-->
    <address>
     <email>jouni.nospam@gmail.com</email>

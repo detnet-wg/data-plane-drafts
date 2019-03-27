@@ -14,15 +14,8 @@
      ipr="trust200902"
      submissionType="IETF">
   <front>
-    <title abbrev="DetNet IP Data Plane">
-    DetNet IP Data Plane Encapsulation</title>
-
-    <author role="editor" fullname="Jouni Korhonen" initials="J." surname="Korhonen">
-      <!--organization abbrev="Nordic">Nordic Semiconductor</organization-->
-      <address>
-        <email>jouni.nospam@gmail.com</email>
-      </address>
-    </author>
+    <title abbrev="DetNet IP over TSN">
+    DetNet Data Plane: IP over TSN</title>
 
     <author role="editor" fullname="Bal&aacute;zs Varga" initials="B." surname="Varga">
       <organization>Ericsson</organization>
@@ -34,6 +27,47 @@
           <code>1117</code>
         </postal>
         <email>balazs.a.varga@ericsson.com</email>
+      </address>
+    </author>
+
+    <author fullname="J&aacute;nos Farkas" initials="J." surname="Farkas">
+      <organization>Ericsson</organization>
+      <address>
+        <postal>
+          <street>Magyar Tudosok krt. 11.</street>
+          <city>Budapest</city>
+          <country>Hungary</country>
+          <code>1117</code>
+        </postal>
+        <email>janos.farkas@ericsson.com</email>
+      </address>
+    </author>
+
+    <author fullname="Lou Berger" initials="L." surname="Berger">
+      <organization>LabN Consulting, L.L.C.</organization>
+      <address>
+        <email>lberger@labn.net</email>
+      </address>
+    </author>
+
+    <author fullname="Andrew G. Malis" initials="A.G." surname="Malis">
+      <organization>Huawei Technologies</organization>
+      <address>
+        <email>agmalis@gmail.com</email>
+      </address>
+    </author>
+
+    <author fullname="Stewart Bryant" initials="S." surname="Bryant">
+      <organization>Huawei Technologies</organization>
+      <address>
+        <email>stewart.bryant@gmail.com</email>
+      </address>
+    </author>
+
+    <author fullname="Jouni Korhonen" initials="J." surname="Korhonen">
+      <!--organization abbrev="Nordic">Nordic Semiconductor</organization-->
+      <address>
+        <email>jouni.nospam@gmail.com</email>
       </address>
     </author>
 
@@ -53,8 +87,8 @@
 
     <abstract>
       <t>
-     This document specifies the Deterministic Networking data plane
-     when operating in an IP packet switched network.
+     This document specifies the Deterministic Networking IP data plane
+     when operating over a TSN network.
       </t>
     </abstract>
   </front>
@@ -86,17 +120,6 @@
         protection can be provided on a per sub-net
         basis using technologies such as MPLS <xref
         target="I-D.ietf-detnet-dp-sol-mpls"/> and IEEE802.1 TSN.
-      </t>
-      <t>
-        This document provides an overview of the DetNet IP data plane
-        in <xref target="sec_dt_dp"/>, considerations that apply to
-        providing DetNet services via the DetNet IP data plane in <xref
-        target="dn-gen-encap-solution"/> and <xref
-        target="m-cp-considerations"/>. <xref target="ip-procs"/>
-        provides the procedures for hosts and routers that support
-        IP-based DetNet services. Finally, <xref target="mapping-tsn"/>
-        provides rules for mapping IP-based DetNet flows to IEEE 802.1
-        TSN streams.
       </t>
     </section>
 
@@ -150,29 +173,10 @@
 
 
     <section title="DetNet IP Data Plane Overview" anchor="sec_dt_dp">
-<!-- LB: this section should provide the overview related to:
-    <section title="Simplified IP-Related DetNet Data Plane Solution" anchor="simple-ip-solution">
       <t>
- This section is the placeholder for the conclusion discussed during IETF 101 and 102.
-      </t>
-      <t>
-        [Editor's note: describe the 6 tuple way of identifying DetNet service flows. Also stress
-        that PREOF is per network segment as described in <xref target="nwsegments"/>
-        <list style="symbols">
-          <t>DetNet flows are recognized based on 6 tuple.</t>
-          <t>No end to end DN Sequence Number present in the packet.</t>
-          <t>Links / sub nets may use their technology specific methods to achieve DN service.</t>
-          <t>TE information does not travel with the packet (e.g., nailed down path ensured via Policy-Based-Routing).</t>
-          <t>etc.</t>
-        </list>
-        ]
+        [Editor's note: simplify to focus on DetNet IP over subnets.].
       </t>
 
-      <t>
-        <xref target="simplifiedip"/> illustrated the case for DetNet simplified IP data plane solution.
-      </t>
-    </section>
- -->
       <t>
         This document describes how IP is used by DetNet nodes, i.e.,
         hosts and routers, to identify DetNet flows and provide a DetNet
@@ -270,7 +274,7 @@
         mapped to one or more PWs and MPLS (TE) LSPs.  The end systems
         still originate IP encapsulated traffic that is identified as
         DetNet flows.  The relay nodes follow procedures defined in
-        <xref target="ip-over-mpls"/> to map each DetNet
+        XXX <!-- <xref target="ip-over-mpls"/> --> to map each DetNet
         flow to MPLS LSPs. While not shown, relay nodes can provide
         service sub-layer functions such as PREOF using DetNet over MPLS,
         and this is indicated by the solid line for the MPLS
@@ -278,7 +282,7 @@
         node is MPLS (TE) LSP aware and performs switching based on MPLS
         labels, and need not have any specific knowledge of the DetNet
         service or the corresponding DetNet flow identification. See
-        <xref target="ip-over-mpls"/> for details on the mapping of IP
+        XXX <!-- <xref target="ip-over-mpls"/> --> for details on the mapping of IP
         flows to MPLS, and <xref target="I-D.ietf-detnet-dp-sol-mpls"/>
         for general support of DetNet services using MPLS.
       </t>
@@ -310,7 +314,7 @@
         domain and provide DetNet service proxies for the end applications by
         initiating and terminating DetNet service for the application's IP
         flows.  The existing header information or an approach such as described
-        in <xref target="aggregation"/> can be used to support DetNet flow
+        in XXX <!-- <xref target="aggregation"/> --> can be used to support DetNet flow
         identification.
       </t>
       <t>
@@ -333,139 +337,11 @@
 
     </section>
 
-    <!-- ================================================================= -->
-    <!-- =================== General Encap considerations ================ -->
-    <!-- ================================================================= -->
+    <!-- ===================================================================== -->
+
+
 
     <section title="DetNet IP Data Plane Considerations" anchor="dn-gen-encap-solution">
-      <t>
-        This section provides informative considerations related to
-        providing DetNet service to flows which are identified
-        based on their header information. At a high level, the
-        following are provided on a per flow basis:
-        <list style="hanging">
-          <t hangText="Congestion protection and latency control:">
-            <vspace blankLines="1"/>
-            Usage of allocated resources (queuing, policing, shaping) to ensure
-            that the congestion-related loss and latency/jitter requirements of
-            a DetNet flow are met.
-          </t>
-          <t hangText="Explicit routes:">
-            <vspace blankLines="1"/>
-            Use of a specific path for a flow.  This limits
-            misordering and can improve delivery of deterministic latency.
-          </t>
-
-          <t hangText="Service protection:">
-            <vspace blankLines="1"/>
-            Which in the case of this document
-            translates to changing the explicit path after a failure is
-            detected in order to restore delivery of the required DetNet service
-            characteristics. Path changes, even in the case of failure
-            recovery, can lead to the out of order delivery of data.
-          </t>
-          <t>
-            Note: DetNet PREOF is not provided by the mechanisms defined in
-            this document.
-          </t>
-          <t hangText="Load sharing:">
-            <vspace blankLines="1"/>
-            Generally, distributing packets of the same DetNet flow over
-            multiple paths is not recommended. Such load sharing,
-            e.g., via ECMP or UCMP, impacts ordering and end-to-end jitter.
-          </t>
-          <t hangText="Troubleshooting:"> <vspace blankLines="1"/>
-          For example, to support identification of misbehaving flows.
-          </t>
-          <t hangText="Recognize flow(s) for analytics:"><vspace blankLines="1"/>
-          For example, increase counters.
-          </t>
-          <t hangText="Correlate events with flows:"><vspace blankLines="1"/>
-          For example, unexpected loss.
-          </t>
-        </list>
-      </t>
-
-
-      <section title="End-System Specific Considerations">
-        <t>
-          Data-flows requiring DetNet service are generated and terminated on
-          end systems.  This document deals only with IP end systems.  The
-          protocols used by an IP end system are specific to an application
-          and end systems peer with end systems using the same application
-          encapsulation format.  This said, DetNet's use of 6-tuple IP flow
-          identification means that DetNet must be aware of not only the
-          format of the IP header, but also of the next protocol carried
-          within an IP packet.
-        </t>
-        <t>
-          When IP end systems are DetNet aware, no application-level or
-          service-level proxy functions are needed inside the DetNet domain.
-          For DetNet unaware IP end systems service-level proxy functions are
-          needed inside the DetNet domain.
-        </t>
-        <t>
-          End systems need to ensure that DetNet service requirements are met
-          when processing packets associated with a DetNet flow.  When
-          forwarding packets, this means that packets are
-          appropriately shaped on transmission and received appropriate traffic
-          treatment on the connected sub-network, see <xref target="QoS"/> and
-          <xref target="detrouting"/> for more details.  When receiving packets,
-          this means that there are appropriate local node resources,
-          e.g., buffers, to receive and process a DetNet flow packets.
-        </t>
-      </section>
-
-      <section title="DetNet Domain-Specific Considerations">
-        <t>
-          As a general rule, DetNet IP domains need to be able to forward any
-          DetNet flow identified by the IP 6-tuple. Doing otherwise would limit
-          end system encapsulation format. From a practical standpoint this
-          means that all nodes along the end-to-end path of a DetNet flows need
-          to agree on what fields are used for flow identification, and the
-          transport protocols (e.g., TCP/UDP/IPsec) which can be used to
-          identify 6-tuple protocol ports.
-        </t>
-        <t>
-          From a connection type perspective two scenarios are identified:
-          <list style="numbers">
-            <t>
-              DN attached: end system is directly connected to an edge node or
-              end system is behind a sub-network. (See ES1 and ES2 in figure
-              below)
-            </t>
-            <t>
-              DN integrated: end system is part of the DetNet domain. (See ES3
-              in figure below)
-            </t>
-          </list>
-        </t>
-
-        <t>
-          L3 (IP) end systems may use any of these connection types.  DetNet
-          domain allows communication between any end-systems using the
-          same encapsulation format, independent of their connection type and
-          DetNet capability. DN attached end systems have no knowledge about
-          the DetNet domain and its encapsulation format.  See <xref
-          target="fig_es_con_types"/> for L3 end system connection scenarios.
-        </t>
-
-        <figure title="Connection types of L3 end systems" anchor="fig_es_con_types">
-          <artwork align="center"><![CDATA[
-                                   ____+----+
-           +----+        _____    /    | ES3|
-           | ES1|____   /     \__/     +----+___
-           +----+    \ /                        \
-                      +                          |
-              ____     \                        _/
-+----+     __/    \     +__    DetNet domain   /
-| ES2|____/  L2/L3 |___/   \         __     __/
-+----+    \_______/         \_______/  \___/
-
-]]>
-        </artwork></figure>
-
-
 
         <section title="DetNet Routers" anchor="detrouting">
 
@@ -551,7 +427,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
               protocols. However, these are out of scope of this document.
             </t>
         </section>
-      </section>
+ 
 
         <section title="Networks With Multiple Technology Segments" anchor="nwsegments">
           <!-- alternate title:
@@ -570,8 +446,8 @@ DetNet                    |L2/SbN|          |L2/SbN|
             transmit, and by mapping the service requirements of each
             flow to appropriate sub-network mechanisms.  Such mapping is
             sub-network technology specific.  The mapping of DetNet IP
-            Flows to MPLS is covered <xref
-            target="ip-over-mpls"/>.  The mapping of IP
+            Flows to MPLS is covered XXX <!-- <xref
+            target="ip-over-mpls"/> -->.  The mapping of IP
             DetNet Flows to IEEE 802.1 TSN is covered in <xref
             target="mapping-tsn"/>.
           </t>
@@ -592,970 +468,18 @@ DetNet                    |L2/SbN|          |L2/SbN|
 
         </section>
 
-      <section title="OAM">
-        <t>
-          [Editor's note: This section is TBD. OAM may be dropped from
-          this document and left for future study.]
-        </t>
-      </section>
-      <section title="Class of Service">
-        <t>
-          Class and quality of service, i.e., CoS and QoS, are terms that are
-          often used interchangeably and confused.  In the context of DetNet,
-          CoS is used to refer to mechanisms that provide traffic forwarding
-          treatment based on aggregate group basis and QoS is used to refer
-          to mechanisms that provide traffic forwarding treatment based on a
-          specific DetNet flow basis.  Examples of existing network level CoS
-          mechanisms include DiffServ which is enabled by IP header
-          differentiated services code point (DSCP) field <xref
-          target="RFC2474"/> and MPLS label traffic class field <xref
-          target="RFC5462"/>, and at Layer-2, by IEEE 802.1p priority code
-          point (PCP).
-        </t>
-        <t>
-          CoS for DetNet flows carried in IPv6 is provided using the standard
-          differentiated services code point (DSCP) field <xref
-          target="RFC2474"/> and related mechanisms.  The 2-bit explicit
-          congestion notification (ECN) <xref target="RFC3168"/> field MAY
-          also be used.
-        </t>
-        <t>
-          One additional consideration for DetNet nodes which support CoS
-          services is that they MUST ensure that the CoS service classes do
-          not impact the congestion protection and latency control mechanisms
-          used to provide DetNet QoS.  This requirement is similar to
-          requirement for MPLS LSRs to that CoS LSPs do not impact the
-          resources allocated to TE LSPs via <xref target="RFC3473"/>.
-        </t>
-      </section>
+</section>
 
-      <section title="Quality of Service" anchor="QoS">
-        <t>
-          Quality of Service (QoS) mechanisms for flow-specific traffic
-          treatment typically includes a guarantee/agreement for the service,
-          and allocation of resources to support the service.  Example QoS
-          mechanisms include discrete resource allocation, admission control,
-          flow identification and isolation, and sometimes path control, traffic
-          protection, shaping, policing and remarking. Example protocols that
-          support QoS control include <xref target="RFC2205">Resource
-          ReSerVation Protocol (RSVP)</xref> (RSVP) and RSVP-TE <xref
-          target="RFC3209"/> and <xref target="RFC3473"/>.  The existing MPLS
-          mechanisms defined to support CoS <xref target="RFC3270"/> can also be
-          used to reserve resources for specific traffic classes.
-        </t>
-        <t>
-          In addition to explicit routes, and packet replication and
-          elimination, DetNet provides zero congestion loss and bounded latency
-          and jitter.  As described in <xref
-          target="I-D.ietf-detnet-architecture"/>, there are different
-          mechanisms that maybe used separately or in combination to deliver a
-          zero congestion loss service.  These mechanisms are provided by the
-          either the MPLS or IP layers, and may be combined with the mechanisms
-          defined by the underlying network layer such as 802.1TSN.
-        </t>
-        <t>
-          A baseline set of QoS capabilities for DetNet flows carried in PWs
-          and MPLS can provided by MPLS with Traffic Engineering (MPLS-TE)
-          <xref target="RFC3209"/> and <xref target="RFC3473"/>.  TE LSPs can
-          also support explicit routes (path pinning).  Current service
-          definitions for packet TE LSPs can be found in "Specification of
-          the Controlled Load Quality of Service", <xref target="RFC2211"/>,
-          "Specification of Guaranteed Quality of Service", <xref
-          target="RFC2212"/>, and "Ethernet Traffic Parameters", <xref
-          target="RFC6003"/>. Additional service definitions are expected in
-          future documents to support the full range of DetNet services.
-          In all cases, the existing label-based marking mechanisms defined
-          for TE-LSPs and even E-LSPs are use to support the identification
-          of flows requiring DetNet QoS.
-        </t>
-        <t>
-          QoS for DetNet service flows carried in IP MUST be provided locally by
-          the DetNet-aware hosts and routers supporting DetNet flows.  Such
-          support will leverage the underlying network layer such as
-          802.1TSN.  The traffic control mechanisms used to deliver QoS for
-          IP encapsulated DetNet flows are expected to be defined in a future
-          document.  From an encapsulation perspective, the combination of the "6 tuple" i.e.,
-          the typical 5 tuple enhanced with the DSCP code, uniquely identifies a DetNet
-          service flow.
-        </t>
-        <t>
-          Packets that are marked with a DetNet Class of Service value,
-          but that have not been the subject of a completed reservation,
-          can disrupt the QoS offered to properly reserved DetNet flows
-          by using resources allocated to the reserved flows.
-          Therefore, the network nodes of a DetNet network must:
 
-          <list style="symbols">
-            <t>
-              Defend the DetNet QoS by discarding or remarking (to a
-              non-DetNet CoS) packets received that are not the subject
-              of a completed reservation.  </t><t> Not use a DetNet
-              reserved resource, e.g. a queue or shaper reserved for
-              DetNet flows, for any packet that does not carry a DetNet
-              Class of Service marker.
-            </t>
-          </list>
-        </t>
-      </section>
 
-      <section title="Cross-DetNet Flow Resource Aggregation" anchor="aggregation">
-        <t>
-          The ability to aggregate individual flows, and their associated
-          resource control, into a larger aggregate is an important technique
-          for improving scaling of control in the data, management and
-          control planes.  This document identifies the traffic identification
-          related aspects of aggregation of DetNet flows.  The resource
-          control and management aspects of aggregation (including the
-          queuing/shaping/policing implications) will be covered in other
-          documents.  The data plane implications of aggregation are
-          independent for PW/MPLS and IP encapsulated DetNet flows.
-        </t>
-        <t>
-          DetNet flows forwarded via IP have more limited aggregation
-          options, due to the available traffic flow identification fields of
-          the IP solution.
+<section title="Management and Control Considerations" anchor="m-cp-considerations">
 
-          One available approach is to manage the resources
-          associated with a DSCP identified traffic class and to map (remark)
-          individually controlled DetNet flows onto that traffic class.  This
-          approach also requires that nodes support aggregation ensure that
-          traffic from aggregated LSPs are placed (shaped/policed/enqueued)
-          in a fashion that ensures the required DetNet service is preserved.
-        </t>
-        <t>
-          In both the MPLS and IP cases, additional details of the traffic control
-          capabilities needed at a DetNet-aware node may be covered in the
-          new service descriptions mentioned above or in separate future
-          documents.  Management and control plane mechanisms will also need
-          to ensure that the service required on the aggregate flow (H-LSP or
-          DSCP) are provided, which may include the  discarding or remarking
-          mentioned in the previous sections.
-        </t>
-      </section>
-
-    <!-- ===================================================================== -->
-    <section title="Time Synchronization">
-     <t>
-      While time synchronization can be important both from the perspective of
-      operating the DetNet network itself and from the perspective of
-      DetNet-based applications, time synchronization is outside the
-      scope of this document.  This said, a DetNet node can also support
-      time synchronization or distribution mechanisms.
-     </t>
-     <t>
-      For example, <xref target="RFC8169"/> describes a method
-      of recording the packet queuing time in an MPLS LSR on a packet by
-      per packet basis and forwarding this information to the egress edge
-      system.  This allows compensation for any variable packet queuing
-      delay to be applied at the packet receiver. Other mechanisms for
-      IP networks are
-      defined based on IEEE Standard 1588 <xref target="IEEE1588"/>,
-      such as ITU-T <xref target="G.8275.1"/> and <xref target="G.8275.2"/>.
-     </t>
-     <t>
-      A more detailed discussion of time synchronization is outside the
-      scope of this document.
-     </t>
-    </section>
-  </section>
-    <!-- ===================================================================== -->
-
-    <section title="Management and Control Considerations" anchor="m-cp-considerations">
       <t>
-        While management plane and control planes are traditionally
-        considered separately, from the Data Plane perspective there is
-        no practical difference based on the origin of flow provisioning
-        information, and the DetNet architecture <xref
-        target="I-D.ietf-detnet-architecture"/> refers to these
-        collectively as the 'Controller Plane'.  This document therefore
-        does not distinguish between information provided by distributed
-        control plane protocols, e.g., IGP routing protocols, or by
-        centralized network management mechanisms, e.g., RestConf <xref
-        target="RFC8040"/>, YANG <xref target="RFC7950"/>, and the Path
-        Computation Element Communication Protocol (PCEP) <xref
-        target="RFC8283"/> <xref target="I-D.ietf-teas-pce-native-ip"/>
-        or any combination thereof. Specific considerations and
-        requirements for the DetNet Controller Plane are discussed in
-        <xref target="control-management-requirements"/>.
-      </t>
-      <section title="Flow Identification and Aggregation">
-        <t>
-          <xref target="sec_dt_dp"/> introduces the use of the IP
-          "6-tuple" for flow identification, and <xref target="QoS"/>
-          goes on to discuss how identified flows use specific QoS
-          mechanisms for flow-specific traffic treatment, including path
-          control and resource allocation. <xref target="ip-flow-id"/>
-          contains detailed DetNet IP flow identification
-          procedures. Flow identification will play an important role
-          for the DetNet controller plane.
-        </t>
-        <t>
-          <xref target="aggregation"/> and <xref target="ip-agg"/>
-          discuss the use of flow aggregation in DetNet. Flow
-          aggregation can be accomplished using any of the 6-tuple
-          fields defined in <xref target="ip-flow-id"/>, using a DSCP
-          identified traffic class or other field. It will be the
-          responsibility of the DetNet controller plane to be able to
-          properly provision the use of these aggregation
-          mechanisms. These requirements are included in <xref
-          target="control-management-requirements"/>.
-        </t>
-      </section>
-      <section title="Explcit Routes">
-        <t>
-          Explicit routes are used to ensure that packets are routed
-          through the resources that have been reserved for them, and
-          hence provide the DetNet application with the required
-          service. A requirement for the DetNet Controller Plane will be
-          the ability to assign a particular identified DetNet IP flow
-          to a path through the DetNet domain that has been assigned the
-          required nodal resources to provide the appropriate traffic
-          treatment for the flow, and also to include particular links
-          as a part of the path that are able to support the DetNet
-          flow, for example by using IEEE 802.1 TSN links (as discussed
-          in <xref target="mapping-tsn"/>). Further considerations and
-          requirements for the DetNet Controller Plane are discussed in
-          <xref target="control-management-requirements"/>.
-        </t>
-        <t>
-          Whether configuring, calculating and instantiating these
-          routes is a single-stage or multi-stage process, or in a
-          centralized or distributed manner, is out of scope of this
-          document.
-        </t>
-        <t>
-          There are several of approaches that could be used to provide
-          explicit routes and resource allocation in the DetNet
-          layer. For example:
-          <list style="symbols">
-            <t>
-              The path could be explicitly set up by a controller which
-              calculates the path and explicitly configures each node
-              along that path with the appropriate forwarding and
-              resource allocation information.
-            </t>
-            <t>
-              The path could be used a distributed control plane such as
-              <xref target="RFC2205">RSVP</xref> or RSVP-TE <xref
-              target="RFC3473"/> extended to support DetNet IP flows.
-            </t>
-            <t>
-              The path could be implemented using IPv6-based segment
-              routing when extended to support resource allocation.
-            </t>
-          </list>
-          See <xref target="control-management-requirements"/> for
-          further discussion of these alternatives. In addition, <xref
-          target="RFC2386"/> contains useful background information on
-          QoS-based routing, and <xref target="RFC5575"/> discusses a
-          specific mechanism used by BGP for traffic flow specification
-          and policy-based routing.
-        </t>
-      </section>
-      <section title="Contention Loss and Jitter Reduction">
-        <t>
-          As discussed in <xref target="sec_intro"/>, this document does
-          not specify the mechanisms needed to eliminate contention loss
-          or reduce jitter for DetNet flows at the DetNet forwarding
-          sub-layer.  The ability to manage node and link resources to
-          be able to provide these functions will be a necessary part of
-          the DetNet controller plane. It will also be necessary to be
-          able to control the required queuing mechanisms used to
-          provide these functions along a flow's path through the
-          network. See <xref target="ip-svc"/> and <xref
-          target="control-management-requirements"/> for further
-          discussion of these requirements.
-        </t>
-      </section>
-      <section title="Bidirectional Traffic">
-        <t>
-          Some DetNet applications generate bidirectional traffic.
-          Although this document discusses the DetNet IP data plane,
-          MPLS definitions <xref target="RFC5654"/> are useful to
-          illustrate terms such as associated bidirectional flows and
-          co-routed bidirectional flows.  MPLS defines a point-to-point
-          associated bidirectional LSP as consisting of two
-          unidirectional point-to-point LSPs, one from A to B and the
-          other from B to A, which are regarded as providing a single
-          logical bidirectional forwarding path.  This is analogous to
-          standard IP routing.  MPLS defines a point-to-point co-routed
-          bidirectional LSP as an associated bidirectional LSP which
-          satisfies the additional constraint that its two
-          unidirectional component LSPs follow the same path (in terms
-          of both nodes and links) in both directions.  An important
-          property of co-routed bidirectional LSPs is that their
-          unidirectional component LSPs share fate.  In both types of
-          bidirectional LSPs, resource reservations may differ in each
-          direction.  The concepts of associated bidirectional flows and
-          co-routed bidirectional flows can also be applied to DetNet IP
-          flows.
-        </t>
-        <t>
-          While the DetNet IP data plane must support bidirectional
-          DetNet flows, there are no special bidirectional features with
-          respect to the data plane other than the need for the two
-          directions of a co-routed bidirectional flow to take the same
-          path. That is to say that bidirectional DetNet flows are
-          solely represented at the management and control plane levels,
-          without specific support or knowledge within the DetNet data
-          plane.  Fate sharing and associated vs. co-routed
-          bidirectional flows can be managed at the control level.
-        </t>
-        <t>
-          Control and management mechanisms will need to support
-          bidirectional flows, but the specification of such mechanisms
-          are out of scope of this document. An example control plane
-          solution for MPLS can be found in <xref target="RFC7551"/>.
-        </t>
-        <t>
-          This is further discussed in <xref
-          target="control-management-requirements"/>.
-        </t>
-      </section>
-      <section anchor="control-management-requirements"
-               title="DetNet Controller (Control and Management) Plane Requirements">
-        <t>
-          While the definition of controller plane for DetNet is out of
-          the scope of this document, there are particular
-          considerations and requirements for such that result from the
-          unique characteristics of the DetNet architecture <xref
-          target="I-D.ietf-detnet-architecture"/> and data plane as
-          defined herein.
-        </t>
-        <t>
-          The primary requirements of the DetNet controller plane are
-          that it must be able to:
-          <list style="symbols">
-            <t>
-              Instantiate DetNet flows in a DetNet domain (which may
-              include some or all of explicit path determination, link
-              bandwidth reservations, restricting flows to IEEE 802.1 TSN
-              links, node buffer and other resource reservations,
-              specification of required queuing disciplines along the
-              path, ability to manage bidirectional flows, etc.) as needed
-              for a flow.
-            </t>
-            <t>
-              The ability to support DetNet flow aggregation
-            </t>
-            <t>
-              Advertise static and dynamic node and link resources such
-              as capabilities and adjacencies to other network nodes (for
-              dynamic signaling approaches) or to network controllers (for
-              centralized approaches)
-            </t>
-            <t>
-              Scale to handle the number of DetNet flows expected in a
-              domain (which may require per-flow signaling or
-              provisioning)
-            </t>
-            <t>
-              Provision flow identification information at each of the
-              nodes along the path, and it may differ depending on the
-              location in the network and the DetNet functionality.
-            </t>
-          </list>
-        </t>
-        <t>
-          These requirements, as stated earlier, could be satisfied
-          using distributed control protocol signaling, centralized
-          network management provisioning mechanisms, or hybrid
-          combinations of the two, and could also make use of IPv6-based
-          segment routing.
-        </t>
-        <t>
-          In the abstract, the results of either distributed signaling
-          or centralized provisioning are equivalent from a DetNet data
-          plane perspective - flows are instantiated, explicit routes
-          are determined, resources are reserved, and packets are
-          forwarded through the domain using the IP data plane.
-        </t>
-        <t>
-          However, from a practical and implementation standpoint, they
-          are not equivalent at all. Some approaches are more scalable
-          than others in terms of signaling load on the network. Some
-          can take advantage of global tracking of resources in the
-          DetNet domain for better overall network resource
-          optimization. Some are more resilient than others if link,
-          node, or management equipment failures occur. While a detailed
-          analysis of the control plane alternatives is out of the scope
-          of this document, the requirements from this document can be
-          used as the basis of a later analysis of the alternatives.
-        </t>
-      </section>
-    </section>
-
-
-    <!-- ===================================================================== -->
-
-    <section anchor="ip-procs" title="DetNet IP Data Plane Procedures">
-      <t>
-        This section provides DetNet IP data plane procedures. These
-        procedures have been divided into the following areas: flow
-        identification, forwarding and traffic treatment.  Flow
-        identification includes those procedures related to matching IP
-        and higher layer protocol header information to DetNet flow
-        (state) information and service requirements. Flow
-        identification is also sometimes called Traffic classification,
-        for example see <xref target="RFC5777"/>.  Forwarding includes
-        those procedures related to next hop selection and
-        delivery. Traffic treatment includes those procedures related to
-        providing an identified flow with the required DetNet service.
-      </t>
-      <t>
-        DetNet IP data plane procedures also have implications on the
-        control and management of DetNet flows and these are also
-        covered in this section. Specifically this section identifies a
-        number of information elements that will require support via the
-        management and control interfaces supported by a DetNet node.
-        The specific mechanism used for such support is out of the scope
-        of this document.  A summary of the management and control
-        related information requirements is included.  Conformance
-        language is not used in the summary as it applies to future
-        mechanisms such as those that may be provided in YANG models
-        [YANG-REF-TBD].
-      </t>
-      <section anchor="ip-flow-id"
-               title="DetNet IP Flow Identification Procedures">
-        <t>
-          IP and higher layer protocol header information is used to
-          identify DetNet flows. All DetNet implementations that support
-          this document MUST identify individual DetNet flows based on
-          the set of information identified in this section. Note, that
-          additional flow identification requirements, e.g., to support
-          other higher layer protocols, may be defined in future.
-        </t>
-        <t>
-          The configuration and control information used to identify an
-          individual DetNet flow MUST be ordered by an implementation.
-          Implementations MUST support a fixed order when identifying
-          flows, and MUST identify a DetNet flow by the first set of
-          matching flow information.
-        </t>
-        <t>
-          Implementations of this document MUST support DetNet flow
-          identification when the implementation is acting as a
-          DetNet end systems, a relay node or as an edge node.
-        </t>
-
-        <section anchor="ip-hdr" title="IP Header Information">
-          <t>
-            Implementations of this document MUST support DetNet flow
-            identification based on IP header information.  The IPv4
-            header is defined in <xref target="RFC0791"/> and the IPv6
-            is defined in <xref target="RFC8200"/>.
-          </t>
-          <section title="Source Address Field">
-            <t>
-              Implementations of this document MUST support DetNet flow
-              identification based on the Source Address field of an IP
-              packet. Implementations SHOULD support longest prefix
-              matching for this field, see <xref target="RFC1812"/> and
-              <xref target="RFC7608"/>. Note that a prefix length of
-              zero (0) effectively means that the field is ignored.
-            </t>
-          </section>
-          <section title="Destination Address Field">
-            <t>
-              Implementations of this document MUST support DetNet flow
-              identification based on the Destination Address field of an IP
-              packet. Implementations SHOULD support longest prefix
-              matching for this field, see <xref target="RFC1812"/> and
-              <xref target="RFC7608"/>. Note that a prefix length of
-              zero (0) effectively means that the field is ignored.
-            </t>
-            <t>
-              Note: any IP address value is allowed, including IP
-              multicast destination address.
-            </t>
-
-          </section>
-          <section anchor="nxt-proto-field"
-                   title="IPv4 Protocol and IPv6 Next Header Fields">
-            <t>
-              Implementations of this document MUST support DetNet flow
-              identification based on the IPv4 Protocol field when
-              processing IPv4 packets, and the IPv6 Next Header Field
-              when processing IPv6 packets. An implementation MUST
-              support flow identification based based the next protocol
-              values defined in <xref target="nxt-proto"/>.  Other,
-              non-zero values, MUST be used for flow identification.
-              Implementations SHOULD allow for these fields to be
-              ignored for a specific DetNet flow.
-            </t>
-          </section>
-          <section title="IPv4 Type of Service and IPv6 Traffic Class Fields">
-            <t>
-              These fields are used to support Differentiated Services
-              <xref target="RFC2474"/> and Explicit Congestion
-              Notification <xref target="RFC3168"/>.  Implementations of
-              this document MUST support DetNet flow identification
-              based on the IPv4 Type of Service field when processing
-              IPv4 packets, and the IPv6 Traffic Class Field when
-              processing IPv6 packets. Implementations MUST support
-              bimask based matching, where one (1) values in the bitmask
-              indicate which subset of the bits in the field are to be
-              used in determining a match. Note that a zero (0) value as
-              a bitmask effectively means that these fields are ignored.
-            </t>
-          </section>
-          <section title="IPv6 Flow Label Field">
-            <t>
-              Implementations of this document SHOULD support
-              identification of DetNet flows based on the IPv6 Flow
-              Label field. Implementations that support matching based
-              on this field MUST allow for this fields to be ignored for
-              a specific DetNet flow.  When this fields is used to
-              identify a specific DetNet flow, implementations MAY
-              exclude the IPv6 Next Header field and next header
-              information as part of DetNet flow identification.
-            </t>
-          </section>
-        </section>
-
-        <section  anchor="nxt-proto" title="Other Protocol Header Information">
-          <t>
-            Implementations of this document MUST support DetNet flow
-            identification based on header information identified in this
-            section. Support for TCP, UDP and IPsec flows are defined.
-            Future documents are expected to define support for other
-            protocols.
-          </t>
-          <section title="TCP and UDP">
-            <t>
-              DetNet flow identification for TCP <xref
-              target="RFC0793"/> and UDP <xref target="RFC0768"/> is
-              done based on the Source and Destination
-              Port fields carried in each protocol's header.  These
-              fields share a common format and common DetNet flow
-              identification procedures.
-            </t>
-            <section title="Source Port Field">
-              <t>
-                Implementations of this document MUST support DetNet flow
-                identification based on the Source Port field of a TCP or
-                UDP packet. Implementations MUST support flow
-                identification based on a particular value carried in the
-                field, i.e., an exact.  Implementations SHOULD support
-                range-based port matching. Implementation MUST also allow
-                for the field to be ignored for a specific DetNet flow.
-              </t>
-            </section>
-            <section title="Destination Port Field">
-              <t>
-                Implementations of this document MUST support DetNet flow
-                identification based on the Destination Port field of a TCP or
-                UDP packet. Implementations MUST support flow
-                identification based on a particular value carried in the
-                field, i.e., an exact.  Implementations SHOULD support
-                range-based port matching. Implementation MUST also allow
-                for the field to be ignored for a specific DetNet flow.
-              </t>
-            </section>
-          </section>
-          <section title="IPsec AH and ESP">
-            <t>
-              IPsec Authentication Header (AH) <xref target="RFC4302"/>
-              and Encapsulating Security Payload (ESP) <xref
-              target="RFC4303"/> share a common format for the Security
-              Parameters Index (SPI) field.  Implementations MUST
-              support flow identification based on a particular value
-              carried in the field, i.e., an exact.  Implementation SHOULD
-              also allow for the field to be ignored for a specific
-              DetNet flow.
-            </t>
-          </section>
-        </section>
-
-        <section anchor="ip-flow-id-info"
-                 title="Flow Identification Management and Control Information">
-          <t>
-            The following summarizes the set of information that is needed to
-            identify an individual DetNet flow:
-            <list style="symbols">
-              <t>IPv4 and IPv6 source address field.</t>
-              <t>IPv4 and IPv6 source address prefix length, where a zero
-              (0) value effectively means that the address field is
-              ignored.</t>
-              <t>IPv4 and IPv6 destination address field.</t>
-              <t>IPv4 and IPv6 destination address prefix length, where a
-              zero (0) effectively means that the address field is
-              ignored.</t>
-              <t>IPv4 protocol field. A limited set of values is allowed,
-              and the ability to ignore this field, e.g., via
-              configuration of the value zero (0), is desirable.</t>
-              <t>IPv6 next header field. A limited set of values is allowed,
-              and the ability to ignore this field, e.g., via
-              configuration of the value zero (0), is desirable.</t>
-              <t>IPv4 Type of Service and IPv6 Traffic Class Fields.</t>
-              <t>IPv4 Type of Service and IPv6 Traffic Class Field Bitmask, where a
-              zero (0) effectively means that theses fields are
-              ignored.</t>
-              <t>IPv6 flow label field. This field can be optionally used
-              for matching.  When used, can be exclusive of matching
-              against the next header field.</t>
-              <t>TCP and UDP Source Port. Exact and wildcard matching is
-              required. Port ranges can optionally be used.</t>
-              <t>TCP and UDP Destination Port. Exact and wildcard matching is
-              required. Port ranges can optionally be used.</t>
-            </list>
-            This information MUST be provisioned per DetNet flow via
-            configuration, e.g., via the controller plane described in <xref
-            target="m-cp-considerations"/>.
-          </t>
-          <t>
-            Information identifying a DetNet flow is ordered and
-            implementations use the first match.  This can, for example, be
-            used to provide a DetNet service for a specific UDP flow, with
-            unique Source and Destination Port field values, while
-            providing a different service for all other flows with that same
-            UDP Destination Port value.
-          </t>
-        </section>
-      </section>
-
-      <section anchor="ip-fwd" title="Forwarding Procedures">
-        <t>
-          General requirements for IP nodes are defined in <xref
-          target="RFC1122"/>, <xref target="RFC1812"/> and <xref
-          target="RFC6434"/>, and are not modified by this document. The
-          typical next-hop selection process is impacted by DetNet.
-          Specifically, implementations of this document SHALL use
-          management and control information to select the one or more
-          outgoing interfaces and next hops to be used for a packet
-          belonging to a DetNet flow.
-        </t>
-        <t>
-          The use of multiple paths or links, e.g., ECMP, to support a
-          single DetNet flow is NOT RECOMMENDED. ECMP MAY be used for
-          non-DetNet flows within a DetNet domain.
-        </t>
-        <t>
-          The above implies that management and control functions will
-          be defined to support this requirement, e.g., see [YANG-REF-TBD].
-        </t>
-      </section>
-
-      <section anchor="ip-svc" title="DetNet IP Traffic Treatment Procedures">
-        <t>
-          Implementations if this document MUST ensure that a DetNet
-          flow receives the traffic treatment that is provisioned for it
-          via configuration or the controller plane, e.g., via
-          [YANG-REF-TBD].  General information on DetNet service can be
-          found in <xref
-          target="I-D.ietf-detnet-flow-information-model"/>.  Typical
-          mechanisms used to provide different treatment to different
-          flows includes the allocation of system resources (such as
-          queues and buffers) and provisioning or related parameters
-          (such as shaping, and policing). Support can also be provided
-          via an underlying network technology such as MPLS <xref
-          target="ip-over-mpls"/> and IEEE802.1 TSN <xref
-          target="mapping-tsn"/>.  Other than in the TSN case, the
-          specific mechanisms used by a DetNet node to ensure DetNet
-          service delivery requirements are met for supported DetNet
-          flows is outside the scope of this document.
-        </t>
-      </section>
-
-      <section anchor="ip-agg" title="Aggregation Considerations">
-        <t>
-          The use of prefixes, wildcards, bitmasks, and port ranges
-          allows a DetNet node to aggregate DetNet flows.  This
-          aggregation can take place within a single node, when that
-          node maintains state about both the aggregated and component
-          flows.  It can also take place between nodes, where one node
-          maintains state about only flow aggregates while the other
-          node maintains state on all or a portion of the component
-          flows.  In either case, the management or control function that
-          provisions the aggregate flows must ensure that adequate
-          resources are allocated and configured to provide combined
-          service requirements of the component flows.  As DetNet is
-          concerned about latency and jitter, more than just bandwidth
-          needs to be considered.
-        </t>
-      </section>
-
-    </section>
-
-    <!-- ===================================================================== -->
-
-    <section anchor="ip-over-mpls" title="IP over DetNet MPLS">
-      <t>
-        This section defines how IP encapsulated flows are carried over
-        a DetNet MPLS data plane as defined in <xref
-        target="I-D.ietf-detnet-dp-sol-mpls"/>.  As Non-DetNet and
-        DetNet IP packets are identical on the wire, this section is
-        applicable to any node that supports IP over DetNet MPLS, and
-        this section refers to both cases as DetNet IP over DetNet MPLS.
+	    [Editor's note: text to be added]
       </t>
 
-      <section title="IP Over DetNet MPLS Data Plane Scenarios"
-               anchor="sec_ip_mpls_dt_dp_scen">
-        <t>
-          This section provides example uses of IP over DetNet MPLS for
-          illustrative purposes.
-        </t>
-        <figure align="center" anchor="fig_dn_ip_mpls_detnet"
-                title="DetNet IP Over MPLS Network">
-          <artwork><![CDATA[
-IP  DetNet        Relay       Transit         Relay       IP DetNet
-End System        Node         Node           Node        End System
-                  (T-PE)       (LSR)          (T-PE)
-+----------+                                             +----------+
-|   Appl.  |<------------ End to End Service ----------->|   Appl.  |
-+----------+   .....-----+                 +-----.....   +----------+
-| Service  |<--: Service |-- DetNet flow --| Service :-->| Service  |
-+----------+   +---------+  +----------+   +---------+   +----------+
-|Forwarding|   |Fwd| |Fwd|  |Forwarding|   |Fwd| |Fwd|   |Forwarding|
-+-------.--+   +-.-+ +-.-+  +----.---.-+   +-.-+ +-.-+   +---.------+
-        :  Link  :    /  ,-----.  \   : Link :    /  ,-----.  \
-        +........+    +-[  Sub  ]-+   +......+    +-[  Sub  ]-+
-                        [Network]                   [Network]
-                         `-----'                     `-----'
 
-        |<- DN IP->| |<---- DetNet MPLS ---->| |< -DN IP ->|
-        ]]></artwork>
-        </figure>
-        <t>
-          <xref target="fig_dn_ip_mpls_detnet"/> illustrates DetNet
-          enabled End Systems (hosts), connected to DetNet (DN) enabled
-          IP networks, operating over a DetNet aware MPLS network. In
-          this figure, Relay nodes sit at the boundary of the MPLS
-          domain since the non-MPLS domain is DetNet aware.  This figure
-          is very similar to the DetNet MPLS Network figure in <xref
-          target="I-D.ietf-detnet-dp-sol-mpls"/>.  The primary
-          difference is that the Relay nodes are at the edges of the
-          MPLS domain and therefore function as T-PEs, and that service
-          sub-layer functions are not provided over the DetNet IP
-          network.  The transit node functions show above are identical
-          to those described in <xref
-          target="I-D.ietf-detnet-dp-sol-mpls"/>.
-        </t>
-
-        <t>
-          <xref target="fig_ip_pw_detnet"/> illustrates how relay nodes
-          can provide service protection over an MPLS domain.  In this
-          case, CE1 and CE2 are IP DetNet end systems which are
-          interconnected via a MPLS domain such as described in <xref
-          target="I-D.ietf-detnet-dp-sol-mpls"/>. Note that R1 and R3
-          sit at the edges of an MPLS domain and therefore are similar
-          to T-PEs, while R2 sits in the middle of the domain and is
-          therefore similar to an S-PE.
-        </t>
-
-        <figure align="center" anchor="fig_ip_pw_detnet"
-                title="DetNet IP Over DetNet MPLS Network">
-          <artwork><![CDATA[
-      DetNet                                         DetNet
-IP    Service         Transit          Transit       Service  IP
-DetNet               |<-Tnl->|        |<-Tnl->|               DetNet
-End     |            V   1   V        V   2   V            |  End
-System  |   +--------+       +--------+       +--------+   |  System
-+---+   |   |   R1   |=======|   R2   |=======|   R3   |   |   +---+
-|   |-------|._X_....|..DF1..|.__ ___.|..DF3..|...._X_.|-------|   |
-|CE1|   |   |    \   |       |   X    |       |   /    |   |   |CE2|
-|   |   |   |     \_.|..DF2..|._/ \__.|..DF4..|._/     |   |   |   |
-+---+       |        |=======|        |=======|        |       +---+
-    ^       +--------+       +--------+       +--------+       ^
-    |        Relay Node       Relay Node       Relay Node      |
-    |          (T-PE)           (S-PE)          (T-PE)         |
-    |                                                          |
-    |<-DN IP-> <-------- DetNet MPLS ---------------> <-DN IP->|
-    |                                                          |
-    |<-------------- End to End DetNet Service --------------->|
-
-   -------------------------- Data Flow ------------------------->
-
-    X   = Service protection (PRF, PREOF, PEF/POF)
-    DFx = DetNet member flow x over a TE LSP
-    ]]></artwork>
-        </figure>
-
-        <figure align="center" anchor="fig_ip_mpls_detnet"
-                title="Non-DetNet Aware IP Over DetNet MPLS Network">
-          <artwork><![CDATA[
- IP               Edge                        Edge        IP
- End System       Node                        Node        End System
-                 (T-PE)       (LSR)          (T-PE)
-+----------+   +....-----+                 +-----....+   +----------+
-|   Appl.  |<--:Svc Proxy|-- E2E Service --|Svc Proxy:-->|   Appl.  |
-+----------+   +.....+---+                 +---+.....+   +----------+
-|    IP    |<--:IP : |Svc|-- IP/DN Flow ---|Svc| :IP :-->|    IP    |
-+----------+   +---+ +---+  +----------+   +---+ +---+   +----------+
-|Forwarding|   |Fwd| |Fwd|  |Forwarding|   |Fwd| |Fwd|   |Forwarding|
-+-------.--+   +-.-+ +-.-+  +----.---.-+   +-.-+ +-.-+   +---.------+
-        :  Link  :    /  ,-----.  \   : Link :    /  ,-----.  \
-        +........+    +-[  Sub  ]-+   +......+    +-[  Sub  ]-+
-                        [Network]                   [Network]
-                         `-----'                     `-----'
-
-      |<--- IP --->| |<----- DetNet MPLS ----->| |<--- IP --->|
-      ]]></artwork>
-        </figure>
-        <t>
-          <xref target="fig_ip_mpls_detnet"/> illustrates non-DetNet
-          enabled End Systems (hosts), connected to DetNet (DN) enabled
-          MPLS network. It differs from <xref
-          target="fig_dn_ip_mpls_detnet"/> in that the hosts and edge IP
-          networks are not DetNet aware.  In this case, edge nodes sit at
-          the boundary of the MPLS domain since it is also a DetNet domain
-          boundary.  The edge nodes provide DetNet service proxies for the
-          end applications by initiating and terminating DetNet service
-          for the application's IP flows.  While the node types differ,
-          there is essentially no difference in data plane processing
-          between relay and edges.  There are likely to be differences
-          in controller plane operation, particularly when distributed
-          control plane protocols are used.
-        </t>
-
-        <t>
-          <xref target="fig_pw_detnet2"/> illustrates how it is still
-          possible to provided DetNet service protection for
-          non-DetNet aware end systems.  This figures is basically the
-          same as <xref target="fig_ip_pw_detnet"/>, with the exception
-          that CE1 and CE2 are non-DetNet aware end systems and E1 and E3
-          are edge nodes that replace the relay nodes R1 and R3.
-        </t>
-
-        <figure align="center" anchor="fig_pw_detnet2"
-                title="MPLS-Based DetNet (non-MPLS End System)">
-          <artwork><![CDATA[
-      IP                                              IP
-Non   Service          Transit          Transit       Service Non
-DetNet                |<-Tnl->|        |<-Tnl->|              DetNet
-End     |             V   1   V        V   2   V            | End
-System  |    +--------+       +--------+       +--------+   | System
-+---+   |    |   E1   |=======|   R2   |=======|   E3   |   |  +---+
-|   |--------|._X_....|..DF1..|.__ ___.|..DF3..|...._X_.|------|   |
-|CE1|   |    |    \   |       |   X    |       |   /    |   |  |CE2|
-|   |   |    |     \_.|..DF2..|._/ \__.|..DF4..|._/     |   |  |   |
-+---+        |        |=======|        |=======|        |      +---+
-             +--------+       +--------+       +--------+
-             ^ Edge Node      Relay Node       Edge Node^
-             | (T-PE)           (S-PE)          (T-PE)  |
-             |                                          |
-     <--IP-->| <-------- IP Over DetNet MPLS ---------> |<--IP-->
-             |                                          |
-             |<------ End to End DetNet Service ------->|
-
-    X   = Optional service protection (none, PRF, PREOF, PEF/POF)
-    DFx = DetNet member flow x over a TE LSP
-    ]]></artwork>
-        </figure>
-      </section>
-
-      <section anchor="iom-overview"
-               title="DetNet IP over DetNet MPLS Encapsulation">
-      <t>
-        The basic encapsulation
-        approach is to treat a DetNet IP flow as an app-flow from the
-        DetNet MPLS app perspective. The corresponding example DetNet
-        Sub-Network format is shown in <xref
-        target="fig_dn_ip_mpls_sn_ex"/>.
-      </t>
-      <figure title="Example DetNet IP over MPLS Sub-Network Formats"
-              anchor="fig_dn_ip_mpls_sn_ex">
-        <artwork align="center"><![CDATA[
-
-           /->     +------+  +------+  +------+              ^
-           |       |  X   |  |  X   |  |  X   | IP App-Flow  :
-           |       +------+  +------+  +------+              :
-MPLS     <-+       |NProto|  |NProto|  |NProto|              :(1)
- App-Flow  |       +------+  +------+  +------+              :
-           |       |  IP  |  |  IP  |  |  IP  |              v
-           \-> +---+======+--+======+--+======+-----+
-DetNet-MPLS        | d-CW |  | d-CW |  | d-CW |              ^
-                   +------+  +------+  +------+              :(2)
-                   |Labels|  |Labels|  |Labels|              v
-               +---+======+--+======+--+======+-----+
-Sub-Network        |  L2  |  | TSN  |  | UDP  |
-                   +------+  +------+  +------+
-                                       |  IP  |
-                                       +------+
-                                       |  L2  |
-                                       +------+
-    (1) DetNet IP Flow
-    (2) DetNet MPLS Flow
-    ]]>
-        </artwork>
-      </figure>
-      <t>
-        In the figure, "IP App-Flow" indicates the payload carried by
-        the DetNet IP data plane.  "IP" and "NProto" indicate the fields
-        described in <xref target="ip-hdr"/> and <xref
-        target="nxt-proto"/>, respectively.  "MPLS App-Flow" indicates
-        that an individual DetNet IP flow is the payload from the
-        perspective of the DetNet MPLS data plane defined in <xref
-        target="I-D.ietf-detnet-dp-sol-mpls"/>.
-      </t>
-      <t>
-        Per <xref target="I-D.ietf-detnet-dp-sol-mpls"/>, the DetNet
-        MPLS data plane uses a single S-Label to support a single app
-        flow. <xref target="ip-flow-id"/> states that a single DetNet
-        flow is identified based on IP, and next level protocol, header
-        information.  It also defines that aggregation is supported
-        (<xref target="ip-agg"/>) through the use of prefixes,
-        wildcards, bimasks, and port ranges.  Collectively, this results
-        in the fairly straight forward procedures defined in this
-        section.
-      </t>
-      <t>
-        As shown in <xref target="fig_ip_detnet"/>, DetNet relay nodes
-        are responsible for the mapping of a DetNet flow, at the service
-        sub-layer, from the IP to MPLS DetNet data planes and back
-        again. Their related DetNet IP over DetNet MPLS data plane
-        operation is comprised of two sets of procedures: the mapping of
-        flow identifiers; and ensuring proper traffic treatment.
-      </t>
-      </section>
-      <section anchor="iom-ids"
-               title="DetNet IP over DetNet MPLS Flow Identification
-                      Procedures">
-        <t>
-          A relay node that sends a DetNet IP flows over a DetNet MPLS
-          network MUST map a single DetNet IP flow into a single
-          app-flow and MUST process that app-flow in accordance to the
-          procedures defined in <xref
-          target="I-D.ietf-detnet-dp-sol-mpls"/> Section 6.2.  PRF MAY
-          be supported for DetNet IP flows sent over an DetNet MPLS
-          network.  Aggregation as defined in <xref target="ip-agg"/>
-          MAY be used to identify an individual DetNet IP flow. The
-          provisioning of the mapping of DetNet IP flows to DetNet MPLS
-          app-flow information MUST be supported via configuration,
-          e.g., via the controller plane described in <xref 
-          target="m-cp-considerations"/>.
-        </t>
-        <t>
-          A relay node MAY be provisioned to handle packets received via
-          the DetNet MPLS data plane as DetNet IP flows.  A single
-          incoming MPLS app-flow MAY be treated as a single DetNet IP
-          flow, without examination of IP headers. Alternatively,
-          packets received via the DetNet MPLS data plane MAY follow the
-          normal DetNet IP flow identification procedures defined in
-          <xref target="ip-flow-id"/>.  An implementation MUST support
-          the provisioning of handling of received DetNet MPLS data
-          plane as DetNet IP flows via configuration. Note that
-          such configuration MAY include support from PEOF on the
-          incoming DetNet MPLS flow.
-        </t>
-      </section>
-      <section anchor="iom-svc"
-               title="DetNet IP over DetNet MPLS Traffic Treatment Procedures">
-        <t>
-          The traffic treatment required for a particular DetNet IP flow
-          is provisioned via configuration or the controller plane. When
-          an DetNet IP flow is sent over DetNet MPLS a relay node MUST
-          ensure that the provisioned DetNet IP traffic treatment is
-          provided at the forwarding sub-layer as described in <xref
-          target="I-D.ietf-detnet-dp-sol-mpls"/> Section 6.2. Note that
-          the PRF function can also be used when sending over MPLS.
-        </t>
-        <t>
-          Traffic treatment for DetNet IP flows received over the DetNet
-          MPLS data plane MUST follow <xref target="ip-svc"/>.
-        </t>
-      </section>
-    </section>
+</section>
 
     <!--
          =====================================================================
@@ -1795,8 +719,8 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
 	      and ensure proper TSN encapsulation.
             </t>
             <t>
-	      Flow identification procedures are described in <xref
-	      target="ip-flow-id"/>.  A TSN-aware IP (DetNet) node SHALL
+	      Flow identification procedures are described in XXX <!-- <xref
+	      target="ip-flow-id"/> -->.  A TSN-aware IP (DetNet) node SHALL
 	      support the Stream Identification TSN components as per
 	      <xref target="IEEE8021CB">IEEE 802.1CB</xref>.
             </t>
