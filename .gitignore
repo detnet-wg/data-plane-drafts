@@ -1,0 +1,7 @@
+*~
+idnits
+*.prev
+/draft*.html
+/draft*.txt
+/draft*.raw
+*.out

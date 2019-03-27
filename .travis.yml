@@ -1,0 +1,12 @@
+language: python
+addons:
+  apt:
+    packages:
+      - bash
+      - wget
+      - diffutils
+      - make
+install:
+  - pip install -r requirements.txt
+script:
+  - make travis
