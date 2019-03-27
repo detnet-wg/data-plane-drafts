@@ -1,3 +1,8 @@
+#set DRAFT to the basename of draft xml file, i.e., <basename>.xml if have
+#multiple xml files in directory
+DRAFT  := $(basename $(shell ls -t draft*.xml | head -1))
+include ../Makefile.common
+
 #make targets are:
 # all	- Update trees mentioned in draft, <DRAFT>.{xml,txt,html,raw}
 # idnits - Update <DRAFT>.txt, check it with idnits
@@ -7,15 +12,3 @@
 # trees	- update .tree versions of modules mentioned in draft
 # <DRAFT>.{xml,txt,html,raw} - update version of draft indicated by extension
 # vars 	- for testing, shows some internal variables
-
-SUB_DIRS = $(shell ls -d [a-z]*/)
-
-all idnits id rmid trees vars: force
-	@for dir in $(SUB_DIRS) ; do \
-		cd $$dir ; \
-		echo "Running 'make $@ in $$dir (`pwd`)'" ; \
-		make $@ ; \
-		cd .. ; \
-	done
-
-force:
