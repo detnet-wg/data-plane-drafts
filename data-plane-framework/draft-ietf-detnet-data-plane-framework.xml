@@ -117,6 +117,11 @@
 
  <middle>
  <section title="Introduction" anchor="sec_intro">
+
+  <t>
+    [Editor's note: text from MPLS].
+  </t>
+
   <t>
     Deterministic Networking (DetNet) is a service that can be offered by a
     network to DetNet flows.  DetNet provides these flows with a low packet loss
@@ -162,6 +167,39 @@
     for, but does not define, associated controller plane
     and Operations, Administration, and Maintenance (OAM) functions.
   </t>
+
+  <t>
+    [Editor's note: text from IP].
+  </t>
+
+      <t>
+        Deterministic Networking (DetNet) is a service that can be offered by a network to DetNet flows.
+        DetNet provides these flows extremely low packet loss rates and assured maximum end-to-end
+        delivery latency.  General background and concepts of DetNet can
+        be found in the DetNet Architecture <xref target="I-D.ietf-detnet-architecture"/>.
+      </t>
+      <t>
+        This document specifies the DetNet data plane operation for IP
+        hosts and routers that provide DetNet service to IP encapsulated
+        data.  No DetNet specific encapsulation is defined to support IP
+        flows, rather existing IP and higher layer protocol header information is used to support
+        flow identification and DetNet service delivery.
+      </t>
+      <t>
+        The DetNet Architecture decomposes the DetNet related data plane
+        functions into two sub-layers: a service sub-layer and a forwarding
+        sub-layer.  The service sub-layer is used to provide DetNet service
+        protection and reordering. The forwarding sub-layer is used to
+        provides congestion protection (low loss, assured latency, and
+        limited reordering). As no DetNet specific headers are added to
+        support DetNet IP flows, only the forwarding sub-layer functions are
+        supported using the DetNet IP defined by this document. Service
+        protection can be provided on a per sub-net
+        basis using technologies such as MPLS <!-- <xref
+        target="I-D.ietf-detnet-dp-sol-mpls"/> --> and IEEE802.1 TSN.
+      </t>
+
+
  </section>
 
  <section title="Terminology">
@@ -296,6 +334,179 @@
 
   </section>
 </section>  <!-- end of data plane overview -->
+
+
+
+    <section title="DetNet IP Data Plane Overview" anchor="sec_dt_ip_dp">
+<!-- 
+ -->
+
+  <t>
+    [Editor's note: To be merged with previous section].
+  </t>
+
+      <t>
+        This document describes how IP is used by DetNet nodes, i.e.,
+        hosts and routers, to identify DetNet flows and provide a DetNet
+        service. From a data plane perspective, an end-to-end IP model
+        is followed.  As mentioned above, existing IP and higher layer
+        protocol header information is used to support flow
+        identification and DetNet service delivery.
+      </t>
+      <t>
+        DetNet uses "6-tuple" based flow identification, where "6-tuple"
+        refers to information carried in IP and higher layer protocol
+        headers. General background on the use of IP headers, and
+        "5-tuples", to identify flows and support Quality of Service
+        (QoS) can be found in <xref target="RFC3670"/>.  <xref
+        target="RFC7657"/> also provides useful background on the
+        delivery differentiated services (DiffServ) and "6-tuple" based
+        flow identification.
+      </t>
+      <t>
+        DetNet flow aggregation may be enabled via the use of
+        wildcards, masks, prefixes and ranges. IP tunnels may also be
+        used to support flow aggregation. In these cases, it is
+        expected that DetNet aware intermediate nodes will provide
+        DetNet service assurance on the aggregate through resource
+        allocation and congestion control mechanisms.
+      </t>
+      <figure align="center" anchor="fig_ip_detnet_simple"
+              title="A Simple DetNet (DN) Enabled IP Network">
+        <artwork><![CDATA[
+ DetNet IP       Relay                        Relay       DetNet IP
+ End System      Node                         Node        End System
+
++----------+                                             +----------+
+|   Appl.  |<------------ End to End Service ----------->|   Appl.  |
++----------+  ............                 ...........   +----------+
+| Service  |<-: Service  :-- DetNet flow --: Service  :->| Service  |
++----------+  +----------+                 +----------+  +----------+
+|Forwarding|  |Forwarding|                 |Forwarding|  |Forwarding|
++--------.-+  +-.------.-+                 +-.---.----+  +-------.--+
+         : Link :       \      ,-----.      /     \   ,-----.   /
+         +......+        +----[  Sub  ]----+       +-[  Sub  ]-+
+                              [Network]              [Network]
+                               `-----'                `-----'
+
+         |<--------------------- DetNet IP --------------------->|
+                         ]]></artwork>
+      </figure>
+      <t>
+        <xref target="fig_ip_detnet_simple"/> illustrates a DetNet enabled IP
+        network.  The DetNet enabled end systems originate IP encapsulated
+        traffic that is identified as DetNet flows, relay nodes understand the
+        forwarding requirements of the DetNet flow and ensure that node,
+        interface and sub-network resources are allocated to ensure DetNet
+        service requirements. The dotted line around the Service component of
+        the Relay Nodes indicates that the transit routers are DetNet service
+        aware but do not perform any DetNet service sub-layer function, e.g., PREOF.
+        IEEE 802.1 TSN is an example sub-network type which can provide support
+        for DetNet flows and service.  The mapping of DetNet IP flows to TSN
+        streams and TSN protection mechanisms is covered in <!-- <xref
+        target="mapping-tsn"/> -->.
+      </t>
+      <t>
+        Note: The sub-network can represent a TSN, MPLS or IP network
+        segment.
+      </t>
+
+      <figure align="center" anchor="fig_ip_detnet"
+              title="DetNet IP Over DetNet MPLS Network">
+        <artwork><![CDATA[
+ DetNet IP       Relay         Transit         Relay       DetNet IP
+ End System      Node           Node           Node        End System
+
++----------+                                              +----------+
+|   Appl.  |<-------------- End to End Service ---------->|   Appl.  |
++----------+   .....-----+                  +-----.....   +----------+
+| Service  |<--: Service |-- DetNet flow ---| Service :-->| Service  |
+|          |   :         |<- DN MPLS flow ->|         :   |          |
++----------+   +---------+   +----------+   +---------+   +----------+
+|Forwarding|   |Fwd| |Fwd|   |Forwarding|   |Fwd| |Fwd|   |Forwarding|
++--------.-+   +-.-+ +-.-+   +---.----.-+   +-.-+ +-.-+   +----.-----+
+         :  Link :    /  ,-----.  \   :  Link :    /  ,-----.  \
+         +.......+    +-[  Sub  ]-+   +.......+   +--[  Sub  ]--+
+                        [Network]                    [Network]
+                         `-----'                      `-----'
+
+                       |<---- DetNet MPLS --->|
+         |<--------------------- DetNet IP ------------------->|
+                         ]]></artwork>
+      </figure>
+      <t>
+        <xref target="fig_ip_detnet"/> illustrates a variant of <xref
+        target="fig_ip_detnet_simple"/>, with an MPLS based DetNet
+        network as a sub-network between the relay nodes.  It shows a
+        more complex DetNet enabled IP network where an IP flow is
+        mapped to one or more PWs and MPLS (TE) LSPs.  The end systems
+        still originate IP encapsulated traffic that is identified as
+        DetNet flows.  The relay nodes follow procedures defined in
+        XXX <!-- <xref target="ip-over-mpls"/> --> to map each DetNet
+        flow to MPLS LSPs. While not shown, relay nodes can provide
+        service sub-layer functions such as PREOF using DetNet over MPLS,
+        and this is indicated by the solid line for the MPLS
+        facing portion of the Service component. Note that the Transit
+        node is MPLS (TE) LSP aware and performs switching based on MPLS
+        labels, and need not have any specific knowledge of the DetNet
+        service or the corresponding DetNet flow identification. See
+        XXX <!-- <xref target="ip-over-mpls"/> --> for details on the mapping of IP
+        flows to MPLS, and <!-- <xref target="I-D.ietf-detnet-dp-sol-mpls"/> -->
+        for general support of DetNet services using MPLS.
+      </t>
+      <figure align="center" anchor="fig_non_detnet_ip"
+              title="Non-DetNet aware IP end systems with DetNet IP Domain">
+        <artwork><![CDATA[
+ IP              Edge                         Edge         IP
+ End System      Node                         Node         End System
+
++----------+   +.........+                  +.........+   +----------+
+|   Appl.  |<--:Svc Proxy:-- E2E Service ---:Svc Proxy:-->|   Appl.  |
++----------+   +.........+                  +.........+   +----------+
+|    IP    |<--:IP : :Svc:----- IP flow ----:Svc: :IP :-->|    IP    |
++----------+   +---+ +---+                  +---+ +---+   +----------+
+|Forwarding|   |Fwd| |Fwd|                  |Fwd| |Fwd|   |Forwarding|
++--------.-+   +-.-+ +-.-+                  +-.-+ +-.-+   +---.------+
+         :  Link :      \       ,-----.      /     /  ,-----.  \
+         +.......+       +-----[  Sub  ]----+     +--[  Sub  ]--+
+                               [Network]             [Network]
+                                `-----'               `-----'
+
+      |<--- IP --->| |<------ DetNet IP ------->| |<--- IP --->|
+                         ]]></artwork>
+      </figure>
+      <t>
+        <xref target="fig_non_detnet_ip"/> illustrates another variant of <xref
+        target="fig_ip_detnet_simple"/> where the end systems are not DetNet
+        aware.  In this case, edge nodes sit at the boundary of the DetNet
+        domain and provide DetNet service proxies for the end applications by
+        initiating and terminating DetNet service for the application's IP
+        flows.  The existing header information or an approach such as described
+        in XXX <!-- <xref target="aggregation"/> --> can be used to support DetNet flow
+        identification.
+      </t>
+      <t>
+        Non-DetNet and DetNet IP packets are identical on the wire. From
+        data plane perspective, the only difference is that there is
+        flow-associated DetNet information on each DetNet node that
+        defines the flow related characteristics and required forwarding
+        behavior.  As shown above, edge nodes provide a Service Proxy
+        function that "associates" one or more IP flows with the
+        appropriate DetNet flow-specific information and ensures that
+        the receives the proper traffic treatment within the domain.
+      </t>
+      <t>
+        Note: The operation of IEEE802.1 TSN end systems over DetNet
+        enabled IP networks is not described in this document.  While
+        TSN flows could be encapsulated in IP packets by an IP End
+        System or DetNet Edge Node in order to produce DetNet IP flows,
+        the details of such are out of scope of this document.
+      </t>
+
+    </section>
+
+
+
 
 <!-- ================================================================= -->
 <!-- =================== General Encap considerations ================ -->
@@ -597,6 +808,8 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
    &rfc4448;
    &rfc4872;
    &rfc4873;
+      <?rfc include="reference.RFC.7657"?>
+      <?rfc include="reference.RFC.3670"?>
    <?rfc include="reference.RFC.4875"?>
    <?rfc include="reference.RFC.5440"?>
    <?rfc include="reference.RFC.5586"?>
