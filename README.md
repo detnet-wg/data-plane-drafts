@@ -25,10 +25,55 @@ including, BCP 78, 79, the TLP, and the TLP rules regarding code
 components (e.g. being subject to a Simplified BSD License) in
 Contributions.
 
-## Current xml2rfc and idnits results: ![alt text](https://api.travis-ci.org/detnet-wg/draft-ietf-detnet-dp-sol-mpls.svg?branch=master)
-* For details see: https://travis-ci.org/detnet-wg/draft-ietf-detnet-dp-sol-mpls
-* For results on past commits see: https://travis-ci.org/detnet-wg/draft-ietf-detnet-dp-sol-mpls/builds
+## Current xml2rfc and idnits results: ![alt text](https://api.travis-ci.org/detnet-wg/data-plane-drafts.svg?branch=master)
+* For details see: https://travis-ci.org/detnet-wg/data-plane-drafts
+* For results on past commits see: https://travis-ci.org/detnet-wg/data-plane-drafts/builds
 
-## Formatted versions: [text](https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/draft-ietf-detnet-dp-sol-mpls/master/draft-ietf-detnet-dp-sol-mpls-02.xml) or  [html](https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/draft-ietf-detnet-dp-sol-mpls/master/draft-ietf-detnet-dp-sol-mpls-02.xml&modeAsFormat=html%2Fascii)
+#data-plane-framework
 
-## idnits: [results](https://tools.ietf.org/idnits?url=https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/draft-ietf-detnet-dp-sol-mpls/master/draft-ietf-detnet-dp-sol-mpls-02.xml&modeAsFormat=html%2Fascii)
+## Formatted versions: [text](https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-data-plane-framework.xml) or  [html](https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-data-plane-framework.xml&modeAsFormat=html%2Fascii)
+
+## idnits: [results](https://tools.ietf.org/idnits?url=https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-data-plane-framework.xml&modeAsFormat=html%2Fascii)
+
+#ip
+
+## Formatted versions: [text](https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-ip.xml) or  [html](https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-ip.xml&modeAsFormat=html%2Fascii)
+
+## idnits: [results](https://tools.ietf.org/idnits?url=https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-ip.xml&modeAsFormat=html%2Fascii)
+
+#ip-over-mpls
+
+## Formatted versions: [text](https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-ip-over-mpls.xml) or  [html](https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-ip-over-mpls.xml&modeAsFormat=html%2Fascii)
+
+## idnits: [results](https://tools.ietf.org/idnits?url=https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-ip-over-mpls.xml&modeAsFormat=html%2Fascii)
+
+#ip-over-tsn
+
+## Formatted versions: [text](https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-ip-over-tsn.xml) or  [html](https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-ip-over-tsn.xml&modeAsFormat=html%2Fascii)
+
+## idnits: [results](https://tools.ietf.org/idnits?url=https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-ip-over-tsn.xml&modeAsFormat=html%2Fascii)
+
+#mpls
+
+## Formatted versions: [text](https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-mpls.xml) or  [html](https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-mpls.xml&modeAsFormat=html%2Fascii)
+
+## idnits: [results](https://tools.ietf.org/idnits?url=https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-mpls.xml&modeAsFormat=html%2Fascii)
+
+#mpls-over-udp-ip
+
+## Formatted versions: [text](https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-mpls-over-udp-ip.xml) or  [html](https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-mpls-over-udp-ip.xml&modeAsFormat=html%2Fascii)
+
+## idnits: [results](https://tools.ietf.org/idnits?url=https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-mpls-over-udp-ip.xml&modeAsFormat=html%2Fascii)
+
+#mpls-over-tsn
+
+## Formatted versions: [text](https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-mpls-over-tsn.xml) or  [html](https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-mpls-over-tsn.xml&modeAsFormat=html%2Fascii)
+
+## idnits: [results](https://tools.ietf.org/idnits?url=https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-mpls-over-tsn.xml&modeAsFormat=html%2Fascii)
+
+#tsn-vpn-over-mpls
+
+## Formatted versions: [text](https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-tsn-vpn-over-mpls.xml) or  [html](https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-tsn-vpn-over-mpls.xml&modeAsFormat=html%2Fascii)
+
+## idnits: [results](https://tools.ietf.org/idnits?url=https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?url=https://raw.githubusercontent.com/detnet-wg/data-plane-drafts/master/draft-ietf-detnet-tsn-vpn-over-mpls.xml&modeAsFormat=html%2Fascii)
+
