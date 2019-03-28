@@ -72,26 +72,59 @@
     <title abbrev="TSN VPN over DetNet MPLS">
      TSN VPN over DetNet MPLS</title>
 
+    <author role="editor" fullname="Bal&aacute;zs Varga" initials="B." surname="Varga">
+      <organization>Ericsson</organization>
+      <address>
+        <postal>
+          <street>Magyar Tudosok krt. 11.</street>
+          <city>Budapest</city>
+          <country>Hungary</country>
+          <code>1117</code>
+        </postal>
+        <email>balazs.a.varga@ericsson.com</email>
+      </address>
+    </author>
 
-  <author role="editor" fullname="Bal&aacute;zs Varga" initials="B." surname="Varga">
-	<organization>Ericsson</organization>
-	<address>
-	 <postal>
-	  <street>Magyar Tudosok krt. 11.</street>
-	  <city>Budapest</city>
-	  <country>Hungary</country>
-	  <code>1117</code>
-	 </postal>
-	 <email>balazs.a.varga@ericsson.com</email>
-	</address>
-	</author>
+    <author fullname="J&aacute;nos Farkas" initials="J." surname="Farkas">
+      <organization>Ericsson</organization>
+      <address>
+        <postal>
+          <street>Magyar Tudosok krt. 11.</street>
+          <city>Budapest</city>
+          <country>Hungary</country>
+          <code>1117</code>
+        </postal>
+        <email>janos.farkas@ericsson.com</email>
+      </address>
+    </author>
 
-  <author fullname="Jouni Korhonen" initials="J." surname="Korhonen">
-   <!--organization abbrev="Nordic">Nordic Semiconductor</organization-->
-   <address>
-    <email>jouni.nospam@gmail.com</email>
-   </address>
-  </author>
+    <author fullname="Lou Berger" initials="L." surname="Berger">
+      <organization>LabN Consulting, L.L.C.</organization>
+      <address>
+        <email>lberger@labn.net</email>
+      </address>
+    </author>
+
+    <author fullname="Andrew G. Malis" initials="A.G." surname="Malis">
+      <organization>Huawei Technologies</organization>
+      <address>
+        <email>agmalis@gmail.com</email>
+      </address>
+    </author>
+
+    <author fullname="Stewart Bryant" initials="S." surname="Bryant">
+      <organization>Huawei Technologies</organization>
+      <address>
+        <email>stewart.bryant@gmail.com</email>
+      </address>
+    </author>
+
+    <author fullname="Jouni Korhonen" initials="J." surname="Korhonen">
+      <!--organization abbrev="Nordic">Nordic Semiconductor</organization-->
+      <address>
+        <email>jouni.nospam@gmail.com</email>
+      </address>
+    </author>
 
   <!--author fullname="Donald Fauntleroy Duck" initials="D. F." surname="Duck">
    <organization abbrev="Royal Bros.">Royal Bros.</organization>
@@ -118,14 +151,16 @@
  <middle>
  <section title="Introduction" anchor="sec_intro">
   <t>
-    [Editor's note: text to be added].
+    [Editor's note: Introduction to be made specific to TSN over DetNet scenario.
+	Do we intend to cover both TSN over DetNet IP and TSN over DetNet MPLS? Or this
+	document is limited to MPLS scenarios?].
   </t>
 
  </section>
 
  <section title="Terminology">
   <t>
-    [Editor's note: text to be review what is really needed].
+    [Editor's note: text to be review what is really needed here.].
   </t>
 
   <section title="Terms Used in This Document">
@@ -155,7 +190,7 @@
 
   <section title="Abbreviations">
   <t>
-    [Editor's note: text to be added].
+    [Editor's note: text to be cleaned up].
   </t>
 
   <t>
@@ -205,11 +240,10 @@
  </section>
 
 
-  <section title="IEEE 802.1 TSN Over DetNet MPLS Data Plane Scenario"
+<section title="IEEE 802.1 TSN Over DetNet MPLS Data Plane Scenario"
              anchor="sec_tsn_mpls_dt_dp_scen">
       <t>
-        [Author's note: this section to be moved to TSN over mpls sol
-        draft - TBD-TSN-OVER-DETNET]
+        [Author's note: review required on his part.]
       </t>
 
 
@@ -300,6 +334,9 @@ System |    +--------+       +--------+       +--------+   |  System
 <!-- ================================================================= -->
 
 <section title="DetNet MPLS Data Plane Considerations" anchor="dn-gen-encap-solution">
+      <t>
+        [Editor's note: Needs clean up, what is relevant for TSN over DetNet scenarios.].
+      </t>
   <t>
     This section provides informative considerations related to
     providing DetNet service to flows which are identified
@@ -411,6 +448,11 @@ System |    +--------+       +--------+       +--------+   |  System
 
 <section title="MPLS-Based DetNet Data Plane Solution" anchor="dn-dt-solution">
 
+      <t>
+        [Editor's note: Needs clean up. Text should focus on Edge node related topics.].
+      </t>
+
+
  <section title="DetNet Over MPLS Encapsulation Components" anchor="dn-MPLS-en-comps">
   <t>
    To carry DetNet over MPLS the following is required:
@@ -504,9 +546,7 @@ System |    +--------+       +--------+       +--------+   |  System
 
 
  <section title="Layer 2 Addressing and QoS Considerations">
-  <t> [Editor's NOTE: review and simplify this section. Doesn't this
-  belong in the TSN section? Alternatively, describe in generic/non
-  sub-network technology specific terms.]
+  <t> [Editor's NOTE: review and simplify this section if possible.]
   </t>
     <t>
         The Time-Sensitive Networking (TSN) Task Group of the IEEE 802.1 Working Group have
@@ -549,8 +589,9 @@ System |    +--------+       +--------+       +--------+   |  System
 <section title="Controller Plane (Management and Control)
                 Considerations" anchor="cp_considerations">
 
-
-
+      <t>
+        [Editor's note: requires considerations related to TSN over DetNet.].
+      </t>
 
 </section>
 
@@ -594,6 +635,13 @@ System |    +--------+       +--------+       +--------+   |  System
    Spring Valley, CA  91977
    USA
    Email: norman.finn@mail01.huawei.com
+
+   Balazs Varga
+   Ericsson
+   Magyar Tudosok krt. 11.
+   Budapest  1117
+   Hungary
+   Email: balazs.a.varga@ericsson.com
 
    Janos Farkas
    Ericsson
@@ -796,11 +844,10 @@ System |    +--------+       +--------+       +--------+   |  System
    </reference>
 
   </references>
- <section title="Example of DetNet Data Plane Operation" anchor="sec_comb">
+ <section title="Example of TSN over DetNet Data Plane Operation" anchor="sec_comb">
   <t>
    [Editor's note: Add a simplified example of DetNet data plane and how labels etc
-   work in the case of MPLS-based PSN and utilizing PREOF. The figure is subject
-   to change depending on the further DT decisions on the label handling..]
+   work in the case of TSN over DetNet MPLS and utilizing e.g., PREOF.]
   </t>
  </section>
 
