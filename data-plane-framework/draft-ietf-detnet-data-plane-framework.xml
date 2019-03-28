@@ -70,8 +70,8 @@
          ipr="trust200902"
          submissionType="IETF">
   <front>
-    <title abbrev="DetNet MPLS Data Plane">
-     DetNet MPLS Data Plane Encapsulation</title>
+    <title abbrev="DetNet Data Plane Framework">
+     DetNet Data Plane Framework</title>
 
     <author role="editor" fullname="Bal&aacute;zs Varga" initials="B." surname="Varga">
       <organization>Ericsson</organization>
@@ -740,19 +740,19 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
     <section title="Flow Identification and Aggregation">
       <t>
         <xref target="sec_dt_dp"/> introduces the use of the IP
-        "6-tuple" for flow identification, and <xref target="QoS"/>
+        "6-tuple" for flow identification, and <!-- <xref target="QoS"/> -->
         goes on to discuss how identified flows use specific QoS
         mechanisms for flow-specific traffic treatment, including path
-        control and resource allocation. <xref target="ip-flow-id"/>
+        control and resource allocation. XXX <!-- <xref target="ip-flow-id"/> -->
         contains detailed DetNet IP flow identification
         procedures. Flow identification will play an important role
         for the DetNet controller plane.
       </t>
       <t>
-        <xref target="aggregation"/> and <xref target="ip-agg"/>
+        XXX and YYY <!-- <xref target="aggregation"/> and <xref target="ip-agg"/> -->
         discuss the use of flow aggregation in DetNet. Flow
         aggregation can be accomplished using any of the 6-tuple
-        fields defined in <xref target="ip-flow-id"/>, using a DSCP
+        fields defined in XXX <!-- <xref target="ip-flow-id"/> -->, using a DSCP
         identified traffic class or other field. It will be the
         responsibility of the DetNet controller plane to be able to
         properly provision the use of these aggregation
@@ -772,7 +772,7 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
         treatment for the flow, and also to include particular links
         as a part of the path that are able to support the DetNet
         flow, for example by using IEEE 802.1 TSN links (as discussed
-        in <xref target="mapping-tsn"/>). Further considerations and
+        in XXX <!-- <xref target="mapping-tsn"/> -->). Further considerations and
         requirements for the DetNet Controller Plane are discussed in
         <xref target="control-management-requirements"/>.
       </t>
@@ -821,7 +821,7 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
         the DetNet controller plane. It will also be necessary to be
         able to control the required queuing mechanisms used to
         provide these functions along a flow's path through the
-        network. See <xref target="ip-svc"/> and <xref
+        network. See XXX <!-- <xref target="ip-svc"/> --> and <xref
         target="control-management-requirements"/> for further
         discussion of these requirements.
       </t>
@@ -953,7 +953,7 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
         [Editor's note - we may need additional text on resource allocation in this section.]
       </t>
       <t>
-        DetNet S-Labels (see <xref target="flow-identification"/> for their
+        DetNet S-Labels (see XXX <!-- <xref target="flow-identification"/> --> for their
         definition) are similar to other MPLS service labels that denote the
         contents of the MPLS packet payload such as a layer 2 pseudowire, an
         IP packet that is routed in a VPN context with a private address, or
@@ -970,8 +970,8 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
         domain. Because labels are local to each node rather than being a
         global identifier within a domain, they must be advertised to their
         upstream DetNet service-aware peer nodes (e.g., a DetNet MPLS End
-        System as shown in <xref target="fig_pw_detnet"/>, or a DetNet
-        Relay or Edge Node as shown in <xref target="fig_pw_detnet2"/>) and
+        System as shown in XXX <!-- <xref target="fig_pw_detnet"/> -->, or a DetNet
+        Relay or Edge Node as shown in XXX <!-- <xref target="fig_pw_detnet2"/>-->) and
         interpreted in the context of their received F-Label.
       </t>
       <t>
@@ -1112,7 +1112,7 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
     </section>
     <section title="Flow Aggregation Control">
       <t>
-        <xref target="FAG"/> discusses the use of flow aggregation in
+        XXX <!-- <xref target="FAG"/> --> discusses the use of flow aggregation in
         DetNet. It includes flow aggregation accomplished through the use
         of hierarchical LSPs, aggregating multiple DetNet flows into a
         single new DetNet flow, and simple aggregation at the DetNet
