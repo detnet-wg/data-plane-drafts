@@ -96,6 +96,10 @@
   <middle>
     <section title="Introduction" anchor="sec_intro">
       <t>
+        [Editor's note: Introduction to be made specific to DetNet IP over TSN scenario. 
+		May be similar to intro of DetNet MPLS over TSN.].
+      </t>
+      <t>
         Deterministic Networking (DetNet) is a service that can be offered by a network to DetNet flows.
         DetNet provides these flows extremely low packet loss rates and assured maximum end-to-end
         delivery latency.  General background and concepts of DetNet can
@@ -124,6 +128,10 @@
     </section>
 
     <section title="Terminology">
+      <t>
+        [Editor's note: Needs clean up.].
+      </t>
+
       <section title="Terms Used In This Document">
         <t>
           This document uses the terminology and concepts established in
@@ -158,8 +166,9 @@
           </list>
         </t>
       </section>
+</section>
 
-    <section title="Requirements Language">
+<section title="Requirements Language">
       <t>
         The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
         NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
@@ -168,13 +177,14 @@
         target="RFC8174"/> when, and only when, they appear in all
         capitals, as shown here.
       </t>
-    </section>
-    </section>
+</section>
 
 
     <section title="DetNet IP Data Plane Overview" anchor="sec_dt_dp">
       <t>
-        [Editor's note: simplify to focus on DetNet IP over subnets.].
+        [Editor's note: simplify this section and highlight 
+		DetNet IP over subnets scenario being the focus in 
+		the remaining part of the document.].
       </t>
 
       <t>
@@ -342,6 +352,10 @@
 
 
     <section title="DetNet IP Data Plane Considerations" anchor="dn-gen-encap-solution">
+      <t>
+        [Editor's note: Sort out what data plane considerations are relevant 
+		for sub-net scenarios.].
+      </t>
 
         <section title="DetNet Routers" anchor="detrouting">
 
@@ -472,14 +486,6 @@ DetNet                    |L2/SbN|          |L2/SbN|
 
 
 
-<section title="Management and Control Considerations" anchor="m-cp-considerations">
-
-      <t>
-	    [Editor's note: text to be added]
-      </t>
-
-
-</section>
 
     <!--
          =====================================================================
@@ -757,7 +763,9 @@ DetNet                    |L2/SbN|          |L2/SbN|
 	      <xref target="IEEE8021CB">IEEE 802.1CB</xref>.
             </t>
           </section>
-          <section title="Management and Control Implications">
+</section>
+
+<section title="Management and Control Implications">
             <t>
               [Editor's note: This section is TBD
               Covers Creation, mapping, removal of TSN Stream IDs, related
@@ -828,8 +836,8 @@ DetNet                    |L2/SbN|          |L2/SbN|
 	      inside the TSN sub-network is a TSN specific decision and
 	      may not be visible in the DetNet domain.
 	    </t>
-          </section>
-        </section>
+</section>
+
 
     <!-- ===================================================================== -->
 
@@ -1047,19 +1055,6 @@ TBD.
       </reference>
 
     </references>
-    <section title="Example of DetNet Data Plane Operation" anchor="sec_comb">
-      <t>
-        [Editor's note: Add a simplified example of DetNet data plane and how labels etc
-        work in the case of MPLS-based PSN and utilizing PREOF. The figure is subject
-        to change depending on the further DT decisions on the label handling..]
-      </t>
-    </section>
-
-    <section title="Example of Pinned Paths Using IPv6">
-      <t>
-        TBD.
-      </t>
-    </section>
 
   </back>
 </rfc>

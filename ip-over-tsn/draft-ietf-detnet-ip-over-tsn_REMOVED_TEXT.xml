@@ -1148,3 +1148,21 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
       </section>
     </section>
 
+
+
+
+APPENDIXES
+
+    <section title="Example of DetNet Data Plane Operation" anchor="sec_comb">
+      <t>
+        [Editor's note: Add a simplified example of DetNet data plane and how labels etc
+        work in the case of MPLS-based PSN and utilizing PREOF. The figure is subject
+        to change depending on the further DT decisions on the label handling..]
+      </t>
+    </section>
+
+    <section title="Example of Pinned Paths Using IPv6">
+      <t>
+        TBD.
+      </t>
+    </section>
