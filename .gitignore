@@ -1,7 +1,8 @@
-*~
-idnits
+/[a-z]*/*.html
+/[a-z]*/*.txt
+/[a-z]*/*.raw
 *.prev
-/draft*.html
-/draft*.txt
-/draft*.raw
+*.ed
+idnits
 *.out
+*~

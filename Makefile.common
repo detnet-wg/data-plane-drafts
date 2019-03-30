@@ -11,9 +11,10 @@ WITHXML2RFC := $(shell which xml2rfc > /dev/null 2>&1 ; echo $$? )
 
 ID_DIR	     = IDs
 REVS	    := $(shell grep docName $(DRAFT).xml | tr '"\->' '   ' | \
-		 strings | awk '{printf "%02d %02d",$$NF-1,$$NF}')
+		 strings | awk '{printf "%02d %02d %02d",$$NF-1,$$NF,$$NF+1}')
 PREV_REV    := $(word 1, $(REVS))
 REV	    := $(word 2, $(REVS))
+NEXT_REV    := $(word 3, $(REVS))
 DRAFT_ROOT  := $(DRAFT:%-$(REV)=%)
 OLD          = $(ID_DIR)/$(DRAFT_ROOT)-$(PREV_REV)
 NEW          = $(ID_DIR)/$(DRAFT_ROOT)-$(REV)
@@ -52,6 +53,7 @@ vars:
 	@echo PREV_REV=$(PREV_REV)
 	@echo REV=$(REV)
 	@echo OLD=$(OLD)
+	@echo NEXT_REV=$(NEXT_REV)
 	@echo REPO=$(REPO)
 
 $(DRAFT)-diff.txt: $(DRAFT).txt 
@@ -90,16 +92,25 @@ id: $(DRAFT).txt $(DRAFT).html
 		cp -p $(DRAFT).txt $(NEW).txt  		;\
 		cp -p $(DRAFT).html $(NEW).html  	;\
 		git add $(NEW).xml $(NEW).txt  $(NEW).html ;\
+		git commit -m "$(DRAFT): Adding ID rev $(REV)" $(NEW).xml $(NEW).txt  $(NEW).html ;\
 		ls -lt $(DRAFT).* $(NEW).* 		;\
+		echo "Bumping rev $(REV)->$(NEXT_REV)" 	;\
+		sed 's/\(docName=.*\)'$(REV)'/\1'$(NEXT_REV)'/' < $(NEW).xml > $(DRAFT).xml  ;\
+		git diff  $(DRAFT).xml			;\
+		git commit -m "$(DRAFT): Bumping rev $(REV)->$(NEXT_REV)" $(DRAFT).xml	  ;\
+		git log --stat HEAD~2...		;\
 	fi
 
 rmid:
-	@echo "Removing:"
-	@ls -l $(NEW).xml $(NEW).txt  $(NEW).html
+	@echo "Reverting last 2 changes:"
+	@git log --stat HEAD~2...
+	@ls -l $(OLD).xml $(OLD).txt  $(OLD).html
 	@echo -n "Hit <ctrl>-C to abort, or <CR> to continue: "
 	@read t
-	@rm -f $(NEW).xml $(NEW).txt $(NEW).html
-	@git rm  $(NEW).xml $(NEW).txt $(NEW).html
+	@git reset HEAD~2
+	@git checkout $(DRAFT).xml
+	@rm -f $(OLD).xml $(OLD).txt $(OLD).html
+	@echo "Restored $(DRAFT).xml"
 
 diff: $(DRAFT).raw
 	@rm -f "$(DRAFT)-master.raw"
