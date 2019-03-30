@@ -14,15 +14,8 @@
      ipr="trust200902"
      submissionType="IETF">
   <front>
-    <title abbrev="DetNet IP Data Plane">
-    DetNet IP Data Plane Encapsulation</title>
-
-    <author role="editor" fullname="Jouni Korhonen" initials="J." surname="Korhonen">
-      <!--organization abbrev="Nordic">Nordic Semiconductor</organization-->
-      <address>
-        <email>jouni.nospam@gmail.com</email>
-      </address>
-    </author>
+    <title abbrev="DetNet IP over DetNet MPLS Data Plane">
+    DetNet Data Plane: IP over MPLS</title>
 
     <author role="editor" fullname="Bal&aacute;zs Varga" initials="B." surname="Varga">
       <organization>Ericsson</organization>
@@ -36,6 +29,48 @@
         <email>balazs.a.varga@ericsson.com</email>
       </address>
     </author>
+
+    <author fullname="J&aacute;nos Farkas" initials="J." surname="Farkas">
+      <organization>Ericsson</organization>
+      <address>
+        <postal>
+          <street>Magyar Tudosok krt. 11.</street>
+          <city>Budapest</city>
+          <country>Hungary</country>
+          <code>1117</code>
+        </postal>
+        <email>janos.farkas@ericsson.com</email>
+      </address>
+    </author>
+
+    <author fullname="Lou Berger" initials="L." surname="Berger">
+      <organization>LabN Consulting, L.L.C.</organization>
+      <address>
+        <email>lberger@labn.net</email>
+      </address>
+    </author>
+
+    <author fullname="Andrew G. Malis" initials="A.G." surname="Malis">
+      <organization>Huawei Technologies</organization>
+      <address>
+        <email>agmalis@gmail.com</email>
+      </address>
+    </author>
+
+    <author fullname="Stewart Bryant" initials="S." surname="Bryant">
+      <organization>Huawei Technologies</organization>
+      <address>
+        <email>stewart.bryant@gmail.com</email>
+      </address>
+    </author>
+
+    <author fullname="Jouni Korhonen" initials="J." surname="Korhonen">
+      <!--organization abbrev="Nordic">Nordic Semiconductor</organization-->
+      <address>
+        <email>jouni.nospam@gmail.com</email>
+      </address>
+    </author>
+
 
     <!--author fullname="Donald Fauntleroy Duck" initials="D. F." surname="Duck">
         <organization abbrev="Royal Bros.">Royal Bros.</organization>
