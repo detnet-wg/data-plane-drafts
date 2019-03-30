@@ -69,8 +69,8 @@
          ipr="trust200902"
          submissionType="IETF">
   <front>
-    <title abbrev="TSN VPN over DetNet MPLS">
-     TSN VPN over DetNet MPLS</title>
+    <title abbrev="TSN over DetNet MPLS">
+    DetNet Data Plane: IEEE 802.1 Time Sensitive Networking over MPLS</title>
 
     <author role="editor" fullname="Bal&aacute;zs Varga" initials="B." surname="Varga">
       <organization>Ericsson</organization>
