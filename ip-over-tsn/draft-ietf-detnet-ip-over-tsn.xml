@@ -15,7 +15,7 @@
      submissionType="IETF">
   <front>
     <title abbrev="DetNet IP over TSN">
-    DetNet Data Plane: IP over TSN</title>
+    DetNet Data Plane: IP over IEEE 802.1 Time Sensitive Networking (TSN)</title>
 
     <author role="editor" fullname="Bal&aacute;zs Varga" initials="B." surname="Varga">
       <organization>Ericsson</organization>
