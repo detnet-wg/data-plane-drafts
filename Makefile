@@ -10,7 +10,7 @@
 
 SUB_DIRS = $(shell ls -d [a-z]*/)
 
-all idnits id rmid trees vars: force
+all idnits id rmid trees vars travis: force
 	@for dir in $(SUB_DIRS) ; do \
 		cd $$dir ; \
 		echo "Running 'make $@ in $$dir (`pwd`)'" ; \
