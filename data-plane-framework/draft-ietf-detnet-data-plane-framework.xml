@@ -254,19 +254,16 @@
     <section title="DetNet Data Plane Overview" anchor="sec_dt_dp">
       <section title="Layers of DetNet Data Plane" anchor="sec_lay_dt_dp">
         <t>
-          This document describes how DetNet flows are carried over MPLS
-          networks. The DetNet Architecture, <xref
-          target="I-D.ietf-detnet-architecture"/>, decomposes the DetNet
-          data plane into two sub-layers: a service sub-layer and a
-          forwarding sub-layer.  The basic approach defined in this
-          document supports the DetNet service sub-layer based on
-          existing pseudowire (PW) encapsulations and mechanisms, and
-          supports the DetNet forwarding sub-layer based on existing
-          MPLS Traffic Engineering encapsulations and mechanisms.
-          Background on PWs can be found in <xref target="RFC3985"/> and
-          <xref target="RFC3031"/>. Background on MPLS Traffic
-          Engineering can be found in <xref target="RFC3272"/> and <xref
-          target="RFC3209"/>.
+          This document describes how application flows, or app-flows,
+          are carried over DetNet networks. The DetNet Architecture,
+          <xref target="I-D.ietf-detnet-architecture"/>, decomposes the
+          DetNet data plane into two sub-layers: a service sub-layer and
+          a forwarding sub-layer.  The basic approach used by detnet is
+          to leverage existing concepts and mechanisms to provide DetNet
+          service and forwarding sub-layers.  IP and MPLS traffic
+          engineering provides the foundation for the DetNet data plane.
+          Background on Traffic Engineering can be found in <xref
+          target="RFC3272"/> and <xref target="RFC3209"/>.
         </t>
         <figure anchor="dn_mpls_dp_approach" align="center"
                 title="DetNet Adaptation to MPLS Data Plane">
