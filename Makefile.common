@@ -65,12 +65,12 @@ $(DRAFT)-diff.txt: $(DRAFT).txt
 	 fi
 
 idnits: $(DRAFT).txt
-	@if [ ! -f idnits ] ; then \
+	@if [ ! -f ../idnits ] ; then \
 		rm -f $@ 					;\
-		wget http://tools.ietf.org/tools/idnits/idnits	;\
-		chmod 755 idnits				;\
+		wget http://tools.ietf.org/tools/idnits/idnits -O ../idnits ;\
+		chmod 755 ../idnits				;\
 	fi
-	./idnits $(DRAFT).txt > $@.out
+	../idnits $(DRAFT).txt > $@.out
 	@cat $@.out
 	@grep -q 'Summary: 0 error' $@.out
 
