@@ -168,7 +168,7 @@
  <section title="Introduction" anchor="sec_intro">
   <t>
     Deterministic Networking (DetNet) is a service that can be offered
-    by a network to DetNet flows.  DetNet provides these flows with a
+    by a network to DetNet flows.  DetNet provides these flows extremely
     low packet loss rates and assured maximum end-to-end delivery
     latency.  General background and concepts of DetNet can be found in
     <xref target="I-D.ietf-detnet-architecture"/>.
