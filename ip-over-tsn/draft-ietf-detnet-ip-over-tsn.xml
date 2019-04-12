@@ -10,7 +10,7 @@
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
 <rfc category="std"
-     docName="draft-ietf-detnet-ip-over-tsn-00"
+     docName="draft-ietf-detnet-ip-over-tsn"
      ipr="trust200902"
      submissionType="IETF">
   <front>
@@ -284,7 +284,7 @@
         mapped to one or more PWs and MPLS (TE) LSPs.  The end systems
         still originate IP encapsulated traffic that is identified as
         DetNet flows.  The relay nodes follow procedures defined in
-        XXX <!-- <xref target="ip-over-mpls"/> --> to map each DetNet
+        RRR <!-- <xref target="ip-over-mpls"/> --> to map each DetNet
         flow to MPLS LSPs. While not shown, relay nodes can provide
         service sub-layer functions such as PREOF using DetNet over MPLS,
         and this is indicated by the solid line for the MPLS
@@ -292,7 +292,7 @@
         node is MPLS (TE) LSP aware and performs switching based on MPLS
         labels, and need not have any specific knowledge of the DetNet
         service or the corresponding DetNet flow identification. See
-        XXX <!-- <xref target="ip-over-mpls"/> --> for details on the mapping of IP
+        RRR <!-- <xref target="ip-over-mpls"/> --> for details on the mapping of IP
         flows to MPLS, and <xref target="I-D.ietf-detnet-dp-sol-mpls"/>
         for general support of DetNet services using MPLS.
       </t>
@@ -323,9 +323,8 @@
         aware.  In this case, edge nodes sit at the boundary of the DetNet
         domain and provide DetNet service proxies for the end applications by
         initiating and terminating DetNet service for the application's IP
-        flows.  The existing header information or an approach such as described
-        in XXX <!-- <xref target="aggregation"/> --> can be used to support DetNet flow
-        identification.
+        flows.  The existing header information or an approach used for 
+		aggregation can be used to support DetNet flow identification.
       </t>
       <t>
         Non-DetNet and DetNet IP packets are identical on the wire. From
@@ -460,7 +459,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
             transmit, and by mapping the service requirements of each
             flow to appropriate sub-network mechanisms.  Such mapping is
             sub-network technology specific.  The mapping of DetNet IP
-            Flows to MPLS is covered XXX <!-- <xref
+            Flows to MPLS is covered RRR <!-- <xref
             target="ip-over-mpls"/> -->.  The mapping of IP
             DetNet Flows to IEEE 802.1 TSN is covered in <xref
             target="mapping-tsn"/>.
@@ -725,7 +724,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
 	      and ensure proper TSN encapsulation.
             </t>
             <t>
-	      Flow identification procedures are described in XXX <!-- <xref
+	      Flow identification procedures are described in RRR <!-- <xref
 	      target="ip-flow-id"/> -->.  A TSN-aware IP (DetNet) node SHALL
 	      support the Stream Identification TSN components as per
 	      <xref target="IEEE8021CB">IEEE 802.1CB</xref>.
