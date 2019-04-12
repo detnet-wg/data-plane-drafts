@@ -280,7 +280,7 @@ title="A TSN over DetNet MPLS Enabled Network">
    pseudowire (PW) Terminating Provider Edge (T-PE) nodes which use
    MPLS-TE LSPs.  In this example they understand and support IEEE 802.1
    TSN and are able to map TSN flows into DetNet flows.  The specific of
-   this operation are discussed in [TBD-TSN-OVER-DETNET].
+   this operation are discussed later in this document.
   </t>
   <t>
 	Native TSN flow and DetNet MPLS flow differ not only by the additional MPLS specific encapsulation, but DetNet MPLS flows have
@@ -294,7 +294,7 @@ title="A TSN over DetNet MPLS Enabled Network">
   <t>
    <xref target="fig_8021_detnet"/> illustrates how DetNet can provide services for IEEE 802.1TSN
    end systems, CE1 and CE2, over a DetNet enabled MPLS network.
-   Similar to XXX <!-- <xref target="fig_ip_mpls_detnet"/> -->, the edge nodes, E1 and E2, insert and remove required DetNet data
+   Edge nodes, E1 and E2, insert and remove required DetNet data
    plane encapsulation.  The 'X' in the edge nodes and relay node, R1, represent a potential DetNet compound flow
    packet replication and elimination point.  This conceptually parallels L2VPN services, and could
    leverage existing related solutions as discussed below.
