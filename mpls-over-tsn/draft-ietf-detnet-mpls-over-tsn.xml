@@ -98,13 +98,6 @@
       </address>
     </author>
 
-    <author fullname="Lou Berger" initials="L." surname="Berger">
-      <organization>LabN Consulting, L.L.C.</organization>
-      <address>
-        <email>lberger@labn.net</email>
-      </address>
-    </author>
-
     <author fullname="Andrew G. Malis" initials="A.G." surname="Malis">
       <organization>Huawei Technologies</organization>
       <address>
@@ -921,95 +914,9 @@ Note: * no service sub-layer required for transit nodes
   </t>
 </section>
 
-<section anchor="Contributors" title="Contributors">
- <t>RFC7322 limits the number of authors listed on the front page of a draft to a maximum of 5,
-  far fewer than the many individuals below who made important contributions to this draft. The
-  editor wishes to thank and acknowledge each of the following authors for contributing text to
-  this draft. See also <xref target="acks"/>.
- </t>
- <figure> <artwork><![CDATA[
-   Loa Andersson
-   Huawei
-   Email: loa@pi.nu
-
-   Yuanlong Jiang
-   Huawei
-   Email: jiangyuanlong@huawei.com
-
-   Norman Finn
-   Huawei
-   3101 Rio Way
-   Spring Valley, CA  91977
-   USA
-   Email: norman.finn@mail01.huawei.com
-
-   Janos Farkas
-   Ericsson
-   Magyar Tudosok krt. 11.
-   Budapest  1117
-   Hungary
-   Email: janos.farkas@ericsson.com
-
-   Carlos J. Bernardos
-   Universidad Carlos III de Madrid
-   Av. Universidad, 30
-   Leganes, Madrid  28911
-   Spain
-   Email: cjbc@it.uc3m.es
-
-   Tal Mizrahi
-   Marvell
-   6 Hamada st.
-   Yokneam
-   Israel
-   Email: talmi@marvell.com
-
-   Lou Berger
-   LabN Consulting, L.L.C.
-   Email: lberger@labn.net
-
-   Stewart Bryant
-   Huawei Technologies
-   Email: stewart.bryant@gmail.com
-
-   Mach Chen
-   Huawei Technologies
-   Email: mach.chen@huawei.com
-
-   Andrew G. Malis
-   Huawei Technologies
-   Email: agmalis@gmail.com
-   ]]></artwork>
- </figure>
-
-</section>
-
-
 <section anchor="acks" title="Acknowledgements">
-  <t>The author(s) ACK and NACK.
-  </t>
-  <t> The following people were part of the DetNet Data Plane Solution Design Team:
-  <list style="bullets">
-   <t>Jouni Korhonen</t>
-   <t>J&aacute;nos Farkas</t>
-   <t>Norman Finn</t>
-   <t>Bal&aacute;zs Varga</t>
-   <t>Loa Andersson</t>
-   <t>Tal Mizrahi</t>
-   <t>David Mozes</t>
-   <t>Yuanlong Jiang</t>
-   <t>Andrew Malis</t>
-   <t>Carlos J. Bernardos</t>
-  </list></t>
-  <t>
-   The DetNet chairs serving during the DetNet Data Plane Solution Design Team:
-   <list style="bullets">
-    <t>Lou Berger</t>
-    <t>Pat Thaler</t>
-   </list></t>
    <t>
-    Thanks for Stewart Bryant for his extensive review of the previous
-    versions of the document.
+        Thanks for Norman Finn and Lou Berger for their comments and contributions.
    </t>
 </section>
 </middle>
