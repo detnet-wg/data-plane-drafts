@@ -144,9 +144,23 @@
           This document uses the abbreviations defined in the DetNet
 		  architecture <xref target="I-D.ietf-detnet-architecture"/> and 
 		  <xref target="I-D.ietf-detnet-data-plane-framework"/>.
-          This document defines the following additional abbreviations:
+          This document uses the following abbreviations:
           <list style="hanging" hangIndent="14">
-            <t hangText="???">???</t>
+            <t hangText="CE">Customer Edge equipment.</t>
+            <t hangText="DetNet">Deterministic Networking.</t>
+            <t hangText="DF">DetNet Flow.</t>
+            <t hangText="DN">DetNet.</t>
+            <t hangText="L2">Layer-2.</t>
+            <t hangText="L3">Layer-3.</t>
+            <t hangText="LSP">Label-switched path.</t>
+            <t hangText="MPLS">Multiprotocol Label Switching.</t>
+            <t hangText="PE">Provider Edge.</t>
+            <t hangText="PREOF">Packet Replication, Ordering and Elimination Function.</t>
+            <t hangText="PSN">Packet Switched Network.</t>
+            <t hangText="PW">Pseudowire.</t>
+            <t hangText="TE">Traffic Engineering.</t>
+            <t hangText="TSN">Time-Sensitive Networking, TSN is a Task Group of the IEEE
+            802.1 Working Group.</t>
           </list>
         </t>
       </section>
@@ -612,16 +626,6 @@ TBD.
       <?rfc include="reference.RFC.8174"?>
       <?rfc include="reference.I-D.ietf-detnet-architecture"?>
 
-	  <reference anchor='I-D.ietf-detnet-data-plane-framework'>
-        <front>
-          <title>DetNet Data Plane Framework
-          </title>
-          <author>
-            <organization>Varga, B., Farkas, J., Berger L., MAlis A., Bryant S., Korhonen J.</organization>
-          </author>
-          <date year='2019' />
-        </front>
-      </reference>
 	  <reference anchor='I-D.ietf-detnet-mpls'>
         <front>
           <title>DetNet MPLS
@@ -646,6 +650,16 @@ TBD.
     <references title="Informative references">
       <?rfc include="reference.I-D.ietf-detnet-security"?>
 
+	  <reference anchor='I-D.ietf-detnet-data-plane-framework'>
+        <front>
+          <title>DetNet Data Plane Framework
+          </title>
+          <author>
+            <organization>Varga, B., Farkas, J., Berger L., MAlis A., Bryant S., Korhonen J.</organization>
+          </author>
+          <date year='2019' />
+        </front>
+      </reference>
 
     </references>
     <section title="Example of DetNet Data Plane Operation" anchor="sec_comb">
