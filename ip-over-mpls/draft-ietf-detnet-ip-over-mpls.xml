@@ -662,13 +662,6 @@ TBD.
       </reference>
 
     </references>
-    <section title="Example of DetNet Data Plane Operation" anchor="sec_comb">
-      <t>
-        [Editor's note: Add a simplified example of DetNet data plane and how labels etc
-        work in the case of MPLS-based PSN and utilizing PREOF. The figure is subject
-        to change depending on the further DT decisions on the label handling..]
-      </t>
-    </section>
 
   </back>
 </rfc>
