@@ -98,13 +98,6 @@
       </address>
     </author>
 
-    <author fullname="Lou Berger" initials="L." surname="Berger">
-      <organization>LabN Consulting, L.L.C.</organization>
-      <address>
-        <email>lberger@labn.net</email>
-      </address>
-    </author>
-
     <author fullname="Andrew G. Malis" initials="A.G." surname="Malis">
       <organization>Huawei Technologies</organization>
       <address>
@@ -280,7 +273,7 @@ title="A TSN over DetNet MPLS Enabled Network">
    pseudowire (PW) Terminating Provider Edge (T-PE) nodes which use
    MPLS-TE LSPs.  In this example they understand and support IEEE 802.1
    TSN and are able to map TSN flows into DetNet flows.  The specific of
-   this operation are discussed in [TBD-TSN-OVER-DETNET].
+   this operation are discussed later in this document.
   </t>
   <t>
 	Native TSN flow and DetNet MPLS flow differ not only by the additional MPLS specific encapsulation, but DetNet MPLS flows have
@@ -294,7 +287,7 @@ title="A TSN over DetNet MPLS Enabled Network">
   <t>
    <xref target="fig_8021_detnet"/> illustrates how DetNet can provide services for IEEE 802.1TSN
    end systems, CE1 and CE2, over a DetNet enabled MPLS network.
-   Similar to XXX <!-- <xref target="fig_ip_mpls_detnet"/> -->, the edge nodes, E1 and E2, insert and remove required DetNet data
+   Edge nodes, E1 and E2, insert and remove required DetNet data
    plane encapsulation.  The 'X' in the edge nodes and relay node, R1, represent a potential DetNet compound flow
    packet replication and elimination point.  This conceptually parallels L2VPN services, and could
    leverage existing related solutions as discussed below.
@@ -614,102 +607,9 @@ System |    +--------+       +--------+       +--------+   |  System
   </t>
 </section>
 
-<section anchor="Contributors" title="Contributors">
- <t>RFC7322 limits the number of authors listed on the front page of a draft to a maximum of 5,
-  far fewer than the many individuals below who made important contributions to this draft. The
-  editor wishes to thank and acknowledge each of the following authors for contributing text to
-  this draft. See also <xref target="acks"/>.
- </t>
- <figure> <artwork><![CDATA[
-   Loa Andersson
-   Huawei
-   Email: loa@pi.nu
-
-   Yuanlong Jiang
-   Huawei
-   Email: jiangyuanlong@huawei.com
-
-   Norman Finn
-   Huawei
-   3101 Rio Way
-   Spring Valley, CA  91977
-   USA
-   Email: norman.finn@mail01.huawei.com
-
-   Balazs Varga
-   Ericsson
-   Magyar Tudosok krt. 11.
-   Budapest  1117
-   Hungary
-   Email: balazs.a.varga@ericsson.com
-
-   Janos Farkas
-   Ericsson
-   Magyar Tudosok krt. 11.
-   Budapest  1117
-   Hungary
-   Email: janos.farkas@ericsson.com
-
-   Carlos J. Bernardos
-   Universidad Carlos III de Madrid
-   Av. Universidad, 30
-   Leganes, Madrid  28911
-   Spain
-   Email: cjbc@it.uc3m.es
-
-   Tal Mizrahi
-   Marvell
-   6 Hamada st.
-   Yokneam
-   Israel
-   Email: talmi@marvell.com
-
-   Lou Berger
-   LabN Consulting, L.L.C.
-   Email: lberger@labn.net
-
-   Stewart Bryant
-   Huawei Technologies
-   Email: stewart.bryant@gmail.com
-
-   Mach Chen
-   Huawei Technologies
-   Email: mach.chen@huawei.com
-
-   Andrew G. Malis
-   Huawei Technologies
-   Email: agmalis@gmail.com
-   ]]></artwork>
- </figure>
-
-</section>
-
-
 <section anchor="acks" title="Acknowledgements">
-  <t>The author(s) ACK and NACK.
-  </t>
-  <t> The following people were part of the DetNet Data Plane Solution Design Team:
-  <list style="bullets">
-   <t>Jouni Korhonen</t>
-   <t>J&aacute;nos Farkas</t>
-   <t>Norman Finn</t>
-   <t>Bal&aacute;zs Varga</t>
-   <t>Loa Andersson</t>
-   <t>Tal Mizrahi</t>
-   <t>David Mozes</t>
-   <t>Yuanlong Jiang</t>
-   <t>Andrew Malis</t>
-   <t>Carlos J. Bernardos</t>
-  </list></t>
-  <t>
-   The DetNet chairs serving during the DetNet Data Plane Solution Design Team:
-   <list style="bullets">
-    <t>Lou Berger</t>
-    <t>Pat Thaler</t>
-   </list></t>
    <t>
-    Thanks for Stewart Bryant for his extensive review of the previous
-    versions of the document.
+   Thanks for Norman Finn and Lou Berger for their comments and contributions.
    </t>
 </section>
 </middle>

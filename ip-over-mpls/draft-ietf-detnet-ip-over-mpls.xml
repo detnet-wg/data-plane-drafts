@@ -89,7 +89,7 @@
     <abstract>
       <t>
      This document specifies the Deterministic Networking data plane
-     when operating in an IP packet switched network.
+     when operating in an IP over MPLS packet switched network.
       </t>
     </abstract>
   </front>
@@ -120,7 +120,7 @@
         supported using the DetNet IP defined by this document. Service
         protection can be provided on a per sub-net
         basis using technologies such as MPLS <xref
-        target="I-D.ietf-detnet-dp-sol-mpls"/> and IEEE802.1 TSN.
+        target="I-D.ietf-detnet-mpls"/> and IEEE802.1 TSN.
       </t>
       <t>
         This document provides an overview of the DetNet IP data plane
@@ -132,31 +132,32 @@
       <section title="Terms Used In This Document">
         <t>
           This document uses the terminology and concepts established in
-          the DetNet architecture <xref
-          target="I-D.ietf-detnet-architecture"/>, and the reader is assumed
-          to be familiar with that document and its terminology.
+          the DetNet architecture <xref target="I-D.ietf-detnet-architecture"/>
+		  and <xref target="I-D.ietf-detnet-data-plane-framework"/>, and the 
+		  reader is assumed to be familiar with these documents and their
+		  terminology.
         </t>
       </section>
 
       <section title="Abbreviations">
         <t>
-          The following abbreviations used in this document:
-          <!-- [JiK] Update later -->
+          This document uses the abbreviations defined in the DetNet
+		  architecture <xref target="I-D.ietf-detnet-architecture"/> and 
+		  <xref target="I-D.ietf-detnet-data-plane-framework"/>.
+          This document uses the following abbreviations:
           <list style="hanging" hangIndent="14">
             <t hangText="CE">Customer Edge equipment.</t>
-            <t hangText="CoS">Class of Service.</t>
             <t hangText="DetNet">Deterministic Networking.</t>
             <t hangText="DF">DetNet Flow.</t>
+            <t hangText="DN">DetNet.</t>
             <t hangText="L2">Layer-2.</t>
             <t hangText="L3">Layer-3.</t>
             <t hangText="LSP">Label-switched path.</t>
             <t hangText="MPLS">Multiprotocol Label Switching.</t>
-            <t hangText="OAM">Operations, Administration, and Maintenance.</t>
             <t hangText="PE">Provider Edge.</t>
             <t hangText="PREOF">Packet Replication, Ordering and Elimination Function.</t>
             <t hangText="PSN">Packet Switched Network.</t>
             <t hangText="PW">Pseudowire.</t>
-            <t hangText="QoS">Quality of Service.</t>
             <t hangText="TE">Traffic Engineering.</t>
             <t hangText="TSN">Time-Sensitive Networking, TSN is a Task Group of the IEEE
             802.1 Working Group.</t>
@@ -178,6 +179,25 @@
 
     <section title="DetNet IP Data Plane Overview" anchor="sec_dt_dp">
 
+      <t>
+        <xref target="fig_ip_detnet"/> illustrates an IP DetNet, with an MPLS based DetNet
+        network as a sub-network between the relay nodes.  It shows a
+        more complex DetNet enabled IP network where an IP flow is
+        mapped to one or more PWs and MPLS (TE) LSPs.  The end systems
+        still originate IP encapsulated traffic that is identified as
+        DetNet flows.  The relay nodes follow procedures defined in
+        <xref target="ip-over-mpls"/> to map each DetNet
+        flow to MPLS LSPs. While not shown, relay nodes can provide
+        service sub-layer functions such as PREOF using DetNet over MPLS,
+        and this is indicated by the solid line for the MPLS
+        facing portion of the Service component. Note that the Transit
+        node is MPLS (TE) LSP aware and performs switching based on MPLS
+        labels, and need not have any specific knowledge of the DetNet
+        service or the corresponding DetNet flow identification. See
+        <xref target="ip-over-mpls"/> for details on the mapping of IP
+        flows to MPLS, and <xref target="I-D.ietf-detnet-mpls"/>
+        for general support of DetNet services using MPLS.
+      </t>
 
       <figure align="center" anchor="fig_ip_detnet"
               title="DetNet IP Over DetNet MPLS Network">
@@ -202,26 +222,6 @@
          |<--------------------- DetNet IP ------------------->|
                          ]]></artwork>
       </figure>
-      <t>
-        <xref target="fig_ip_detnet"/> illustrates an IP DetNet, with an MPLS based DetNet
-        network as a sub-network between the relay nodes.  It shows a
-        more complex DetNet enabled IP network where an IP flow is
-        mapped to one or more PWs and MPLS (TE) LSPs.  The end systems
-        still originate IP encapsulated traffic that is identified as
-        DetNet flows.  The relay nodes follow procedures defined in
-        <xref target="ip-over-mpls"/> to map each DetNet
-        flow to MPLS LSPs. While not shown, relay nodes can provide
-        service sub-layer functions such as PREOF using DetNet over MPLS,
-        and this is indicated by the solid line for the MPLS
-        facing portion of the Service component. Note that the Transit
-        node is MPLS (TE) LSP aware and performs switching based on MPLS
-        labels, and need not have any specific knowledge of the DetNet
-        service or the corresponding DetNet flow identification. See
-        <xref target="ip-over-mpls"/> for details on the mapping of IP
-        flows to MPLS, and <xref target="I-D.ietf-detnet-dp-sol-mpls"/>
-        for general support of DetNet services using MPLS.
-      </t>
-
 
 	</section>
 
@@ -232,7 +232,7 @@
       <t>
         This section defines how IP encapsulated flows are carried over
         a DetNet MPLS data plane as defined in <xref
-        target="I-D.ietf-detnet-dp-sol-mpls"/>.  As Non-DetNet and
+        target="I-D.ietf-detnet-mpls"/>.  As Non-DetNet and
         DetNet IP packets are identical on the wire, this section is
         applicable to any node that supports IP over DetNet MPLS, and
         this section refers to both cases as DetNet IP over DetNet MPLS.
@@ -272,13 +272,13 @@ End System        Node         Node           Node        End System
           this figure, Relay nodes sit at the boundary of the MPLS
           domain since the non-MPLS domain is DetNet aware.  This figure
           is very similar to the DetNet MPLS Network figure in <xref
-          target="I-D.ietf-detnet-dp-sol-mpls"/>.  The primary
+          target="I-D.ietf-detnet-mpls"/>.  The primary
           difference is that the Relay nodes are at the edges of the
           MPLS domain and therefore function as T-PEs, and that service
           sub-layer functions are not provided over the DetNet IP
           network.  The transit node functions show above are identical
           to those described in <xref
-          target="I-D.ietf-detnet-dp-sol-mpls"/>.
+          target="I-D.ietf-detnet-mpls"/>.
         </t>
 
         <t>
@@ -286,7 +286,7 @@ End System        Node         Node           Node        End System
           can provide service protection over an MPLS domain.  In this
           case, CE1 and CE2 are IP DetNet end systems which are
           interconnected via a MPLS domain such as described in <xref
-          target="I-D.ietf-detnet-dp-sol-mpls"/>. Note that R1 and R3
+          target="I-D.ietf-detnet-mpls"/>. Note that R1 and R3
           sit at the edges of an MPLS domain and therefore are similar
           to T-PEs, while R2 sits in the middle of the domain and is
           therefore similar to an S-PE.
@@ -431,33 +431,26 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
       <t>
         In the figure, "IP App-Flow" indicates the payload carried by
         the DetNet IP data plane.  "IP" and "NProto" indicate the fields
-        described in 
-<!--		
-		<xref target="ip-hdr"/> and <xref
-        target="nxt-proto"/>, respectively.  
--->		
+        described in Section 7.1.1. IP Header Information and Sectoin 7.1.2.
+		Other Protocol Header Information in <xref target="I-D.ietf-detnet-ip"/>, 
+		respectively.  
+	
 		"MPLS App-Flow" indicates
         that an individual DetNet IP flow is the payload from the
         perspective of the DetNet MPLS data plane defined in <xref
-        target="I-D.ietf-detnet-dp-sol-mpls"/>.
+        target="I-D.ietf-detnet-mpls"/>.
       </t>
       <t>
-        Per <xref target="I-D.ietf-detnet-dp-sol-mpls"/>, the DetNet
+        Per <xref target="I-D.ietf-detnet-mpls"/>, the DetNet
         MPLS data plane uses a single S-Label to support a single app
-        flow. 
-		
-<!--		<xref target="ip-flow-id"/> -->
-
-states that a single DetNet
+        flow. Section 7.1. DetNet IP Flow Identification Procedures in
+		<xref target="I-D.ietf-detnet-ip"/> states that a single DetNet
         flow is identified based on IP, and next level protocol, header
-        information.  It also defines that aggregation is supported
-<!--        (<xref target="ip-agg"/>) -->
-		
-		
-		through the use of prefixes,
-        wildcards, bimasks, and port ranges.  Collectively, this results
-        in the fairly straight forward procedures defined in this
-        section.
+        information. Section 7.4. Aggregation Considerations in
+		<xref target="I-D.ietf-detnet-ip"/> defines that aggregation is
+		supported through the use of prefixes, wildcards, bimasks, and 
+		port ranges.  Collectively, this results in the fairly straight
+		forward procedures defined in this section.
       </t>
       <t>
         As shown in removed fig_ip_detnet, DetNet relay nodes
@@ -476,13 +469,10 @@ states that a single DetNet
           network MUST map a single DetNet IP flow into a single
           app-flow and MUST process that app-flow in accordance to the
           procedures defined in <xref
-          target="I-D.ietf-detnet-dp-sol-mpls"/> Section 6.2.  PRF MAY
+          target="I-D.ietf-detnet-mpls"/> Section 6.2.  PRF MAY
           be supported for DetNet IP flows sent over an DetNet MPLS
-          network.  Aggregation as defined in 
-		  
-<!--		  		  <xref target="ip-agg"/>  -->
-
-
+          network.  Aggregation as defined in Section 7.4. Aggregation
+		  Considerations in <xref target="I-D.ietf-detnet-ip"/>
           MAY be used to identify an individual DetNet IP flow. The
           provisioning of the mapping of DetNet IP flows to DetNet MPLS
           app-flow information MUST be supported via configuration,
@@ -495,10 +485,10 @@ states that a single DetNet
           flow, without examination of IP headers. Alternatively,
           packets received via the DetNet MPLS data plane MAY follow the
           normal DetNet IP flow identification procedures defined in
+		  Section 7.1 DetNet IP Flow Identification Procedures in
+		  <xref target="I-D.ietf-detnet-ip"/>.
 
-<!--          <xref target="ip-flow-id"/>.  -->
-
-An implementation MUST support
+          An implementation MUST support
           the provisioning of handling of received DetNet MPLS data
           plane as DetNet IP flows via configuration. Note that
           such configuration MAY include support from PEOF on the
@@ -513,14 +503,13 @@ An implementation MUST support
           an DetNet IP flow is sent over DetNet MPLS a relay node MUST
           ensure that the provisioned DetNet IP traffic treatment is
           provided at the forwarding sub-layer as described in <xref
-          target="I-D.ietf-detnet-dp-sol-mpls"/> Section 6.2. Note that
+          target="I-D.ietf-detnet-mpls"/> Section 6.2. Note that
           the PRF function can also be used when sending over MPLS.
         </t>
         <t>
           Traffic treatment for DetNet IP flows received over the DetNet
-          MPLS data plane MUST follow 
-		  
-		  <!--  <xref target="ip-svc"/>.  -->
+          MPLS data plane MUST follow Section 7.3 DetNet IP Traffic
+		  Treatment Procedures in <xref target="I-D.ietf-detnet-ip"/>.
         </t>
       </section>
     </section>
@@ -633,126 +622,46 @@ TBD.
 
   <back>
     <references title="Normative references">
-      <?rfc include="reference.RFC.0768"?>
-      <?rfc include="reference.RFC.0791"?>
-      <?rfc include="reference.RFC.0793"?>
-      <?rfc include="reference.RFC.1812"?>
       <?rfc include="reference.RFC.2119"?>
-      <?rfc include="reference.RFC.2211"?>
-      <?rfc include="reference.RFC.2212"?>
-      <?rfc include="reference.RFC.2474"?>
-      <?rfc include="reference.RFC.3168"?>
-      <?rfc include="reference.RFC.3209"?>
-      <?rfc include="reference.RFC.3270"?>
-      <?rfc include="reference.RFC.3473"?>
-      <?rfc include="reference.RFC.4302"?>
-      <?rfc include="reference.RFC.4303"?>
-      <?rfc include="reference.RFC.5462"?>
-      <?rfc include="reference.RFC.6003"?>
-      <?rfc include="reference.RFC.7608"?>
       <?rfc include="reference.RFC.8174"?>
-      <?rfc include="reference.RFC.8200"?>
-    </references>
-    <references title="Informative references">
-      <?rfc include="reference.RFC.1122"?>
-      <?rfc include="reference.RFC.2205"?>
-      <?rfc include="reference.RFC.2386"?>
-      <?rfc include="reference.RFC.3670"?>
-      <?rfc include="reference.RFC.5575"?>
-      <?rfc include="reference.RFC.5777"?>
-      <?rfc include="reference.RFC.5654"?>
-      <?rfc include="reference.RFC.6434"?>
-      <?rfc include="reference.RFC.7551"?>
-      <?rfc include="reference.RFC.7657"?>
-      <?rfc include="reference.RFC.7950"?>
-      <?rfc include="reference.RFC.8040"?>
-      <?rfc include="reference.RFC.8169"?>
-      <?rfc include="reference.RFC.8283"?>
       <?rfc include="reference.I-D.ietf-detnet-architecture"?>
-      <?rfc include="reference.I-D.ietf-detnet-dp-sol-mpls"?>
-      <?rfc include="reference.I-D.ietf-detnet-flow-information-model"?>
-      <?rfc include="reference.I-D.ietf-detnet-security"?>
-      <?rfc include="reference.I-D.ietf-teas-pce-native-ip"?>
 
-      <reference anchor='IEEE1588'>
+	  <reference anchor='I-D.ietf-detnet-mpls'>
         <front>
-          <title>IEEE 1588 Standard for a Precision Clock Synchronization
-          Protocol for Networked Measurement and Control Systems Version 2
+          <title>DetNet MPLS
           </title>
           <author>
-            <organization>IEEE</organization>
+            <organization>Varga, B., Farkas, J., Berger L., MAlis A., Bryant S., Korhonen J.</organization>
           </author>
-          <date year='2008' />
+          <date year='2019' />
         </front>
       </reference>
-
-      <reference anchor="IEEE8021Q"
-                 target="http://standards.ieee.org/about/get/">
+	  <reference anchor='I-D.ietf-detnet-ip'>
         <front>
-          <title>Standard for Local and metropolitan area networks--Bridges
-          and Bridged Networks (IEEE Std 802.1Q-2014)</title>
+          <title>DetNet Data Plane IP
+          </title>
           <author>
-            <organization>IEEE 802.1</organization>
+            <organization>Varga, B., Farkas, J., Berger L., MAlis A., Bryant S., Korhonen J.</organization>
           </author>
-          <date year="2014"/>
+          <date year='2019' />
         </front>
-        <format type="PDF" target="http://standards.ieee.org/about/get/"/>
       </reference>
+	</references>
+    <references title="Informative references">
+      <?rfc include="reference.I-D.ietf-detnet-security"?>
 
-      <reference anchor="IEEE8021CB"
-                 target="http://www.ieee802.org/1/files/private/cb-drafts/d2/802-1CB-d2-1.pdf">
+	  <reference anchor='I-D.ietf-detnet-data-plane-framework'>
         <front>
-          <title>Draft Standard for Local and metropolitan area networks -
-          Seamless Redundancy</title>
-          <author initials="N. F." surname="Finn" fullname="Norman Finn">
-            <organization>IEEE 802.1</organization>
-          </author>
-          <date month="December" year="2015"/>
-        </front>
-        <seriesInfo name="IEEE P802.1CB /D2.1" value="P802.1CB"/>
-        <format type="PDF" target="http://www.ieee802.org/1/files/private/cb-drafts/d2/802-1CB-d2-1.pdf"/>
-      </reference>
-
-      <reference anchor="G.8275.1"
-                 target="https://www.itu.int/rec/T-REC-G.8275.1/en">
-        <front>
-          <title>Precision time protocol telecom profile for phase/time
-          synchronization with full timing support from the network</title>
+          <title>DetNet Data Plane Framework
+          </title>
           <author>
-            <organization>International Telecommunication Union</organization>
+            <organization>Varga, B., Farkas, J., Berger L., MAlis A., Bryant S., Korhonen J.</organization>
           </author>
-          <date month="June" year="2016"/>
+          <date year='2019' />
         </front>
-        <seriesInfo name="ITU-T G.8275.1/Y.1369.1" value="G.8275.1"/>
-      </reference>
-
-      <reference anchor="G.8275.2"
-                 target="https://www.itu.int/rec/T-REC-G.8275.2/en">
-        <front>
-          <title>Precision time protocol telecom profile for phase/time
-          synchronization with partial timing support from the network</title>
-          <author>
-            <organization>International Telecommunication Union</organization>
-          </author>
-          <date month="June" year="2016"/>
-        </front>
-        <seriesInfo name="ITU-T G.8275.2/Y.1369.2" value="G.8275.2"/>
       </reference>
 
     </references>
-    <section title="Example of DetNet Data Plane Operation" anchor="sec_comb">
-      <t>
-        [Editor's note: Add a simplified example of DetNet data plane and how labels etc
-        work in the case of MPLS-based PSN and utilizing PREOF. The figure is subject
-        to change depending on the further DT decisions on the label handling..]
-      </t>
-    </section>
-
-    <section title="Example of Pinned Paths Using IPv6">
-      <t>
-        TBD.
-      </t>
-    </section>
 
   </back>
 </rfc>
