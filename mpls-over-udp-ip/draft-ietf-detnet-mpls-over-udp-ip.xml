@@ -206,43 +206,26 @@
   <t>
    The following abbreviations are used in this document:
    <list style="hanging" hangIndent="14">
-    <t hangText="AC">Attachment Circuit.</t>
-    <t hangText="CE">Customer Edge equipment.</t>
-    <t hangText="CoS">Class of Service.</t>
     <t hangText="CW">Control Word.</t>
     <t hangText="d-CW">
 	  A DetNet Control Word (d-CW) is used for sequencing and identifying duplicate packets of a DetNet flow at the DetNet service
       sub-layer. </t>
     <t hangText="DetNet">Deterministic Networking.</t>
-    <t hangText="DF">DetNet Flow.</t>
-    <t hangText="DN-IWF">DetNet Inter-Working Function.</t>
     <t hangText="F-Label">A Detnet "forwarding" label that identifies the LSP used to
     forward a DetNet flow across an MPLS PSN, e.g., a hop-by-hop
     label used between label switching routers (LSR).</t>
-	<t hangText="L2">Layer 2.</t>
-    <t hangText="L2VPN">Layer 2 Virtual Private Network.</t>
-    <t hangText="L3">Layer 3.</t>
     <t hangText="LSR">Label Switching Router.</t>
     <t hangText="MPLS">Multiprotocol Label Switching.</t>
-    <t hangText="MPLS-TE">Multiprotocol Label Switching - Traffic Engineering.</t>
-    <t hangText="MPLS-TP">Multiprotocol Label Switching - Transport Profile.</t>
-    <t hangText="MS-PW">Multi-Segment PseudoWire (MS-PW).</t>
-    <t hangText="NSP">Native Service Processing.</t>
     <t hangText="OAM">Operations, Administration, and Maintenance.</t>
-    <t hangText="PE">Provider Edge.</t>
     <t hangText="PEF">Packet Elimination Function.</t>
     <t hangText="PRF">Packet Replication Function.</t>
     <t hangText="PREOF">Packet Replication, Elimination and Ordering Functions.</t>
     <t hangText="POF">Packet Ordering Function.</t>
     <t hangText="PSN">Packet Switched Network.</t>
     <t hangText="PW">PseudoWire.</t>
-    <t hangText="QoS">Quality of Service.</t>
     <t hangText="S-Label">A DetNet "service" label that is used between DetNet
     nodes that implement also the DetNet service sub-layer functions. An S-Label is
     also used to identify a DetNet flow at DetNet service sub-layer.</t>
-    <t hangText="S-PE">Switching Provider Edge.</t>
-    <t hangText="T-PE">Terminating Provider Edge.</t>
-    <t hangText="TSN">Time-Sensitive Network.</t>
    </list>
   </t>
   </section>
@@ -263,14 +246,12 @@
 <section anchor="mpls-over-ip" title="DetNet MPLS Operation over DetNet
                                       IP PSNs">
  <t>
-  This document builds on the 
-  the specification of MPLS over UDP and IP defined in <xref
-  target="RFC7510"/>.  It replaces the 
-  the F-Label(s) used in <xref target="I-D.ietf-detnet-mpls"/>
-  with UDP and IP headers.  The UDP and IP header information is used to
-  identify DetNet flows, including member flows, per <xref
-  target="I-D.ietf-detnet-ip"/>. The resulting encapsulation is
-  shown in  <xref target="IP-encap-dn"/>.
+  This document builds on the specification of MPLS over UDP and IP defined
+  in <xref target="RFC7510"/>.  It replaces the F-Label(s) used in <xref
+	  target="I-D.ietf-detnet-mpls"/> with UDP and IP headers.  The UDP and
+  IP header information is used to identify DetNet flows, including member
+  flows, per <xref target="I-D.ietf-detnet-ip"/>. The resulting encapsulation
+  is shown in  <xref target="IP-encap-dn"/>.
  </t>
 
  <t>
@@ -315,7 +296,7 @@
     copy of the outgoing packet, including the pushed S-Label, MUST be
     made for each. The headers for each outgoing packet MUST be based on
     the configuration information and as defined in <xref
-    target="RFC7510"/>, with one exception.  The one exceptions is that
+    target="RFC7510"/>, with one exception.  The one exception is that
     the UDP Source Port value MUST be set to uniquely identify the
     DetNet (forwarding sub-layer) flow.  The packet MUST then be handed
     as a DetNet IP packet, per <xref target="I-D.ietf-detnet-ip"/>.

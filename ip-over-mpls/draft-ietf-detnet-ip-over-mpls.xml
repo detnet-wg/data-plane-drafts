@@ -115,7 +115,7 @@
         sub-layer.  The service sub-layer is used to provide DetNet service
         protection and reordering. The forwarding sub-layer is used to
         provides congestion protection (low loss, assured latency, and
-        limited reordering). As no DetNet specific headers are added to
+        limited reordering). Since no DetNet specific headers are added to
         support DetNet IP flows, only the forwarding sub-layer functions are
         supported using the DetNet IP defined by this document. Service
         protection can be provided on a per sub-net
@@ -202,17 +202,17 @@
       <figure align="center" anchor="fig_ip_detnet"
               title="DetNet IP Over DetNet MPLS Network">
         <artwork><![CDATA[
- DetNet IP       Relay         Transit         Relay       DetNet IP
- End System      Node           Node           Node        End System
+ DetNet IP       Relay         Transit         Relay      DetNet IP
+ End System      Node           Node           Node       End System
 
-+----------+                                              +----------+
-|   Appl.  |<-------------- End to End Service ---------->|   Appl.  |
-+----------+   .....-----+                  +-----.....   +----------+
-| Service  |<--: Service |-- DetNet flow ---| Service :-->| Service  |
-|          |   :         |<- DN MPLS flow ->|         :   |          |
-+----------+   +---------+   +----------+   +---------+   +----------+
-|Forwarding|   |Fwd| |Fwd|   |Forwarding|   |Fwd| |Fwd|   |Forwarding|
-+--------.-+   +-.-+ +-.-+   +---.----.-+   +-.-+ +-.-+   +----.-----+
++----------+                                              +---------+
+|   Appl.  |<-------------- End to End Service ---------->|  Appl.  |
++----------+   .....-----+                  +-----.....   +---------+
+| Service  |<--: Service |-- DetNet flow ---| Service :-->| Service |
+|          |   :         |<- DN MPLS flow ->|         :   |         |
++----------+   +---------+   +----------+   +---------+   +---------+
+|Forwarding|   |Fwd| |Fwd|   |Forwarding|   |Fwd| |Fwd|   |   Fwd   |
++--------.-+   +-.-+ +-.-+   +---.----.-+   +-.-+ +-.-+   +----.----+
          :  Link :    /  ,-----.  \   :  Link :    /  ,-----.  \
          +.......+    +-[  Sub  ]-+   +.......+   +--[  Sub  ]--+
                         [Network]                    [Network]
@@ -232,8 +232,8 @@
       <t>
         This section defines how IP encapsulated flows are carried over
         a DetNet MPLS data plane as defined in <xref
-        target="I-D.ietf-detnet-mpls"/>.  As Non-DetNet and
-        DetNet IP packets are identical on the wire, this section is
+        target="I-D.ietf-detnet-mpls"/>.  Since both Non-DetNet and
+        DetNet IP packet are identical on the wire, this section is
         applicable to any node that supports IP over DetNet MPLS, and
         this section refers to both cases as DetNet IP over DetNet MPLS.
       </t>
@@ -241,8 +241,7 @@
       <section title="IP Over DetNet MPLS Data Plane Scenarios"
                anchor="sec_ip_mpls_dt_dp_scen">
         <t>
-          This section provides example uses of IP over DetNet MPLS for
-          illustrative purposes.
+          An example use of IP over DetNet MPLS follows below.
         </t>
         <figure align="center" anchor="fig_dn_ip_mpls_detnet"
                 title="DetNet IP Over MPLS Network">
@@ -431,7 +430,7 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
       <t>
         In the figure, "IP App-Flow" indicates the payload carried by
         the DetNet IP data plane.  "IP" and "NProto" indicate the fields
-        described in Section 7.1.1. IP Header Information and Sectoin 7.1.2.
+        described in Section 7.1.1. IP Header Information and Section 7.1.2.
 		Other Protocol Header Information in <xref target="I-D.ietf-detnet-ip"/>, 
 		respectively.  
 	
@@ -441,19 +440,19 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
         target="I-D.ietf-detnet-mpls"/>.
       </t>
       <t>
-        Per <xref target="I-D.ietf-detnet-mpls"/>, the DetNet
-        MPLS data plane uses a single S-Label to support a single app
-        flow. Section 7.1. DetNet IP Flow Identification Procedures in
-		<xref target="I-D.ietf-detnet-ip"/> states that a single DetNet
-        flow is identified based on IP, and next level protocol, header
-        information. Section 7.4. Aggregation Considerations in
-		<xref target="I-D.ietf-detnet-ip"/> defines that aggregation is
-		supported through the use of prefixes, wildcards, bimasks, and 
-		port ranges.  Collectively, this results in the fairly straight
-		forward procedures defined in this section.
+	Per <xref target="I-D.ietf-detnet-mpls"/>, the DetNet MPLS data plane
+	uses a single S-Label to support a single app flow. Section 7.1. DetNet
+	IP Flow Identification Procedures in <xref
+		target="I-D.ietf-detnet-ip"/> states that a single DetNet flow
+	is identified based on IP, and next level protocol, header information.
+	Section 7.4. Aggregation Considerations in <xref
+		target="I-D.ietf-detnet-ip"/> defines that aggregation is
+	supported through the use of prefixes, wildcards, bitmasks, and port
+	ranges.  Collectively, this results in the fairly straight forward
+	procedures defined in this section.
       </t>
       <t>
-        As shown in removed fig_ip_detnet, DetNet relay nodes
+        As shown in <xref target="fig_ip_mpls_detnet"/>, DetNet relay nodes
         are responsible for the mapping of a DetNet flow, at the service
         sub-layer, from the IP to MPLS DetNet data planes and back
         again. Their related DetNet IP over DetNet MPLS data plane
@@ -465,46 +464,43 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
                title="DetNet IP over DetNet MPLS Flow Identification
                       Procedures">
         <t>
-          A relay node that sends a DetNet IP flows over a DetNet MPLS
-          network MUST map a single DetNet IP flow into a single
-          app-flow and MUST process that app-flow in accordance to the
-          procedures defined in <xref
-          target="I-D.ietf-detnet-mpls"/> Section 6.2.  PRF MAY
-          be supported for DetNet IP flows sent over an DetNet MPLS
-          network.  Aggregation as defined in Section 7.4. Aggregation
-		  Considerations in <xref target="I-D.ietf-detnet-ip"/>
-          MAY be used to identify an individual DetNet IP flow. The
-          provisioning of the mapping of DetNet IP flows to DetNet MPLS
-          app-flow information MUST be supported via configuration,
-          e.g., via the controller plane.
+	  A relay node that sends a DetNet IP flow over a DetNet MPLS network
+	  MUST map that single DetNet IP flow into a single app-flow and MUST
+	  process that app-flow in accordance to the procedures defined in
+	  <xref target="I-D.ietf-detnet-mpls"/> Section 6.1.  PRF MAY be
+	  supported for DetNet IP flows sent over an DetNet MPLS network.
+	  Aggregation MAY be supported as defined in <xref
+		  target="I-D.ietf-detnet-mpls"/> Section 5.4. Aggregation
+	  Considerations in <xref target="I-D.ietf-detnet-ip"/> MAY be used to
+	  identify an individual DetNet IP flow. The provisioning of the
+	  mapping of DetNet IP flows to DetNet MPLS app-flows MUST
+	  be supported via configuration, e.g., via the controller plane.
         </t>
         <t>
-          A relay node MAY be provisioned to handle packets received via
-          the DetNet MPLS data plane as DetNet IP flows.  A single
-          incoming MPLS app-flow MAY be treated as a single DetNet IP
-          flow, without examination of IP headers. Alternatively,
-          packets received via the DetNet MPLS data plane MAY follow the
-          normal DetNet IP flow identification procedures defined in
-		  Section 7.1 DetNet IP Flow Identification Procedures in
-		  <xref target="I-D.ietf-detnet-ip"/>.
+	  A relay node MAY be provisioned to handle packets received via the
+	  DetNet MPLS data plane as DetNet IP flows.  A single incoming MPLS
+	  app-flow MAY be treated as a single DetNet IP flow, without
+	  examination of IP headers. Alternatively, packets received via the
+	  DetNet MPLS data plane MAY follow the normal DetNet IP flow
+	  identification procedures defined in <xref
+		  target="I-D.ietf-detnet-ip"/>  Section 7.1.
 
-          An implementation MUST support
-          the provisioning of handling of received DetNet MPLS data
-          plane as DetNet IP flows via configuration. Note that
-          such configuration MAY include support from PEOF on the
-          incoming DetNet MPLS flow.
+	  An implementation MUST support the provisioning for handling any
+	  received DetNet MPLS data plane as DetNet IP flows via configuration.
+	  Note that such configuration MAY include support from PEOF on the
+	  incoming DetNet MPLS flow.
         </t>
       </section>
       <section anchor="iom-svc"
                title="DetNet IP over DetNet MPLS Traffic Treatment Procedures">
         <t>
-          The traffic treatment required for a particular DetNet IP flow
-          is provisioned via configuration or the controller plane. When
-          an DetNet IP flow is sent over DetNet MPLS a relay node MUST
-          ensure that the provisioned DetNet IP traffic treatment is
-          provided at the forwarding sub-layer as described in <xref
-          target="I-D.ietf-detnet-mpls"/> Section 6.2. Note that
-          the PRF function can also be used when sending over MPLS.
+	  The traffic treatment required for a particular DetNet IP flow is
+	  provisioned via configuration or the controller plane. When an DetNet
+	  IP flow is sent over DetNet MPLS, a relay node MUST ensure that the
+	  provisioned DetNet IP traffic treatment is provided at the forwarding
+	  sub-layer as described in <xref target="I-D.ietf-detnet-mpls"/>
+	  Section 5.2. Note that the PRF function MAY be utilized when sending
+	  IP over MPLS.
         </t>
         <t>
           Traffic treatment for DetNet IP flows received over the DetNet
@@ -614,7 +610,7 @@ TBD.
           <t>Pat Thaler</t>
       </list></t>
       <t>
-        Thanks for Stewart Bryant for his extensive review of the previous
+        Thanks to Stewart Bryant for his extensive review of the previous
         versions of the document.
       </t>
     </section>
