@@ -162,25 +162,26 @@
         <xref target="I-D.ietf-detnet-architecture"/>.
       </t>
       <t>
-        The DetNet Architecture decomposes the DetNet related data plane
-        functions into two sub-layers: a service sub-layer and a forwarding
-        sub-layer.  The service sub-layer is used to provide DetNet service
-        protection and reordering. The forwarding sub-layer is used to
-        provides congestion protection (low loss, assured latency, and
-        limited reordering) leveraging MPLS Traffic Engineering mechanisms.
+	The DetNet Architecture  models the DetNet related data plane functions
+	decomposed into two sub-layers: a service sub-layer and a
+	forwarding sub-layer.  The service sub-layer is used to provide DetNet
+	service protection and reordering. The forwarding sub-layer is used
+	to provides congestion protection (low loss, assured latency, and
+	limited reordering) leveraging lower layer Traffic Engineering
+	mechanisms such as MPLS.
       </t>
       <t>
-        This document provides concepts any DetNet data plane specification
+        This document provides concepts for any DetNet data plane specification
         and considerations for any corresponding implementation.
 
-        It covers the building blocks that provides the DetNet service and
-        forwarding sub-layer functions and flow identification as described
+        It covers the building blocks that provide the DetNet service and
+        forwarding sub-layer functions and flow identification mechanisms as described
         in the DetNet Architecture.
 
         As part of the service sub-layer functions, this document describes
         typical DetNet node data plane operation. It describes the function
-        and operation of the Packet Replication (PRF) Packet Elimination
-        (PEF) and Packet Ordering (POF) functions within the service
+        and operation of the Packet Replication (PRF), Packet Elimination
+        (PEF), and Packet Ordering (POF) functions, within the service
         sub-layer.
 
         It also describes the forwarding sub-layer that is used to eliminate
@@ -254,112 +255,108 @@
     <section title="DetNet Data Plane Overview" anchor="sec_dt_dp">
       <section title="Layers of DetNet Data Plane" anchor="sec_lay_dt_dp">
         <t>
-          This document describes how application flows, or app-flows,
-          are carried over DetNet networks. The DetNet Architecture,
-          <xref target="I-D.ietf-detnet-architecture"/>, decomposes the
-          DetNet data plane into two sub-layers: a service sub-layer and
-          a forwarding sub-layer.  The basic approach used by detnet is
-          to leverage existing concepts and mechanisms to provide DetNet
-          service and forwarding sub-layers.  IP and MPLS traffic
-          engineering provides the foundation for the DetNet data plane.
-          Background on Traffic Engineering can be found in <xref
-          target="RFC3272"/> and <xref target="RFC3209"/>.
+	  This document describes how application flows, or app-flows, are
+	  carried over DetNet networks. The DetNet Architecture, <xref
+		  target="I-D.ietf-detnet-architecture"/>, models the DetNet
+	  related data plane functions decomposed into two sub-layers: a
+	  service sub-layer and a forwarding sub-layer.  The basic approach
+	  used by DetNet is to leverage existing concepts and mechanisms to
+	  provide DetNet service and forwarding sub-layers.  IP routing and
+	  MPLS traffic engineering provides the foundation for the DetNet data
+	  plane.  
+         </t>
+	  
+        <t>
+	  When IP is used by DetNet nodes, i.e., hosts and routers are
+	  used to identify DetNet flows and provide a DetNet service.  From a
+	  data plane perspective, an end-to-end IP model is followed.  Existing
+	  IP and higher layer protocol header  information is used to support
+	  flow identification and DetNet service delivery.  Background on
+	  Traffic Engineering can be found in <xref target="RFC3272"/> and
+	  <xref target="RFC3209"/>.
+
         </t>
         <figure anchor="dn_mpls_dp_approach" align="center"
                 title="DetNet Adaptation to MPLS Data Plane">
           <artwork align="center"><![CDATA[
-  DetNet        MPLS
-    .
-    .
-+------------+
-|  Service   | d-CW, S-Label
-+------------+
-| Forwarding | F-Label(s)
-+------------+
-    .
-    .
+
+                   DetNet        MPLS         |  IP
+                     .                        |
+(inner header)       .                        |
+                 +------------+               |
+                 |  Service   | d-CW, S-Label |  IP Protocol, IP Header 
+                 +------------+               |
+                 | Forwarding | F-Label(s)    |  IP Forwarding
+                 +------------+               |
+(outer header)       .                        |
+                     .                        |
     ]]></artwork>
         </figure>
 
         <t>
-          The DetNet MPLS data plane approach defined in this document
-          is shown in <xref target="dn_mpls_dp_approach"/>.  The service
-          sub-layer is supported by a DetNet control word (d-CW) which
-          conforms to the Generic PW MPLS Control Word (PWMCW) defined
-          in <xref target="RFC4385"/>.  A d-CW identifying service label
-          (S-Label) is also used.
+	  The DetNet data plane depends on teh Service Sub-Layer type and the
+	  arding Sublayer type.  A simple diagram with an MPLS service and
+	  forwaring layer and an IP serivce and forwarding layer is shown in
+	  <xref target="dn_mpls_dp_approach"/>.  The service sub-layer
+	  capabilities are dependent on the protocol.  For instance MPLS
+	  provides a Control Word (CW) with a optional sequence number and a
+	  service label identifiying the service.  Whereas IP usues a typical
+	  5-tuple or 6-tuple to identify the serivce. Similarily the forwarding
+	  layer uses MPLS labels in the case of MPLS.  Whereas IP uses IP
+	  forwarding capbilities which may utilize 5-tuple or 6-tuple along
+	  with destiantion address routing to forward the DetNet packet.
+	  
         </t>
 
         <t>
-          A node operating on a DetNet flow in the Detnet service
-          sub-layer, i.e. a node processing a DetNet packet which has
-          the S-Label as top of stack uses the local context associated
-          with that S-Label, for example a received F-Label, to
-          determine what local DetNet operation(s) are applied to that
-          packet. An S-Label may be unique when taken from the platform
-          label space <xref target="RFC3031"/>, which would enable
-          correct DetNet flow identification regardless of which input
-          interface or LSP the packet arrives on.
-        </t>
-
-        <t>
-          The DetNet MPLS data plane builds on MPLS Traffic Engineering
-          encapsulations and mechanisms to provide a forwarding
+          The DetNet forwarding plane may use explict route cabability and 
+          traffic engineering capabilities to provide a forwarding
           sub-layer that is responsible for providing resource
-          allocation and explicit routes.  The forwarding sub-layer is
-          supported by one or more forwarding labels (F-Labels).
+	  allocation and explicit routes.  
         </t>
 
       </section>
 
       <section title="DetNet Data Plane Scenarios"
-               anchor="sec_mpls_dt_dp_scen">
+               anchor="sec_dt_dp_scen">
 
-        <t>
-          [Editor's note: WE NEED NEW FIGURES HERE (see presentation
-          slide 4 or slide 21 are good inputs) and pointers to the
-          splitted documents].
-        </t>
+        <figure anchor="dn_fmwrk_stacks" align="center"
+                title="DetNet Service and Forwarding stacks">
+	<artwork align="center"><![CDATA[
+			
+                                     +-----+
+                                     | TSN |       
+DetNet          +-------+          +-+-----+-+
+Service         | DN IP |          | DN MPLS |
+Stacks       +--+--+----+----+   +-+---+-----+-+
+             | TSN | DN MPLS |   | TSN | DN IP |
+             +-----+---------+   +-----+-------+
+       
+DetNet        +-------+  +---------+  +-----+ 
+Services      | DN IP |  | DN MPLS |  | TSN |
+              +-------+  +---------+  +-----+
+
+    ]]></artwork>
+        </figure>
+
+	<t>
+	<xref target="dn_fmwrk_stacks"/> illustrates the service stack
+	combinations for DetNet. At the service layer IP, MPLS and TSN (as an
+	L2 VPN) offer detnet services. (TSN is also a native L2 DetNet Service
+	covered in <xref target="IEEE8021Q"/>.) These services can be stacked
+	as illustrated. For example, IP DetNet can be delivered purely as an IP
+	service.  Or IP DetNet can leverage MPLS for service and forwarding or
+	just MPLS forwaring.  As a result IP DenNet can have acces to MPLS
+	traffic Engineering.  Alternatively IP DetNet can leverage TSN by
+	leveraging Ethenret with TSN. The diagram shows several common
+	permutations. 
+         </t>
 
       </section>
-    </section>  <!-- end of data plane overview -->
 
-
-
-    <section title="DetNet IP Data Plane Overview" anchor="sec_dt_ip_dp">
       <!-- 
       -->
 
-      <t>
-        [Editor's note: To be merged with previous section].
-      </t>
-
-      <t>
-        This document describes how IP is used by DetNet nodes, i.e.,
-        hosts and routers, to identify DetNet flows and provide a DetNet
-        service. From a data plane perspective, an end-to-end IP model
-        is followed.  As mentioned above, existing IP and higher layer
-        protocol header information is used to support flow
-        identification and DetNet service delivery.
-      </t>
-      <t>
-        DetNet uses "6-tuple" based flow identification, where "6-tuple"
-        refers to information carried in IP and higher layer protocol
-        headers. General background on the use of IP headers, and
-        "5-tuples", to identify flows and support Quality of Service
-        (QoS) can be found in <xref target="RFC3670"/>.  <xref
-        target="RFC7657"/> also provides useful background on the
-        delivery differentiated services (DiffServ) and "6-tuple" based
-        flow identification.
-      </t>
-      <t>
-        DetNet flow aggregation may be enabled via the use of
-        wildcards, masks, prefixes and ranges. IP tunnels may also be
-        used to support flow aggregation. In these cases, it is
-        expected that DetNet aware intermediate nodes will provide
-        DetNet service assurance on the aggregate through resource
-        allocation and congestion control mechanisms.
-      </t>
       <figure align="center" anchor="fig_ip_detnet_simple"
               title="A Simple DetNet (DN) Enabled IP Network">
         <artwork><![CDATA[
@@ -383,9 +380,9 @@
       </figure>
       <t>
         <xref target="fig_ip_detnet_simple"/> illustrates a DetNet enabled IP
-        network.  The DetNet enabled end systems originate IP encapsulated
-        traffic that is identified as DetNet flows, relay nodes understand the
-        forwarding requirements of the DetNet flow and ensure that node,
+        network in more detail.  The DetNet enabled end systems originate IP encapsulated
+        traffic flows that are identified as DetNet flows. Relay nodes understand the
+        forwarding requirements of the DetNet flows and ensure that node,
         interface and sub-network resources are allocated to ensure DetNet
         service requirements. The dotted line around the Service component of
         the Relay Nodes indicates that the transit routers are DetNet service
@@ -406,14 +403,14 @@
  DetNet IP       Relay         Transit         Relay       DetNet IP
  End System      Node           Node           Node        End System
 
-+----------+                                              +----------+
-|   Appl.  |<-------------- End to End Service ---------->|   Appl.  |
-+----------+   .....-----+                  +-----.....   +----------+
-| Service  |<--: Service |-- DetNet flow ---| Service :-->| Service  |
-|          |   :         |<- DN MPLS flow ->|         :   |          |
-+----------+   +---------+   +----------+   +---------+   +----------+
-|Forwarding|   |Fwd| |Fwd|   |Forwarding|   |Fwd| |Fwd|   |Forwarding|
-+--------.-+   +-.-+ +-.-+   +---.----.-+   +-.-+ +-.-+   +----.-----+
++----------+                                              +---------+
+|   Appl.  |<-------------- End to End Service ---------->|   Appl. |
++----------+   .....-----+                  +-----.....   +---------+
+| Service  |<--: Service |-- DetNet flow ---| Service :-->| Service |
+|          |   :         |<- DN MPLS flow ->|         :   |         |
++----------+   +---------+   +----------+   +---------+   +---------+
+|Forwarding|   |Fwd| |Fwd|   |Forwarding|   |Fwd| |Fwd|   |   FWD   |
++--------.-+   +-.-+ +-.-+   +---.----.-+   +-.-+ +-.-+   +----.----+
          :  Link :    /  ,-----.  \   :  Link :    /  ,-----.  \
          +.......+    +-[  Sub  ]-+   +.......+   +--[  Sub  ]--+
                         [Network]                    [Network]
@@ -1321,6 +1318,17 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
        <date year='2018' />
      </front>
    </reference>
+      <reference anchor='I-D.ietf-detnet-ip-over-tsn'>
+     <front>
+       <title>DetNet Data Plane: IP over IEEE 802.1 Time Sensitive Networking (TSN)
+       </title>
+       <author>
+         <organization>Korhonen, J., Varga, B.</organization>
+       </author>
+       <date year='2018' />
+     </front>
+   </reference>
+
    &rfc8169;
 
    <reference anchor='I-D.sdt-detnet-security'>
