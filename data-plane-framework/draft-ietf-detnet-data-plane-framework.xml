@@ -197,7 +197,6 @@
       </section>
     </section>  <!-- end of terminology -->
 
-<<<<<<< HEAD
     <section title="DetNet Data Plane Overview" anchor="sec_dt_dp">
       <section title="Layers of DetNet Data Plane" anchor="sec_lay_dt_dp">
         <t>
@@ -1228,8 +1227,6 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
      </front>
    </reference>
 
-   &rfc8169;
-
    <reference anchor='I-D.sdt-detnet-security'>
     <front>
      <title>Deterministic Networking (DetNet) Security Considerations,
@@ -1254,7 +1251,7 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
      </front>
    </reference-->
 
-   <!--reference anchor="IEEE8021Q"
+   <reference anchor="IEEE8021Q"
      target="http://standards.ieee.org/about/get/">
     <front>
      <title>Standard for Local and metropolitan area networks-Bridges and Bridged Networks (IEEE Std 802.1Q-2014)</title>
@@ -1264,7 +1261,7 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
      <date year="2014"/>
     </front>
     <format type="PDF" target="http://standards.ieee.org/about/get/"/>
-   </reference-->
+   </reference>
 
    <!--reference anchor="IEEE8021CB"
     target="http://www.ieee802.org/1/files/private/cb-drafts/d2/802-1CB-d2-1.pdf">
