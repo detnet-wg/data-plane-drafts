@@ -841,14 +841,14 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
         hierarchical LSPs in MPLS and tunnels, in the case of IP, MPLS and TSN,
         both of which aggregate multiple DetNet flows into a single new DetNet
         flow.  It can also be grouping of IP flows that share 5-tuple of
-        6-tuple attibutes or flow identifiers at the DetNet layer.
+        6-tuple attributes or flow identifiers at the DetNet layer.
       </t>
       <t>
        Control of aggregation involves a set of procedures: 
        <list style="symbols">
        <t>
        Traffic engineering resource collection and distribution. 
-       Available resources are tracked through control plane or managment plane
+       Available resources are tracked through control plane or management plane
        databases and distributed amongst controllers or nodes that can manage
        resources.  
        </t>
@@ -861,7 +861,7 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
        <t>
        Resource assignment and data plane co-ordination. 
        The assignment of resources depends on the technology and it includes
-       assignment of specific links and coordination of the queuing and and
+       assignment of specific links and coordination of the queuing and 
        other traffic management capabilities.   
        </t>
        <t>
