@@ -50,6 +50,13 @@
       </address>
     </author>
 
+    <author fullname="Don Fedyk" initials="D." surname="Fedyk">
+      <organization>LabN Consulting, L.L.C.</organization>
+      <address>
+        <email>dfedyk@labn.net</email>
+      </address>
+    </author>
+
     <author fullname="Andrew G. Malis" initials="A.G." surname="Malis">
       <organization>Huawei Technologies</organization>
       <address>
@@ -106,7 +113,9 @@
         and routers that provide DetNet service to IP encapsulated data.  No
         DetNet specific encapsulation is defined to support IP flows, instead
         the existing IP and higher layer protocol header information is used to
-        support flow identification and DetNet service delivery.
+	support flow identification and DetNet service delivery. Common data plane 
+	procedures and control information for all DetNet data planes 
+	can be found in the <xref target="I-D.ietf-detnet-framework"/>.     
       </t>
       <t>
         The DetNet Architecture models the DetNet related data plane functions
@@ -213,10 +222,12 @@
 	data plane. From a data plane perspective, an end-to-end IP model is
 	followed.  As mentioned above, existing IP and higher layer protocol
 	header information is used to support flow identification and DetNet
-	service delivery.
+	service delivery. Common data plane procedures and control information
+	for all DetNet data planes can be found in the <xref
+		target="I-D.ietf-detnet-framework"/>.  
       </t>
       <t>
-	The DetNet IP dataplane uses "6-tuple" based flow identification, where
+	The DetNet IP data plane uses "6-tuple" based flow identification, where
 	6-tuple refers to information carried in IP and higher layer protocol
 	headers.  The 6-tuple referred to in this document is the same as
 	that defined in <xref target="RFC3290"/>. Specifically 6-tuple is
@@ -322,7 +333,9 @@
       </t>
       <t>
         Note: The operation of IEEE802.1 TSN end systems over DetNet
-	enabled IP networks is not described in this document. 
+	enabled IP networks is not described in this document. TSN
+	over MPLS is discribed in <xref target="I-D.ietf-detnet-tsn-over-mpls"/>.  
+	
      </t>
     </section>
 
@@ -819,6 +832,8 @@ DetNet                    |L2/SbN|          |L2/SbN|
             </t>
           </section>
         </section>
+      </section>
+    </section>
 
         <section anchor="ip-flow-id-info"
                  title="Flow Identification Management and Control Information">
@@ -863,8 +878,6 @@ DetNet                    |L2/SbN|          |L2/SbN|
             providing a different service for all other flows with that same
             UDP Destination Port value.
           </t>
-        </section>
-      </section>
 
       <section anchor="ip-fwd" title="Forwarding Procedures">
         <t>
@@ -899,7 +912,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
 	  includes the allocation of system resources (such as queues and
 	  buffers) and provisioning or related parameters (such as shaping, and
 	  policing). Support can also be provided via an underlying network
-	  technology such as MPLS <xref target="I-D.ietf-ip-over-mpls"/>.  and
+	  technology such as MPLS <xref target="I-D.ietf-detnet-ip-over-mpls"/>.  and
 	  IEEE802.1 TSN <xref target="I-D.ietf-ip-over-tsn"/>.  Other than in
 	  the TSN case, the specific mechanisms used by a DetNet node to ensure
 	  DetNet service delivery requirements are met for supported DetNet
@@ -1077,7 +1090,7 @@ TBD.
         <date year='2019' />
       </front>
     </reference>
-    <reference anchor='I-D.ietf-ip-over-mpls'>
+    <reference anchor='I-D.ietf-detnet-ip-over-mpls'>
       <front>
         <title>DetNet IP over DetNet MPLS Data Plane
         </title>
@@ -1087,6 +1100,27 @@ TBD.
         <date year='2019' />
       </front>
     </reference>
+    <reference anchor='I-D.ietf-detnet-framework'>
+      <front>
+        <title>DetNet Data Plane Framework
+        </title>
+        <author>
+          <organization>Korhonen, J., Varga, B.</organization>
+        </author>
+        <date year='2019' />
+      </front>
+    </reference>
+    <reference anchor='I-D.ietf-detnet-tsn-over-mpls'>
+      <front>
+        <title>DetNet Data Plane: IEEE 802.1 Time Sensitive Networking over MPLS
+      	</title>
+        <author>
+          <organization>Varga, B.</organization>
+        </author>
+        <date year='2019' />
+      </front>
+    </reference>
+
 
     </references>
    </back>
