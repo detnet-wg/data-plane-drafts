@@ -1220,6 +1220,14 @@ DFx = DetNet member flow x over a TE LSP
 <!-- ===================================================================== -->
 
 
+<section anchor="mpls-flow-id-info"
+         title="Flow Identification Management and Control Information">
+  <t>
+    [Editor's Note]
+    The following will summarize the set of information that is needed to
+    support the MPLS DetNet data plane.
+  </t>
+</section>
 <!-- ===================================================================== -->
 
 
