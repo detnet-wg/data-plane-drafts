@@ -649,6 +649,23 @@ DetNet                    |L2/SbN|          |L2/SbN|
         </t>
       </section>
 
+      <section anchor="ip-agg" title="Aggregation Considerations">
+        <t>
+          The use of prefixes, wildcards, bitmasks, and port ranges
+          allows a DetNet node to aggregate DetNet flows.  This
+          aggregation can take place within a single node, when that
+          node maintains state about both the aggregated and component
+          flows.  It can also take place between nodes, where one node
+          maintains state about only flow aggregates while the other
+          node maintains state on all or a portion of the component
+          flows.  In either case, the management or control function that
+          provisions the aggregate flows must ensure that adequate
+          resources are allocated and configured to provide combined
+          service requirements of the component flows.  As DetNet is
+          concerned about latency and jitter, more than just bandwidth
+          needs to be considered.
+        </t>
+      </section>
     </section>
     <!-- ===================================================================== -->
 
@@ -875,23 +892,6 @@ DetNet                    |L2/SbN|          |L2/SbN|
         </t>
       </section>
 
-      <section anchor="ip-agg" title="Aggregation Considerations">
-        <t>
-          The use of prefixes, wildcards, bitmasks, and port ranges
-          allows a DetNet node to aggregate DetNet flows.  This
-          aggregation can take place within a single node, when that
-          node maintains state about both the aggregated and component
-          flows.  It can also take place between nodes, where one node
-          maintains state about only flow aggregates while the other
-          node maintains state on all or a portion of the component
-          flows.  In either case, the management or control function that
-          provisions the aggregate flows must ensure that adequate
-          resources are allocated and configured to provide combined
-          service requirements of the component flows.  As DetNet is
-          concerned about latency and jitter, more than just bandwidth
-          needs to be considered.
-        </t>
-      </section>
     </section>
 
         <section anchor="ip-flow-id-info"
