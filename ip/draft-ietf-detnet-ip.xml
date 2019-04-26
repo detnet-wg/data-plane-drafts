@@ -606,9 +606,6 @@ DetNet                    |L2/SbN|          |L2/SbN|
         </t>
       </section>
 
-  </section>
-    <!-- ===================================================================== -->
-
       <section title="Flow Identification and Aggregation">
         <t>
           <xref target="sec_dt_dp"/> introduces the use of the IP
@@ -650,7 +647,10 @@ DetNet                    |L2/SbN|          |L2/SbN|
           are out of scope of this document. An example control plane
           solution for MPLS can be found in <xref target="RFC7551"/>.
         </t>
-  </section>
+      </section>
+
+    </section>
+    <!-- ===================================================================== -->
 
     <!-- ===================================================================== -->
 
@@ -833,51 +833,6 @@ DetNet                    |L2/SbN|          |L2/SbN|
           </section>
         </section>
       </section>
-    </section>
-
-        <section anchor="ip-flow-id-info"
-                 title="Flow Identification Management and Control Information">
-          <t>
-            The following summarizes the set of information that is needed to
-            identify an individual DetNet flow:
-            <list style="symbols">
-              <t>IPv4 and IPv6 source address field.</t>
-              <t>IPv4 and IPv6 source address prefix length, where a zero
-              (0) value effectively means that the address field is
-              ignored.</t>
-              <t>IPv4 and IPv6 destination address field.</t>
-              <t>IPv4 and IPv6 destination address prefix length, where a
-              zero (0) effectively means that the address field is
-              ignored.</t>
-              <t>IPv4 protocol field. A limited set of values is allowed,
-              and the ability to ignore this field, e.g., via
-              configuration of the value zero (0), is desirable.</t>
-              <t>IPv6 next header field. A limited set of values is allowed,
-              and the ability to ignore this field, e.g., via
-              configuration of the value zero (0), is desirable.</t>
-              <t>IPv4 Type of Service and IPv6 Traffic Class Fields.</t>
-              <t>IPv4 Type of Service and IPv6 Traffic Class Field Bitmask, where a
-              zero (0) effectively means that theses fields are
-              ignored.</t>
-              <t>IPv6 flow label field. This field can be optionally used
-              for matching.  When used, can be exclusive of matching
-              against the next header field.</t>
-              <t>TCP and UDP Source Port. Exact and wildcard matching is
-              required. Port ranges can optionally be used.</t>
-              <t>TCP and UDP Destination Port. Exact and wildcard matching is
-              required. Port ranges can optionally be used.</t>
-            </list>
-            This information MUST be provisioned per DetNet flow via
-            configuration, e.g., via the controller or management plane.
-          </t>
-          <t>
-            Information identifying a DetNet flow is ordered and
-            implementations use the first match.  This can, for example, be
-            used to provide a DetNet service for a specific UDP flow, with
-            unique Source and Destination Port field values, while
-            providing a different service for all other flows with that same
-            UDP Destination Port value.
-          </t>
 
       <section anchor="ip-fwd" title="Forwarding Procedures">
         <t>
@@ -937,6 +892,51 @@ DetNet                    |L2/SbN|          |L2/SbN|
           needs to be considered.
         </t>
       </section>
+    </section>
+
+        <section anchor="ip-flow-id-info"
+                 title="Flow Identification Management and Control Information">
+          <t>
+            The following summarizes the set of information that is needed to
+            identify an individual DetNet flow:
+            <list style="symbols">
+              <t>IPv4 and IPv6 source address field.</t>
+              <t>IPv4 and IPv6 source address prefix length, where a zero
+              (0) value effectively means that the address field is
+              ignored.</t>
+              <t>IPv4 and IPv6 destination address field.</t>
+              <t>IPv4 and IPv6 destination address prefix length, where a
+              zero (0) effectively means that the address field is
+              ignored.</t>
+              <t>IPv4 protocol field. A limited set of values is allowed,
+              and the ability to ignore this field, e.g., via
+              configuration of the value zero (0), is desirable.</t>
+              <t>IPv6 next header field. A limited set of values is allowed,
+              and the ability to ignore this field, e.g., via
+              configuration of the value zero (0), is desirable.</t>
+              <t>IPv4 Type of Service and IPv6 Traffic Class Fields.</t>
+              <t>IPv4 Type of Service and IPv6 Traffic Class Field Bitmask, where a
+              zero (0) effectively means that theses fields are
+              ignored.</t>
+              <t>IPv6 flow label field. This field can be optionally used
+              for matching.  When used, can be exclusive of matching
+              against the next header field.</t>
+              <t>TCP and UDP Source Port. Exact and wildcard matching is
+              required. Port ranges can optionally be used.</t>
+              <t>TCP and UDP Destination Port. Exact and wildcard matching is
+              required. Port ranges can optionally be used.</t>
+            </list>
+            This information MUST be provisioned per DetNet flow via
+            configuration, e.g., via the controller or management plane.
+          </t>
+          <t>
+            Information identifying a DetNet flow is ordered and
+            implementations use the first match.  This can, for example, be
+            used to provide a DetNet service for a specific UDP flow, with
+            unique Source and Destination Port field values, while
+            providing a different service for all other flows with that same
+            UDP Destination Port value.
+          </t>
 
     </section>
 
