@@ -261,7 +261,7 @@
         <list style='numbers'>
          <t> 
 	 How the data plane is constructed: The DetNet service sub-layer
-	 provides for the DetNet application flows by using or applying
+	 provides its functions for the DetNet application flows by using or applying
 	 existing standardized headers and/or encapsulations.  The Detnet
 	 forwarding sub-layer may provide capabilities leveraging that same
 	 header or encapsulation technology e.g. <xref target="dn_svcs"/> or it
