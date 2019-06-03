@@ -58,14 +58,14 @@
     </author>
 
     <author fullname="Andrew G. Malis" initials="A.G." surname="Malis">
-      <organization>Huawei Technologies</organization>
+      <organization>Futurewei Technologies</organization>
       <address>
         <email>agmalis@gmail.com</email>
       </address>
     </author>
 
     <author fullname="Stewart Bryant" initials="S." surname="Bryant">
-      <organization>Huawei Technologies</organization>
+      <organization>Futurewei Technologies</organization>
       <address>
         <email>stewart.bryant@gmail.com</email>
       </address>
@@ -952,48 +952,52 @@ DetNet                    |L2/SbN|          |L2/SbN|
     <section title="Security Considerations">
       <t>
 	    Security considerations for DetNet are described in detail in
-		<xref target="I-D.ietf-detnet-security"/>. This section considers 
-		exclusively security considerations which are specific to the DetNet
-		data plane.
+		<xref target="I-D.ietf-detnet-security"/>. General security considerations 
+		are described in <xref target="I-D.ietf-detnet-architecture"/>. This section 
+		considers exclusively security considerations which are specific to the DetNet
+		IP data plane.
       </t>
       <t>
 		Security aspects which are unique to DetNet are those whose aim is to
 		provide the specific quality of service aspects of DetNet, which are
 		primarily to deliver data flows with extremely low packet loss rates
 		and bounded end-to-end delivery latency.
-        </t><t>		
+        </t>
+		<t>		
 		The primary considerations for the data plane is to maintain 
-		confidentiality of data traversing the DetNet network,
-		application flows can be protected through whatever means is
+		integrity of data and delivery of the associated DetNet service traversing 
+		the DetNet network.
+		Application flows can be protected through whatever means is
 		provided by the underlying technology. For example, encryption may be
 		used, such as that provided by IPSec <xref target="RFC4301"/> for IP
-		flows and by MACSec <xref target="IEEE802.1AE-2018"/> for Ethernet
-		(Layer-2) flows. 
-        </t><t>
-        DetNet flows are identified on a per-flow basis, which may provide
+		flows and/or by an underlying sub-net using MACSec 
+		<xref target="IEEE802.1AE-2018"/> for IP over Ethernet (Layer-2) flows. 
+        </t>
+        <t>
+		From a data plane perspective this document does not add or modify any 
+		header information.
+        </t>
+		<t>
+        At the management and control level DetNet flows are identified on a 
+		per-flow basis, which may provide controller plane 
         attackers with additional information about the data flows (when
-        compared to networks that do not include per-flow identification).
+        compared to controller planes that do not include per-flow identification).
         This is an inherent property of DetNet which has security
         implications that should be considered when determining if DetNet is
-        a suitable technology for any given use case.
-        </t><t>
-		To provide uninterrupted availability of the DetNet quality of
+        a suitable technology for any given use case.  
+        </t>
+		<t>
+		To provide uninterrupted availability of the DetNet 
 		service, provisions can be made against DOS attacks and delay
 		attacks. To protect against DOS attacks, excess traffic due to
 		malicious or malfunctioning devices can be prevented or mitigated,
-		for example through the use of traffic admission control applied at
+		for example through the use of existing mechanism such as policing and shaping applied at
 		the input of a DetNet domain. To prevent DetNet packets from
-		being delayed by an entityexternal to a DetNet domain, DetNet
+		being delayed by an entity external to a DetNet domain, DetNet
 		technology definition can allow for the mitigation of 
 		Man-In-The-Middle attacks, for example through use of
 		authentication and authorization of devices within the DetNet domain.
-        </t><t>
-        Because DetNet mechanisms or applications that rely on DetNet can
-		make heavy use of methods that require precise time synchronization,
-		the accuracy, availability, and integrity of time synchronization is
-		of critical importance. Extensive discussion of this topic can be
-		found in <xref target="RFC7384"/>.
-      </t>
+        </t>
 	  
     </section>
 
