@@ -167,7 +167,6 @@
             <t hangText="L3">Layer-3.</t>
             <t hangText="LSP">Label-switched path.</t>
             <t hangText="MPLS">Multiprotocol Label Switching.</t>
-            <t hangText="OAM">Operations, Administration, and Maintenance.</t>
             <t hangText="PE">Provider Edge.</t>
             <t hangText="PREOF">Packet Replication, Ordering and Elimination Function.</t>
             <t hangText="PSN">Packet Switched Network.</t>
@@ -522,11 +521,6 @@ DetNet                    |L2/SbN|          |L2/SbN|
             </t>
       </section>
 
-      <section title="OAM">
-        <t>
-          OAM consideration are out-of-scope in this document.
-        </t>
-      </section>
       <section title="Forwarding Sub-Layer Considerations">
       <section title="Class of Service">
         <t>
