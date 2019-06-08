@@ -115,7 +115,7 @@
         the existing IP and higher layer protocol header information is used to
         support flow identification and DetNet service delivery. Common data plane 
         procedures and control information for all DetNet data planes 
-        can be found in the <xref target="I-D.ietf-detnet-framework"/>.     
+	can be found in the <xref target="I-D.ietf-detnet-data-plane-framework"/>.
       </t>
       <t>
         The DetNet Architecture models the DetNet related data plane functions
@@ -224,7 +224,7 @@
         header information is used to support flow identification and DetNet
         service delivery. Common data plane procedures and control information
         for all DetNet data planes can be found in the <xref
-        target="I-D.ietf-detnet-framework"/>.  
+        target="I-D.ietf-detnet-data-plane-framework"/>.  
       </t>
       <t>
         The DetNet IP data plane uses "6-tuple" based flow identification, where
@@ -282,7 +282,7 @@
         the Relay Nodes indicates that the transit routers are DetNet service
         aware but do not perform any DetNet service sub-layer function, e.g., PREOF.
         IEEE 802.1 TSN is an example sub-network type which can provide support
-        for DetNet flows and service.  
+        for DetNet flows and service.
       </t>
       <t>
         Note: The sub-network can represent a TSN, MPLS or IP network
@@ -339,8 +339,7 @@
       <t>
         Note: The operation of IEEE802.1 TSN end systems over DetNet
         enabled IP networks is not described in this document. TSN
-        over MPLS is discribed in <xref target="I-D.ietf-detnet-tsn-over-mpls"/>.  
-        
+        over MPLS is discribed in <xref target="I-D.ietf-detnet-tsn-vpn-over-mpls"/>.  
      </t>
     </section>
 
@@ -352,7 +351,7 @@
       <t>
         This section provides informative considerations related to
         providing DetNet service to flows which are identified
-        based on their header information. 
+        based on their header information.
       </t>
 
 
@@ -454,7 +453,7 @@
             provided on a per underlying L2 link and sub-network basis.
           </t>
 
-<!-- ================================================================= 
+<!-- =================================================================
 
             <figure title="Encapsulation of DetNet Routing in simplified IP service L3 end-systems"
                     anchor="fig_simple_iprouting">
@@ -884,7 +883,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
           buffers) and provisioning or related parameters (such as shaping, and
           policing). Support can also be provided via an underlying network
           technology such as MPLS <xref target="I-D.ietf-detnet-ip-over-mpls"/>.  and
-          IEEE802.1 TSN <xref target="I-D.ietf-ip-over-tsn"/>.  Other than in
+          IEEE802.1 TSN <xref target="I-D.ietf-detnet-ip-over-tsn"/>.  Other than in
           the TSN case, the specific mechanisms used by a DetNet node to ensure
           DetNet service delivery requirements are met for supported DetNet
           flows is outside the scope of this document.
@@ -978,7 +977,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
         compared to controller planes that do not include per-flow identification).
         This is an inherent property of DetNet which has security
         implications that should be considered when determining if DetNet is
-        a suitable technology for any given use case.  
+        a suitable technology for any given use case.
         </t>
         <t>
         To provide uninterrupted availability of the DetNet 
@@ -992,7 +991,6 @@ DetNet                    |L2/SbN|          |L2/SbN|
         Man-In-The-Middle attacks, for example through use of
         authentication and authorization of devices within the DetNet domain.
         </t>
-          
     </section>
 
 
@@ -1042,47 +1040,10 @@ DetNet                    |L2/SbN|          |L2/SbN|
       <?rfc include="reference.I-D.ietf-detnet-flow-information-model"?>
       <?rfc include="reference.I-D.ietf-detnet-security"?>
       <?rfc include="reference.I-D.ietf-detnet-yang"?>
-    <reference anchor='I-D.ietf-ip-over-tsn'>
-      <front>
-        <title>DetNet Data Plane: IP over IEEE 802.1 Time Sensitive Networking (TSN)
-        </title>
-        <author>
-          <organization>Korhonen, J., Varga, B.</organization>
-        </author>
-        <date year='2019' />
-      </front>
-    </reference>
-    <reference anchor='I-D.ietf-detnet-ip-over-mpls'>
-      <front>
-        <title>DetNet IP over DetNet MPLS Data Plane
-        </title>
-        <author>
-          <organization>Korhonen, J., Varga, B.</organization>
-        </author>
-        <date year='2019' />
-      </front>
-    </reference>
-    <reference anchor='I-D.ietf-detnet-framework'>
-      <front>
-        <title>DetNet Data Plane Framework
-        </title>
-        <author>
-          <organization>Korhonen, J., Varga, B.</organization>
-        </author>
-        <date year='2019' />
-      </front>
-    </reference>
-    <reference anchor='I-D.ietf-detnet-tsn-over-mpls'>
-      <front>
-        <title>DetNet Data Plane: IEEE 802.1 Time Sensitive Networking over MPLS
-        </title>
-        <author>
-          <organization>Varga, B.</organization>
-        </author>
-        <date year='2019' />
-      </front>
-    </reference>
-
+      <?rfc include="reference.I-D.ietf-detnet-ip-over-tsn'?>
+      <?rfc include="reference.I-D.ietf-detnet-ip-over-mpls'?>
+      <?rfc include="reference.I-D.ietf-detnet-data-plane-framework'?>
+      <?rfc include="reference.I-D.ietf-detnet-tsn-vpn-over-mpls'?>
     <reference anchor="IEEE802.1AE-2018"
       target="https://ieeexplore.ieee.org/document/8585421">
       <front>
