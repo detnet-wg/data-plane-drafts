@@ -957,18 +957,20 @@ DFx = DetNet member flow x over a TE LSP
     </list>
    </t>
    <t>
-    The resource control and
-    management aspects of aggregation (including the queuing/shaping/
-    policing implications) will be covered in other documents.
+    The resource control and management aspects of aggregation
+    (including the configuration of queuing, shaping, and policing) is
+    the responsibility of the DetNet controller plane will be covered in
+    other documents.
    </t>
    <t>
     The ability to aggregate individual flows, and their associated
     resource control, into a larger aggregate is an important technique
     for improving scaling of control in the data, management and control
     planes.  The DetNet data plane allows for the aggregation of DetNet flows,
-    to improved scaling. There are three methods of introducing flow aggregation:
+    to improved scaling. There are three methods of introducing flow
+    aggregation covered in this section.
    </t>
-   <section anchor="aggregation-at-the-lsp" title="Aggregation at the LSP">
+   <section anchor="aggregation-at-the-lsp" title="Aggregation Via LSP Hierarchy">
     <t>
      DetNet flows forwarded via MPLS can leverage MPLS-TE's existing
      support for hierarchical LSPs (H-LSPs), see <xref target="RFC4206"/>.  H-LSPs are
@@ -979,18 +981,17 @@ DFx = DetNet member flow x over a TE LSP
      support aggregation (LSP hierarchy) map one or more LSPs (labels)
      into and from an H-LSP.  Both carried LSPs and H-LSPs may or may not
      use the TC field, i.e., L-LSPs or E-LSPs.  Such nodes will need to
-     ensure that traffic from aggregated LSPs are placed (shaped/policed/
-     enqueued) onto the H-LSPs in a fashion that ensures the required
+     ensure that component LSPs and H-LSPs receive the traffic
+     treatement required to ensure the required
      DetNet service is preserved.
     </t>
     <t>
-     Additional details of the traffic
-     control capabilities needed at a DetNet-aware node may be covered in
-     the new service descriptions mentioned above or in separate future
-     documents.  Controller plane mechanisms will also need to
-     ensure that the service required on the aggregate flow (H-LSP or
-     DSCP) are provided, which may include the discarding or remarking
-     mentioned in the previous sections.
+     Additional details of the traffic control capabilities needed at a
+     DetNet-aware node may be covered in the new service definitions
+     mentioned above or in separate future documents.  Controller plane
+     mechanisms will also need to ensure that the service required on
+     the aggregate flow are provided, which may include the discarding
+     or remarking mentioned in the previous sections.
     </t>
     </section>
     <section anchor="aggregating-detnet-flows-as-a-new-detnet-flow" title="Aggregating DetNet Flows as a new DetNet flow">
@@ -1035,8 +1036,15 @@ DFx = DetNet member flow x over a TE LSP
      no real need for it to know the payload type during aggregation
      processing.
     </t>
+    <t>
+      As in the previous section, nodes supporting this type of
+      aggregetation will need to ensure that component and aggregated
+      flows receive the traffic treatement required to ensure the
+      required DetNet service is preserved. Also, it is the controller
+      plane's responsibility to to ensure that the service required on
+      the aggregate flow are properly provisioned.
+    </t>
    </section>
-
    <section anchor="simple-aggregation-at-the-detnet-layer" title="Simple Aggregation at the DetNet Layer">
     <t>
     Another approach would be not to include a d-CW for the aggregated
@@ -1221,10 +1229,10 @@ DFx = DetNet member flow x over a TE LSP
 
 
 <section anchor="mpls-flow-id-info"
-         title="Flow Identification Management and Control Information">
+         title="Management and Control Information Summary">
   <t>
      The following summarizes the set of information that is needed to
-     identify an individual DetNet flow in an MPLS context:
+     identify an individual and aggregated DetNet flow in an MPLS context:
      <list style="symbols">
        <t>MPLS Service Label and d-CW labels at a DetNet end system.</t>
        <t>MPLS Service Label and d-CW in the context of one or more MPLS Forwarding Labels at any DetNet aware device along the path.</t>
@@ -1232,6 +1240,15 @@ DFx = DetNet member flow x over a TE LSP
        <t>Any other DetNet flow information for example IP Flow Identification beyond the MPLS service label as specified in
        <xref target="I-D.ietf-detnet-ip"/> at a DetNet aware device. </t> 
      </list>
+     This information MUST be provisioned per DetNet flow via
+     configuration, e.g., via the controller or management plane.
+  </t>
+  <t>
+    It is the responsibility of the DetNet controller plane to
+    properly provision both flow identification information and
+    the flow specific resources needed to provided the traffic
+    treatment needed to meet each flow's service requirements.
+    This applies for aggregated and non-aggregated flows.
   </t>
 </section>
 <!-- ===================================================================== -->
