@@ -945,30 +945,20 @@ DFx = DetNet member flow x over a TE LSP
   </section>
 
   <section anchor="FAG" title="Flow Aggregation">
-    <t>
-      [Author's note: need to revisit this section and ensure that we
-      cover (and fully specify) desired types of aggregation.]
-    </t>
-   <t>
-    <list style="numbers">
-     <t>Aggregate at the LSP (Forwarding)</t>
-     <t>Aggregating DetNet flows as a new DetNet flow</t>
-     <t>Simple Aggregation at the DetNet layer</t>
-    </list>
-   </t>
-   <t>
-    The resource control and management aspects of aggregation
-    (including the configuration of queuing, shaping, and policing) is
-    the responsibility of the DetNet controller plane will be covered in
-    other documents.
-   </t>
    <t>
     The ability to aggregate individual flows, and their associated
     resource control, into a larger aggregate is an important technique
     for improving scaling of control in the data, management and control
     planes.  The DetNet data plane allows for the aggregation of DetNet flows,
-    to improved scaling. There are three methods of introducing flow
+    to improved scaling. There are two methods of supporting flow
     aggregation covered in this section.
+   </t>
+   <t>
+    The resource control and management aspects of aggregation
+    (including the configuration of queuing, shaping, and policing) is
+    the responsibility of the DetNet controller plane and will be covered in
+    other documents.  It is also the responsibility of the controller
+    plane to ensure that consistent aggregation methods are used.
    </t>
    <section anchor="aggregation-at-the-lsp" title="Aggregation Via LSP Hierarchy">
     <t>
@@ -994,7 +984,10 @@ DFx = DetNet member flow x over a TE LSP
      or remarking mentioned in the previous sections.
     </t>
     </section>
-    <section anchor="aggregating-detnet-flows-as-a-new-detnet-flow" title="Aggregating DetNet Flows as a new DetNet flow">
+    <section anchor="aggregating-detnet-flows-as-a-new-detnet-flow"
+             title="Aggregating DetNet Flows as a new DetNet flow">
+      <!-- LB: should an F-Label be required here before the S-Label?
+           it would yield a simpler solution? -->
     <t>
      An aggregate can be built by layering DetNet flows as shown below:
     </t>
@@ -1045,39 +1038,6 @@ DFx = DetNet member flow x over a TE LSP
       the aggregate flow are properly provisioned.
     </t>
    </section>
-   <section anchor="simple-aggregation-at-the-detnet-layer" title="Simple Aggregation at the DetNet Layer">
-    <t>
-    Another approach would be not to include a d-CW for the aggregated
-    flow.  This would be functionally similar to aggregation at the
-    forwarding sub-layer using H-LSPs, but would confine knowledge of
-    the aggregation to the DetNet layer. Such an approach shares the
-    disadvantage that PREOF operations would not be possible. OAM
-    operation in this mode is for further study.
-   </t>
-
-   <figure title="Simple DetNet Aggregation" anchor="fig_detnet_simple_agg">
-   <artwork><![CDATA[
- +---------------------------------+
- |                                 |
- |           DetNet Flow           |
- |         Payload  Packet         |
- |                                 |
- +---------------------------------+ <--\
- |       DetNet Control Word       |    |
- +=================================+    |
- |            S-Label              |    +----DetNet data plane
- +---------------------------------+    |    MPLS encapsulation
- |            A-Label              |    |
- +---------------------------------+    |
- |           F-Label(s)            | <--/
- +---------------------------------+
- |           Data-Link             |
- +---------------------------------+
- |           Physical              |
- +---------------------------------+
-]]></artwork></figure>
-
-  </section>
  </section>
   <section title="Service Sub-Layer Considerations">
    <t>
@@ -1232,16 +1192,27 @@ DFx = DetNet member flow x over a TE LSP
          title="Management and Control Information Summary">
   <t>
      The following summarizes the set of information that is needed to
-     identify an individual and aggregated DetNet flow in an MPLS context:
+     identify an individual and aggregated DetNet flow for service sub-layer aware nodes:
      <list style="symbols">
-       <t>MPLS Service Label and d-CW labels at a DetNet end system.</t>
-       <t>MPLS Service Label and d-CW in the context of one or more MPLS Forwarding Labels at any DetNet aware device along the path.</t>
-       <t>Any aggregate flow by one or more MPLS Forwarding Labels at any DetNet aware device along the path.</t>
-       <t>Any other DetNet flow information for example IP Flow Identification beyond the MPLS service label as specified in
-       <xref target="I-D.ietf-detnet-ip"/> at a DetNet aware device. </t> 
+       <t>Each flow's service parameters and S-Label.</t>
+       <t>The PREOF functions to be supported
+       for each S-Label.</t>
+       <t>The mapping of each S-Label to an
+       F-Label stack.</t>
+       <t>S-Labels to A-Label mappings.</t>
+       <t>A-Label values and service parameters.</t>
      </list>
-     This information MUST be provisioned per DetNet flow via
-     configuration, e.g., via the controller or management plane.
+  </t>
+  <t>
+     The following summarizes the set of information that is needed to
+     for forwarding sub-layer aware nodes:
+     <list style="symbols">
+       <t>Each DetNet F-Label value and associated traffic parameters.</t>
+       <t>F-Label to H-LSP/Label mappings.</t>
+       <t>H-Label values and service parameters.</t>
+       <t>Outgoing interface, next hop, and sub-network parameters on a technology
+       specific basis.</t>
+     </list>
   </t>
   <t>
     It is the responsibility of the DetNet controller plane to
@@ -1361,36 +1332,8 @@ DFx = DetNet member flow x over a TE LSP
    
    &I-D.ietf-detnet-architecture;
    &I-D.ietf-spring-segment-routing-mpls;
-   <reference anchor='I-D.ietf-detnet-data-plane-framework'>
-     <front>
-       <title>DetNet Data Plane Framework
-       </title>
-       <author>
-         <organization>Korhonen, J., Varga, B.</organization>
-       </author>
-       <date year='2019' />
-     </front>
-   </reference>
-   <reference anchor='I-D.ietf-detnet-mpls-over-tsn'>
-     <front>
-       <title>DetNet MPLS over IEEE 802.1 TSN Sub-Networks
-       </title>
-       <author>
-         <organization>Korhonen, J., Varga, B.</organization>
-       </author>
-       <date year='2019' />
-     </front>
-   </reference>
-   <reference anchor='I-D.ietf-detnet-ip'>
-     <front>
-       <title>DetNet IP
-       </title>
-       <author>
-         <organization>Korhonen, J., Varga, B.</organization>
-       </author>
-       <date year='2019' />
-     </front>
-   </reference>
+   <?rfc include="reference.I-D.ietf-detnet-data-plane-framework'?>
+   <?rfc include="reference.I-D.ietf-detnet-mpls-over-tsn'?>
    <reference anchor="IEEE802.1AE-2018"
       target="https://ieeexplore.ieee.org/document/8585421">
       <front>
