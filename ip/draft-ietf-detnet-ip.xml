@@ -113,9 +113,9 @@
         and routers that provide DetNet service to IP encapsulated data.  No
         DetNet specific encapsulation is defined to support IP flows, instead
         the existing IP and higher layer protocol header information is used to
-	support flow identification and DetNet service delivery. Common data plane 
-	procedures and control information for all DetNet data planes 
-	can be found in the <xref target="I-D.ietf-detnet-framework"/>.     
+        support flow identification and DetNet service delivery. Common data plane 
+        procedures and control information for all DetNet data planes 
+        can be found in the <xref target="I-D.ietf-detnet-framework"/>.     
       </t>
       <t>
         The DetNet Architecture models the DetNet related data plane functions
@@ -128,18 +128,18 @@
         forwarding sub-layer functions are supported using the DetNet IP
         defined by this document. Service protection can be provided on a per
         sub-net basis using technologies such as MPLS <xref
-                target="I-D.ietf-detnet-dp-sol-mpls"/> and Ethernet as
+        target="I-D.ietf-detnet-dp-sol-mpls"/> and Ethernet as
         specified in the IEEE 802.1 TSN task group(referred to in this document
         simply as IEEE802.1 TSN).
       </t>
       <t>
         This document provides an overview of the DetNet IP data plane in <xref
-                target="sec_dt_dp"/>, considerations that apply to providing
+        target="sec_dt_dp"/>, considerations that apply to providing
         DetNet services via the DetNet IP data plane in <xref
-                target="dn-gen-encap-solution"/>. <xref target="ip-procs"/>
+        target="dn-gen-encap-solution"/>. <xref target="ip-procs"/>
         provides the procedures for hosts and routers that support IP-based
         DetNet services. <xref target="ip-flow-id-info"/> summarizes the set of 
-		information that is needed to identify an individual DetNet flow. 
+                information that is needed to identify an individual DetNet flow. 
       </t>
     </section>
 
@@ -217,31 +217,31 @@
     </section>
  -->
       <t>
-	This document describes how IP is used by DetNet nodes, i.e., hosts and
-	routers, identify DetNet flows and provide a DetNet service using an IP
-	data plane. From a data plane perspective, an end-to-end IP model is
-	followed.  As mentioned above, existing IP and higher layer protocol
-	header information is used to support flow identification and DetNet
-	service delivery. Common data plane procedures and control information
-	for all DetNet data planes can be found in the <xref
-		target="I-D.ietf-detnet-framework"/>.  
+        This document describes how IP is used by DetNet nodes, i.e., hosts and
+        routers, identify DetNet flows and provide a DetNet service using an IP
+        data plane. From a data plane perspective, an end-to-end IP model is
+        followed.  As mentioned above, existing IP and higher layer protocol
+        header information is used to support flow identification and DetNet
+        service delivery. Common data plane procedures and control information
+        for all DetNet data planes can be found in the <xref
+        target="I-D.ietf-detnet-framework"/>.  
       </t>
       <t>
-	The DetNet IP data plane uses "6-tuple" based flow identification, where
-	6-tuple refers to information carried in IP and higher layer protocol
-	headers.  The 6-tuple referred to in this document is the same as
-	that defined in <xref target="RFC3290"/>. Specifically 6-tuple is
-	(destination address, source address, IP protocol, source port,
-	destination port, and differentiated services (DiffServ) code point
-	(DSCP).  General background on the use of IP headers, and 5-tuples,
-	to identify flows and support Quality of Service (QoS) can be found in
-	<xref target="RFC3670"/>.  <xref target="RFC7657"/> also provides
-	useful background on the delivery of DiffServ and "tuple" based flow
-	identification.
+        The DetNet IP data plane uses "6-tuple" based flow identification, where
+        6-tuple refers to information carried in IP and higher layer protocol
+        headers.  The 6-tuple referred to in this document is the same as
+        that defined in <xref target="RFC3290"/>. Specifically 6-tuple is
+        (destination address, source address, IP protocol, source port,
+        destination port, and differentiated services (DiffServ) code point
+        (DSCP).  General background on the use of IP headers, and 5-tuples,
+        to identify flows and support Quality of Service (QoS) can be found in
+        <xref target="RFC3670"/>.  <xref target="RFC7657"/> also provides
+        useful background on the delivery of DiffServ and "tuple" based flow
+        identification.
 
-	Referring to a 6-tuple allows DetNet nodes to forward packets with the
-	6-tuple as is or remap the DSCP where required by the DetNet service.
-	
+        Referring to a 6-tuple allows DetNet nodes to forward packets with the
+        6-tuple as is or remap the DSCP where required by the DetNet service.
+        
       </t>
       <t>
         DetNet flow aggregation may be enabled via the use of
@@ -322,9 +322,9 @@
         identification.
       </t>
       <t>
-	    Note, that <xref target="fig_ip_detnet_simple"/> and 
-		<xref target="fig_non_detnet_ip"/> can be combined, so IP DetNet 
-		End Systems can communicate over DetNet IP network with IP End System.
+        Note, that <xref target="fig_ip_detnet_simple"/> and 
+        <xref target="fig_non_detnet_ip"/> can be combined, so IP DetNet 
+        End Systems can communicate over DetNet IP network with IP End System.
       </t>
       <t>
         Non-DetNet and DetNet IP packets are identical on the wire. From
@@ -338,9 +338,9 @@
       </t>
       <t>
         Note: The operation of IEEE802.1 TSN end systems over DetNet
-	enabled IP networks is not described in this document. TSN
-	over MPLS is discribed in <xref target="I-D.ietf-detnet-tsn-over-mpls"/>.  
-	
+        enabled IP networks is not described in this document. TSN
+        over MPLS is discribed in <xref target="I-D.ietf-detnet-tsn-over-mpls"/>.  
+        
      </t>
     </section>
 
@@ -435,13 +435,13 @@
         </artwork></figure>
 
           <t>
-	    Within a DetNet domain, the DetNet enabled IP Routers are interconnected by
-	    links and sub-networks to support end-to-end delivery of DetNet
-	    flows.  From a DetNet architecture perspective, these routers are
-	    DetNet relays, as they must be DetNet service aware.  Such routers
-	    identify DetNet flows based on the IP 6-tuple, and ensure that the
-	    DetNet service required traffic treatment is provided both on the
-	    node and on any attached sub-network.
+            Within a DetNet domain, the DetNet enabled IP Routers are interconnected by
+            links and sub-networks to support end-to-end delivery of DetNet
+            flows.  From a DetNet architecture perspective, these routers are
+            DetNet relays, as they must be DetNet service aware.  Such routers
+            identify DetNet flows based on the IP 6-tuple, and ensure that the
+            DetNet service required traffic treatment is provided both on the
+            node and on any attached sub-network.
           </t>
           <t>
             This solution provides DetNet functions end to end, but does so on
@@ -487,7 +487,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
               sub-network scenario in <xref target="fig_pref_in_subnets"/>,
               where each sub-network can provide service protection between
               its borders. "R" and "E" denotes replication and elimination 
-			  points within the sub-network.
+                          points within the sub-network.
             </t>
 
             <figure title="Replication and elimination in sub-networks for DetNet IP networks" anchor="fig_pref_in_subnets">
@@ -495,7 +495,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
 <![CDATA[
 
      <-------------------- DenNet IP ------------------------>
-                             	 ______
+                                      ______
                        ____     /      \__
             ____      /     \__/          \___   ______
 +----+   __/    +====+                       +==+      \     +----+
@@ -514,10 +514,10 @@ DetNet                    |L2/SbN|          |L2/SbN|
 ]]>
             </artwork></figure>
             <t>
-	      If end to end service protection is desired,  it can be
-	      implemented, for example, by the DetNet end systems using Layer-4
-	      (L4) transport protocols or application protocols. However, these
-	      protocols are out of scope of this document.
+              If end to end service protection is desired,  it can be
+              implemented, for example, by the DetNet end systems using Layer-4
+              (L4) transport protocols or application protocols. However, these
+              protocols are out of scope of this document.
             </t>
       </section>
 
@@ -635,10 +635,10 @@ DetNet                    |L2/SbN|          |L2/SbN|
         </t>
         <t>
           Additional details of the traffic control capabilities needed at 
-		  a DetNet-aware node may be covered in separate future
+          a DetNet-aware node may be covered in separate future
           documents.  Management and control plane mechanisms will also need
           to ensure that the service required on the aggregate flow 
-		  are provided, which may include the  discarding or remarking
+          are provided, which may include the  discarding or remarking
           mentioned in the previous sections.
         </t>
       </section>
@@ -686,9 +686,9 @@ DetNet                    |L2/SbN|          |L2/SbN|
       </t>
       <t>
         DetNet IP data plane establishment and operational procedures 
-	also have requirements on the control and management systems
-	for DetNet flows and these are referred in this section. 
-	Specifically this section identifies a
+        also have requirements on the control and management systems
+        for DetNet flows and these are referred in this section. 
+        Specifically this section identifies a
         number of information elements that require support via the
         management and control interfaces supported by a DetNet node.
         The specific mechanism used for such support is out of the scope
@@ -784,13 +784,13 @@ DetNet                    |L2/SbN|          |L2/SbN|
           </section>
           <section title="IPv6 Flow Label Field">
             <t>
-	      Implementations of this document SHOULD support identification of
-	      DetNet flows based on the IPv6 Flow Label field. Implementations
-	      that support matching based on this field MUST allow for this
-	      field to be ignored for a specific DetNet flow.  When this field
-	      is used to identify a specific DetNet flow, implementations MAY
-	      exclude the IPv6 Next Header field and next header information as
-	      part of DetNet flow identification.
+              Implementations of this document SHOULD support identification of
+              DetNet flows based on the IPv6 Flow Label field. Implementations
+              that support matching based on this field MUST allow for this
+              field to be ignored for a specific DetNet flow.  When this field
+              is used to identify a specific DetNet flow, implementations MAY
+              exclude the IPv6 Next Header field and next header information as
+              part of DetNet flow identification.
             </t>
           </section>
         </section>
@@ -874,20 +874,20 @@ DetNet                    |L2/SbN|          |L2/SbN|
 
       <section anchor="ip-svc" title="DetNet IP Traffic Treatment Procedures">
         <t>
-	  Implementations if this document MUST ensure that a DetNet flow
-	  receives the traffic treatment that is provisioned for it via
-	  configuration or the controller plane, e.g., via <xref target="I-D.ietf-detnet-yang"/>.
-	  General information on DetNet service can be found in <xref
-		  target="I-D.ietf-detnet-flow-information-model"/>.  Typical
-	  mechanisms used to provide different treatment to different flows
-	  includes the allocation of system resources (such as queues and
-	  buffers) and provisioning or related parameters (such as shaping, and
-	  policing). Support can also be provided via an underlying network
-	  technology such as MPLS <xref target="I-D.ietf-detnet-ip-over-mpls"/>.  and
-	  IEEE802.1 TSN <xref target="I-D.ietf-ip-over-tsn"/>.  Other than in
-	  the TSN case, the specific mechanisms used by a DetNet node to ensure
-	  DetNet service delivery requirements are met for supported DetNet
-	  flows is outside the scope of this document.
+          Implementations if this document MUST ensure that a DetNet flow
+          receives the traffic treatment that is provisioned for it via
+          configuration or the controller plane, e.g., via <xref target="I-D.ietf-detnet-yang"/>.
+          General information on DetNet service can be found in <xref
+                  target="I-D.ietf-detnet-flow-information-model"/>.  Typical
+          mechanisms used to provide different treatment to different flows
+          includes the allocation of system resources (such as queues and
+          buffers) and provisioning or related parameters (such as shaping, and
+          policing). Support can also be provided via an underlying network
+          technology such as MPLS <xref target="I-D.ietf-detnet-ip-over-mpls"/>.  and
+          IEEE802.1 TSN <xref target="I-D.ietf-ip-over-tsn"/>.  Other than in
+          the TSN case, the specific mechanisms used by a DetNet node to ensure
+          DetNet service delivery requirements are met for supported DetNet
+          flows is outside the scope of this document.
         </t>
       </section>
 
@@ -924,7 +924,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
               required. Port ranges can optionally be used.</t>
               <t>TCP and UDP Destination Port. Exact and wildcard matching is
               required. Port ranges can optionally be used.</t>
-			  <t>IPsec Header SPI field. Exact matching is
+                          <t>IPsec Header SPI field. Exact matching is
               required. </t>
             </list>
             This information MUST be provisioned per DetNet flow via
@@ -945,69 +945,69 @@ DetNet                    |L2/SbN|          |L2/SbN|
 
     <section title="Security Considerations">
       <t>
-	    Security considerations for DetNet are described in detail in
-		<xref target="I-D.ietf-detnet-security"/>. General security considerations 
-		are described in <xref target="I-D.ietf-detnet-architecture"/>. This section 
-		considers exclusively security considerations which are specific to the DetNet
-		IP data plane.
+       Security considerations for DetNet are described in detail in
+       <xref target="I-D.ietf-detnet-security"/>. General security considerations 
+       are described in <xref target="I-D.ietf-detnet-architecture"/>. This section 
+       considers exclusively security considerations which are specific to the DetNet
+       IP data plane.
       </t>
       <t>
-		Security aspects which are unique to DetNet are those whose aim is to
-		provide the specific quality of service aspects of DetNet, which are
-		primarily to deliver data flows with extremely low packet loss rates
-		and bounded end-to-end delivery latency.
+       Security aspects which are unique to DetNet are those whose aim is to
+       provide the specific quality of service aspects of DetNet, which are
+       primarily to deliver data flows with extremely low packet loss rates
+       and bounded end-to-end delivery latency.
         </t>
-		<t>		
-		The primary considerations for the data plane is to maintain 
-		integrity of data and delivery of the associated DetNet service traversing 
-		the DetNet network.
-		Application flows can be protected through whatever means is
-		provided by the underlying technology. For example, encryption may be
-		used, such as that provided by IPSec <xref target="RFC4301"/> for IP
-		flows and/or by an underlying sub-net using MACSec 
-		<xref target="IEEE802.1AE-2018"/> for IP over Ethernet (Layer-2) flows. 
+        <t>                
+        The primary considerations for the data plane is to maintain 
+        integrity of data and delivery of the associated DetNet service traversing 
+        the DetNet network.
+        Application flows can be protected through whatever means is
+        provided by the underlying technology. For example, encryption may be
+        used, such as that provided by IPSec <xref target="RFC4301"/> for IP
+        flows and/or by an underlying sub-net using MACSec 
+        <xref target="IEEE802.1AE-2018"/> for IP over Ethernet (Layer-2) flows. 
         </t>
         <t>
-		From a data plane perspective this document does not add or modify any 
-		header information.
+        From a data plane perspective this document does not add or modify any 
+        header information.
         </t>
-		<t>
+        <t>
         At the management and control level DetNet flows are identified on a 
-		per-flow basis, which may provide controller plane 
+        per-flow basis, which may provide controller plane 
         attackers with additional information about the data flows (when
         compared to controller planes that do not include per-flow identification).
         This is an inherent property of DetNet which has security
         implications that should be considered when determining if DetNet is
         a suitable technology for any given use case.  
         </t>
-		<t>
-		To provide uninterrupted availability of the DetNet 
-		service, provisions can be made against DOS attacks and delay
-		attacks. To protect against DOS attacks, excess traffic due to
-		malicious or malfunctioning devices can be prevented or mitigated,
-		for example through the use of existing mechanism such as policing and shaping applied at
-		the input of a DetNet domain. To prevent DetNet packets from
-		being delayed by an entity external to a DetNet domain, DetNet
-		technology definition can allow for the mitigation of 
-		Man-In-The-Middle attacks, for example through use of
-		authentication and authorization of devices within the DetNet domain.
+        <t>
+        To provide uninterrupted availability of the DetNet 
+        service, provisions can be made against DOS attacks and delay
+        attacks. To protect against DOS attacks, excess traffic due to
+        malicious or malfunctioning devices can be prevented or mitigated,
+        for example through the use of existing mechanism such as policing and shaping applied at
+        the input of a DetNet domain. To prevent DetNet packets from
+        being delayed by an entity external to a DetNet domain, DetNet
+        technology definition can allow for the mitigation of 
+        Man-In-The-Middle attacks, for example through use of
+        authentication and authorization of devices within the DetNet domain.
         </t>
-	  
+          
     </section>
 
 
     <section anchor="iana" title="IANA Considerations">
       <t>
-		This document does not require an action from IANA.
+        This document does not require an action from IANA.
       </t>
     </section>
 
     <section anchor="acks" title="Acknowledgements">
       <t>
-		The authors wish to thank Pat Thaler, Norman Finn, Loa Anderson, David Black, 
-		Rodney Cummings, Ethan Grossman, Tal Mizrahi, David Mozes, Craig Gunther, 
-		George Swallow, Yuanlong Jiang and Carlos J. Bernardos for their
-		various contributions to this work.
+        The authors wish to thank Pat Thaler, Norman Finn, Loa Anderson, David Black, 
+        Rodney Cummings, Ethan Grossman, Tal Mizrahi, David Mozes, Craig Gunther, 
+        George Swallow, Yuanlong Jiang and Carlos J. Bernardos for their
+        various contributions to this work.
       </t>
     </section>
   </middle>
@@ -1025,7 +1025,6 @@ DetNet                    |L2/SbN|          |L2/SbN|
       <?rfc include="reference.RFC.4301"?>
       <?rfc include="reference.RFC.4302"?>
       <?rfc include="reference.RFC.4303"?>
-      <?rfc include="reference.RFC.7384"?>
       <?rfc include="reference.RFC.7608"?>
       <?rfc include="reference.RFC.8174"?>
       <?rfc include="reference.RFC.8200"?>
@@ -1076,7 +1075,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
     <reference anchor='I-D.ietf-detnet-tsn-over-mpls'>
       <front>
         <title>DetNet Data Plane: IEEE 802.1 Time Sensitive Networking over MPLS
-      	</title>
+        </title>
         <author>
           <organization>Varga, B.</organization>
         </author>
@@ -1084,17 +1083,16 @@ DetNet                    |L2/SbN|          |L2/SbN|
       </front>
     </reference>
 
-	  <reference anchor="IEEE802.1AE-2018"
-		target="https://ieeexplore.ieee.org/document/8585421">
-		<front>
-		  <title>IEEE Std 802.1AE-2018 MAC Security (MACsec)</title>
-		  <author>
-			<organization>IEEE Standards Association</organization>
-		  </author>
-		  <date year="2018" />
-		</front>
-	  </reference>
-
+    <reference anchor="IEEE802.1AE-2018"
+      target="https://ieeexplore.ieee.org/document/8585421">
+      <front>
+        <title>IEEE Std 802.1AE-2018 MAC Security (MACsec)</title>
+        <author>
+          <organization>IEEE Standards Association</organization>
+        </author>
+        <date year="2018" />
+      </front>
+    </reference>
 
     </references>
    </back>

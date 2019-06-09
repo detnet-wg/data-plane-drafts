@@ -1223,9 +1223,15 @@ DFx = DetNet member flow x over a TE LSP
 <section anchor="mpls-flow-id-info"
          title="Flow Identification Management and Control Information">
   <t>
-    [Editor's Note]
-    The following will summarize the set of information that is needed to
-    support the MPLS DetNet data plane.
+     The following summarizes the set of information that is needed to
+     identify an individual DetNet flow in an MPLS context:
+     <list style="symbols">
+       <t>MPLS Service Label and d-CW labels at a DetNet end system.</t>
+       <t>MPLS Service Label and d-CW in the context of one or more MPLS Forwarding Labels at any DetNet aware device along the path.</t>
+       <t>Any aggregate flow by one or more MPLS Forwarding Labels at any DetNet aware device along the path.</t>
+       <t>Any other DetNet flow information for example IP Flow Identification beyond the MPLS service label as specified in
+       <xref target="I-D.ietf-detnet-ip"/> at a DetNet aware device. </t> 
+     </list>
   </t>
 </section>
 <!-- ===================================================================== -->
@@ -1233,14 +1239,54 @@ DFx = DetNet member flow x over a TE LSP
 
 <section title="Security Considerations">
   <t>
-   The security considerations of DetNet in general are discussed in
-   <xref target="I-D.ietf-detnet-architecture"/>
-   and <xref target="I-D.sdt-detnet-security"/>. Other security
-   considerations will be added in a future version of
-   this draft.
+   Security considerations for DetNet are described in detail in
+   <xref target="I-D.ietf-detnet-security"/>. General security considerations 
+   are described in <xref target="I-D.ietf-detnet-architecture"/>. This section 
+   considers exclusively security considerations which are specific to the DetNet
+   MPLS data plane.
+  </t>
+  <t>
+   Security aspects which are unique to DetNet are those whose aim is to
+   provide the specific quality of service aspects of DetNet, which are
+   primarily to deliver data flows with extremely low packet loss rates
+   and bounded end-to-end delivery latency.
+    </t>
+    <t>                
+    The primary considerations for the data plane is to maintain 
+    integrity of data and delivery of the associated DetNet service traversing 
+    the DetNet network.
+    Application flows can be protected through whatever means is
+    provided by the underlying technology. For example, encryption may be
+    used, such as that provided by IPSec <xref target="RFC4301"/> for IP
+    flows and/or by an underlying sub-net using MACSec 
+    <xref target="IEEE802.1AE-2018"/> for IP over Ethernet (Layer-2) flows. 
+    </t>
+    <t>
+    From a data plane perspective this document does not add or modify any 
+    header information.
+    </t>
+    <t>
+    At the management and control level DetNet flows are identified on a 
+    per-flow basis, which may provide controller plane 
+    attackers with additional information about the data flows (when
+    compared to controller planes that do not include per-flow identification).
+    This is an inherent property of DetNet which has security
+    implications that should be considered when determining if DetNet is
+    a suitable technology for any given use case.  
+    </t>
+    <t>
+    To provide uninterrupted availability of the DetNet 
+    service, provisions can be made against DOS attacks and delay
+    attacks. To protect against DOS attacks, excess traffic due to
+    malicious or malfunctioning devices can be prevented or mitigated,
+    for example through the use of existing mechanism such as policing and shaping applied at
+    the input of a DetNet domain. To prevent DetNet packets from
+    being delayed by an entity external to a DetNet domain, DetNet
+    technology definition can allow for the mitigation of 
+    Man-In-The-Middle attacks, for example through use of
+    authentication and authorization of devices within the DetNet domain.
   </t>
 </section>
-
 
 <section anchor="iana" title="IANA Considerations">
   <t>
@@ -1286,6 +1332,7 @@ DFx = DetNet member flow x over a TE LSP
    &rfc3985;
    &rfc4448;
    <?rfc include="reference.RFC.4875"?>
+   <?rfc include="reference.RFC.4301"?>
    <?rfc include="reference.RFC.5440"?>
    <?rfc include="reference.RFC.5586"?>
    <?rfc include="reference.RFC.5921"?>
@@ -1293,6 +1340,8 @@ DFx = DetNet member flow x over a TE LSP
    <?rfc include="reference.RFC.6003"?>
    <?rfc include="reference.RFC.6006"?>
    <?rfc include="reference.RFC.6790"?>
+   <?rfc include="reference.I-D.ietf-detnet-security"?>
+   
    &I-D.ietf-detnet-architecture;
    &I-D.ietf-spring-segment-routing-mpls;
    <reference anchor='I-D.ietf-detnet-data-plane-framework'>
@@ -1315,19 +1364,29 @@ DFx = DetNet member flow x over a TE LSP
        <date year='2019' />
      </front>
    </reference>
-
-   <reference anchor='I-D.sdt-detnet-security'>
-    <front>
-     <title>Deterministic Networking (DetNet) Security Considerations,
-		draft-sdt-detnet-security, work in progress
-     </title>
-     <author>
-      <organization>Mizrahi, T., Grossman, E., Hacker, A., Das, S.</organization>
-     </author>
-     <date year='2017' />
-    </front>
+   <reference anchor='I-D.ietf-detnet-ip'>
+     <front>
+       <title>DetNet IP
+       </title>
+       <author>
+         <organization>Korhonen, J., Varga, B.</organization>
+       </author>
+       <date year='2019' />
+     </front>
    </reference>
-  </references>
+   <reference anchor="IEEE802.1AE-2018"
+      target="https://ieeexplore.ieee.org/document/8585421">
+      <front>
+        <title>IEEE Std 802.1AE-2018 MAC Security (MACsec)</title>
+        <author>
+          <organization>IEEE Standards Association</organization>
+        </author>
+        <date year="2018" />
+      </front>
+    </reference>
+
+
+     </references>
 
  </back>
  </rfc>
