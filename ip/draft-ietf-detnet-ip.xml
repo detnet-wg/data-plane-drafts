@@ -571,78 +571,47 @@ DetNet                    |L2/SbN|          |L2/SbN|
       </section>
       </section>
 
-     <section title="DetNet Flow Aggregation">
-
-      <section title="Flow Identification">
-        <t>
-          <xref target="sec_dt_dp"/> introduces the use of the IP
-          "6-tuple" for flow identification, and <xref target="QoS"/>
-          goes on to discuss how identified flows use specific QoS
-          mechanisms for flow-specific traffic treatment, including path
-          control and resource allocation. <xref target="ip-flow-id"/>
-          contains detailed DetNet IP flow identification
-          procedures. Flow identification plays an important role
-          for the DetNet controller plane.
+     <section title="DetNet Flow Aggregation" anchor="aggregation">
+       <t>
+         As described in <xref
+         target="I-D.ietf-detnet-data-plane-framework"/>, the ability to
+         aggregate individual flows, and their associated resource
+         control, into a larger aggregate is an important technique for
+         improving scaling by reducing the state per hop.  DetNet IP
+         data plane aggregation can take place within a single node,
+         when that node maintains state about both the aggregated and
+         component flows.  It can also take place between nodes, where
+         one node maintains state about only flow aggregates while the
+         other node maintains state on all or a portion of the component
+         flows.  In either case, the management or control function that
+         provisions the aggregate flows must ensure that adequate
+         resources are allocated and configured to provide combined
+         service requirements of the component flows.  As DetNet is
+         concerned about latency and jitter, more than just bandwidth
+         needs to be considered.
         </t>
         <t>
-          Flow aggregation can be accomplished using any of the 6-tuple
-          fields defined in <xref target="ip-flow-id"/>, using a DSCP
-          identified traffic class or other field. It will be the
-          responsibility of the DetNet controller plane to be able to
-          properly provision the use of these aggregation
-          mechanisms.
-        </t>
-        <t>
-          The use of prefixes, wildcards, bitmasks, and port ranges
-          allows a DetNet node to aggregate DetNet flows.  This
-          aggregation can take place within a single node, when that
-          node maintains state about both the aggregated and component
-          flows.  It can also take place between nodes, where one node
-          maintains state about only flow aggregates while the other
-          node maintains state on all or a portion of the component
-          flows.  In either case, the management or control function that
-          provisions the aggregate flows must ensure that adequate
-          resources are allocated and configured to provide combined
-          service requirements of the component flows.  As DetNet is
-          concerned about latency and jitter, more than just bandwidth
-          needs to be considered.
-        </t>
-      </section>
-
-      <section title="Aggregate flow resources" anchor="aggregation">
-        <t>
-          The ability to aggregate individual flows, and their associated
-          resource control, into a larger aggregate is an important technique
-          for improving scaling of messaging in the data, management and
-          control planes.  The resource
-          control and management aspects of aggregation (including the
-          queuing/shaping/policing implications) will be covered in other
-          documents.  The data plane implications of aggregation are
-          independent of encapsulation formats.
-        </t>
-        <t>
-          DetNet flows forwarded via IP have more limited aggregation
-          options, due to the available traffic flow identification fields of
-          the IP solution.
-
-          One available approach is to manage the resources
-          associated with a DSCP identified traffic class and to map (remark)
-          individually controlled DetNet flows onto that traffic class.  This
-          approach also requires that nodes support aggregation ensure that
-          traffic from aggregated flows are placed (shaped/policed/enqueued)
-          in a fashion that ensures the required DetNet service is preserved.
-        </t>
-        <t>
-          Additional details of the traffic control capabilities needed at
-          a DetNet-aware node may be covered in separate future
-          documents.  Management and control plane mechanisms will also need
-          to ensure that the service required on the aggregate flow
-          are provided, which may include the  discarding or remarking
-          mentioned in the previous sections.
-        </t>
-      </section>
+          From a single node perspective, the aggregation of IP flows
+          impacts DetNet IP data plane flow identification and resource
+          allocation.  As discussed above, IP flow identification uses
+          the IP "6-tuple" for flow identification.  DetNet IP flows can
+          be aggregated using any of the 6-tuple fields defined in <xref
+          target="ip-flow-id"/>.  The use of prefixes, wildcards,
+          bitmasks, and value ranges allows a DetNet node to identify
+          aggregate DetNet flows.  From a resource allocation
+          perspective, DetNet nodes must provide service to a aggregate
+          and not on a component flow basis.
+       </t>
+       <t>
+          It is the responsibility of the DetNet controller plane to
+          properly provision the use of these aggregation mechanisms.
+          This includes ensuring that aggregated flows have compatible
+          e.g., the same or very similar QoS and/or CoS characteristics,
+          see <xref target="QoS"/>.  It also includes ensuring that per
+          component-flow service requirements are satisfied by the
+          aggregate, see <xref target="ip-svc"/>.
+       </t>
      </section>
-
 
       <section title="Bidirectional Traffic">
         <t>
@@ -891,12 +860,11 @@ DetNet                    |L2/SbN|          |L2/SbN|
       </section>
 
     </section>
-
         <section anchor="ip-flow-id-info"
-                 title="Flow Identification Management and Control Information">
+                 title="Management and Control Information Summary">
           <t>
             The following summarizes the set of information that is needed to
-            identify an individual DetNet flow:
+            identify individual and aggregated DetNet flows:
             <list style="symbols">
               <t>IPv4 and IPv6 source address field.</t>
               <t>IPv4 and IPv6 source address prefix length, where a zero
@@ -934,10 +902,16 @@ DetNet                    |L2/SbN|          |L2/SbN|
             implementations use the first match.  This can, for example, be
             used to provide a DetNet service for a specific UDP flow, with
             unique Source and Destination Port field values, while
-            providing a different service for all other flows with that same
-            UDP Destination Port value.
+            providing a different service for the aggregate of all other
+            flows with that same UDP Destination Port value.
           </t>
-
+          <t>
+            It is the responsibility of the DetNet controller plane to
+            properly provision both flow identification information and
+            the flow specific resources needed to provided the traffic
+            treatment needed to meet each flow's service requirements.
+            This applies for aggregated and non-aggregated flows.
+          </t>
     </section>
 
     <!-- ===================================================================== -->
