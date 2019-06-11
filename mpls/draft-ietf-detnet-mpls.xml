@@ -955,7 +955,7 @@ DFx = DetNet member flow x over a TE LSP
    </t>
    <t>
     The resource control and management aspects of aggregation
-    (including the configuration of queuing, shaping, and policing) is
+    (including the configuration of queuing, shaping, and policing) are
     the responsibility of the DetNet controller plane and will be covered in
     other documents.  It is also the responsibility of the controller
     plane to ensure that consistent aggregation methods are used.
@@ -971,7 +971,7 @@ DFx = DetNet member flow x over a TE LSP
      support aggregation (LSP hierarchy) map one or more LSPs (labels)
      into and from an H-LSP.  Both carried LSPs and H-LSPs may or may not
      use the TC field, i.e., L-LSPs or E-LSPs.  Such nodes will need to
-     ensure that component LSPs and H-LSPs receive the traffic
+     ensure that individual LSPs and H-LSPs receive the traffic
      treatement required to ensure the required
      DetNet service is preserved.
     </t>
@@ -1031,7 +1031,7 @@ DFx = DetNet member flow x over a TE LSP
     </t>
     <t>
       As in the previous section, nodes supporting this type of
-      aggregetation will need to ensure that component and aggregated
+      aggregetation will need to ensure that individual and aggregated
       flows receive the traffic treatement required to ensure the
       required DetNet service is preserved. Also, it is the controller
       plane's responsibility to to ensure that the service required on
@@ -1208,8 +1208,8 @@ DFx = DetNet member flow x over a TE LSP
      for forwarding sub-layer aware nodes:
      <list style="symbols">
        <t>Each DetNet F-Label value and associated traffic parameters.</t>
-       <t>F-Label to H-LSP/Label mappings.</t>
-       <t>H-Label values and service parameters.</t>
+       <t>F-Label to H-LSP mappings.</t>
+       <t>H-LSP label values and associated parameters.</t>
        <t>Outgoing interface, next hop, and sub-network parameters on a technology
        specific basis.</t>
      </list>
@@ -1219,7 +1219,7 @@ DFx = DetNet member flow x over a TE LSP
     properly provision both flow identification information and
     the flow specific resources needed to provided the traffic
     treatment needed to meet each flow's service requirements.
-    This applies for aggregated and non-aggregated flows.
+    This applies for aggregated and individual flows.
   </t>
 </section>
 <!-- ===================================================================== -->
