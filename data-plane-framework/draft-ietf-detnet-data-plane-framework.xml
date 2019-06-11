@@ -635,7 +635,7 @@ CE1----EN1--------R1-------R2-------R3--------EN2-----CE2
   sum of all the individual reservations, in other words, the reservations
   should not create an over subscription of bandwidth reservation.  If maximum
   delay bounds are used the system should ensure that the aggregate does not
-  exceed the delay bounds of the component flows.  
+  exceed the delay bounds of the individual flows.
  </t>
  <t>
   DetNet encapsulation is a data plane mechanism that can be used to aggregate

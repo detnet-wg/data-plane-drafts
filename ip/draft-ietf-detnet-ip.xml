@@ -580,13 +580,13 @@ DetNet                    |L2/SbN|          |L2/SbN|
          improving scaling by reducing the state per hop.  DetNet IP
          data plane aggregation can take place within a single node,
          when that node maintains state about both the aggregated and
-         component flows.  It can also take place between nodes, where
+         individual flows.  It can also take place between nodes, where
          one node maintains state about only flow aggregates while the
          other node maintains state on all or a portion of the component
          flows.  In either case, the management or control function that
          provisions the aggregate flows must ensure that adequate
          resources are allocated and configured to provide combined
-         service requirements of the component flows.  As DetNet is
+         service requirements of the individual flows.  As DetNet is
          concerned about latency and jitter, more than just bandwidth
          needs to be considered.
         </t>
@@ -910,7 +910,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
             properly provision both flow identification information and
             the flow specific resources needed to provided the traffic
             treatment needed to meet each flow's service requirements.
-            This applies for aggregated and non-aggregated flows.
+            This applies for aggregated and individual flows.
           </t>
     </section>
 

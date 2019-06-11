@@ -341,7 +341,7 @@ Top of Stack         .
   </t>
 
   <t>
-    The  DetNet forwarding sub-layer is supported by one or more
+    The  DetNet forwarding sub-layer is supported by zero or more
     forwarding labels (F-Labels). MPLS Traffic Engineering
     encapsulations and mechanisms can be utilized to provide a
     forwarding sub-layer that is responsible for providing resource
@@ -955,7 +955,7 @@ DFx = DetNet member flow x over a TE LSP
    </t>
    <t>
     The resource control and management aspects of aggregation
-    (including the configuration of queuing, shaping, and policing) is
+    (including the configuration of queuing, shaping, and policing) are
     the responsibility of the DetNet controller plane and will be covered in
     other documents.  It is also the responsibility of the controller
     plane to ensure that consistent aggregation methods are used.
@@ -971,7 +971,7 @@ DFx = DetNet member flow x over a TE LSP
      support aggregation (LSP hierarchy) map one or more LSPs (labels)
      into and from an H-LSP.  Both carried LSPs and H-LSPs may or may not
      use the TC field, i.e., L-LSPs or E-LSPs.  Such nodes will need to
-     ensure that component LSPs and H-LSPs receive the traffic
+     ensure that individual LSPs and H-LSPs receive the traffic
      treatement required to ensure the required
      DetNet service is preserved.
     </t>
@@ -986,10 +986,9 @@ DFx = DetNet member flow x over a TE LSP
     </section>
     <section anchor="aggregating-detnet-flows-as-a-new-detnet-flow"
              title="Aggregating DetNet Flows as a new DetNet flow">
-      <!-- LB: should an F-Label be required here before the S-Label?
-           it would yield a simpler solution? -->
     <t>
-     An aggregate can be built by layering DetNet flows as shown below:
+     An aggregate can be built by layering DetNet flows, including both
+     their S-Label and, when present, F-Labels as shown below:
     </t>
     <figure title="DetNet Aggregation as a new DetNet Flow" anchor="fig_detnet_agg_flow">
 
@@ -1003,8 +1002,10 @@ DFx = DetNet member flow x over a TE LSP
 |       DetNet Control Word       |    |
 +=================================+    |
 |            S-Label              |    |
-+---------------------------------+    +----DetNet data plane
-|       DetNet Control Word       |    |    MPLS encapsulation
++---------------------------------+    |
+|           F-Label(s)            |    +----DetNet data plane
++---------------------------------+    |
+|       DetNet Control Word       |    |
 +=================================+    |
 |            A-Label              |    |
 +---------------------------------+    |
@@ -1017,21 +1018,25 @@ DFx = DetNet member flow x over a TE LSP
 ]]></artwork></figure>
 
     <t>
-     Both the Aggregation (A) label and the S-Label have their MPLS S bit
+     Both the aggregation label, or A-Label, and the individual flow's S-Label
+     have their MPLS S bit
      set indicating bottom of stack, and the d-CW allows the PREOF
-     to work.
+     to work.  An A-Label is a special case of an S-Label, whose
+     properties are known only at the aggregation and deaggregation
+     end-points.
     </t>
     <t>
-     It is a property of the A-label that what follows is d-CW followed
-     by an S-Label. A relay node processing the A-label would not know
-     the underlying payload type. This would only be known to a node
-     that was a peer of the node imposing the S-Label. However there is
-     no real need for it to know the payload type during aggregation
-     processing.
+     It is a property of the A-Label that what follows is a d-CW
+     followed by an MPLS label stack.  A
+     relay node processing the A-Label would not know the underlying
+     payload type, and the A-Label would be process as a normal
+     S-Label. This would only be known to a node that was a peer of the
+     node imposing the S-Label. However there is no real need for it to
+     know the payload type during aggregation processing.
     </t>
     <t>
       As in the previous section, nodes supporting this type of
-      aggregetation will need to ensure that component and aggregated
+      aggregetation will need to ensure that individual and aggregated
       flows receive the traffic treatement required to ensure the
       required DetNet service is preserved. Also, it is the controller
       plane's responsibility to to ensure that the service required on
@@ -1208,8 +1213,8 @@ DFx = DetNet member flow x over a TE LSP
      for forwarding sub-layer aware nodes:
      <list style="symbols">
        <t>Each DetNet F-Label value and associated traffic parameters.</t>
-       <t>F-Label to H-LSP/Label mappings.</t>
-       <t>H-Label values and service parameters.</t>
+       <t>F-Label to H-LSP mappings.</t>
+       <t>H-LSP label values and associated parameters.</t>
        <t>Outgoing interface, next hop, and sub-network parameters on a technology
        specific basis.</t>
      </list>
@@ -1219,7 +1224,7 @@ DFx = DetNet member flow x over a TE LSP
     properly provision both flow identification information and
     the flow specific resources needed to provided the traffic
     treatment needed to meet each flow's service requirements.
-    This applies for aggregated and non-aggregated flows.
+    This applies for aggregated and individual flows.
   </t>
 </section>
 <!-- ===================================================================== -->
