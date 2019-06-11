@@ -341,7 +341,7 @@ Top of Stack         .
   </t>
 
   <t>
-    The  DetNet forwarding sub-layer is supported by one or more
+    The  DetNet forwarding sub-layer is supported by zero or more
     forwarding labels (F-Labels). MPLS Traffic Engineering
     encapsulations and mechanisms can be utilized to provide a
     forwarding sub-layer that is responsible for providing resource
@@ -986,10 +986,9 @@ DFx = DetNet member flow x over a TE LSP
     </section>
     <section anchor="aggregating-detnet-flows-as-a-new-detnet-flow"
              title="Aggregating DetNet Flows as a new DetNet flow">
-      <!-- LB: should an F-Label be required here before the S-Label?
-           it would yield a simpler solution? -->
     <t>
-     An aggregate can be built by layering DetNet flows as shown below:
+     An aggregate can be built by layering DetNet flows, including both
+     their S-Label and, when present, F-Labels as shown below:
     </t>
     <figure title="DetNet Aggregation as a new DetNet Flow" anchor="fig_detnet_agg_flow">
 
@@ -1003,8 +1002,10 @@ DFx = DetNet member flow x over a TE LSP
 |       DetNet Control Word       |    |
 +=================================+    |
 |            S-Label              |    |
-+---------------------------------+    +----DetNet data plane
-|       DetNet Control Word       |    |    MPLS encapsulation
++---------------------------------+    |
+|           F-Label(s)            |    +----DetNet data plane
++---------------------------------+    |
+|       DetNet Control Word       |    |
 +=================================+    |
 |            A-Label              |    |
 +---------------------------------+    |
@@ -1017,17 +1018,21 @@ DFx = DetNet member flow x over a TE LSP
 ]]></artwork></figure>
 
     <t>
-     Both the Aggregation (A) label and the S-Label have their MPLS S bit
+     Both the aggregation label, or A-Label, and the individual flow's S-Label
+     have their MPLS S bit
      set indicating bottom of stack, and the d-CW allows the PREOF
-     to work.
+     to work.  An A-Label is a special case of an S-Label, whose
+     properties are known only at the aggregation and deaggregation
+     end-points.
     </t>
     <t>
-     It is a property of the A-label that what follows is d-CW followed
-     by an S-Label. A relay node processing the A-label would not know
-     the underlying payload type. This would only be known to a node
-     that was a peer of the node imposing the S-Label. However there is
-     no real need for it to know the payload type during aggregation
-     processing.
+     It is a property of the A-Label that what follows is a d-CW
+     followed by an MPLS label stack.  A
+     relay node processing the A-Label would not know the underlying
+     payload type, and the A-Label would be process as a normal
+     S-Label. This would only be known to a node that was a peer of the
+     node imposing the S-Label. However there is no real need for it to
+     know the payload type during aggregation processing.
     </t>
     <t>
       As in the previous section, nodes supporting this type of
