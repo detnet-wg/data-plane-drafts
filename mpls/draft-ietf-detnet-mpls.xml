@@ -166,6 +166,8 @@
 
  <middle>
  <section title="Introduction" anchor="sec_intro">
+<!-- Note: There are no dedicated section to procedures like "DetNet IP Data Plane Procedures" here. Do we need it like in DetNet-IP document ??? -->
+
   <t>
     Deterministic Networking (DetNet) is a service that can be offered
     by a network to DetNet flows.  DetNet provides these flows extremely
@@ -234,6 +236,11 @@
        sub-layer.
      </t>
 
+     <t hangText="A-Label">
+       A special case of an S-Label, whose properties are known only at 
+	   the aggregation and deaggregation end-points.
+     </t>
+
     <t hangText="d-CW">
       A DetNet Control Word (d-CW) is used for sequencing information
       of a DetNet flow at the DetNet
@@ -278,7 +285,6 @@
    </list>
   </t>
   </section>
- </section>  <!-- end of terminology -->
 
  <section title="Requirements Language">
   <t>
@@ -289,6 +295,7 @@
     only when, they appear in all capitals, as shown here.
   </t>
  </section>
+ </section>  <!-- end of terminology -->
 
  <section title="DetNet MPLS Data Plane Overview" anchor="sec_dt_dp">
   <section title="Layers of DetNet Data Plane" anchor="sec_lay_dt_dp">
@@ -421,7 +428,7 @@ End System        Node         Node           Node        End System
         middle of a DetNet network.  The 'X' in the end systems, and relay
         nodes represents potential DetNet compound flow packet replication and
         elimination points.  In this example, service protection is supported
-        utilizing least two DetNet member flows and TE LSPs.  For a
+        utilizing at least two DetNet member flows and TE LSPs.  For a
         unidirectional flow, R1 supports PRF and R3 supports PEF and POF.  Note
         that the relay nodes may change the underlying forwarding sub-layer,
         for example tunneling MPLS over IEEE 802.1 TSN <xref
@@ -728,7 +735,7 @@ DFx = DetNet member flow x over a TE LSP
    <section anchor="pof-requirements" title="Packet Ordering Function
                                              Processing">
      <t>
-       A function that is related to PEF is the Packet Ordering Function
+       A function that is related to in-order delivery is the Packet Ordering Function
        (POF).  Implementations MAY support POF. When
        supported, use of the POF for a particular app-flow MUST be
        provisioned via configuration, e.g., via the controller plane
@@ -800,6 +807,7 @@ DFx = DetNet member flow x over a TE LSP
        an implementation SHOULD also allow multiple outgoing interfaces 
        to be provisioned.  PRF MUST NOT be used with app-flows configured 
        with a d-CW sequence number field length of 0 bits.
+<!-- [Note: What if multiple receivers? We may use the PRF for serving multiple end-points.] -->
      </t>
      <t>
        When a single set of F-Labels is provisioned for a particular 
