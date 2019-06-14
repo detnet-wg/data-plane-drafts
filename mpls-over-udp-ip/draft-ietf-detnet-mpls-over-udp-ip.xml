@@ -158,14 +158,14 @@
     and concepts of DetNet can be found in <xref
     target="I-D.ietf-detnet-architecture"/>.
   </t>
-  <t>
+<!--  <t>
     The DetNet Architecture decomposes the DetNet related data plane
     functions into two sub-layers: a service sub-layer and a forwarding sub-layer.
     The service sub-layer is used to provide DetNet service protection and
     reordering. The forwarding sub-layer is used to provides congestion
     protection (low loss, assured latency, and limited reordering)
     leveraging MPLS Traffic Engineering mechanisms.
-  </t>
+  </t> -->
   <t>
   This document specifies use of the MPLS DetNet encapsulation over an IP network.
   The approach is modeled on the operation of MPLS and PseudoWires (PW) over
@@ -229,7 +229,6 @@
    </list>
   </t>
   </section>
- </section>  <!-- end of terminology -->
 
  <section title="Requirements Language">
   <t>
@@ -240,6 +239,7 @@
     only when, they appear in all capitals, as shown here.
   </t>
  </section>
+ </section>  <!-- end of terminology -->
 
 <!-- ===================================================================== -->
 
@@ -284,7 +284,9 @@
 
   <t>
     d-CW and and S-Labels are used as defined in <xref
-    target="I-D.ietf-detnet-mpls"/> and are not modified by this document.
+    target="I-D.ietf-detnet-mpls"/> and are not modified by this document. 
+	In case of aggregates the A-Label is treated as an S-Label and it is not 
+	modified as well.
   </t>
   <t>
     To support outgoing DetNet MPLS over IP, an implementation MUST support the
@@ -292,7 +294,7 @@
     F-Labels.  Note that multiple sets of F-Labels can be provisioned to
     support PRF on transmitted DetNet flows and therefore, when PRF is
     supported, multiple IP/UDP headers MAY be provisioned. When multiple
-    IP/UDP headers are provisioned for a particular outgoing app-flow, a
+    IP/UDP headers are provisioned for a particular outgoing DetNet IP flow, a
     copy of the outgoing packet, including the pushed S-Label, MUST be
     made for each. The headers for each outgoing packet MUST be based on
     the configuration information and as defined in <xref
@@ -328,9 +330,10 @@
   <t>
    The security considerations of DetNet in general are discussed in
    <xref target="I-D.ietf-detnet-architecture"/>
-   and <xref target="I-D.sdt-detnet-security"/>. Other security
-   considerations will be added in a future version of
-   this draft.
+   and <xref target="I-D.ietf-detnet-security"/>. MPLS and IP specific 
+   security considerations are described in <xref target="I-D.ietf-detnet-mpls"/>
+   and <xref target="I-D.ietf-detnet-ip"/>. This draft does not have additional
+   security considerations.
   </t>
 </section>
 
@@ -360,42 +363,14 @@
    &rfc4385;
    &rfc7510;
    <?rfc include="reference.RFC.8174"?>
-   <reference anchor='I-D.ietf-detnet-mpls'>
-     <front>
-       <title>DetNet MPLS
-       </title>
-       <author>
-         <organization>Korhonen, J., Varga, B.</organization>
-       </author>
-       <date year='2019' />
-     </front>
-   </reference>
-   <reference anchor='I-D.ietf-detnet-ip'>
-     <front>
-       <title>DetNet IP
-       </title>
-       <author>
-         <organization>Korhonen, J., Varga, B.</organization>
-       </author>
-       <date year='2019' />
-     </front>
-   </reference>
+   <?rfc include="reference.I-D.ietf-detnet-mpls'?>
+   <?rfc include="reference.I-D.ietf-detnet-ip'?>
   </references>
   <references title="Informative References">
    &rfc3985;
 &I-D.ietf-detnet-architecture;
    &I-D.ietf-6man-segment-routing-header;
-   <reference anchor='I-D.sdt-detnet-security'>
-    <front>
-     <title>Deterministic Networking (DetNet) Security Considerations,
-		draft-sdt-detnet-security, work in progress
-     </title>
-     <author>
-      <organization>Mizrahi, T., Grossman, E., Hacker, A., Das, S.</organization>
-     </author>
-     <date year='2017' />
-    </front>
-   </reference>
+   <?rfc include="reference.I-D.ietf-detnet-security"?>
   </references>
  </back>
 </rfc>
