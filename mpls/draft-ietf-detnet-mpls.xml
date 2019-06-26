@@ -1199,7 +1199,87 @@ DFx = DetNet member flow x over a TE LSP
 </section>
 
 <!-- ===================================================================== -->
-
+<section title="MPLS-Specific Controller Plane Considerations" anchor="mpls_cp_considerations">
+    <t>
+      This section covers MPLS data plane specific control plane considerations.
+    </t>
+    <section title="S-Label and F-Label Assignment and Distribution">
+      <t>
+        S-Labels are expected to be allocated in the same manner as any
+        other service labels. S-Labels uniquely identify a particular
+        DetNet flow, and are local to the node on which the label is
+        allocated. In the DetNet service sub-layer the explicit route
+        consists of the set of Relay Nodes that the DetNet flow must
+        traverse.  S-Labels can be used to identify the DetNet flow that a
+        packet belongs to as it traverses a particular node in a DetNet
+        domain. Because S-Labels are local to each node rather than being a
+        global identifier within a domain, they must be advertised to their
+        upstream DetNet service-aware peer nodes (e.g., a DetNet MPLS End
+        System or a DetNet Relay or Edge Node and interpreted in the 
+        context of their received F-Label.
+      </t>
+      <t>
+        As discussed in <xref target="sec_dt_dp"/>, the forwarding sub-layer
+        uses one or more F-Labels to forward DetNet packets between
+        DetNet service-aware nodes along explicitly defined routes at the
+        DetNet forwarding sub-layer, which in the context of this document is
+        MPLS.  F-Labels can also provide context for an S-Label.
+        In the DetNet Forwarding (MPLS) sub-layer the explicit
+        route consists of the set of DetNet nodes which are LSRs, links,
+        and possibly link bundle members and queues that the DetNet packets
+        flow must traverse between nodes in the DetNet service sub-layer
+        (i.e. between a specific Edge Node and the next hop Relay Node,
+        between specific Relay Nodes, and between a specific Relay node and
+        the egress Edge Node. Resource allocation corresponding to the set
+        of Services supported over the forwarding sub-layer, which may or may
+        not include aggregation, is required at this sub-layer. Explicit
+        routes are used to ensure that packets are routed through the
+        resources that have been reserved for them, and hence provide the
+        DetNet application with the required service.  Multiple F-Labels
+        may be pushed after an S-Label and there is no requirement for all
+        F-Labels to be controlled via the same controller mechanisms. For
+        example in EVPN, some labels are distributed using BGP while others
+        are distributed using LDP or RSVP.
+      </t>
+      <t>
+        Whether configuring, calculating and instantiating these routes is a
+        single-stage or multi-stage process, or in a centralized or
+        distributed manner, is out of scope of this document.
+      </t>
+      <t>
+        There are a number of approaches that could be used to provide
+        explicit routes and resource allocation in the MPLS forwarding sub-layer:
+        <list style="symbols">
+          <t>
+            The path could be explicitly set up by a controller which
+            calculates the path and
+            explicitly configures each node along that path with the
+            appropriate forwarding and resource allocation information.
+          </t>
+          <t>
+            The path could be set up using RSVP-TE signaling.
+          </t>
+          <t>
+            The path could be implemented using
+            MPLS-based segment routing when extended to support resource
+            allocation.
+          </t>
+        </list>
+      </t>
+      <t>
+        Much like other MPLS labels, there are a number of alternatives
+        available for DetNet S-Label and F-Label advertisement to an
+        upstream peer node. These include distributed signaling
+        protocols such as RSVP-TE, centralized label distribution via a
+        controller that manages both the sender and the receiver using
+        NETCONF/YANG, BGP, PCEP, etc., and hybrid combinations of the
+        two.  The details of the controller plane solution required for
+        the label distribution and the management of the label number
+        space are out of scope of this document. 
+        There are particular DetNet considerations and requirements that
+        are discussed in <xref target="I-D.ietf-detnet-data-plane-framework"/>.
+      </t> 
+      </section>
 
 <section anchor="mpls-flow-id-info"
          title="Management and Control Information Summary">
@@ -1234,6 +1314,7 @@ DFx = DetNet member flow x over a TE LSP
     treatment needed to meet each flow's service requirements.
     This applies for aggregated and individual flows.
   </t>
+</section>
 </section>
 <!-- ===================================================================== -->
 
