@@ -270,12 +270,12 @@
         </list>
          </t>
          <t>
-          (Below replacement text suggested by Balazs)
+                 <!-- Below replacement text suggested by Balazs --> 
          </t>
          <t>
          <list style='numbers'>
          <t>
-          Forwarding paradigm: DetNet can be built over packet switched (IP)
+          Forwarding paradigm: DetNet is currently defined for operation over packet switched (IP)
           networks or label switched (MPLS) networks .  
          </t>
          <t>
@@ -300,7 +300,7 @@
         ]]></artwork>
         </figure>
         <figure anchor="dn_svc_encaps" align="center"
-        title="DetNet Service Examples with Recursion">
+        title="DetNet Service Examples">
          <artwork align="center"><![CDATA[
 
                           +-----+
