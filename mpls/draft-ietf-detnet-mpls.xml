@@ -1,53 +1,5 @@
 <?xml version="1.0" encoding="US-ASCII"?>
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
-<!ENTITY rfc2119 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
-<!ENTITY rfc3031 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3031.xml">
-<!ENTITY rfc3032 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3032.xml">
-<!ENTITY rfc3985 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3985.xml">
-<!ENTITY rfc4090 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4090.xml">
-<!ENTITY rfc4385 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4385.xml">
-<!ENTITY rfc4446 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4446.xml">
-<!ENTITY rfc4447 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4447.xml">
-<!ENTITY rfc4448 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4448.xml">
-<!ENTITY rfc4553 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4553.xml">
-<!ENTITY rfc4664 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4664.xml">
-<!ENTITY rfc4817 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4817.xml">
-<!ENTITY rfc5036 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5036.xml">
-<!ENTITY rfc5086 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5086.xml">
-<!ENTITY rfc5087 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5087.xml">
-<!ENTITY rfc5254 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5254.xml">
-<!ENTITY rfc5129 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5129.xml">
-<!ENTITY rfc5305 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5305.xml">
-<!ENTITY rfc5331 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5331.xml">
-<!ENTITY rfc5332 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5332.xml">
-<!ENTITY rfc5440 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5440.xml">
-<!ENTITY rfc5462 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5462.xml">
-<!ENTITY rfc5586 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5586.xml">
-<!ENTITY rfc5659 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5659.xml">
-<!ENTITY rfc5085 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5085.xml">
-<!ENTITY rfc5921 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5921.xml">
-<!ENTITY rfc5960 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5960.xml">
-<!ENTITY rfc6275 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6275.xml">
-<!ENTITY rfc6371 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6371.xml">
-<!ENTITY rfc6378 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6378.xml">
-<!ENTITY rfc6426 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6426.xml">
-<!ENTITY rfc6437 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6437.xml">
-<!ENTITY rfc6540 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6540.xml">
-<!ENTITY rfc6564 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6564.xml">
-<!ENTITY rfc6621 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6621.xml">
-<!ENTITY rfc6658 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6658.xml">
-<!ENTITY rfc6718 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6718.xml">
-<!ENTITY rfc6733 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6733.xml">
-<!ENTITY rfc6790 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6790.xml">
-<!ENTITY rfc7271 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7271.xml">
-<!ENTITY rfc7348 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7348.xml">
-<!ENTITY rfc7426 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7426.xml">
-<!ENTITY rfc7432 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7432.xml">
-<!ENTITY rfc7510 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7510.xml">
-<!ENTITY I-D.ietf-spring-segment-routing-mpls PUBLIC "" "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-spring-segment-routing-mpls">
-<!ENTITY I-D.ietf-detnet-problem-statement PUBLIC "" "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-detnet-problem-statement.xml">
-<!ENTITY I-D.ietf-detnet-architecture PUBLIC "" "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-detnet-architecture.xml">
-
 ]>
 <!--
 - From 2/25 call:
@@ -317,7 +269,7 @@
                      .
 Bottom of Stack      .
 (inner label)    +------------+
-                 |  Service   | d-CW, S-Label
+                 |  Service   | d-CW, S-Label (A-Label)
                  +------------+
                  | Forwarding | F-Label(s)
                  +------------+
@@ -333,7 +285,8 @@ Top of Stack         .
     The service sub-layer includes a DetNet control word (d-CW) and
     a identifying service label (S-Label).  The DetNet control word
     (d-CW) conforms to the Generic PW MPLS Control Word (PWMCW)
-    defined in <xref target="RFC4385"/>. 
+    defined in <xref target="RFC4385"/>. An aggregation label (A-Label) is 
+    a special case of S-Label used for aggregation. 
   </t>
 
   <t>
@@ -658,6 +611,11 @@ DFx = DetNet member flow x over a TE LSP
     S-Labels MUST be allocated by the entity that controls the service
     sub-layer receiving node's label space, and MAY be allocated from
     the platform label space <xref target="RFC3031"/>.
+    Because S-Labels are local to each node rather than being a
+    global identifier within a domain, they must be advertised to their
+    upstream DetNet service-aware peer nodes (e.g., a DetNet MPLS End
+    System or a DetNet Relay or Edge Node and interpreted in the 
+    context of their received F-Label.
    </t>
    <t>
     The S-Label will normally be at the bottom of the label stack once
@@ -792,7 +750,9 @@ DFx = DetNet member flow x over a TE LSP
          F-Labels to be pushed when sending a particular app-flow MUST
          be provisioned per app-flow via configuration, e.g., via the
 	 controller plane discussed in 
-         <xref target="I-D.ietf-detnet-data-plane-framework"/>.
+	 <xref target="I-D.ietf-detnet-data-plane-framework"/>. 
+	 F-Labels can also provide context for an S-Label.
+
 	 To
          allow for the omission of F-Labels, an implementation SHOULD
          also allow an outgoing interface to be provisioned.
@@ -980,7 +940,7 @@ DFx = DetNet member flow x over a TE LSP
      into and from an H-LSP.  Both carried LSPs and H-LSPs may or may not
      use the TC field, i.e., L-LSPs or E-LSPs.  Such nodes will need to
      ensure that individual LSPs and H-LSPs receive the traffic
-     treatement required to ensure the required
+     treatment required to ensure the required
      DetNet service is preserved.
     </t>
     <t>
@@ -1044,8 +1004,8 @@ DFx = DetNet member flow x over a TE LSP
     </t>
     <t>
       As in the previous section, nodes supporting this type of
-      aggregetation will need to ensure that individual and aggregated
-      flows receive the traffic treatement required to ensure the
+      aggregation will need to ensure that individual and aggregated
+      flows receive the traffic treatment required to ensure the
       required DetNet service is preserved. Also, it is the controller
       plane's responsibility to to ensure that the service required on
       the aggregate flow are properly provisioned.
@@ -1109,7 +1069,7 @@ DFx = DetNet member flow x over a TE LSP
        ingress DetNet member flow receives DetNet specific processing depends
        on how the forwarding is programmed.  Some relay nodes may be DetNet
        service aware, while others may be unmodified LSRs that only understand
-       how to swicth MPLS-TE LSPs.
+       how to switch MPLS-TE LSPs.
      </t>
      <t>
        It is also possible to treat the relay node as a transit node,
@@ -1199,91 +1159,10 @@ DFx = DetNet member flow x over a TE LSP
 </section>
 
 <!-- ===================================================================== -->
-<section title="MPLS-Specific Controller Plane Considerations" anchor="mpls_cp_considerations">
-    <t>
-      This section covers MPLS data plane specific control plane considerations.
-    </t>
-    <section title="S-Label and F-Label Assignment and Distribution">
-      <t>
-        S-Labels are expected to be allocated in the same manner as any
-        other service labels. S-Labels uniquely identify a particular
-        DetNet flow, and are local to the node on which the label is
-        allocated. In the DetNet service sub-layer the explicit route
-        consists of the set of Relay Nodes that the DetNet flow must
-        traverse.  S-Labels can be used to identify the DetNet flow that a
-        packet belongs to as it traverses a particular node in a DetNet
-        domain. Because S-Labels are local to each node rather than being a
-        global identifier within a domain, they must be advertised to their
-        upstream DetNet service-aware peer nodes (e.g., a DetNet MPLS End
-        System or a DetNet Relay or Edge Node and interpreted in the 
-        context of their received F-Label.
-      </t>
-      <t>
-        As discussed in <xref target="sec_dt_dp"/>, the forwarding sub-layer
-        uses one or more F-Labels to forward DetNet packets between
-        DetNet service-aware nodes along explicitly defined routes at the
-        DetNet forwarding sub-layer, which in the context of this document is
-        MPLS.  F-Labels can also provide context for an S-Label.
-        In the DetNet Forwarding (MPLS) sub-layer the explicit
-        route consists of the set of DetNet nodes which are LSRs, links,
-        and possibly link bundle members and queues that the DetNet packets
-        flow must traverse between nodes in the DetNet service sub-layer
-        (i.e. between a specific Edge Node and the next hop Relay Node,
-        between specific Relay Nodes, and between a specific Relay node and
-        the egress Edge Node. Resource allocation corresponding to the set
-        of Services supported over the forwarding sub-layer, which may or may
-        not include aggregation, is required at this sub-layer. Explicit
-        routes are used to ensure that packets are routed through the
-        resources that have been reserved for them, and hence provide the
-        DetNet application with the required service.  Multiple F-Labels
-        may be pushed after an S-Label and there is no requirement for all
-        F-Labels to be controlled via the same controller mechanisms. For
-        example in EVPN, some labels are distributed using BGP while others
-        are distributed using LDP or RSVP.
-      </t>
-      <t>
-        Whether configuring, calculating and instantiating these routes is a
-        single-stage or multi-stage process, or in a centralized or
-        distributed manner, is out of scope of this document.
-      </t>
-      <t>
-        There are a number of approaches that could be used to provide
-        explicit routes and resource allocation in the MPLS forwarding sub-layer:
-        <list style="symbols">
-          <t>
-            The path could be explicitly set up by a controller which
-            calculates the path and
-            explicitly configures each node along that path with the
-            appropriate forwarding and resource allocation information.
-          </t>
-          <t>
-            The path could be set up using RSVP-TE signaling.
-          </t>
-          <t>
-            The path could be implemented using
-            MPLS-based segment routing when extended to support resource
-            allocation.
-          </t>
-        </list>
-      </t>
-      <t>
-        Much like other MPLS labels, there are a number of alternatives
-        available for DetNet S-Label and F-Label advertisement to an
-        upstream peer node. These include distributed signaling
-        protocols such as RSVP-TE, centralized label distribution via a
-        controller that manages both the sender and the receiver using
-        NETCONF/YANG, BGP, PCEP, etc., and hybrid combinations of the
-        two.  The details of the controller plane solution required for
-        the label distribution and the management of the label number
-        space are out of scope of this document. 
-        There are particular DetNet considerations and requirements that
-        are discussed in <xref target="I-D.ietf-detnet-data-plane-framework"/>.
-      </t> 
-      </section>
 
 <section anchor="mpls-flow-id-info"
-         title="Management and Control Information Summary">
-  <t>
+	 title="Management and Control Information Summary">
+	 <t>
      The following summarizes the set of information that is needed to
      identify an individual and aggregated DetNet flow for service sub-layer aware nodes:
      <list style="symbols">
@@ -1314,7 +1193,40 @@ DFx = DetNet member flow x over a TE LSP
     treatment needed to meet each flow's service requirements.
     This applies for aggregated and individual flows.
   </t>
-</section>
+        <t>
+        For DetNet management there are a number of approaches that could be used to provide
+        explicit routes and resource allocation in the MPLS forwarding sub-layer:
+        <list style="symbols">
+          <t>
+            The path could be explicitly set up by a controller which
+            calculates the path and
+            explicitly configures each node along that path with the
+            appropriate forwarding and resource allocation information.
+          </t>
+          <t>
+            The path could be set up using RSVP-TE signaling.
+          </t>
+          <t>
+            The path could be implemented using
+            MPLS-based segment routing when extended to support resource
+            allocation.
+          </t>
+        </list>
+      </t>
+	 <t>
+        Much like other MPLS labels, there are a number of alternatives
+        available for DetNet S-Label and F-Label advertisement to an
+        upstream peer node. These include distributed signaling
+        protocols such as RSVP-TE, centralized label distribution via a
+        controller that manages both the sender and the receiver using
+        NETCONF/YANG, BGP, PCEP, etc., and hybrid combinations of the
+        two.  The details of the controller plane solution required for
+        the label distribution and the management of the label number
+        space are out of scope of this document. 
+        There are particular DetNet considerations and requirements that
+        are discussed in <xref target="I-D.ietf-detnet-data-plane-framework"/>.
+      </t> 
+
 </section>
 <!-- ===================================================================== -->
 
@@ -1391,7 +1303,7 @@ DFx = DetNet member flow x over a TE LSP
 
 <back>
   <references title="Normative References">
-   &rfc2119;
+   <?rfc include="reference.RFC.2119"?>
    <?rfc include="reference.RFC.2211"?>
    <?rfc include="reference.RFC.2212"?>
    <?rfc include="reference.RFC.3031"?>
@@ -1404,15 +1316,15 @@ DFx = DetNet member flow x over a TE LSP
    <?rfc include="reference.RFC.5129"?>
    <?rfc include="reference.RFC.5085"?>
    <?rfc include="reference.RFC.5462"?>
-   &rfc4385;
+   <?rfc include="reference.RFC.4385"?>
    <?rfc include="reference.RFC.8174"?>
   </references>
   <references title="Informative References">
    <?rfc include="reference.RFC.2205"?>
    <?rfc include="reference.RFC.2474"?>
    <?rfc include="reference.RFC.3272"?>
-   &rfc3985;
-   &rfc4448;
+   <?rfc include="reference.RFC.3985"?>
+   <?rfc include="reference.RFC.4448"?>
    <?rfc include="reference.RFC.4875"?>
    <?rfc include="reference.RFC.4301"?>
    <?rfc include="reference.RFC.5440"?>
@@ -1423,9 +1335,9 @@ DFx = DetNet member flow x over a TE LSP
    <?rfc include="reference.RFC.6006"?>
    <?rfc include="reference.RFC.6790"?>
    <?rfc include="reference.I-D.ietf-detnet-security"?>
-   
-   &I-D.ietf-detnet-architecture;
-   &I-D.ietf-spring-segment-routing-mpls;
+   <?rfc include="reference.I-D.ietf-detnet-architecture"?>
+ 
+   <?rfc include="reference.I-D.ietf-spring-segment-routing-mpls'?>
    <?rfc include="reference.I-D.ietf-detnet-data-plane-framework'?>
    <?rfc include="reference.I-D.ietf-detnet-mpls-over-tsn'?>
    <reference anchor="IEEE802.1AE-2018"
