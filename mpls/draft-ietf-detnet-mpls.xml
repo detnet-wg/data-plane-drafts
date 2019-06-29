@@ -206,22 +206,13 @@
   <t>
    The following abbreviations are used in this document:
    <list style="hanging" hangIndent="14">
-    <t hangText="AC">Attachment Circuit.</t>
-    <t hangText="CE">Customer Edge equipment.</t>
     <t hangText="CoS">Class of Service.</t>
     <t hangText="CW">Control Word.</t>
     <t hangText="DetNet">Deterministic Networking.</t>
-    <t hangText="DF">DetNet Flow.</t>
-    <t hangText="DN-IWF">DetNet Inter-Working Function.</t>
-    <t hangText="L2">Layer 2.</t>
-    <t hangText="L2VPN">Layer 2 Virtual Private Network.</t>
-    <t hangText="L3">Layer 3.</t>
     <t hangText="LSR">Label Switching Router.</t>
     <t hangText="MPLS">Multiprotocol Label Switching.</t>
     <t hangText="MPLS-TE">Multiprotocol Label Switching - Traffic Engineering.</t>
     <t hangText="MPLS-TP">Multiprotocol Label Switching - Transport Profile.</t>
-    <t hangText="MS-PW">Multi-Segment PseudoWire (MS-PW).</t>
-    <t hangText="NSP">Native Service Processing.</t>
     <t hangText="OAM">Operations, Administration, and Maintenance.</t>
     <t hangText="PE">Provider Edge.</t>
     <t hangText="PEF">Packet Elimination Function.</t>
