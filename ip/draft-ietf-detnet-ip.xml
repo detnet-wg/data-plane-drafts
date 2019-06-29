@@ -167,12 +167,8 @@
             <t hangText="L3">Layer-3.</t>
             <t hangText="LSP">Label-switched path.</t>
             <t hangText="MPLS">Multiprotocol Label Switching.</t>
-            <t hangText="PE">Provider Edge.</t>
             <t hangText="PREOF">Packet Replication, Ordering and Elimination Function.</t>
-            <t hangText="PSN">Packet Switched Network.</t>
-            <t hangText="PW">Pseudowire.</t>
             <t hangText="QoS">Quality of Service.</t>
-            <t hangText="TE">Traffic Engineering.</t>
             <t hangText="TSN">Time-Sensitive Networking, TSN is a Task Group of the IEEE
             802.1 Working Group.</t>
           </list>
