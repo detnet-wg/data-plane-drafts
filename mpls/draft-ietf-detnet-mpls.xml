@@ -34,17 +34,17 @@
      DetNet Data Plane: MPLS</title>
 
   <author role="editor" fullname="Bal&aacute;zs Varga" initials="B." surname="Varga">
-	<organization>Ericsson</organization>
-	<address>
-	 <postal>
-	  <street>Magyar Tudosok krt. 11.</street>
-	  <city>Budapest</city>
-	  <country>Hungary</country>
-	  <code>1117</code>
-	 </postal>
-	 <email>balazs.a.varga@ericsson.com</email>
-	</address>
-	</author>
+        <organization>Ericsson</organization>
+        <address>
+         <postal>
+          <street>Magyar Tudosok krt. 11.</street>
+          <city>Budapest</city>
+          <country>Hungary</country>
+          <code>1117</code>
+         </postal>
+         <email>balazs.a.varga@ericsson.com</email>
+        </address>
+        </author>
 
     <author fullname="J&aacute;nos Farkas" initials="J." surname="Farkas">
       <organization>Ericsson</organization>
@@ -129,7 +129,7 @@
   </t>
   <t>
     The DetNet Architecture models the DetNet related data plane functions
-    decomposed 
+    decomposed
     into two sub-layers: a service sub-layer and a forwarding sub-layer.  The
     service sub-layer is used to provide DetNet service functions such as
     protection and reordering.  The forwarding sub-layer is used to provide
@@ -144,7 +144,7 @@
     be carried over a variety of different network technologies that can
     provide the DetNet required level of service.  However, the specific
     details of how DetNet MPLS is carried over different network technologies
-    is out of scope of this document.  
+    is out of scope of this document.
   </t>
   <t>
     MPLS encapsulated DetNet flows can carry different types of
@@ -153,10 +153,10 @@
     using DetNet MPLS sub-networks can be found in
     [I-D.ietf-detnet-ip].  DetNet MPLS may use an associated controller
     and Operations, Administration, and Maintenance (OAM) functions
-    that are defined outside of this document. 
+    that are defined outside of this document.
   </t>
   <t>
-    Important background information common to all data planes for DetNet 
+    Important background information common to all data planes for DetNet
     can be found in the DetNet Data
     Plane Framework <xref target="I-D.ietf-detnet-data-plane-framework"/>.
   </t>
@@ -189,8 +189,8 @@
      </t>
 
      <t hangText="A-Label">
-       A special case of an S-Label, whose properties are known only at 
-	   the aggregation and deaggregation end-points.
+       A special case of an S-Label, whose properties are known only at
+           the aggregation and deaggregation end-points.
      </t>
 
     <t hangText="d-CW">
@@ -247,7 +247,7 @@
     by DetNet.  A straight forward approach utilizing MPLS for a
     DetNet service sub-layer is based on the existing pseudowire (PW)
     encapsulations and by utilizing existing MPLS Traffic Engineering
-    encapsulations and mechanisms.  
+    encapsulations and mechanisms.
     Background on PWs can be found in <xref target="RFC3985"/> and <xref
     target="RFC3031"/>. Background on MPLS Traffic Engineering can be
     found in <xref target="RFC3272"/> and <xref target="RFC3209"/>.
@@ -271,13 +271,13 @@ Top of Stack         .
   </figure>
 
   <t>
-    The DetNet MPLS data plane representation is illustrated in 
-    <xref target="dn_mpls_dp_approach"/>. 
+    The DetNet MPLS data plane representation is illustrated in
+    <xref target="dn_mpls_dp_approach"/>.
     The service sub-layer includes a DetNet control word (d-CW) and
     a identifying service label (S-Label).  The DetNet control word
     (d-CW) conforms to the Generic PW MPLS Control Word (PWMCW)
-    defined in <xref target="RFC4385"/>. An aggregation label (A-Label) is 
-    a special case of S-Label used for aggregation. 
+    defined in <xref target="RFC4385"/>. An aggregation label (A-Label) is
+    a special case of S-Label used for aggregation.
   </t>
 
   <t>
@@ -285,9 +285,9 @@ Top of Stack         .
     sub-layer,uses the local context associated with that S-Label,
     provided by a received F-Label, to determine what local DetNet
     operation(s) are applied to that packet.
-    An S-Label may be taken from the platform label space 
-    <xref target="RFC3031"/>, making it unique, enabling DetNet 
-    flow identification regardless of which input interface or 
+    An S-Label may be taken from the platform label space
+    <xref target="RFC3031"/>, making it unique, enabling DetNet
+    flow identification regardless of which input interface or
     LSP the packet arrives on.
   </t>
 
@@ -296,9 +296,9 @@ Top of Stack         .
     forwarding labels (F-Labels). MPLS Traffic Engineering
     encapsulations and mechanisms can be utilized to provide a
     forwarding sub-layer that is responsible for providing resource
-    allocation and explicit routes. 
+    allocation and explicit routes.
   </t>
-  
+
   </section>
 
   <section title="DetNet MPLS Data Plane Scenarios"
@@ -329,7 +329,7 @@ End System        Node         Node           Node        End System
         ]]></artwork>
       </figure>
       <t>
-        <xref target="fig_dn_mpls_detnet"/> illustrates 
+        <xref target="fig_dn_mpls_detnet"/> illustrates
         a hypothetical DetNet MPLS-only network
         composed of DetNet aware MPLS enabled end systems, operating over a
         DetNet aware MPLS network.  In this figure, the relay nodes are PE
@@ -337,14 +337,14 @@ End System        Node         Node           Node        End System
         are LSRs.
       </t>
       <t>
-	DetNet end system and relay nodes understand the particular needs
+        DetNet end system and relay nodes understand the particular needs
         of DetNet flows and provide both DetNet service and forwarding
         sub-layer functions.  In the case of MPLS, DetNet nodes add, remove
         and process d-CWs, S-Labels and F-labels as needed.
         DetNet MPLS nodes provide functionality analogous to T-PEs when
         they sit at the edge of an MPLS domain, and S-PEs when they are
         in the middle of an MPLS domain, see <xref
-        target="RFC6073"/>. 
+        target="RFC6073"/>.
       </t>
       <t>
         In a DetNet MPLS network, transit nodes may be DetNet service
@@ -353,7 +353,7 @@ End System        Node         Node           Node        End System
         special requirements of the DetNet service sub-layer, but would
         still provide traffic engineering functions and the QoS
         capabilities needed to ensure that the (TE) LSPs meet the service
-        requirements of the carried DetNet flows.  
+        requirements of the carried DetNet flows.
       </t>
 
       <t>
@@ -392,14 +392,14 @@ System  |    +--------+       +--------+       +--------+   | System
 |CE1|========|    \   |       |   X    |       |   /    |======|CE2|
 |   |   |    |     \_.|..DF2..|._/ \__.|..DF4..|._/     |   |  |   |
 +---+        |        |=======|        |=======|        |      +---+
-    ^        +--------+       +--------+       +--------+      ^ 
+    ^        +--------+       +--------+       +--------+      ^
     |        Relay Node       Relay Node       Relay Node      |
     |          (S-PE)           (S-PE)           (S-PE)        |
     |                                                          |
     |<---------------------- DetNet MPLS --------------------->|
     |                                                          |
     |<--------------- End to End DetNet Service -------------->|
-    
+
     -------------------------- Data Flow ------------------------->
 
 X   = Optional service protection (none, PRF, PREOF, PEF/POF)
@@ -430,10 +430,10 @@ DFx = DetNet member flow x over a TE LSP
   </t>
   <t>
    In this design an MPLS service label (the S-Label), similar to a
-   pseudowire (PW) label <xref target="RFC3985"/>, 
+   pseudowire (PW) label <xref target="RFC3985"/>,
    is used to identify both the
    DetNet flow identity and the payload MPLS payload type satisfying
-   (1) and (2) in the list above.  
+   (1) and (2) in the list above.
    OAM traffic discrimination
    happens through the use of the Associated Channel method described in
    <xref target="RFC4385"/>.  The DetNet sequence number is carried in
@@ -448,22 +448,22 @@ DFx = DetNet member flow x over a TE LSP
   <t>
    The LSP used to forward the DetNet packet may be of any type
    (MPLS-LDP, MPLS-TE, MPLS-TP <xref target="RFC5921"/>,  or MPLS-SR
-   <xref target="I-D.ietf-spring-segment-routing-mpls"/>).  
+   <xref target="I-D.ietf-spring-segment-routing-mpls"/>).
    The LSP (F-Label) label
    and/or the S-Label may be used to indicate the queue processing as
    well as the forwarding parameters.  Note that the possible use of
    Penultimate Hop Popping (PHP) means that the S-Label may be the
-   only label received at the terminating DetNet service. 
+   only label received at the terminating DetNet service.
   </t>
  </section>
 
   <section title="MPLS Data Plane Encapsulation" anchor="pwSolution">
    <t>
     <xref target="fig_pw_mpls"/> illustrates a DetNet data plane MPLS
-    encapsulation.  The MPLS-based encapsulation of the DetNet flows 
-    is well suited for the scenarios described in 
+    encapsulation.  The MPLS-based encapsulation of the DetNet flows
+    is well suited for the scenarios described in
     <xref target="I-D.ietf-detnet-data-plane-framework"/>.
-    Furthermore, an end to end DetNet 
+    Furthermore, an end to end DetNet
     service i.e., native DetNet deployment (see <xref
     target="sec_mpls_dt_dp_scen"/>) is also possible if DetNet end
     systems are capable of initiating and termination MPLS encapsulated
@@ -545,7 +545,7 @@ DFx = DetNet member flow x over a TE LSP
     </list>
   </t>
   <t>
-   A separate sequence number space MUST be maintained by 
+   A separate sequence number space MUST be maintained by
    the node that adds the d-CW for each DetNet app-flow.
    The following sequence number field lengths MUST be supported:
    <list style="bullets">
@@ -595,7 +595,7 @@ DFx = DetNet member flow x over a TE LSP
    <t>
     The S-Label value MUST be provisioned per app-flow via
     configuration, e.g., via
-    the controller plane described in 
+    the controller plane described in
     <xref target="I-D.ietf-detnet-data-plane-framework"/>.
     Note that S-Labels provide app-flow identification at the downstream
     DetNet service sub-layer receiver, not the sender.  As such,
@@ -605,13 +605,13 @@ DFx = DetNet member flow x over a TE LSP
     Because S-Labels are local to each node rather than being a
     global identifier within a domain, they must be advertised to their
     upstream DetNet service-aware peer nodes (e.g., a DetNet MPLS End
-    System or a DetNet Relay or Edge Node and interpreted in the 
+    System or a DetNet Relay or Edge Node and interpreted in the
     context of their received F-Label.
    </t>
    <t>
     The S-Label will normally be at the bottom of the label stack once
-    the last F-Label is removed, immediately preceding the d-CW.  
-    To support service sub-layer level OAM, an OAM Associated Channel 
+    the last F-Label is removed, immediately preceding the d-CW.
+    To support service sub-layer level OAM, an OAM Associated Channel
     Header (ACH) <xref target="RFC4385"/>
     together with a Generic Associated Channel Label (GAL) <xref
     target="RFC5586"/> MAY be used in place of a d-CW.
@@ -649,7 +649,7 @@ DFx = DetNet member flow x over a TE LSP
    <t>
      The use of platform labels for S-Labels matches other pseudowire
      encapsulations for consistency but there is no hard requirement in
-     this regard.  
+     this regard.
    </t>
    <section anchor="pef-requirements" title="Packet Elimination Function
                                              Processing">
@@ -657,11 +657,11 @@ DFx = DetNet member flow x over a TE LSP
        Implementations MAY support the Packet Elimination Function (PEF)
        for received DetNet MPLS flows.  When supported, use of the PEF
        for a particular app-flow MUST be provisioned via configuration,
-       e.g., via the controller plane described in 
+       e.g., via the controller plane described in
        <xref target="I-D.ietf-detnet-data-plane-framework"/>.
      </t>
      <t>
-       After an app-flow is identified for a received DetNet MPLS 
+       After an app-flow is identified for a received DetNet MPLS
        packet, as described above, an implementation MUST check if PEF
        is configured for that app-flow.  When configured the
        implementation MUST track the sequence number contained in
@@ -688,7 +688,7 @@ DFx = DetNet member flow x over a TE LSP
        (POF).  Implementations MAY support POF. When
        supported, use of the POF for a particular app-flow MUST be
        provisioned via configuration, e.g., via the controller plane
-       described by 
+       described by
        <xref target="I-D.ietf-detnet-data-plane-framework"/>.
        Implementations MAY required that PEF and POF be used in combination.
        There is no requirement related to the order of execution of the Packet
@@ -726,7 +726,7 @@ DFx = DetNet member flow x over a TE LSP
      </t>
      <section anchor="f-labels-ssl"
               title="Service Sub-Layer and Packet Replication Function Processing">
-       
+
        <t>
           DetNet MPLS end systems, edge nodes and relay nodes may operate at
           the DetNet service sub-layer with understand of app-flows and their
@@ -740,30 +740,30 @@ DFx = DetNet member flow x over a TE LSP
          on top of an S-Label by the node pushing an S-Label. The
          F-Labels to be pushed when sending a particular app-flow MUST
          be provisioned per app-flow via configuration, e.g., via the
-	 controller plane discussed in 
-	 <xref target="I-D.ietf-detnet-data-plane-framework"/>. 
-	 F-Labels can also provide context for an S-Label.
+         controller plane discussed in
+         <xref target="I-D.ietf-detnet-data-plane-framework"/>.
+         F-Labels can also provide context for an S-Label.
 
-	 To
+         To
          allow for the omission of F-Labels, an implementation SHOULD
          also allow an outgoing interface to be provisioned.
      </t>
      <t>
        The Packet Replication Function (PRF) function MAY be supported
-       by an implementation for outgoing DetNet flows. When replication 
-       is supported, the same app-flow data will be sent over multiple 
-       outgoing forwarding sub-layer LSPs. To support PRF an 
-       implementation MUST support the setting of different sets of 
-       F-Labels. Therefore, to allow for the omission of F-Labels, 
-       an implementation SHOULD also allow multiple outgoing interfaces 
-       to be provisioned.  PRF MUST NOT be used with app-flows configured 
+       by an implementation for outgoing DetNet flows. When replication
+       is supported, the same app-flow data will be sent over multiple
+       outgoing forwarding sub-layer LSPs. To support PRF an
+       implementation MUST support the setting of different sets of
+       F-Labels. Therefore, to allow for the omission of F-Labels,
+       an implementation SHOULD also allow multiple outgoing interfaces
+       to be provisioned.  PRF MUST NOT be used with app-flows configured
        with a d-CW sequence number field length of 0 bits.
 <!-- [Note: What if multiple receivers? We may use the PRF for serving multiple end-points.] -->
      </t>
      <t>
-       When a single set of F-Labels is provisioned for a particular 
-       outgoing app-flow, that set of F-labels MUST be pushed after 
-       the S-Label is pushed.  
+       When a single set of F-Labels is provisioned for a particular
+       outgoing app-flow, that set of F-labels MUST be pushed after
+       the S-Label is pushed.
        The outgoing packet is then forwarded as
        described below in <xref target="f-labels-all"/>. When a single
        outgoing interface is provisioned, the outgoing packet is then
@@ -837,8 +837,8 @@ DFx = DetNet member flow x over a TE LSP
          (such as queues and buffers) and provisioning or related
          parameters (such as shaping, and policing). Support can also be
          provided via an underlying network technology such IEEE802.1
-	 TSN <xref target="I-D.ietf-detnet-mpls-over-tsn"/>. 
-	 Other than in the TSN case,
+         TSN <xref target="I-D.ietf-detnet-mpls-over-tsn"/>.
+         Other than in the TSN case,
          the specific mechanisms used by a DetNet node to ensure DetNet
          service delivery requirements are met for supported DetNet
          flows is outside the scope of this document.
@@ -1027,7 +1027,7 @@ DFx = DetNet member flow x over a TE LSP
        node may participate in the packet replication and duplicate packet
        elimination.
      </t>
-     <t>       
+     <t>
        The DetNet-aware forwarder selects the egress DetNet member flow
        segment based on the flow identification.  The mapping of ingress
        DetNet member flow segment to egress DetNet member flow segment
@@ -1152,8 +1152,8 @@ DFx = DetNet member flow x over a TE LSP
 <!-- ===================================================================== -->
 
 <section anchor="mpls-flow-id-info"
-	 title="Management and Control Information Summary">
-	 <t>
+         title="Management and Control Information Summary">
+         <t>
      The following summarizes the set of information that is needed to
      identify an individual and aggregated DetNet flow for service sub-layer aware nodes:
      <list style="symbols">
@@ -1204,7 +1204,7 @@ DFx = DetNet member flow x over a TE LSP
           </t>
         </list>
       </t>
-	 <t>
+         <t>
         Much like other MPLS labels, there are a number of alternatives
         available for DetNet S-Label and F-Label advertisement to an
         upstream peer node. These include distributed signaling
@@ -1213,10 +1213,10 @@ DFx = DetNet member flow x over a TE LSP
         NETCONF/YANG, BGP, PCEP, etc., and hybrid combinations of the
         two.  The details of the controller plane solution required for
         the label distribution and the management of the label number
-        space are out of scope of this document. 
+        space are out of scope of this document.
         There are particular DetNet considerations and requirements that
         are discussed in <xref target="I-D.ietf-detnet-data-plane-framework"/>.
-      </t> 
+      </t>
 
 </section>
 <!-- ===================================================================== -->
@@ -1225,8 +1225,8 @@ DFx = DetNet member flow x over a TE LSP
 <section title="Security Considerations">
   <t>
    Security considerations for DetNet are described in detail in
-   <xref target="I-D.ietf-detnet-security"/>. General security considerations 
-   are described in <xref target="I-D.ietf-detnet-architecture"/>. This section 
+   <xref target="I-D.ietf-detnet-security"/>. General security considerations
+   are described in <xref target="I-D.ietf-detnet-architecture"/>. This section
    considers exclusively security considerations which are specific to the DetNet
    MPLS data plane.
   </t>
@@ -1236,38 +1236,38 @@ DFx = DetNet member flow x over a TE LSP
    primarily to deliver data flows with extremely low packet loss rates
    and bounded end-to-end delivery latency.
     </t>
-    <t>                
-    The primary considerations for the data plane is to maintain 
-    integrity of data and delivery of the associated DetNet service traversing 
+    <t>
+    The primary considerations for the data plane is to maintain
+    integrity of data and delivery of the associated DetNet service traversing
     the DetNet network.
     Application flows can be protected through whatever means is
     provided by the underlying technology. For example, encryption may be
     used, such as that provided by IPSec <xref target="RFC4301"/> for IP
-    flows and/or by an underlying sub-net using MACSec 
-    <xref target="IEEE802.1AE-2018"/> for IP over Ethernet (Layer-2) flows. 
+    flows and/or by an underlying sub-net using MACSec
+    <xref target="IEEE802.1AE-2018"/> for IP over Ethernet (Layer-2) flows.
     </t>
     <t>
-    From a data plane perspective this document does not add or modify any 
+    From a data plane perspective this document does not add or modify any
     header information.
     </t>
     <t>
-    At the management and control level DetNet flows are identified on a 
-    per-flow basis, which may provide controller plane 
+    At the management and control level DetNet flows are identified on a
+    per-flow basis, which may provide controller plane
     attackers with additional information about the data flows (when
     compared to controller planes that do not include per-flow identification).
     This is an inherent property of DetNet which has security
     implications that should be considered when determining if DetNet is
-    a suitable technology for any given use case.  
+    a suitable technology for any given use case.
     </t>
     <t>
-    To provide uninterrupted availability of the DetNet 
+    To provide uninterrupted availability of the DetNet
     service, provisions can be made against DOS attacks and delay
     attacks. To protect against DOS attacks, excess traffic due to
     malicious or malfunctioning devices can be prevented or mitigated,
     for example through the use of existing mechanism such as policing and shaping applied at
     the input of a DetNet domain. To prevent DetNet packets from
     being delayed by an entity external to a DetNet domain, DetNet
-    technology definition can allow for the mitigation of 
+    technology definition can allow for the mitigation of
     Man-In-The-Middle attacks, for example through use of
     authentication and authorization of devices within the DetNet domain.
   </t>
@@ -1281,10 +1281,10 @@ DFx = DetNet member flow x over a TE LSP
 
 <section anchor="acks" title="Acknowledgements">
       <t>
-		The authors wish to thank Pat Thaler, Norman Finn, Loa Anderson, David Black, 
-		Rodney Cummings, Ethan Grossman, Tal Mizrahi, David Mozes, Craig Gunther, 
-		George Swallow, Yuanlong Jiang and Carlos J. Bernardos for their
-		various contributions to this work.
+                The authors wish to thank Pat Thaler, Norman Finn, Loa Anderson, David Black,
+                Rodney Cummings, Ethan Grossman, Tal Mizrahi, David Mozes, Craig Gunther,
+                George Swallow, Yuanlong Jiang and Carlos J. Bernardos for their
+                various contributions to this work.
       </t>
 </section>
 
@@ -1327,7 +1327,7 @@ DFx = DetNet member flow x over a TE LSP
    <?rfc include="reference.RFC.6790"?>
    <?rfc include="reference.I-D.ietf-detnet-security"?>
    <?rfc include="reference.I-D.ietf-detnet-architecture"?>
- 
+
    <?rfc include="reference.I-D.ietf-spring-segment-routing-mpls'?>
    <?rfc include="reference.I-D.ietf-detnet-data-plane-framework'?>
    <?rfc include="reference.I-D.ietf-detnet-mpls-over-tsn'?>
