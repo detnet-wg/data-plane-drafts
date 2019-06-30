@@ -50,6 +50,14 @@
       </address>
     </author>
 
+    <author fullname="Don Fedyk" initials="D." surname="Fedyk">
+      <organization>LabN Consulting, L.L.C.</organization>
+      <address>
+        <email>dfedyk@labn.net</email>
+      </address>
+    </author>
+
+
     <author fullname="Andrew G. Malis" initials="A.G." surname="Malis">
       <organization>Futurewei Technologies</organization>
       <address>
@@ -187,7 +195,7 @@
         network as a sub-network between the relay nodes.  It shows a
         more complex DetNet enabled IP network where an IP flow is
         mapped to one or more PWs and MPLS (TE) LSPs.  The end systems
-        still originate IP encapsulated traffic that is identified as
+        still originate IP encapsulated traffic that are identified as
         DetNet flows.  The relay nodes follow procedures defined in
         <xref target="ip-over-mpls"/> to map each DetNet
         flow to MPLS LSPs. While not shown, relay nodes can provide
@@ -208,25 +216,25 @@
  DetNet IP       Relay         Transit         Relay      DetNet IP
  End System      Node           Node           Node       End System
 
-+----------+                                              +---------+
-|   Appl.  |<-------------- End to End Service ---------->|  Appl.  |
-+----------+   .....-----+                  +-----.....   +---------+
-| Service  |<--: Service |-- DetNet flow ---| Service :-->| Service |
-|          |   :         |<- DN MPLS flow ->|         :   |         |
-+----------+   +---------+   +----------+   +---------+   +---------+
-|Forwarding|   |Fwd| |Fwd|   |Forwarding|   |Fwd| |Fwd|   |   Fwd   |
-+--------.-+   +-.-+ +-.-+   +---.----.-+   +-.-+ +-.-+   +----.----+
-         :  Link :    /  ,-----.  \   :  Link :    /  ,-----.  \
-         +.......+    +-[  Sub  ]-+   +.......+   +--[  Sub  ]--+
-                        [Network]                    [Network]
-                         `-----'                      `-----'
++----------+                                             +----------+
+|   Appl.  |<------------- End to End Service ---------->|  Appl.   |
++----------+   .....-----+                 +-----.....   +----------+
+| Service  |<--: Service |--DetNet flow ---| Service :-->| Service  |
+|          |   :         |<-DN MPLS flow ->|         :   |          |
++----------+   +---------+  +----------+   +---------+   +----------+
+|Forwarding|   |Fwd| |Fwd|  |Forwarding|   |Fwd| |Fwd|   |Forwarding|
++-------.--+   +-.-+ +-.-+  +----.---.-+   +-.-+ +-.-+   +---.------+
+        :  Link  :    /  ,-----.  \   : Link :    /  ,-----.  \
+        +........+    +-[  Sub  ]-+   +......+    +-[  Sub  ]-+
+                        [Network]                   [Network]
+                         `-----'                     `-----'
 
-                       |<---- DetNet MPLS --->|
-         |<--------------------- DetNet IP ------------------->|
+                     |<---- DetNet MPLS ---->|
+         |<--------------------- DetNet IP ------------------>|
                          ]]></artwork>
       </figure>
 
-	</section>
+     </section>
 
 	
     <!-- ===================================================================== -->
@@ -244,53 +252,26 @@
       <section title="IP Over DetNet MPLS Data Plane Scenarios"
                anchor="sec_ip_mpls_dt_dp_scen">
         <t>
-          An example use of DetNet IP over DetNet MPLS follows below.
-        </t>
-        <figure align="center" anchor="fig_dn_ip_mpls_detnet"
-                title="DetNet IP Over MPLS Network">
-          <artwork><![CDATA[
-IP  DetNet        Relay       Transit         Relay       IP DetNet
-End System        Node         Node           Node        End System
-                  (T-PE)       (LSR)          (T-PE)
-+----------+                                             +----------+
-|   Appl.  |<------------ End to End Service ----------->|   Appl.  |
-+----------+   .....-----+                 +-----.....   +----------+
-| Service  |<--: Service |-- DetNet flow --| Service :-->| Service  |
-+----------+   +---------+  +----------+   +---------+   +----------+
-|Forwarding|   |Fwd| |Fwd|  |Forwarding|   |Fwd| |Fwd|   |Forwarding|
-+-------.--+   +-.-+ +-.-+  +----.---.-+   +-.-+ +-.-+   +---.------+
-        :  Link  :    /  ,-----.  \   : Link :    /  ,-----.  \
-        +........+    +-[  Sub  ]-+   +......+    +-[  Sub  ]-+
-                        [Network]                   [Network]
-                         `-----'                     `-----'
-
-                     |<---- DetNet MPLS ---->|
-        |<--------------------- DetNet IP ------------------->|
-        ]]></artwork>
-        </figure>
-        <t> [Editor's note: Fig1 and Fig2 are identical. Fig2 to be deleted?]
+          An example use of DetNet IP over DetNet MPLS is presented here.
         </t>
         <t>
-          <xref target="fig_dn_ip_mpls_detnet"/> illustrates DetNet
+          <xref target="fig_ip_detnet"/> illustrated DetNet
           enabled End Systems (hosts), connected to DetNet (DN) enabled
-          IP networks, operating over a DetNet aware MPLS network. In
-          this figure, Relay nodes sit at the boundary of the MPLS
-          domain since the non-MPLS domain is DetNet aware.  This figure
-          is very similar to the DetNet MPLS Network figure in <xref
-          target="I-D.ietf-detnet-mpls"/>.  The primary
-          difference is that the Relay nodes are at the edges of the
-          MPLS domain and therefore function as T-PEs, and that service
+          IP networks, operating over a DetNet aware MPLS network. 
+          iUsing this figure we can have a case where the Relay nodes act as 
+          T-PEs and sit at the boundary of the MPLS
+          domain since the non-MPLS domain is DetNet aware.  This case
+          is very similar to the DetNet MPLS Network figure 2 in <xref
+                  target="I-D.ietf-detnet-mpls"/>.  However in  <xref
+                  target="I-D.ietf-detnet-mpls"/>  figure 2 the T-PEs are located at the 
+         end syetem and MPLS spans the whole DetNet service.  
+         
+          The primary difference in this document is that the Relay nodes are at the edges of the
+          MPLS domain and therefore function as T-PEs, and that iMPLS service
           sub-layer functions are not provided over the DetNet IP
           network.  The transit node functions show above are identical
           to those described in <xref
           target="I-D.ietf-detnet-mpls"/>.
-        </t>
-
-        <t> [Editor's note: We may consider to delete some figures here.
-		In section 4. we are saying "both Non-DetNet and DetNet IP packet 
-		are identical on the wire ... refers to both cases as DetNet IP 
-		over DetNet MPLS." Therefore we do not need the Figures with Non-DetNet 
-		End Systems (Fig4 anf Fig5.).]
         </t>
 
         <t>
@@ -332,33 +313,11 @@ System  |   +--------+       +--------+       +--------+   |  System
     ]]></artwork>
         </figure>
 
-        <figure align="center" anchor="fig_ip_mpls_detnet"
-                title="Non-DetNet Aware IP Over DetNet MPLS Network">
-          <artwork><![CDATA[
- IP               Edge                        Edge        IP
- End System       Node                        Node        End System
-                 (T-PE)       (LSR)          (T-PE)
-+----------+   +....-----+                 +-----....+   +----------+
-|   Appl.  |<--:Svc Proxy|-- E2E Service --|Svc Proxy:-->|   Appl.  |
-+----------+   +.....+---+                 +---+.....+   +----------+
-|    IP    |<--:IP : |Svc|-- IP/DN Flow ---|Svc| :IP :-->|    IP    |
-+----------+   +---+ +---+  +----------+   +---+ +---+   +----------+
-|Forwarding|   |Fwd| |Fwd|  |Forwarding|   |Fwd| |Fwd|   |Forwarding|
-+-------.--+   +-.-+ +-.-+  +----.---.-+   +-.-+ +-.-+   +---.------+
-        :  Link  :    /  ,-----.  \   : Link :    /  ,-----.  \
-        +........+    +-[  Sub  ]-+   +......+    +-[  Sub  ]-+
-                        [Network]                   [Network]
-                         `-----'                     `-----'
-
-      |<--- IP --->| |<----- DetNet MPLS ----->| |<--- IP --->|
-      ]]></artwork>
-        </figure>
         <t>
-          <xref target="fig_ip_mpls_detnet"/> illustrates non-DetNet
+          <xref target="fig_ip_detnet"/> illustrates DetNet
           enabled End Systems (hosts), connected to DetNet (DN) enabled
-          MPLS network. It differs from <xref
-          target="fig_dn_ip_mpls_detnet"/> in that the hosts and edge IP
-          networks are not DetNet aware.  In this case, edge nodes sit at
+          MPLS network.  A similar situation occurs when 
+          end systems are are not DetNet aware.  In this case, edge nodes sit at
           the boundary of the MPLS domain since it is also a DetNet domain
           boundary.  The edge nodes provide DetNet service proxies for the
           end applications by initiating and terminating DetNet service
@@ -370,41 +329,15 @@ System  |   +--------+       +--------+       +--------+   |  System
         </t>
 
         <t>
-          <xref target="fig_pw_detnet2"/> illustrates how it is still
-          possible to provided DetNet service protection for
-          non-DetNet aware end systems.  This figures is basically the
+          It is still possible to provided DetNet service protection for
+          non-DetNet aware end systems.  case is basically the
           same as <xref target="fig_ip_pw_detnet"/>, with the exception
-          that CE1 and CE2 are non-DetNet aware end systems and E1 and E3
-          are edge nodes that replace the relay nodes R1 and R3.
+          that CE1 and CE2 are non-DetNet aware end systems and R1 and R3
+          become edge nodes.
         </t>
 
-        <figure align="center" anchor="fig_pw_detnet2"
-                title="MPLS-Based DetNet (non-MPLS End System)">
-          <artwork><![CDATA[
-      IP                                              IP
-Non   Service          Transit          Transit       Service Non
-DetNet                |<-Tnl->|        |<-Tnl->|              DetNet
-End     |             V   1   V        V   2   V            | End
-System  |    +--------+       +--------+       +--------+   | System
-+---+   |    |   E1   |=======|   R2   |=======|   E3   |   |  +---+
-|   |--------|._X_....|..DF1..|.__ ___.|..DF3..|...._X_.|------|   |
-|CE1|   |    |    \   |       |   X    |       |   /    |   |  |CE2|
-|   |   |    |     \_.|..DF2..|._/ \__.|..DF4..|._/     |   |  |   |
-+---+        |        |=======|        |=======|        |      +---+
-             +--------+       +--------+       +--------+
-             ^ Edge Node      Relay Node       Edge Node^
-             | (T-PE)           (S-PE)          (T-PE)  |
-             |                                          |
-     <--IP-->| <-------- IP Over DetNet MPLS ---------> |<--IP-->
-             |                                          |
-             |<------ End to End DetNet Service ------->|
 
-    X   = Optional service protection (none, PRF, PREOF, PEF/POF)
-    DFx = DetNet member flow x over a TE LSP
-    ]]></artwork>
-        </figure>
-      </section>
-
+     </section>
       <section anchor="iom-overview"
                title="DetNet IP over DetNet MPLS Encapsulation">
       <t>
@@ -440,7 +373,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
                                        +------+
                                        |  L2  |
                                        +------+
-    (1) DetNet IP Flow
+    (1) DetNet IP Flow (or simply IP flow)
     (2) DetNet MPLS Flow
     ]]>
         </artwork>
@@ -470,12 +403,17 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
 	procedures defined in this section.
       </t>
       <t>
-        As shown in <xref target="fig_ip_mpls_detnet"/>, DetNet relay nodes
+        As shown in <xref target="fig_ip_pw_detnet"/>, DetNet relay nodes
         are responsible for the mapping of a DetNet flow, at the service
         sub-layer, from the IP to MPLS DetNet data planes and back
         again. Their related DetNet IP over DetNet MPLS data plane
         operation is comprised of two sets of procedures: the mapping of
         flow identifiers; and ensuring proper traffic treatment.
+      </t>
+      <t>
+      Mapping of IP to the MPLS Detnet is similar for IP Detnet flows and IP flows. 
+      The six-tuple of IP is mapped to the S-Label in both cases.  
+      The various fields may be mapped or ignored when going from IP to MPLS. 
       </t>
       </section>
      </section>
@@ -485,7 +423,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
                title="DetNet IP over DetNet MPLS Flow Identification
                       Procedures">
       <t>
-        [Editor's note: several proposed changes to clarify refered 
+        [Editor's note: several proposed changes to clarify referred 
 		components. Confusing usage of app-flow terminology.]
       </t>
 
@@ -537,14 +475,57 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
     </section>
 	
     <section title="Security Considerations">
-		<t>
-		The security considerations of DetNet in general are discussed in
-		<xref target="I-D.ietf-detnet-architecture"/>
-		and <xref target="I-D.ietf-detnet-security"/>. MPLS and IP specific 
-		security considerations are described in <xref target="I-D.ietf-detnet-mpls"/>
-		and <xref target="I-D.ietf-detnet-ip"/>. This draft does not have additional
-		security considerations.
-		</t>
+     <t>
+       This draft does not have additional security considerations.  Security
+       considerations for DetNet are described in detail in <xref
+               target="I-D.ietf-detnet-security"/>. General security
+       considerations are described in <xref
+               target="I-D.ietf-detnet-architecture"/>.  MPLS and IP specific
+       considerations are described in <xref target="I-D.ietf-detnet-mpls"/>
+       and <xref target="I-D.ietf-detnet-ip"/>.       
+      </t>
+      <t>
+       Security aspects which are unique to DetNet are those whose aim is to
+       provide the specific quality of service aspects of DetNet, which are
+       primarily to deliver data flows with extremely low packet loss rates
+       and bounded end-to-end delivery latency.
+        </t>
+        <t>
+        The primary considerations for the data plane is to maintain
+        integrity of data and delivery of the associated DetNet service traversing
+        the DetNet network.
+        Application flows can be protected through whatever means is
+        provided by the underlying technology. For example, encryption may be
+        used, such as that provided by IPSec <xref target="RFC4301"/> for IP
+        flows and/or by an underlying sub-net using MACSec
+        <xref target="IEEE802.1AE-2018"/> for IP over Ethernet (Layer-2) flows.
+        </t>
+        <t>
+        From a data plane perspective this document does not add or modify any
+        header information.
+        </t>
+        <t>
+        At the management and control level DetNet flows are identified on a
+        per-flow basis, which may provide controller plane
+        attackers with additional information about the data flows (when
+        compared to controller planes that do not include per-flow identification).
+        This is an inherent property of DetNet which has security
+        implications that should be considered when determining if DetNet is
+        a suitable technology for any given use case.
+        </t>
+        <t>
+        To provide uninterrupted availability of the DetNet
+        service, provisions can be made against DOS attacks and delay
+        attacks. To protect against DOS attacks, excess traffic due to
+        malicious or malfunctioning devices can be prevented or mitigated,
+        for example through the use of existing mechanism such as policing and shaping applied at
+        the input of a DetNet domain. To prevent DetNet packets from
+        being delayed by an entity external to a DetNet domain, DetNet
+        technology definition can allow for the mitigation of
+        Man-In-The-Middle attacks, for example through use of
+        authentication and authorization of devices within the DetNet domain.
+        </t>
+
 	</section>
 
 
@@ -579,6 +560,18 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
     <references title="Informative references">
       <?rfc include="reference.I-D.ietf-detnet-security"?>
       <?rfc include="reference.I-D.ietf-detnet-data-plane-framework"?>
+      <?rfc include="reference.RFC.4301"?>
+      <reference anchor="IEEE802.1AE-2018"
+      target="https://ieeexplore.ieee.org/document/8585421">
+      <front>
+        <title>IEEE Std 802.1AE-2018 MAC Security (MACsec)</title>
+        <author>
+          <organization>IEEE Standards Association</organization>
+        </author>
+        <date year="2018" />
+      </front>
+    </reference>
+
     </references>
 
   </back>
