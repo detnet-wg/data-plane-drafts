@@ -175,7 +175,6 @@
             <t hangText="PREOF">Packet Replication, Elimination and Ordering Functions.</t>
             <t hangText="POF">Packet Ordering Function.</t>
             <t hangText="PSN">Packet Switched Network.</t>
-            <t hangText="PW">PseudoWire.</t>
             <t hangText="QoS">Quality of Service.</t>
             <t hangText="TSN">Time-Sensitive Network.</t>
           </list>
