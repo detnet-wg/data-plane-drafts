@@ -233,7 +233,7 @@
 +---------------------------------+    +--> DetNet data plane
 |             S-Label             |    |    MPLS encapsulation
 +---------------------------------+    |
-|          ( F-label(s) )         |    |
+|          [ F-label(s) ]         |    |
 +---------------------------------+ <--+
 |           UDP Header            |    |
 +---------------------------------+    +--> DetNet data plane
@@ -256,26 +256,12 @@
 
 <section anchor="dp-procs" title="DetNet Data Plane Procedures">
   <t>
-    To support outgoing DetNet MPLS over UDP/IP, an implementation MUST support the
-    provisioning of UDP/IP header information in addition or in place of
+    To support outgoing DetNet MPLS over UDP/IP encapsulation, an implementation MUST support the
+    provisioning of UDP and IP header information in addition or in place of
         F-Label(s).
-        <!-- Note that multiple sets of F-Labels can be provisioned to
-    support PRF on transmitted DetNet MPLS flows and therefore, when PRF is
-    supported, multiple UDP/IP headers MAY be provisioned.
-  </t>
-  <t>
-        [Note: PRF is an MPLS function. It produces member flows. Member flows have
-        1to1 mapping to UDP/IP headers. So why are multiple headers provisioned?
-        Delete next sentence?]
-  </t>
-  <t>
-        When multiple
-    UDP/IP headers are provisioned for a particular outgoing DetNet IP flow, a
-    copy of the outgoing packet, including the pushed S-Label (and optional F-label(s)), MUST be
-    made for each.
-        -->
-        Multiple sets of header information MAY be needed when PRF is
-        supported for the MPLS flow.
+    Note, when PRF is performed at the MPLS service sub-layer, there
+    will be multiple member flows, and each member flow will require the
+    provisioning of their own UDP and IP header information.
         The headers for each outgoing packet MUST be formatted on
     the configuration information and as defined in <xref
     target="RFC7510"/>, with one exception.  Note that
@@ -285,34 +271,14 @@
     This includes QoS related traffic treatment.
   </t>
 
-<!--  <t>
-  [Note: What about IPv4 Type of Service and IPv6 Traffic Class Fields?
-  Do we intend to set them? 06.24: Yes, It is part of the IP header.]
-  </t>  -->
-
   <t>
     To support receive processing an implementation MUST also support
-    the provisioning of received UDP/IP header information.
-<!--  </t>
-  <t>
-        [Note: Are the receiving nodes T-PE nodes? Why? 06.24: No, they are not]
-  </t>
-  <t>
-        When
-    S-Labels are taken from platform label space, all that is required
-    is to provision that receiving UDP/IP encapsulated DetNet MPLS
-    packets is permitted.  Once the UDP/IP header is stripped, the
-    S-label uniquely identifies the app-flow.  When S-Labels are not
-    taken from platform label space, UDP/IP header information MUST be
-    provisioned. -->
+    the provisioning of received UDP and IP header information.
         The provisioned information MUST be used to
     identify incoming app-flows based on the combination of S-Label and
-    incoming IP/UDP header.  Normal receive processing as defined in <xref target="I-D.ietf-detnet-mpls"/>, including PEF and POF,
+    incoming encapsulation header information.  Normal receive processing as defined in <xref target="I-D.ietf-detnet-mpls"/>, including PEF and POF,
     can then take place.
   </t>
-
- <!-- LB: I thought we agreed to pick one MPLS over IP encap.
-      Also SR support can fall out of DetNet IP SR support once defined -->
 
 </section>
 
@@ -328,10 +294,6 @@
                           information when PREOF is used.</t>
               <t>IPv4 and IPv6 source address field.</t>
               <t>IPv4 and IPv6 destination address field.</t>
-              <!-- 
-              <t>IPv4 protocol field. Only UDP is allowed.</t>
-              <t>IPv6 next header field. Only UDP is allowed.</t>
-               -->
               <t>IPv4 Type of Service and IPv6 Traffic Class Fields.</t>
               <t>UDP Source Port. </t>
               <t>UDP Destination Port. </t>
@@ -339,14 +301,6 @@
             This information MUST be provisioned per DetNet flow via
             configuration, e.g., via the controller or management plane.
           </t>
-<!--  06.24: there is an exact match  <t>
-            Information identifying a DetNet flow is ordered and
-            implementations use the first match.  This can, for example, be
-            used to provide a DetNet service for a specific UDP flow, with
-            unique Source and Destination Port field values, while
-            providing a different service for the aggregate of all other
-            flows with that same UDP Destination Port value.
-          </t>  -->
           <t>
             It is the responsibility of the DetNet controller plane to
             properly provision both flow identification information and
