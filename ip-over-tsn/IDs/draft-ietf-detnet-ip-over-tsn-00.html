@@ -1,0 +1,1193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+
+  <title>DetNet Data Plane: IP over IEEE 802.1 Time Sensitive Networking (TSN)</title>
+
+  <style type="text/css" title="Xml2Rfc (sans serif)">
+  /*<![CDATA[*/
+	  a {
+	  text-decoration: none;
+	  }
+      /* info code from SantaKlauss at http://www.madaboutstyle.com/tooltip2.html */
+      a.info {
+          /* This is the key. */
+          position: relative;
+          z-index: 24;
+          text-decoration: none;
+      }
+      a.info:hover {
+          z-index: 25;
+          color: #FFF; background-color: #900;
+      }
+      a.info span { display: none; }
+      a.info:hover span.info {
+          /* The span will display just on :hover state. */
+          display: block;
+          position: absolute;
+          font-size: smaller;
+          top: 2em; left: -5em; width: 15em;
+          padding: 2px; border: 1px solid #333;
+          color: #900; background-color: #EEE;
+          text-align: left;
+      }
+	  a.smpl {
+	  color: black;
+	  }
+	  a:hover {
+	  text-decoration: underline;
+	  }
+	  a:active {
+	  text-decoration: underline;
+	  }
+	  address {
+	  margin-top: 1em;
+	  margin-left: 2em;
+	  font-style: normal;
+	  }
+	  body {
+	  color: black;
+	  font-family: verdana, helvetica, arial, sans-serif;
+	  font-size: 10pt;
+	  max-width: 55em;
+	  
+	  }
+	  cite {
+	  font-style: normal;
+	  }
+	  dd {
+	  margin-right: 2em;
+	  }
+	  dl {
+	  margin-left: 2em;
+	  }
+	
+	  ul.empty {
+	  list-style-type: none;
+	  }
+	  ul.empty li {
+	  margin-top: .5em;
+	  }
+	  dl p {
+	  margin-left: 0em;
+	  }
+	  dt {
+	  margin-top: .5em;
+	  }
+	  h1 {
+	  font-size: 14pt;
+	  line-height: 21pt;
+	  page-break-after: avoid;
+	  }
+	  h1.np {
+	  page-break-before: always;
+	  }
+	  h1 a {
+	  color: #333333;
+	  }
+	  h2 {
+	  font-size: 12pt;
+	  line-height: 15pt;
+	  page-break-after: avoid;
+	  }
+	  h3, h4, h5, h6 {
+	  font-size: 10pt;
+	  page-break-after: avoid;
+	  }
+	  h2 a, h3 a, h4 a, h5 a, h6 a {
+	  color: black;
+	  }
+	  img {
+	  margin-left: 3em;
+	  }
+	  li {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  ol {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  ol p {
+	  margin-left: 0em;
+	  }
+	  p {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  pre {
+	  margin-left: 3em;
+	  background-color: lightyellow;
+	  padding: .25em;
+	  }
+	  pre.text2 {
+	  border-style: dotted;
+	  border-width: 1px;
+	  background-color: #f0f0f0;
+	  width: 69em;
+	  }
+	  pre.inline {
+	  background-color: white;
+	  padding: 0em;
+	  }
+	  pre.text {
+	  border-style: dotted;
+	  border-width: 1px;
+	  background-color: #f8f8f8;
+	  width: 69em;
+	  }
+	  pre.drawing {
+	  border-style: solid;
+	  border-width: 1px;
+	  background-color: #f8f8f8;
+	  padding: 2em;
+	  }
+	  table {
+	  margin-left: 2em;
+	  }
+	  table.tt {
+	  vertical-align: top;
+	  }
+	  table.full {
+	  border-style: outset;
+	  border-width: 1px;
+	  }
+	  table.headers {
+	  border-style: outset;
+	  border-width: 1px;
+	  }
+	  table.tt td {
+	  vertical-align: top;
+	  }
+	  table.full td {
+	  border-style: inset;
+	  border-width: 1px;
+	  }
+	  table.tt th {
+	  vertical-align: top;
+	  }
+	  table.full th {
+	  border-style: inset;
+	  border-width: 1px;
+	  }
+	  table.headers th {
+	  border-style: none none inset none;
+	  border-width: 1px;
+	  }
+	  table.left {
+	  margin-right: auto;
+	  }
+	  table.right {
+	  margin-left: auto;
+	  }
+	  table.center {
+	  margin-left: auto;
+	  margin-right: auto;
+	  }
+	  caption {
+	  caption-side: bottom;
+	  font-weight: bold;
+	  font-size: 9pt;
+	  margin-top: .5em;
+	  }
+	
+	  table.header {
+	  border-spacing: 1px;
+	  width: 95%;
+	  font-size: 10pt;
+	  color: white;
+	  }
+	  td.top {
+	  vertical-align: top;
+	  }
+	  td.topnowrap {
+	  vertical-align: top;
+	  white-space: nowrap; 
+	  }
+	  table.header td {
+	  background-color: gray;
+	  width: 50%;
+	  }
+	  table.header a {
+	  color: white;
+	  }
+	  td.reference {
+	  vertical-align: top;
+	  white-space: nowrap;
+	  padding-right: 1em;
+	  }
+	  thead {
+	  display:table-header-group;
+	  }
+	  ul.toc, ul.toc ul {
+	  list-style: none;
+	  margin-left: 1.5em;
+	  margin-right: 0em;
+	  padding-left: 0em;
+	  }
+	  ul.toc li {
+	  line-height: 150%;
+	  font-weight: bold;
+	  font-size: 10pt;
+	  margin-left: 0em;
+	  margin-right: 0em;
+	  }
+	  ul.toc li li {
+	  line-height: normal;
+	  font-weight: normal;
+	  font-size: 9pt;
+	  margin-left: 0em;
+	  margin-right: 0em;
+	  }
+	  li.excluded {
+	  font-size: 0pt;
+	  }
+	  ul p {
+	  margin-left: 0em;
+	  }
+	
+	  .comment {
+	  background-color: yellow;
+	  }
+	  .center {
+	  text-align: center;
+	  }
+	  .error {
+	  color: red;
+	  font-style: italic;
+	  font-weight: bold;
+	  }
+	  .figure {
+	  font-weight: bold;
+	  text-align: center;
+	  font-size: 9pt;
+	  }
+	  .filename {
+	  color: #333333;
+	  font-weight: bold;
+	  font-size: 12pt;
+	  line-height: 21pt;
+	  text-align: center;
+	  }
+	  .fn {
+	  font-weight: bold;
+	  }
+	  .hidden {
+	  display: none;
+	  }
+	  .left {
+	  text-align: left;
+	  }
+	  .right {
+	  text-align: right;
+	  }
+	  .title {
+	  color: #990000;
+	  font-size: 18pt;
+	  line-height: 18pt;
+	  font-weight: bold;
+	  text-align: center;
+	  margin-top: 36pt;
+	  }
+	  .vcardline {
+	  display: block;
+	  }
+	  .warning {
+	  font-size: 14pt;
+	  background-color: yellow;
+	  }
+	
+	
+	  @media print {
+	  .noprint {
+		display: none;
+	  }
+	
+	  a {
+		color: black;
+		text-decoration: none;
+	  }
+	
+	  table.header {
+		width: 90%;
+	  }
+	
+	  td.header {
+		width: 50%;
+		color: black;
+		background-color: white;
+		vertical-align: top;
+		font-size: 12pt;
+	  }
+	
+	  ul.toc a::after {
+		content: leader('.') target-counter(attr(href), page);
+	  }
+	
+	  ul.ind li li a {
+		content: target-counter(attr(href), page);
+	  }
+	
+	  .print2col {
+		column-count: 2;
+		-moz-column-count: 2;
+		column-fill: auto;
+	  }
+	  }
+	
+	  @page {
+	  @top-left {
+		   content: "Internet-Draft"; 
+	  } 
+	  @top-right {
+		   content: "December 2010"; 
+	  } 
+	  @top-center {
+		   content: "Abbreviated Title";
+	  } 
+	  @bottom-left {
+		   content: "Doe"; 
+	  } 
+	  @bottom-center {
+		   content: "Expires June 2011"; 
+	  } 
+	  @bottom-right {
+		   content: "[Page " counter(page) "]"; 
+	  } 
+	  }
+	
+	  @page:first { 
+		@top-left {
+		  content: normal;
+		}
+		@top-right {
+		  content: normal;
+		}
+		@top-center {
+		  content: normal;
+		}
+	  }
+  /*]]>*/
+  </style>
+
+  <link href="#rfc.toc" rel="Contents">
+<link href="#rfc.section.1" rel="Chapter" title="1 Introduction">
+<link href="#rfc.section.2" rel="Chapter" title="2 Terminology">
+<link href="#rfc.section.2.1" rel="Chapter" title="2.1 Terms Used In This Document">
+<link href="#rfc.section.2.2" rel="Chapter" title="2.2 Abbreviations">
+<link href="#rfc.section.3" rel="Chapter" title="3 Requirements Language">
+<link href="#rfc.section.4" rel="Chapter" title="4 DetNet IP Data Plane Overview">
+<link href="#rfc.section.5" rel="Chapter" title="5 DetNet IP Data Plane Considerations">
+<link href="#rfc.section.5.1" rel="Chapter" title="5.1 DetNet Routers">
+<link href="#rfc.section.5.2" rel="Chapter" title="5.2 Networks With Multiple Technology Segments">
+<link href="#rfc.section.6" rel="Chapter" title="6 Mapping DetNet IP Flows to IEEE 802.1 TSN">
+<link href="#rfc.section.6.1" rel="Chapter" title="6.1 TSN Stream ID Mapping">
+<link href="#rfc.section.6.2" rel="Chapter" title="6.2 TSN Usage of FRER">
+<link href="#rfc.section.6.3" rel="Chapter" title="6.3 Procedures">
+<link href="#rfc.section.7" rel="Chapter" title="7 Management and Control Implications">
+<link href="#rfc.section.8" rel="Chapter" title="8 Security Considerations">
+<link href="#rfc.section.9" rel="Chapter" title="9 IANA Considerations">
+<link href="#rfc.section.10" rel="Chapter" title="10 Acknowledgements">
+<link href="#rfc.references" rel="Chapter" title="11 References">
+<link href="#rfc.references.1" rel="Chapter" title="11.1 Normative references">
+<link href="#rfc.references.2" rel="Chapter" title="11.2 Informative references">
+<link href="#rfc.authors" rel="Chapter">
+
+
+  <meta name="generator" content="xml2rfc version 2.12.3 - https://tools.ietf.org/tools/xml2rfc" />
+  <link rel="schema.dct" href="http://purl.org/dc/terms/" />
+
+  <meta name="dct.creator" content="Varga, B., Ed., Farkas, J., Malis, A., Bryant, S., and J. Korhonen" />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-detnet-ip-over-tsn-00" />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-01" />
+  <meta name="dct.abstract" content="This document specifies the Deterministic Networking IP data plane when operating over a TSN network.  " />
+  <meta name="description" content="This document specifies the Deterministic Networking IP data plane when operating over a TSN network.  " />
+
+</head>
+
+<body>
+
+  <table class="header">
+    <tbody>
+    
+    	<tr>
+<td class="left">DetNet</td>
+<td class="right">B. Varga, Ed.</td>
+</tr>
+<tr>
+<td class="left">Internet-Draft</td>
+<td class="right">J. Farkas</td>
+</tr>
+<tr>
+<td class="left">Intended status: Standards Track</td>
+<td class="right">Ericsson</td>
+</tr>
+<tr>
+<td class="left">Expires: November 6, 2019</td>
+<td class="right">A. Malis</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">S. Bryant</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">Huawei Technologies</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">J. Korhonen</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right"> May 5, 2019</td>
+</tr>
+
+    	
+    </tbody>
+  </table>
+
+  <p class="title">DetNet Data Plane: IP over IEEE 802.1 Time Sensitive Networking (TSN)<br />
+  <span class="filename">draft-ietf-detnet-ip-over-tsn-00</span></p>
+  
+  <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
+<p>This document specifies the Deterministic Networking IP data plane when operating over a TSN network.  </p>
+<h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
+<p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
+<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
+<p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
+<p>This Internet-Draft will expire on November 6, 2019.</p>
+<h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
+<p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
+
+  
+  <hr class="noprint" />
+  <h1 class="np" id="rfc.toc"><a href="#rfc.toc">Table of Contents</a></h1>
+  <ul class="toc">
+
+  	<li>1.   <a href="#rfc.section.1">Introduction</a>
+</li>
+<li>2.   <a href="#rfc.section.2">Terminology</a>
+</li>
+<ul><li>2.1.   <a href="#rfc.section.2.1">Terms Used In This Document</a>
+</li>
+<li>2.2.   <a href="#rfc.section.2.2">Abbreviations</a>
+</li>
+</ul><li>3.   <a href="#rfc.section.3">Requirements Language</a>
+</li>
+<li>4.   <a href="#rfc.section.4">DetNet IP Data Plane Overview</a>
+</li>
+<li>5.   <a href="#rfc.section.5">DetNet IP Data Plane Considerations</a>
+</li>
+<ul><li>5.1.   <a href="#rfc.section.5.1">DetNet Routers</a>
+</li>
+<li>5.2.   <a href="#rfc.section.5.2">Networks With Multiple Technology Segments</a>
+</li>
+</ul><li>6.   <a href="#rfc.section.6">Mapping DetNet IP Flows to IEEE 802.1 TSN</a>
+</li>
+<ul><li>6.1.   <a href="#rfc.section.6.1">TSN Stream ID Mapping</a>
+</li>
+<li>6.2.   <a href="#rfc.section.6.2">TSN Usage of FRER</a>
+</li>
+<li>6.3.   <a href="#rfc.section.6.3">Procedures</a>
+</li>
+</ul><li>7.   <a href="#rfc.section.7">Management and Control Implications</a>
+</li>
+<li>8.   <a href="#rfc.section.8">Security Considerations</a>
+</li>
+<li>9.   <a href="#rfc.section.9">IANA Considerations</a>
+</li>
+<li>10.   <a href="#rfc.section.10">Acknowledgements</a>
+</li>
+<li>11.   <a href="#rfc.references">References</a>
+</li>
+<ul><li>11.1.   <a href="#rfc.references.1">Normative references</a>
+</li>
+<li>11.2.   <a href="#rfc.references.2">Informative references</a>
+</li>
+</ul><li><a href="#rfc.authors">Authors' Addresses</a>
+</li>
+
+
+  </ul>
+
+  <h1 id="rfc.section.1">
+<a href="#rfc.section.1">1.</a> <a href="#sec_intro" id="sec_intro">Introduction</a>
+</h1>
+<p id="rfc.section.1.p.1">[Editor's note: Introduction to be made specific to DetNet IP over TSN scenario.  May be similar to intro of DetNet MPLS over TSN.].  </p>
+<p id="rfc.section.1.p.2">Deterministic Networking (DetNet) is a service that can be offered by a network to DetNet flows.  DetNet provides these flows extremely low packet loss rates and assured maximum end-to-end delivery latency.  General background and concepts of DetNet can be found in the DetNet Architecture <a href="#I-D.ietf-detnet-architecture" class="xref">[I-D.ietf-detnet-architecture]</a>.  </p>
+<p id="rfc.section.1.p.3">This document specifies the DetNet data plane operation for IP hosts and routers that provide DetNet service to IP encapsulated data.  No DetNet specific encapsulation is defined to support IP flows, rather existing IP and higher layer protocol header information is used to support flow identification and DetNet service delivery.  </p>
+<p id="rfc.section.1.p.4">The DetNet Architecture decomposes the DetNet related data plane functions into two sub-layers: a service sub-layer and a forwarding sub-layer.  The service sub-layer is used to provide DetNet service protection and reordering. The forwarding sub-layer is used to provides congestion protection (low loss, assured latency, and limited reordering). As no DetNet specific headers are added to support DetNet IP flows, only the forwarding sub-layer functions are supported using the DetNet IP defined by this document. Service protection can be provided on a per sub-net basis using technologies such as MPLS <a href="#I-D.ietf-detnet-dp-sol-mpls" class="xref">[I-D.ietf-detnet-dp-sol-mpls]</a> and IEEE802.1 TSN.  </p>
+<h1 id="rfc.section.2">
+<a href="#rfc.section.2">2.</a> Terminology</h1>
+<p id="rfc.section.2.p.1">[Editor's note: Needs clean up.].  </p>
+<h1 id="rfc.section.2.1">
+<a href="#rfc.section.2.1">2.1.</a> Terms Used In This Document</h1>
+<p id="rfc.section.2.1.p.1">This document uses the terminology and concepts established in the DetNet architecture <a href="#I-D.ietf-detnet-architecture" class="xref">[I-D.ietf-detnet-architecture]</a>, and the reader is assumed to be familiar with that document and its terminology.  </p>
+<h1 id="rfc.section.2.2">
+<a href="#rfc.section.2.2">2.2.</a> Abbreviations</h1>
+<p id="rfc.section.2.2.p.1">The following abbreviations used in this document: </p>
+
+<dl>
+<dt>CE</dt>
+<dd style="margin-left: 14">Customer Edge equipment.</dd>
+<dt>CoS</dt>
+<dd style="margin-left: 14">Class of Service.</dd>
+<dt>DetNet</dt>
+<dd style="margin-left: 14">Deterministic Networking.</dd>
+<dt>DF</dt>
+<dd style="margin-left: 14">DetNet Flow.</dd>
+<dt>L2</dt>
+<dd style="margin-left: 14">Layer-2.</dd>
+<dt>L3</dt>
+<dd style="margin-left: 14">Layer-3.</dd>
+<dt>LSP</dt>
+<dd style="margin-left: 14">Label-switched path.</dd>
+<dt>MPLS</dt>
+<dd style="margin-left: 14">Multiprotocol Label Switching.</dd>
+<dt>OAM</dt>
+<dd style="margin-left: 14">Operations, Administration, and Maintenance.</dd>
+<dt>PE</dt>
+<dd style="margin-left: 14">Provider Edge.</dd>
+<dt>PREOF</dt>
+<dd style="margin-left: 14">Packet Replication, Ordering and Elimination Function.</dd>
+<dt>PSN</dt>
+<dd style="margin-left: 14">Packet Switched Network.</dd>
+<dt>PW</dt>
+<dd style="margin-left: 14">Pseudowire.</dd>
+<dt>QoS</dt>
+<dd style="margin-left: 14">Quality of Service.</dd>
+<dt>TE</dt>
+<dd style="margin-left: 14">Traffic Engineering.</dd>
+<dt>TSN</dt>
+<dd style="margin-left: 14">Time-Sensitive Networking, TSN is a Task Group of the IEEE 802.1 Working Group.</dd>
+</dl>
+
+<p> </p>
+<h1 id="rfc.section.3">
+<a href="#rfc.section.3">3.</a> Requirements Language</h1>
+<p id="rfc.section.3.p.1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 <a href="#RFC2119" class="xref">[RFC2119]</a> <a href="#RFC8174" class="xref">[RFC8174]</a> when, and only when, they appear in all capitals, as shown here.  </p>
+<h1 id="rfc.section.4">
+<a href="#rfc.section.4">4.</a> <a href="#sec_dt_dp" id="sec_dt_dp">DetNet IP Data Plane Overview</a>
+</h1>
+<p id="rfc.section.4.p.1">[Editor's note: simplify this section and highlight DetNet IP over subnets scenario being the focus in the remaining part of the document.].  </p>
+<p id="rfc.section.4.p.2">This document describes how IP is used by DetNet nodes, i.e., hosts and routers, to identify DetNet flows and provide a DetNet service. From a data plane perspective, an end-to-end IP model is followed.  As mentioned above, existing IP and higher layer protocol header information is used to support flow identification and DetNet service delivery.  </p>
+<p id="rfc.section.4.p.3">DetNet uses "6-tuple" based flow identification, where "6-tuple" refers to information carried in IP and higher layer protocol headers. General background on the use of IP headers, and "5-tuples", to identify flows and support Quality of Service (QoS) can be found in <a href="#RFC3670" class="xref">[RFC3670]</a>.  <a href="#RFC7657" class="xref">[RFC7657]</a> also provides useful background on the delivery differentiated services (DiffServ) and "6-tuple" based flow identification.  </p>
+<p id="rfc.section.4.p.4">DetNet flow aggregation may be enabled via the use of wildcards, masks, prefixes and ranges. IP tunnels may also be used to support flow aggregation. In these cases, it is expected that DetNet aware intermediate nodes will provide DetNet service assurance on the aggregate through resource allocation and congestion control mechanisms.  </p>
+<div id="rfc.figure.1"></div>
+<div id="fig_ip_detnet_simple"></div>
+<pre>
+ DetNet IP       Relay                        Relay       DetNet IP
+ End System      Node                         Node        End System
+
++----------+                                             +----------+
+|   Appl.  |&lt;------------ End to End Service -----------&gt;|   Appl.  |
++----------+  ............                 ...........   +----------+
+| Service  |&lt;-: Service  :-- DetNet flow --: Service  :-&gt;| Service  |
++----------+  +----------+                 +----------+  +----------+
+|Forwarding|  |Forwarding|                 |Forwarding|  |Forwarding|
++--------.-+  +-.------.-+                 +-.---.----+  +-------.--+
+         : Link :       \      ,-----.      /     \   ,-----.   /
+         +......+        +----[  Sub  ]----+       +-[  Sub  ]-+
+                              [Network]              [Network]
+                               `-----'                `-----'
+
+         |&lt;--------------------- DetNet IP ---------------------&gt;|
+                         </pre>
+<p class="figure">Figure 1: A Simple DetNet (DN) Enabled IP Network</p>
+<p><a href="#fig_ip_detnet_simple" class="xref">Figure 1</a> illustrates a DetNet enabled IP network.  The DetNet enabled end systems originate IP encapsulated traffic that is identified as DetNet flows, relay nodes understand the forwarding requirements of the DetNet flow and ensure that node, interface and sub-network resources are allocated to ensure DetNet service requirements. The dotted line around the Service component of the Relay Nodes indicates that the transit routers are DetNet service aware but do not perform any DetNet service sub-layer function, e.g., PREOF.  IEEE 802.1 TSN is an example sub-network type which can provide support for DetNet flows and service.  The mapping of DetNet IP flows to TSN streams and TSN protection mechanisms is covered in <a href="#mapping-tsn" class="xref">Section 6</a>.  </p>
+<p id="rfc.section.4.p.6">Note: The sub-network can represent a TSN, MPLS or IP network segment.  </p>
+<div id="rfc.figure.2"></div>
+<div id="fig_ip_detnet"></div>
+<pre>
+ DetNet IP       Relay         Transit         Relay       DetNet IP
+ End System      Node           Node           Node        End System
+
++----------+                                              +----------+
+|   Appl.  |&lt;-------------- End to End Service ----------&gt;|   Appl.  |
++----------+   .....-----+                  +-----.....   +----------+
+| Service  |&lt;--: Service |-- DetNet flow ---| Service :--&gt;| Service  |
+|          |   :         |&lt;- DN MPLS flow -&gt;|         :   |          |
++----------+   +---------+   +----------+   +---------+   +----------+
+|Forwarding|   |Fwd| |Fwd|   |Forwarding|   |Fwd| |Fwd|   |Forwarding|
++--------.-+   +-.-+ +-.-+   +---.----.-+   +-.-+ +-.-+   +----.-----+
+         :  Link :    /  ,-----.  \   :  Link :    /  ,-----.  \
+         +.......+    +-[  Sub  ]-+   +.......+   +--[  Sub  ]--+
+                        [Network]                    [Network]
+                         `-----'                      `-----'
+
+                       |&lt;---- DetNet MPLS ---&gt;|
+         |&lt;--------------------- DetNet IP -------------------&gt;|
+                         </pre>
+<p class="figure">Figure 2: DetNet IP Over DetNet MPLS Network</p>
+<p><a href="#fig_ip_detnet" class="xref">Figure 2</a> illustrates a variant of <a href="#fig_ip_detnet_simple" class="xref">Figure 1</a>, with an MPLS based DetNet network as a sub-network between the relay nodes.  It shows a more complex DetNet enabled IP network where an IP flow is mapped to one or more PWs and MPLS (TE) LSPs.  The end systems still originate IP encapsulated traffic that is identified as DetNet flows.  The relay nodes follow procedures defined in RRR  to map each DetNet flow to MPLS LSPs. While not shown, relay nodes can provide service sub-layer functions such as PREOF using DetNet over MPLS, and this is indicated by the solid line for the MPLS facing portion of the Service component. Note that the Transit node is MPLS (TE) LSP aware and performs switching based on MPLS labels, and need not have any specific knowledge of the DetNet service or the corresponding DetNet flow identification. See RRR  for details on the mapping of IP flows to MPLS, and <a href="#I-D.ietf-detnet-dp-sol-mpls" class="xref">[I-D.ietf-detnet-dp-sol-mpls]</a> for general support of DetNet services using MPLS.  </p>
+<div id="rfc.figure.3"></div>
+<div id="fig_non_detnet_ip"></div>
+<pre>
+ IP              Edge                         Edge         IP
+ End System      Node                         Node         End System
+
++----------+   +.........+                  +.........+   +----------+
+|   Appl.  |&lt;--:Svc Proxy:-- E2E Service ---:Svc Proxy:--&gt;|   Appl.  |
++----------+   +.........+                  +.........+   +----------+
+|    IP    |&lt;--:IP : :Svc:----- IP flow ----:Svc: :IP :--&gt;|    IP    |
++----------+   +---+ +---+                  +---+ +---+   +----------+
+|Forwarding|   |Fwd| |Fwd|                  |Fwd| |Fwd|   |Forwarding|
++--------.-+   +-.-+ +-.-+                  +-.-+ +-.-+   +---.------+
+         :  Link :      \       ,-----.      /     /  ,-----.  \
+         +.......+       +-----[  Sub  ]----+     +--[  Sub  ]--+
+                               [Network]             [Network]
+                                `-----'               `-----'
+
+      |&lt;--- IP ---&gt;| |&lt;------ DetNet IP -------&gt;| |&lt;--- IP ---&gt;|
+                         </pre>
+<p class="figure">Figure 3: Non-DetNet aware IP end systems with DetNet IP Domain</p>
+<p><a href="#fig_non_detnet_ip" class="xref">Figure 3</a> illustrates another variant of <a href="#fig_ip_detnet_simple" class="xref">Figure 1</a> where the end systems are not DetNet aware.  In this case, edge nodes sit at the boundary of the DetNet domain and provide DetNet service proxies for the end applications by initiating and terminating DetNet service for the application's IP flows.  The existing header information or an approach used for aggregation can be used to support DetNet flow identification.  </p>
+<p id="rfc.section.4.p.9">Non-DetNet and DetNet IP packets are identical on the wire. From data plane perspective, the only difference is that there is flow-associated DetNet information on each DetNet node that defines the flow related characteristics and required forwarding behavior.  As shown above, edge nodes provide a Service Proxy function that "associates" one or more IP flows with the appropriate DetNet flow-specific information and ensures that the receives the proper traffic treatment within the domain.  </p>
+<p id="rfc.section.4.p.10">Note: The operation of IEEE802.1 TSN end systems over DetNet enabled IP networks is not described in this document.  While TSN flows could be encapsulated in IP packets by an IP End System or DetNet Edge Node in order to produce DetNet IP flows, the details of such are out of scope of this document.  </p>
+<h1 id="rfc.section.5">
+<a href="#rfc.section.5">5.</a> <a href="#dn-gen-encap-solution" id="dn-gen-encap-solution">DetNet IP Data Plane Considerations</a>
+</h1>
+<p id="rfc.section.5.p.1">[Editor's note: Sort out what data plane considerations are relevant for sub-net scenarios.].  </p>
+<h1 id="rfc.section.5.1">
+<a href="#rfc.section.5.1">5.1.</a> <a href="#detrouting" id="detrouting">DetNet Routers</a>
+</h1>
+<p id="rfc.section.5.1.p.1">Within a DetNet domain, the DetNet enabled IP Routers interconnect links and sub-networks to support end-to-end delivery of DetNet flows.  From a DetNet architecture perspective, these routers are DetNet relays, as they must be DetNet service aware.  Such routers identify DetNet flows based on the IP 6-tuple, and ensure that the DetNet service required traffic treatment is provided both on the node and on any attached sub-network.  </p>
+<p id="rfc.section.5.1.p.2">This solution provides DetNet functions end to end, but does so on a per link and sub-network basis.  Congestion protection and latency control and the resource allocation (queuing, policing, shaping) are supported using the underlying link / sub net specific mechanisms.  However, service protections (packet replication and packet elimination functions) are not provided at the DetNet layer end to end.  But such service protection can be provided on a per underlying L2 link and sub-network basis.  </p>
+<div id="rfc.figure.4"></div>
+<div id="fig_simple_iprouting"></div>
+<pre>
+           +------+                         +------+
+           |  X   |                         |  X   |
+           +======+                         +------+
+End-system |  IP  |                         |  IP  |
+      -----+------+-------+======+---     --+======+--
+DetNet                    |L2/SbN|          |L2/SbN|
+                          +------+          +------+
+                          
+            </pre>
+<p class="figure">Figure 4: Encapsulation of DetNet Routing in simplified IP service L3 end-systems</p>
+<p id="rfc.section.5.1.p.3">The DetNet Service Flow is mapped to the link / sub-network specific resources using an underlying system specific means. This implies each DetNet aware node on path looks into the forwarded DetNet Service Flow packet and utilize e.g., a 5- (or 6-) tuple to find out the required mapping within a node.  </p>
+<p id="rfc.section.5.1.p.4">As noted earlier, the Service Protection is done within each link / sub-network independently using the domain specific mechanisms (due the lack of a unified end to end sequencing information that would be available for intermediate nodes).  Therefore, service protection (if any) cannot be provided end-to-end, only within sub-networks. This is shown for a three sub-network scenario in <a href="#fig_pref_in_subnets" class="xref">Figure 5</a>, where each sub-network can provide service protection between its borders.  </p>
+<div id="rfc.figure.5"></div>
+<div id="fig_pref_in_subnets"></div>
+<pre>
+
+                                 ______
+                       ____     /      \__
+            ____      /     \__/          \___   ______
++----+   __/    +====+                       +==+      \     +----+
+|src |__/ SubN1  )   |                       |  \ SubN3 \____| dst|
++----+  \_______/    \       Sub-Network2    |   \______/    +----+
+                      \_                    _/
+                        \         __     __/
+                         \_______/  \___/
+
+
+          +---+        +---------E--------+      +-----+
++----+    |   |        |         |        |      |     |      +----+
+|src |----R   E--------R     +---+        E------R     E------+ dst|
++----+    |   |        |     |            |      |     |      +----+
+          +---+        +-----R------------+      +-----+
+
+            </pre>
+<p class="figure">Figure 5: Replication and elimination in sub-networks for DetNet IP networks</p>
+<p id="rfc.section.5.1.p.5">If end to end service protection is desired that can be implemented, for example, by the DetNet end systems using Layer-4 (L4) transport protocols or application protocols. However, these are out of scope of this document.  </p>
+<h1 id="rfc.section.5.2">
+<a href="#rfc.section.5.2">5.2.</a> <a href="#nwsegments" id="nwsegments">Networks With Multiple Technology Segments</a>
+</h1>
+<p id="rfc.section.5.2.p.1">There are network scenarios, where the DetNet domain contains multiple technology segments (IEEE 802.1 TSN, MPLS) and all those segments are under the same administrative control (see <a href="#fig_pref_xcrs_segments" class="xref">Figure 6</a>). Furthermore, DetNet nodes may be interconnected via TSN segments.  </p>
+<p id="rfc.section.5.2.p.2">DetNet routers ensure that detnet service requirements are met per hop by allocating local resources, both receive and transmit, and by mapping the service requirements of each flow to appropriate sub-network mechanisms.  Such mapping is sub-network technology specific.  The mapping of DetNet IP Flows to MPLS is covered RRR .  The mapping of IP DetNet Flows to IEEE 802.1 TSN is covered in <a href="#mapping-tsn" class="xref">Section 6</a>.  </p>
+<div id="rfc.figure.6"></div>
+<div id="fig_pref_xcrs_segments"></div>
+<pre>
+                                   ______
+                         _____    /      \__
+            ____        /     \__/          \___    ______
++----+   __/    +======+                        +==+      \   +----+
+|src |__/  Seg1  )     |                        |  \  Seg3 \__| dst|
++----+  \_______+      \        Segment-2       |   \+_____/  +----+
+                 \======+__                    _+===/
+                           \         __     __/
+                            \_______/  \___/
+                            
+          </pre>
+<p class="figure">Figure 6: DetNet domains and multiple technology segments</p>
+<h1 id="rfc.section.6">
+<a href="#rfc.section.6">6.</a> <a href="#mapping-tsn" id="mapping-tsn">Mapping DetNet IP Flows to IEEE 802.1 TSN</a>
+</h1>
+<p id="rfc.section.6.p.1">[Authors note: how do we handle control protocols such as ICMP, IPsec, etc.] </p>
+<p id="rfc.section.6.p.2">This section covers how DetNet IP flows operate over an IEEE 802.1 TSN sub-network.  <a href="#fig_ip_detnet_to_tsn" class="xref">Figure 7</a> illustrates such a scenario, where two IP (DetNet) nodes are interconnected by a TSN sub-network. Node-1 is single homed and Node-2 is dual-homed.  IP nodes can be (1) DetNet IP End System, (2) DetNet IP Edge or Relay node or (3) IP End System.  </p>
+<div id="rfc.figure.7"></div>
+<div id="fig_ip_detnet_to_tsn"></div>
+<pre>
+    IP (DetNet)                   IP (DetNet)
+      Node-1                        Node-2
+
+   ............                  ............
+&lt;--: Service  :-- DetNet flow ---: Service  :--&gt;
+   +----------+                  +----------+
+   |Forwarding|                  |Forwarding|
+   +--------.-+    &lt;-TSN Str-&gt;   +-.-----.--+
+             \      ,-------.     /     /
+              +----[ TSN-Sub ]---+     /
+                   [ Network ]--------+
+                    `-------'
+&lt;----------------- DetNet IP -----------------&gt;
+</pre>
+<p class="figure">Figure 7: DetNet (DN) Enabled IP Network over a TSN sub-network</p>
+<p id="rfc.section.6.p.3">The Time-Sensitive Networking (TSN) Task Group of the IEEE 802.1 Working Group have defined (and are defining) a number of amendments to <a href="#IEEE8021Q" class="xref">IEEE 802.1Q</a> that provide zero congestion loss and bounded latency in bridged networks. Furthermore <a href="#IEEE8021CB" class="xref">IEEE 802.1CB</a> defines frame replication and elimination functions for reliability that should prove both compatible with and useful to, DetNet networks.  All these functions have to identify flows those require TSN treatment.  </p>
+<p id="rfc.section.6.p.4">As is the case for DetNet, a Layer 2 network node such as a bridge may need to identify the specific DetNet flow to which a packet belongs in order to provide the TSN/DetNet QoS for that packet.  It also may need additional marking, such as the priority field of an IEEE Std 802.1Q VLAN tag, to give the packet proper service.  </p>
+<p id="rfc.section.6.p.5">TSN capabilities of the TSN sub-network are made available for IP (DetNet) flows via the protocol interworking function defined in <a href="#IEEE8021CB" class="xref">IEEE 802.1CB</a>. For example, applied on the TSN edge port connected to the IP (DetNet) node it can convert an ingress unicast IP (DetNet) flow to use a specific multicast destination MAC address and VLAN, in order to direct the packet through a specific path inside the bridged network. A similar interworking pair at the other end of the TSN sub-network would restore the packet to its original destination MAC address and VLAN.  </p>
+<p id="rfc.section.6.p.6">Placement of TSN functions depends on the TSN capabilities of nodes. IP (DetNet) Nodes may or may not support TSN functions. For a given TSN Stream (i.e., DetNet flow) an IP (DetNet) node is treated as a Talker or a Listener inside the TSN sub-network.  </p>
+<h1 id="rfc.section.6.1">
+<a href="#rfc.section.6.1">6.1.</a> TSN Stream ID Mapping</h1>
+<p id="rfc.section.6.1.p.1">DetNet IP Flow and TSN Stream mapping is based on the active Stream Identification function, that operates at the frame level. <a href="#IEEE8021CB" class="xref">IEEE 802.1CB</a> defines an Active Destination MAC and VLAN Stream identification function, what can replace some Ethernet header fields namely (1) the destination MAC-address, (2) the VLAN-ID and (3) priority parameters with alternate values. Replacement is provided for the frame passed down the stack from the upper layers or up the stack from the lower layers.  </p>
+<p id="rfc.section.6.1.p.2">Active Destination MAC and VLAN Stream identification can be used within a Talker to set flow identity or a Listener to recover the original addressing information. It can be used also in a TSN bridge that is providing translation as a proxy service for an End System. As a result IP (DetNet) flows can be mapped to use a particular {MAC-address, VLAN} pair to match the Stream in the TSN sub-network.  </p>
+<p id="rfc.section.6.1.p.3">From the TSN sub-network perspective DetNet IP nodes without any TSN functions can be treated as TSN-unaware Talker or Listener.  In such cases relay nodes in the TSN sub-network MUST modify the Ethernet encapsulation of the DetNet IP flow (e.g., MAC translation, VLAN-ID setting, Sequence number addition, etc.) to allow proper TSN specific handling of the flow inside the sub-network. This is illustrated in <a href="#fig_ip_without_tsn" class="xref">Figure 8</a>.  </p>
+<div id="rfc.figure.8"></div>
+<div id="fig_ip_without_tsn"></div>
+<pre>
+     IP (DetNet)
+       Node-1
+   &lt;----------&gt;
+
+   ............
+&lt;--: Service  :-- DetNet flow ------------------
+   +----------+
+   |Forwarding|
+   +----------+    +---------------+
+   |    L2    |    | L2 Relay with |&lt;--- TSN ----
+   |          |    | TSN function  |    Stream
+   +-----.----+    +--.---------.--+
+          \__________/           \______
+
+    TSN-unaware
+     Talker /          TSN-Bridge
+     Listener             Relay
+                 &lt;-------- TSN sub-network -------
+</pre>
+<p class="figure">Figure 8: IP (DetNet) node without TSN functions</p>
+<p id="rfc.section.6.1.p.4">IP (DetNet) nodes being TSN-aware can be treated as a combination of a TSN-unaware Talker/Listener and a TSN-Relay, as shown in <a href="#fig_ip_with_tsn" class="xref">Figure 9</a>.  In such cases the IP (DetNet) node MUST provide the TSN sub-network specific Ethernet encapsulation over the link(s) towards the sub-network. An TSN-aware IP (DetNet) node MUST support the following TSN components: </p>
+
+<ol>
+<li>For recognizing flows: <ul><li>Stream Identification</li></ul>
+<p> </p>
+</li>
+<li>For FRER used inside the TSN domain, additionally: <ul>
+<li>Sequencing function</li>
+<li>Sequence encode/decode function</li>
+</ul>
+<p> </p>
+</li>
+<li>For FRER when the node is a replication or elimination point, additionally: <ul>
+<li>Stream splitting function</li>
+<li>Individual recovery function</li>
+</ul>
+<p> </p>
+</li>
+</ol>
+
+<p> </p>
+<p id="rfc.section.6.1.p.5">[Editor's note: Should we added here requirements regarding IEEE 802.1Q C-VLAN component?] </p>
+<div id="rfc.figure.9"></div>
+<div id="fig_ip_with_tsn"></div>
+<pre>
+               IP (DetNet)
+                  Node-2
+   &lt;----------------------------------&gt;
+
+   ............
+&lt;--: Service  :-- DetNet flow ------------------
+   +----------+
+   |Forwarding|
+   +----------+    +---------------+
+   |    L2    |    | L2 Relay with |&lt;--- TSN ---
+   |          |    | TSN function  |    Stream
+   +-----.----+    +--.------.---.-+
+          \__________/        \   \______
+                               \_________
+    TSN-unaware
+     Talker /          TSN-Bridge
+     Listener             Relay
+                                       &lt;----- TSN Sub-network -----
+   &lt;------- TSN-aware Tlk/Lstn -------&gt;
+</pre>
+<p class="figure">Figure 9: IP (DetNet) node with TSN functions</p>
+<p id="rfc.section.6.1.p.6">A Stream identification component MUST be able to instantiate the following functions (1) Active Destination MAC and VLAN Stream identification function, (2) IP Stream identification function and (3) the related managed objects in Clause 9 of <a href="#IEEE8021CB" class="xref">IEEE 802.1CB</a>.  IP Stream identification function provides a 6-tuple match.  </p>
+<p id="rfc.section.6.1.p.7">The Sequence encode/decode function MUST support the Redundancy tag (R-TAG) format as per Clause 7.8 of <a href="#IEEE8021CB" class="xref">IEEE 802.1CB</a>.  </p>
+<h1 id="rfc.section.6.2">
+<a href="#rfc.section.6.2">6.2.</a> TSN Usage of FRER</h1>
+<p id="rfc.section.6.2.p.1">TSN Streams supporting DetNet flows may use Frame Replication and Elimination for Redundancy (FRER) [802.1CB] based on the loss service requirements of the TSN Stream, which is derived from the DetNet service requirements of the DetNet mapped flow.  The specific operation of FRER is not modified by the use of DetNet and follows <a href="#IEEE8021CB" class="xref">IEEE 802.1CB</a>.  </p>
+<p id="rfc.section.6.2.p.2">FRER function and the provided service recovery is available only within the TSN sub-network (as shown in <a href="#fig_pref_in_subnets" class="xref">Figure 5</a>) as the Stream-ID and the TSN sequence number are not valid outside the sub-network.  An IP (DetNet) node represents a L3 border and as such it terminates all related information elements encoded in the L2 frames.  </p>
+<h1 id="rfc.section.6.3">
+<a href="#rfc.section.6.3">6.3.</a> Procedures</h1>
+<p id="rfc.section.6.3.p.1">[Editor's note: This section is TBD - covers required behavior of a TSN-aware DetNet node using a TSN underlay.] </p>
+<p id="rfc.section.6.3.p.2">This section provides DetNet IP data plane procedures to interwork with a TSN underlay sub-network when the IP (DetNet) node acts as a TSN-aware Talker or Listener (see <a href="#fig_ip_with_tsn" class="xref">Figure 9</a>). These procedures have been divided into the following areas: flow identification, mapping of a DetNet flow to a TSN Stream and ensure proper TSN encapsulation.  </p>
+<p id="rfc.section.6.3.p.3">Flow identification procedures are described in RRR .  A TSN-aware IP (DetNet) node SHALL support the Stream Identification TSN components as per <a href="#IEEE8021CB" class="xref">IEEE 802.1CB</a>.  </p>
+<p id="rfc.section.6.3.p.4">Implementations of this document SHALL use management and control information to map a DetNet flow to a TSN Stream. N:1 mapping (aggregating DetNet flows in a single TSN Stream) SHALL be supported. The management or control function that provisions flow mapping SHALL ensure that adequate resources are allocated and configured to provide proper service requirements of the mapped flows.  </p>
+<p id="rfc.section.6.3.p.5">For proper TSN encapsulation implementations of this document SHALL support active Stream Identification function as defined in chapter 6.6 in <a href="#IEEE8021CB" class="xref">IEEE 802.1CB</a>.  </p>
+<p id="rfc.section.6.3.p.6">A TSN-aware IP (DetNet) node SHALL support Ethernet encapsulation with Redundancy tag (R-TAG) as per chapter 7.8 in <a href="#IEEE8021CB" class="xref">IEEE 802.1CB</a>.  </p>
+<p id="rfc.section.6.3.p.7">Depending whether FRER functions are used in the TSN sub-network to serve the mapped TSN Stream, a TSN-aware IP (DetNet) node SHALL support Sequencing function and Sequence encode/decode function as per chapter 7.4 and 7.6 in <a href="#IEEE8021CB" class="xref">IEEE 802.1CB</a>. Furthermore when a TSN-aware IP (DetNet) node acting as a replication or elimination point for FRER it SHALL implement the Stream splitting function and the Individual recovery function as per chapter 7.7 and 7.5 in <a href="#IEEE8021CB" class="xref">IEEE 802.1CB</a>.  </p>
+<h1 id="rfc.section.7">
+<a href="#rfc.section.7">7.</a> Management and Control Implications</h1>
+<p id="rfc.section.7.p.1">[Editor's note: This section is TBD Covers Creation, mapping, removal of TSN Stream IDs, related parameters and,when needed, configuration of FRER. Supported by management/control plane.] </p>
+<p id="rfc.section.7.p.2">DetNet flow and TSN Stream mapping related information are required only for TSN-aware IP (DetNet) nodes. From the Data Plane perspective there is no practical difference based on the origin of flow mapping related information (management plane or control plane).  </p>
+<p id="rfc.section.7.p.3">TSN-aware DetNet IP nodes are member of both the DetNet domain and the TSN sub-network.  Within the TSN sub-network the TSN-aware IP (DetNet) node has a TSM-aware Talker/Listener role, so TSN specific management and control plane functionalities must be implemented.  There are many similarities in the management plane techniques used in DetNet and TSN, but that is not the case for the control plane protocols. For example, RSVP-TE and MSRP behaves differently. Therefore management and control plane design is an important aspect of scenarios, where mapping between DetNet and TSN is required.  </p>
+<p id="rfc.section.7.p.4">In order to use a TSN sub-network between DetNet nodes, DetNet specific information must be converted to TSN sub-network specific ones. DetNet flow ID and flow related parameters/requirements must be converted to a TSN Stream ID and stream related parameters/requirements. Note that, as the TSN sub-network is just a portion of the end2end DetNet path (i.e., single hop from IP perspective), some parameters (e.g., delay) may differ significantly. Other parameters (like bandwidth) also may have to be tuned due to the L2 encapsulation used in the TSN sub-network.  </p>
+<p id="rfc.section.7.p.5">In some case it may be challenging to determine some TSN Stream related information. For example on a TSN-aware IP (DetNet) node that acts as a Talker, it is quite obvious which DetNet node is the Listener of the mapped TSN stream (i.e., the IP Next-Hop). However it may be not trivial to locate the point/interface where that Listener is connected to the TSN sub-network. Such attributes may require interaction between control and management plane functions and between DetNet and TSN domains.  </p>
+<p id="rfc.section.7.p.6">Mapping between DetNet flow identifiers and TSN Stream identifiers, if not provided explicitly, can be done by a TSN-aware IP (DetNet) node locally based on information provided for configuration of the TSN Stream identification functions (IP Stream identification and active Stream identification function).  </p>
+<p id="rfc.section.7.p.7">Triggering the setup/modification of a TSN Stream in the TSN sub-network is an example where management and/or control plane interactions are required between the DetNet and TSN sub-network. TSN-unaware IP (DetNet) nodes make such a triggering even more complicated as they are fully unaware of the sub-network and run independently.  </p>
+<p id="rfc.section.7.p.8">Configuration of TSN specific functions (e.g., FRER) inside the TSN sub-network is a TSN specific decision and may not be visible in the DetNet domain.  </p>
+<h1 id="rfc.section.8">
+<a href="#rfc.section.8">8.</a> Security Considerations</h1>
+<p id="rfc.section.8.p.1">The security considerations of DetNet in general are discussed in <a href="#I-D.ietf-detnet-architecture" class="xref">[I-D.ietf-detnet-architecture]</a> and <a href="#I-D.ietf-detnet-security" class="xref">[I-D.ietf-detnet-security]</a>. Other security considerations will be added in a future version of this draft.  </p>
+<h1 id="rfc.section.9">
+<a href="#rfc.section.9">9.</a> <a href="#iana" id="iana">IANA Considerations</a>
+</h1>
+<p id="rfc.section.9.p.1">TBD.  </p>
+<h1 id="rfc.section.10">
+<a href="#rfc.section.10">10.</a> <a href="#acks" id="acks">Acknowledgements</a>
+</h1>
+<p id="rfc.section.10.p.1">Thanks for Norman Finn and Lou Berger for their comments and contributions.  </p>
+<h1 id="rfc.references">
+<a href="#rfc.references">11.</a> References</h1>
+<h1 id="rfc.references.1">
+<a href="#rfc.references.1">11.1.</a> Normative references</h1>
+<table><tbody>
+<tr>
+<td class="reference"><b id="RFC0768">[RFC0768]</b></td>
+<td class="top">
+<a>Postel, J.</a>, "<a href="https://tools.ietf.org/html/rfc768">User Datagram Protocol</a>", STD 6, RFC 768, DOI 10.17487/RFC0768, August 1980.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC0791">[RFC0791]</b></td>
+<td class="top">
+<a>Postel, J.</a>, "<a href="https://tools.ietf.org/html/rfc791">Internet Protocol</a>", STD 5, RFC 791, DOI 10.17487/RFC0791, September 1981.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC0793">[RFC0793]</b></td>
+<td class="top">
+<a>Postel, J.</a>, "<a href="https://tools.ietf.org/html/rfc793">Transmission Control Protocol</a>", STD 7, RFC 793, DOI 10.17487/RFC0793, September 1981.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC1812">[RFC1812]</b></td>
+<td class="top">
+<a>Baker, F.</a>, "<a href="https://tools.ietf.org/html/rfc1812">Requirements for IP Version 4 Routers</a>", RFC 1812, DOI 10.17487/RFC1812, June 1995.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC2119">[RFC2119]</b></td>
+<td class="top">
+<a>Bradner, S.</a>, "<a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC2211">[RFC2211]</b></td>
+<td class="top">
+<a>Wroclawski, J.</a>, "<a href="https://tools.ietf.org/html/rfc2211">Specification of the Controlled-Load Network Element Service</a>", RFC 2211, DOI 10.17487/RFC2211, September 1997.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC2212">[RFC2212]</b></td>
+<td class="top">
+<a>Shenker, S.</a>, <a>Partridge, C.</a> and <a>R. Guerin</a>, "<a href="https://tools.ietf.org/html/rfc2212">Specification of Guaranteed Quality of Service</a>", RFC 2212, DOI 10.17487/RFC2212, September 1997.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC2474">[RFC2474]</b></td>
+<td class="top">
+<a>Nichols, K.</a>, <a>Blake, S.</a>, <a>Baker, F.</a> and <a>D. Black</a>, "<a href="https://tools.ietf.org/html/rfc2474">Definition of the Differentiated Services Field (DS Field) in the IPv4 and IPv6 Headers</a>", RFC 2474, DOI 10.17487/RFC2474, December 1998.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC3168">[RFC3168]</b></td>
+<td class="top">
+<a>Ramakrishnan, K.</a>, <a>Floyd, S.</a> and <a>D. Black</a>, "<a href="https://tools.ietf.org/html/rfc3168">The Addition of Explicit Congestion Notification (ECN) to IP</a>", RFC 3168, DOI 10.17487/RFC3168, September 2001.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC3209">[RFC3209]</b></td>
+<td class="top">
+<a>Awduche, D.</a>, <a>Berger, L.</a>, <a>Gan, D.</a>, <a>Li, T.</a>, <a>Srinivasan, V.</a> and <a>G. Swallow</a>, "<a href="https://tools.ietf.org/html/rfc3209">RSVP-TE: Extensions to RSVP for LSP Tunnels</a>", RFC 3209, DOI 10.17487/RFC3209, December 2001.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC3270">[RFC3270]</b></td>
+<td class="top">
+<a>Le Faucheur, F.</a>, <a>Wu, L.</a>, <a>Davie, B.</a>, <a>Davari, S.</a>, <a>Vaananen, P.</a>, <a>Krishnan, R.</a>, <a>Cheval, P.</a> and <a>J. Heinanen</a>, "<a href="https://tools.ietf.org/html/rfc3270">Multi-Protocol Label Switching (MPLS) Support of Differentiated Services</a>", RFC 3270, DOI 10.17487/RFC3270, May 2002.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC3473">[RFC3473]</b></td>
+<td class="top">
+<a>Berger, L.</a>, "<a href="https://tools.ietf.org/html/rfc3473">Generalized Multi-Protocol Label Switching (GMPLS) Signaling Resource ReserVation Protocol-Traffic Engineering (RSVP-TE) Extensions</a>", RFC 3473, DOI 10.17487/RFC3473, January 2003.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC4302">[RFC4302]</b></td>
+<td class="top">
+<a>Kent, S.</a>, "<a href="https://tools.ietf.org/html/rfc4302">IP Authentication Header</a>", RFC 4302, DOI 10.17487/RFC4302, December 2005.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC4303">[RFC4303]</b></td>
+<td class="top">
+<a>Kent, S.</a>, "<a href="https://tools.ietf.org/html/rfc4303">IP Encapsulating Security Payload (ESP)</a>", RFC 4303, DOI 10.17487/RFC4303, December 2005.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC5462">[RFC5462]</b></td>
+<td class="top">
+<a>Andersson, L.</a> and <a>R. Asati</a>, "<a href="https://tools.ietf.org/html/rfc5462">Multiprotocol Label Switching (MPLS) Label Stack Entry: "EXP" Field Renamed to "Traffic Class" Field</a>", RFC 5462, DOI 10.17487/RFC5462, February 2009.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC6003">[RFC6003]</b></td>
+<td class="top">
+<a>Papadimitriou, D.</a>, "<a href="https://tools.ietf.org/html/rfc6003">Ethernet Traffic Parameters</a>", RFC 6003, DOI 10.17487/RFC6003, October 2010.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7608">[RFC7608]</b></td>
+<td class="top">
+<a>Boucadair, M.</a>, <a>Petrescu, A.</a> and <a>F. Baker</a>, "<a href="https://tools.ietf.org/html/rfc7608">IPv6 Prefix Length Recommendation for Forwarding</a>", BCP 198, RFC 7608, DOI 10.17487/RFC7608, July 2015.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8174">[RFC8174]</b></td>
+<td class="top">
+<a>Leiba, B.</a>, "<a href="https://tools.ietf.org/html/rfc8174">Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</a>", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8200">[RFC8200]</b></td>
+<td class="top">
+<a>Deering, S.</a> and <a>R. Hinden</a>, "<a href="https://tools.ietf.org/html/rfc8200">Internet Protocol, Version 6 (IPv6) Specification</a>", STD 86, RFC 8200, DOI 10.17487/RFC8200, July 2017.</td>
+</tr>
+</tbody></table>
+<h1 id="rfc.references.2">
+<a href="#rfc.references.2">11.2.</a> Informative references</h1>
+<table><tbody>
+<tr>
+<td class="reference"><b id="G.8275.1">[G.8275.1]</b></td>
+<td class="top">
+<a>International Telecommunication Union</a>, "<a href="https://www.itu.int/rec/T-REC-G.8275.1/en">Precision time protocol telecom profile for phase/time synchronization with full timing support from the network</a>", ITU-T G.8275.1/Y.1369.1 G.8275.1, June 2016.</td>
+</tr>
+<tr>
+<td class="reference"><b id="G.8275.2">[G.8275.2]</b></td>
+<td class="top">
+<a>International Telecommunication Union</a>, "<a href="https://www.itu.int/rec/T-REC-G.8275.2/en">Precision time protocol telecom profile for phase/time synchronization with partial timing support from the network</a>", ITU-T G.8275.2/Y.1369.2 G.8275.2, June 2016.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.ietf-detnet-architecture">[I-D.ietf-detnet-architecture]</b></td>
+<td class="top">
+<a>Finn, N.</a>, <a>Thubert, P.</a>, <a>Varga, B.</a> and <a>J. Farkas</a>, "<a href="https://tools.ietf.org/html/draft-ietf-detnet-architecture-13">Deterministic Networking Architecture</a>", Internet-Draft draft-ietf-detnet-architecture-13, May 2019.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.ietf-detnet-dp-sol-mpls">[I-D.ietf-detnet-dp-sol-mpls]</b></td>
+<td class="top">
+<a>Korhonen, J.</a> and <a>B. Varga</a>, "<a href="https://tools.ietf.org/html/draft-ietf-detnet-dp-sol-mpls-02">DetNet MPLS Data Plane Encapsulation</a>", Internet-Draft draft-ietf-detnet-dp-sol-mpls-02, March 2019.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.ietf-detnet-flow-information-model">[I-D.ietf-detnet-flow-information-model]</b></td>
+<td class="top">
+<a>Farkas, J.</a>, <a>Varga, B.</a>, <a>Cummings, R.</a> and <a>Y. Jiang</a>, "<a href="https://tools.ietf.org/html/draft-ietf-detnet-flow-information-model-03">DetNet Flow Information Model</a>", Internet-Draft draft-ietf-detnet-flow-information-model-03, March 2019.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.ietf-detnet-security">[I-D.ietf-detnet-security]</b></td>
+<td class="top">
+<a>Mizrahi, T.</a>, <a>Grossman, E.</a>, <a>Hacker, A.</a>, <a>Das, S.</a>, <a>Dowdell, J.</a>, <a>Austad, H.</a>, <a>Stanton, K.</a> and <a>N. Finn</a>, "<a href="https://tools.ietf.org/html/draft-ietf-detnet-security-04">Deterministic Networking (DetNet) Security Considerations</a>", Internet-Draft draft-ietf-detnet-security-04, March 2019.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.ietf-teas-pce-native-ip">[I-D.ietf-teas-pce-native-ip]</b></td>
+<td class="top">
+<a>Wang, A.</a>, <a>Zhao, Q.</a>, <a>Khasanov, B.</a>, <a>Chen, H.</a> and <a>R. Mallya</a>, "<a href="https://tools.ietf.org/html/draft-ietf-teas-pce-native-ip-03">PCE in Native IP Network</a>", Internet-Draft draft-ietf-teas-pce-native-ip-03, April 2019.</td>
+</tr>
+<tr>
+<td class="reference"><b id="IEEE1588">[IEEE1588]</b></td>
+<td class="top">
+<a>IEEE</a>, "<a>IEEE 1588 Standard for a Precision Clock Synchronization Protocol for Networked Measurement and Control Systems Version 2</a>", 2008.</td>
+</tr>
+<tr>
+<td class="reference"><b id="IEEE8021CB">[IEEE8021CB]</b></td>
+<td class="top">
+<a title="IEEE 802.1">Finn, N.</a>, "<a href="http://www.ieee802.org/1/files/private/cb-drafts/d2/802-1CB-d2-1.pdf">Draft Standard for Local and metropolitan area networks - Seamless Redundancy</a>", IEEE P802.1CB /D2.1 P802.1CB, December 2015.</td>
+</tr>
+<tr>
+<td class="reference"><b id="IEEE8021Q">[IEEE8021Q]</b></td>
+<td class="top">
+<a>IEEE 802.1</a>, "<a href="http://standards.ieee.org/about/get/">Standard for Local and metropolitan area networks--Bridges and Bridged Networks (IEEE Std 802.1Q-2014)</a>", 2014.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC1122">[RFC1122]</b></td>
+<td class="top">
+<a>Braden, R.</a>, "<a href="https://tools.ietf.org/html/rfc1122">Requirements for Internet Hosts - Communication Layers</a>", STD 3, RFC 1122, DOI 10.17487/RFC1122, October 1989.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC2205">[RFC2205]</b></td>
+<td class="top">
+<a>Braden, R.</a>, <a>Zhang, L.</a>, <a>Berson, S.</a>, <a>Herzog, S.</a> and <a>S. Jamin</a>, "<a href="https://tools.ietf.org/html/rfc2205">Resource ReSerVation Protocol (RSVP) -- Version 1 Functional Specification</a>", RFC 2205, DOI 10.17487/RFC2205, September 1997.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC2386">[RFC2386]</b></td>
+<td class="top">
+<a>Crawley, E.</a>, <a>Nair, R.</a>, <a>Rajagopalan, B.</a> and <a>H. Sandick</a>, "<a href="https://tools.ietf.org/html/rfc2386">A Framework for QoS-based Routing in the Internet</a>", RFC 2386, DOI 10.17487/RFC2386, August 1998.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC3670">[RFC3670]</b></td>
+<td class="top">
+<a>Moore, B.</a>, <a>Durham, D.</a>, <a>Strassner, J.</a>, <a>Westerinen, A.</a> and <a>W. Weiss</a>, "<a href="https://tools.ietf.org/html/rfc3670">Information Model for Describing Network Device QoS Datapath Mechanisms</a>", RFC 3670, DOI 10.17487/RFC3670, January 2004.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC5575">[RFC5575]</b></td>
+<td class="top">
+<a>Marques, P.</a>, <a>Sheth, N.</a>, <a>Raszuk, R.</a>, <a>Greene, B.</a>, <a>Mauch, J.</a> and <a>D. McPherson</a>, "<a href="https://tools.ietf.org/html/rfc5575">Dissemination of Flow Specification Rules</a>", RFC 5575, DOI 10.17487/RFC5575, August 2009.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC5654">[RFC5654]</b></td>
+<td class="top">
+<a>Niven-Jenkins, B.</a>, <a>Brungard, D.</a>, <a>Betts, M.</a>, <a>Sprecher, N.</a> and <a>S. Ueno</a>, "<a href="https://tools.ietf.org/html/rfc5654">Requirements of an MPLS Transport Profile</a>", RFC 5654, DOI 10.17487/RFC5654, September 2009.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC5777">[RFC5777]</b></td>
+<td class="top">
+<a>Korhonen, J.</a>, <a>Tschofenig, H.</a>, <a>Arumaithurai, M.</a>, <a>Jones, M.</a> and <a>A. Lior</a>, "<a href="https://tools.ietf.org/html/rfc5777">Traffic Classification and Quality of Service (QoS) Attributes for Diameter</a>", RFC 5777, DOI 10.17487/RFC5777, February 2010.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC6434">[RFC6434]</b></td>
+<td class="top">
+<a>Jankiewicz, E.</a>, <a>Loughney, J.</a> and <a>T. Narten</a>, "<a href="https://tools.ietf.org/html/rfc6434">IPv6 Node Requirements</a>", RFC 6434, DOI 10.17487/RFC6434, December 2011.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7551">[RFC7551]</b></td>
+<td class="top">
+<a>Zhang, F.</a>, <a>Jing, R.</a> and <a>R. Gandhi</a>, "<a href="https://tools.ietf.org/html/rfc7551">RSVP-TE Extensions for Associated Bidirectional Label Switched Paths (LSPs)</a>", RFC 7551, DOI 10.17487/RFC7551, May 2015.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7657">[RFC7657]</b></td>
+<td class="top">
+<a>Black, D.</a> and <a>P. Jones</a>, "<a href="https://tools.ietf.org/html/rfc7657">Differentiated Services (Diffserv) and Real-Time Communication</a>", RFC 7657, DOI 10.17487/RFC7657, November 2015.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7950">[RFC7950]</b></td>
+<td class="top">
+<a>Bjorklund, M.</a>, "<a href="https://tools.ietf.org/html/rfc7950">The YANG 1.1 Data Modeling Language</a>", RFC 7950, DOI 10.17487/RFC7950, August 2016.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8040">[RFC8040]</b></td>
+<td class="top">
+<a>Bierman, A.</a>, <a>Bjorklund, M.</a> and <a>K. Watsen</a>, "<a href="https://tools.ietf.org/html/rfc8040">RESTCONF Protocol</a>", RFC 8040, DOI 10.17487/RFC8040, January 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8169">[RFC8169]</b></td>
+<td class="top">
+<a>Mirsky, G.</a>, <a>Ruffini, S.</a>, <a>Gray, E.</a>, <a>Drake, J.</a>, <a>Bryant, S.</a> and <a>A. Vainshtein</a>, "<a href="https://tools.ietf.org/html/rfc8169">Residence Time Measurement in MPLS Networks</a>", RFC 8169, DOI 10.17487/RFC8169, May 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8283">[RFC8283]</b></td>
+<td class="top">
+<a>Farrel, A.</a>, <a>Zhao, Q.</a>, <a>Li, Z.</a> and <a>C. Zhou</a>, "<a href="https://tools.ietf.org/html/rfc8283">An Architecture for Use of PCE and the PCE Communication Protocol (PCEP) in a Network with Central Control</a>", RFC 8283, DOI 10.17487/RFC8283, December 2017.</td>
+</tr>
+</tbody></table>
+<h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
+<div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Bal&#225;zs Varga</span> (editor)
+	  <span class="n hidden">
+		<span class="family-name">Varga</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Ericsson</span>
+	<span class="adr">
+	  <span class="vcardline">Magyar Tudosok krt. 11.</span>
+
+	  <span class="vcardline">
+		<span class="locality">Budapest</span>,  
+		<span class="region"></span>
+		<span class="code">1117</span>
+	  </span>
+	  <span class="country-name vcardline">Hungary</span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:balazs.a.varga@ericsson.com">balazs.a.varga@ericsson.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">J&#225;nos Farkas</span> 
+	  <span class="n hidden">
+		<span class="family-name">Farkas</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Ericsson</span>
+	<span class="adr">
+	  <span class="vcardline">Magyar Tudosok krt. 11.</span>
+
+	  <span class="vcardline">
+		<span class="locality">Budapest</span>,  
+		<span class="region"></span>
+		<span class="code">1117</span>
+	  </span>
+	  <span class="country-name vcardline">Hungary</span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:janos.farkas@ericsson.com">janos.farkas@ericsson.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Andrew G. Malis</span> 
+	  <span class="n hidden">
+		<span class="family-name">Malis</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Huawei Technologies</span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:agmalis@gmail.com">agmalis@gmail.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Stewart Bryant</span> 
+	  <span class="n hidden">
+		<span class="family-name">Bryant</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Huawei Technologies</span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:stewart.bryant@gmail.com">stewart.bryant@gmail.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Jouni Korhonen</span> 
+	  <span class="n hidden">
+		<span class="family-name">Korhonen</span>
+	  </span>
+	</span>
+	<span class="org vcardline"></span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:jouni.nospam@gmail.com">jouni.nospam@gmail.com</a></span>
+
+  </address>
+</div>
+
+</body>
+</html>
