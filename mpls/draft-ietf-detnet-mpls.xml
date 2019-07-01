@@ -555,7 +555,7 @@ DFx = DetNet member flow x over a TE LSP
    </list>
    The sequence number length MUST be provisioned on a per
    app-flow basis via
-   configuration, e.g., the controller plane described in
+   configuration, i.e., via the controller plane described in
    <xref target="I-D.ietf-detnet-data-plane-framework"/>.
   </t>
   <t>
@@ -572,10 +572,13 @@ DFx = DetNet member flow x over a TE LSP
     MUST be set to zero (0). The values carried in this field can wrap
     and it is important to note that zero (0) is a valid field value.
     For example, were the sequence number size is 16 bits, the sequence
-    will contain: 65535, 0, 1. In this case, zero (0) is an ordinary
-    sequence number. This differs from <xref target="RFC4448"/> where a
-    sequence number of zero (0) does not indicate that no sequence
-    number field value is in use.
+    will contain: 65535, 0, 1, where zero (0) is an ordinary
+    sequence number.
+  </t>
+  <t>
+    It is important to note that this document differs from <xref
+    target="RFC4448"/> where a sequence number of zero (0) is used to
+    indicate that the sequence number check algorithm is not used.
   </t>
   <t>
     The sequence number is optionally used during receive processing as
@@ -736,17 +739,16 @@ DFx = DetNet member flow x over a TE LSP
           the following procedures apply.
        </t>
        <t>
-         When sending a DetNet flow, Zero or more F-Labels MAY be added
+         When sending a DetNet flow, zero or more F-Labels MAY be pushed
          on top of an S-Label by the node pushing an S-Label. The
          F-Labels to be pushed when sending a particular app-flow MUST
          be provisioned per app-flow via configuration, e.g., via the
          controller plane discussed in
          <xref target="I-D.ietf-detnet-data-plane-framework"/>.
          F-Labels can also provide context for an S-Label.
-
          To
          allow for the omission of F-Labels, an implementation SHOULD
-         also allow an outgoing interface to be provisioned.
+         also allow an outgoing interface to be used.
      </t>
      <t>
        The Packet Replication Function (PRF) function MAY be supported
@@ -819,7 +821,7 @@ DFx = DetNet member flow x over a TE LSP
          outgoing interfaces, a next hop LSR.  Note that this
          information MUST be provisioned via configuration or the
          controller plane.  In the previously mentioned special case
-         where there is no added F-labels and the outgoing interface is
+         where there are no added F-labels and the outgoing interface is
          not a point-to-point interface, the outgoing interface MUST
          also be associated with a next hop LSR.
        </t>
@@ -1016,6 +1018,8 @@ DFx = DetNet member flow x over a TE LSP
      die during a transient loop, but given the sensitivity of applications
      to packet latency the impact on the DetNet application would be
      severe.
+     To avoid the problem of a transient forwarding loop, changes to an
+     LSP supporting DetNet MUST be loop-free.
    </t>
 
    <section title="Edge Node Processing" anchor="sec_t_pe">
