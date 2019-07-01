@@ -505,7 +505,7 @@ DFx = DetNet member flow x over a TE LSP
 +---------------------------------+    +--> DetNet data plane
 |           S-Label               |    |    MPLS encapsulation
 +---------------------------------+    |
-|           F-Label(s)            |    |
+|         [ F-Label(s) ]          |    |
 +---------------------------------+ <--/
 |           Data-Link             |
 +---------------------------------+
@@ -962,7 +962,7 @@ DFx = DetNet member flow x over a TE LSP
 +=================================+    |
 |            S-Label              |    |
 +---------------------------------+    |
-|           F-Label(s)            |    +----DetNet data plane
+|         [ F-Label(s) ]          |    +----DetNet data plane
 +---------------------------------+    |
 |       DetNet Control Word       |    |
 +=================================+    |

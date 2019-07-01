@@ -175,6 +175,7 @@
             <t hangText="PREOF">Packet Replication, Elimination and Ordering Functions.</t>
             <t hangText="POF">Packet Ordering Function.</t>
             <t hangText="PSN">Packet Switched Network.</t>
+            <t hangText="PW">PseudoWire.</t>
             <t hangText="QoS">Quality of Service.</t>
             <t hangText="TSN">Time-Sensitive Network.</t>
           </list>
@@ -251,37 +252,27 @@
       <section title="Data Plane Characteristics" anchor="sec_dp_char">
         <t>
 	There are two major characteristics to the data plane:
-        <list style='numbers'>
-         <t>
-	 Data plane construction: The DetNet service sub-layer
-	 provides its functions for the DetNet application flows by using or applying
-	 existing standardized headers and/or encapsulations.  The Detnet
-	 forwarding sub-layer may provide capabilities leveraging that same
-	 header or encapsulation technology e.g. <xref target="dn_svcs"/> or it
-	 may be achieved by other standardized technologies e.g.  <xref
-		 target="dn_svc_encaps"/>.
-         </t>
-         <t>
-	 Extensibility of that Data Plane:  Whether or not the DetNet data plane
-	 includes the facility to carry additional information (metadata) that
-	 can be used to provide an enhanced service to the DetNet packet.
-          </t>
-        </list>
-         </t>
-         <t>
-                 <!-- Below replacement text suggested by Balazs --> 
-         </t>
+        </t>
          <t>
          <list style='numbers'>
          <t>
-          Forwarding paradigm: DetNet is currently defined for operation over packet switched (IP)
-          networks or label switched (MPLS) networks .  
+         Data plane technology: The DetNet data plane is provided by the DetNet 
+		 service and forwarding sub layers.  The DetNet service sub-layer
+	 generally provides its functions for the DetNet application flows by using or applying
+	 existing standardized headers and/or encapsulations.  The Detnet
+	 forwarding sub-layer may provide capabilities leveraging that same
+	 header or encapsulation technology e.g. <xref target="dn_svcs"/> or it
+	 may be achieved by other technologies e.g.  <xref
+		 target="dn_svc_encaps"/>.
+         DetNet is currently defined for operation over packet switched (IP)
+          networks or label switched (MPLS) networks.  
          </t>
          <t>
           Encapsulation format: DetNet encodes specific flow attributes
-          (namely flow identity and sequence number) in packets. In DetNet IP, 
+	  (namely flow identity and sequence number) in packets. 
+	  For example, in DetNet IP, 
           zero encapsulation may be used and no sequence number
-          is available. In MPLS, DetNet specific information may be added
+          is available, and in DetNet MPLS, DetNet specific information may be added
           explicitly to the packets in the format of S-label and d-CW.  
          </t>
          </list>
@@ -487,7 +478,7 @@
         Use of multiple packet streams using multiple paths, for example 1+1 or
         1:1 linear protection.  For DetNet this primarily relates to packet
         replication and elimination capabilities. 
-        MPLS offers a number of pretection schemes. 
+        MPLS offers a number of protection schemes. 
         MPLS hitless protection can be used to switch traffic to an already established path 
         in order to restore delivery rapidly after a failure. 
         Path changes, even in the case of failure recovery, can lead to the out of
