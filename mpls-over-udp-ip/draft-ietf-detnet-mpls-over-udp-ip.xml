@@ -1,44 +1,5 @@
 <?xml version="1.0" encoding="US-ASCII"?>
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
-<!ENTITY rfc2119 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
-<!ENTITY rfc3985 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3985.xml">
-<!ENTITY rfc4090 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4090.xml">
-<!ENTITY rfc4385 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4385.xml">
-<!ENTITY rfc4446 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4446.xml">
-<!ENTITY rfc4447 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4447.xml">
-<!ENTITY rfc4553 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4553.xml">
-<!ENTITY rfc4664 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4664.xml">
-<!ENTITY rfc4817 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4817.xml">
-<!ENTITY rfc5036 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5036.xml">
-<!ENTITY rfc5086 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5086.xml">
-<!ENTITY rfc5087 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5087.xml">
-<!ENTITY rfc5254 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5254.xml">
-<!ENTITY rfc5305 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5305.xml">
-<!ENTITY rfc5331 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5331.xml">
-<!ENTITY rfc5332 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5332.xml">
-<!ENTITY rfc5659 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5659.xml">
-<!ENTITY rfc5960 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5960.xml">
-<!ENTITY rfc6275 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6275.xml">
-<!ENTITY rfc6371 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6371.xml">
-<!ENTITY rfc6378 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6378.xml">
-<!ENTITY rfc6426 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6426.xml">
-<!ENTITY rfc6437 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6437.xml">
-<!ENTITY rfc6540 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6540.xml">
-<!ENTITY rfc6564 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6564.xml">
-<!ENTITY rfc6621 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6621.xml">
-<!ENTITY rfc6658 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6658.xml">
-<!ENTITY rfc6718 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6718.xml">
-<!ENTITY rfc6733 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6733.xml">
-<!ENTITY rfc7271 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7271.xml">
-<!ENTITY rfc7348 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7348.xml">
-<!ENTITY rfc7426 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7426.xml">
-<!ENTITY rfc7432 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7432.xml">
-<!ENTITY rfc7510 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7510.xml">
-<!ENTITY I-D.ietf-6man-segment-routing-header PUBLIC "" "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-6man-segment-routing-header">
-<!ENTITY I-D.ietf-detnet-problem-statement PUBLIC "" "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-detnet-problem-statement.xml">
-<!ENTITY I-D.ietf-detnet-architecture PUBLIC "" "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-detnet-architecture.xml">
-<!ENTITY I-D.ietf-mpls-residence-time SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-mpls-residence-time">
-
 ]>
 <!--
 - From 2/25 call:
@@ -73,17 +34,17 @@
     DetNet Data Plane: MPLS over UDP/IP</title>
 
   <author role="editor" fullname="Bal&aacute;zs Varga" initials="B." surname="Varga">
-	<organization>Ericsson</organization>
-	<address>
-	 <postal>
-	  <street>Magyar Tudosok krt. 11.</street>
-	  <city>Budapest</city>
-	  <country>Hungary</country>
-	  <code>1117</code>
-	 </postal>
-	 <email>balazs.a.varga@ericsson.com</email>
-	</address>
-	</author>
+        <organization>Ericsson</organization>
+        <address>
+         <postal>
+          <street>Magyar Tudosok krt. 11.</street>
+          <city>Budapest</city>
+          <country>Hungary</country>
+          <code>1117</code>
+         </postal>
+         <email>balazs.a.varga@ericsson.com</email>
+        </address>
+        </author>
 
     <author fullname="J&aacute;nos Farkas" initials="J." surname="Farkas">
       <organization>Ericsson</organization>
@@ -143,8 +104,8 @@
   <abstract>
    <t>
      This document specifies the MPLS Deterministic Networking data plane
-     operation and encapsulation over an IP network. The approach is modeled 
-     on the operation of MPLS and PseudoWires (PW) over IP.
+     operation and encapsulation over an IP network. The approach is modeled
+     on the operation of MPLS and over UDP/IP packet switched networks.
    </t>
   </abstract>
   </front>
@@ -168,8 +129,8 @@
   </t> -->
   <t>
   This document specifies use of the MPLS DetNet encapsulation over an IP network.
-  The approach is modeled on the operation of MPLS and PseudoWires (PW) over
-  an IP Packet Switched Network (PSN) <xref target="RFC3985"/><xref target="RFC4385"/><xref target="RFC7510"/>.
+  The approach is modeled on the operation of MPLS over
+  an IP Packet Switched Network (PSN) <xref target="RFC7510"/>.
   It maps the MPLS data plane encapsulation described in <xref
   target="I-D.ietf-detnet-mpls"/> to the DetNet IP data plane defined in <xref
   target="I-D.ietf-detnet-ip"/>.
@@ -189,7 +150,7 @@
   </t>
  <t>
   These requirements are satisfied by the DetNet over MPLS Encapsulation
-  described in <xref target="I-D.ietf-detnet-mpls"/> and they are partly satisfied 
+  described in <xref target="I-D.ietf-detnet-mpls"/> and they are partly satisfied
   by the DetNet IP data plane defined in <xref target="I-D.ietf-detnet-ip"/>
  </t>
 </section>
@@ -208,11 +169,11 @@
    The following abbreviations are used in this document:
    <list style="hanging" hangIndent="14">
     <t hangText="d-CW">
-	  A DetNet Control Word (d-CW) is used for sequencing and identifying duplicate packets of a DetNet flow at the DetNet service
+          A DetNet Control Word (d-CW) is used for sequencing and identifying duplicate packets of a DetNet flow at the DetNet service
       sub-layer. </t>
     <t hangText="DetNet">Deterministic Networking.</t>
-    <t hangText="A-Label">A special case of an S-Label, whose properties are known only at 
-	   the aggregation and deaggregation end-points.</t>
+    <t hangText="A-Label">A special case of an S-Label, whose properties are known only at
+           the aggregation and deaggregation end-points.</t>
     <t hangText="F-Label">A Detnet "forwarding" label that identifies the LSP used to
     forward a DetNet flow across an MPLS PSN, e.g., a hop-by-hop
     label used between label switching routers.</t>
@@ -222,7 +183,6 @@
     <t hangText="POF">Packet Ordering Function.</t>
     <t hangText="PRF">Packet Replication Function.</t>
     <t hangText="PSN">Packet Switched Network.</t>
-    <t hangText="PW">PseudoWire.</t>
     <t hangText="S-Label">A DetNet "service" label that is used between DetNet
     nodes that implement also the DetNet service sub-layer functions. An S-Label is
     also used to identify a DetNet flow at DetNet service sub-layer.</t>
@@ -248,18 +208,18 @@
  <t>
   This document builds on the specification of MPLS over UDP defined
   in <xref target="RFC7510"/>.  It may replace partly or entirely the F-Label(s) used in <xref
-	  target="I-D.ietf-detnet-mpls"/> with UDP and IP headers.  The UDP and
+          target="I-D.ietf-detnet-mpls"/> with UDP and IP headers.  The UDP and
   IP header information is used to identify DetNet flows, including member
   flows, per <xref target="I-D.ietf-detnet-ip"/>. The resulting encapsulation
-  is shown in  <xref target="IP-encap-dn"/>. There may be zero or more F-label(s) 
+  is shown in  <xref target="IP-encap-dn"/>. There may be zero or more F-label(s)
   between the S-label and the UDP header.
  </t>
 
  <t>
-   Note that this encapsulation works equally well with IPv4, IPv6, and 
+   Note that this encapsulation works equally well with IPv4, IPv6, and
    IPv6-based Segment Routing <xref target="I-D.ietf-6man-segment-routing-header"/>.
  </t>
- 
+
  <figure title="UDP/IP Encapsulation of DetNet MPLS" anchor="IP-encap-dn">
  <artwork align="center"><![CDATA[
 +---------------------------------+
@@ -272,7 +232,7 @@
 +---------------------------------+    +--> DetNet data plane
 |             S-Label             |    |    MPLS encapsulation
 +---------------------------------+    |
-|          ( F-label(s) )         |    |
+|          [ F-label(s) ]         |    |
 +---------------------------------+ <--+
 |           UDP Header            |    |
 +---------------------------------+    +--> DetNet data plane
@@ -286,69 +246,38 @@
  </artwork></figure>
 
   <t>
-    d-CW and and S-Labels are used as defined in <xref
-    target="I-D.ietf-detnet-mpls"/> and are not modified by this document. 
-	In case of aggregates the A-Label is treated as an S-Label and it is not 
-	modified as well.
+    d-CW, S-Labels and zero or more F-Labels are used as defined in <xref
+    target="I-D.ietf-detnet-mpls"/> and are not modified by this document.
+    In case of aggregates the A-Label is treated as an S-Label and it
+    too is not modified.
   </t>
 </section>
 
 <section anchor="dp-procs" title="DetNet Data Plane Procedures">
   <t>
-    To support outgoing DetNet MPLS over UDP/IP, an implementation MUST support the
-    provisioning of UDP/IP header information in addition or in place of 
-	F-Label(s).  
-	<!-- Note that multiple sets of F-Labels can be provisioned to
-    support PRF on transmitted DetNet MPLS flows and therefore, when PRF is
-    supported, multiple UDP/IP headers MAY be provisioned. 
-  </t>
-  <t>
-	[Note: PRF is an MPLS function. It produces member flows. Member flows have 
-	1to1 mapping to UDP/IP headers. So why are multiple headers provisioned? 
-	Delete next sentence?]
-  </t>
-  <t>
-	When multiple
-    UDP/IP headers are provisioned for a particular outgoing DetNet IP flow, a
-    copy of the outgoing packet, including the pushed S-Label (and optional F-label(s)), MUST be
-    made for each. 
-	-->
-	The headers for each outgoing packet MUST be based on
+    To support outgoing DetNet MPLS over UDP/IP encapsulation, an implementation MUST support the
+    provisioning of UDP and IP header information in addition or in place of
+        F-Label(s).
+    Note, when PRF is performed at the MPLS service sub-layer, there
+    will be multiple member flows, and each member flow will require the
+    provisioning of their own UDP and IP header information.
+        The headers for each outgoing packet MUST be formatted on
     the configuration information and as defined in <xref
-    target="RFC7510"/>, with one exception.  The one exception is that
+    target="RFC7510"/>, with one exception.  Note that
     the UDP Source Port value MUST be set to uniquely identify the
     DetNet flow.  The packet MUST then be handed
     as a DetNet IP packet, per <xref target="I-D.ietf-detnet-ip"/>.
+    This includes QoS related traffic treatment.
   </t>
-
-<!--  <t>
-  [Note: What about IPv4 Type of Service and IPv6 Traffic Class Fields? 
-  Do we intend to set them? 06.24: Yes, It is part of the IP header.]
-  </t>  -->
 
   <t>
     To support receive processing an implementation MUST also support
-    the provisioning of received UDP/IP header information.  
-<!--  </t>
-  <t>
-	[Note: Are the receiving nodes T-PE nodes? Why? 06.24: No, they are not]
-  </t>
-  <t>  
-	When
-    S-Labels are taken from platform label space, all that is required
-    is to provision that receiving UDP/IP encapsulated DetNet MPLS
-    packets is permitted.  Once the UDP/IP header is stripped, the
-    S-label uniquely identifies the app-flow.  When S-Labels are not
-    taken from platform label space, UDP/IP header information MUST be
-    provisioned. --> 
-	The provisioned information MUST be used to
+    the provisioning of received UDP and IP header information.
+        The provisioned information MUST be used to
     identify incoming app-flows based on the combination of S-Label and
-    incoming IP/UDP header.  Normal receive processing, including PEF and POF
+    incoming encapsulation header information.  Normal receive processing as defined in <xref target="I-D.ietf-detnet-mpls"/>, including PEF and POF,
     can then take place.
   </t>
-    
- <!-- LB: I thought we agreed to pick one MPLS over IP encap.
-      Also SR support can fall out of DetNet IP SR support once defined -->
 
 </section>
 
@@ -358,11 +287,12 @@
             The following summarizes the set of information that is needed to
             configure DetNet MPLS over UDP/IP:
             <list style="symbols">
-			  <t>Label information (S-label or F-label) to be mapped to UDP/IP flow. </t>
+                          <t>Label information (S-label or F-label) to
+                          be mapped to UDP/IP flow. Note that a single
+                          S-Label can map to multiple sets of UPD/IP
+                          information when PREOF is used.</t>
               <t>IPv4 and IPv6 source address field.</t>
               <t>IPv4 and IPv6 destination address field.</t>
-              <t>IPv4 protocol field. Only UDP is allowed.</t>
-              <t>IPv6 next header field. Only UDP is allowed.</t>
               <t>IPv4 Type of Service and IPv6 Traffic Class Fields.</t>
               <t>UDP Source Port. </t>
               <t>UDP Destination Port. </t>
@@ -370,14 +300,6 @@
             This information MUST be provisioned per DetNet flow via
             configuration, e.g., via the controller or management plane.
           </t>
-<!--  06.24: there is an exact match  <t>
-            Information identifying a DetNet flow is ordered and
-            implementations use the first match.  This can, for example, be
-            used to provide a DetNet service for a specific UDP flow, with
-            unique Source and Destination Port field values, while
-            providing a different service for the aggregate of all other
-            flows with that same UDP Destination Port value.
-          </t>  -->
           <t>
             It is the responsibility of the DetNet controller plane to
             properly provision both flow identification information and
@@ -394,7 +316,7 @@
   <t>
    The security considerations of DetNet in general are discussed in
    <xref target="I-D.ietf-detnet-architecture"/>
-   and <xref target="I-D.ietf-detnet-security"/>. MPLS and IP specific 
+   and <xref target="I-D.ietf-detnet-security"/>. MPLS and IP specific
    security considerations are described in <xref target="I-D.ietf-detnet-mpls"/>
    and <xref target="I-D.ietf-detnet-ip"/>. This draft does not have additional
    security considerations.
@@ -410,10 +332,10 @@
 
 <section anchor="acks" title="Acknowledgements">
       <t>
-		The authors wish to thank Pat Thaler, Norman Finn, Loa Anderson, David Black, 
-		Rodney Cummings, Ethan Grossman, Tal Mizrahi, David Mozes, Craig Gunther, 
-		George Swallow, Yuanlong Jiang and Carlos J. Bernardos for their
-		various contributions to this work.
+                The authors wish to thank Pat Thaler, Norman Finn, Loa Anderson, David Black,
+                Rodney Cummings, Ethan Grossman, Tal Mizrahi, David Mozes, Craig Gunther,
+                George Swallow, Yuanlong Jiang and Carlos J. Bernardos for their
+                various contributions to this work.
       </t>
 </section>
 
@@ -423,17 +345,15 @@
 
 <back>
   <references title="Normative References">
-   &rfc2119;
-   &rfc4385;
-   &rfc7510;
+   <?rfc include="reference.RFC.2119"?>
+   <?rfc include="reference.RFC.7510"?>
    <?rfc include="reference.RFC.8174"?>
    <?rfc include="reference.I-D.ietf-detnet-mpls'?>
    <?rfc include="reference.I-D.ietf-detnet-ip'?>
   </references>
   <references title="Informative References">
-   &rfc3985;
-&I-D.ietf-detnet-architecture;
-   &I-D.ietf-6man-segment-routing-header;
+   <?rfc include="reference.I-D.ietf-detnet-architecture"?>
+   <?rfc include="reference.I-D.ietf-6man-segment-routing-header"?>
    <?rfc include="reference.I-D.ietf-detnet-security"?>
   </references>
  </back>
