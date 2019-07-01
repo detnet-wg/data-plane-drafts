@@ -105,7 +105,7 @@
    <t>
      This document specifies the MPLS Deterministic Networking data plane
      operation and encapsulation over an IP network. The approach is modeled
-     on the operation of MPLS and PseudoWires (PW) over IP.
+     on the operation of MPLS and over UDP/IP packet switched networks.
    </t>
   </abstract>
   </front>
@@ -129,8 +129,8 @@
   </t> -->
   <t>
   This document specifies use of the MPLS DetNet encapsulation over an IP network.
-  The approach is modeled on the operation of MPLS and PseudoWires (PW) over
-  an IP Packet Switched Network (PSN) <xref target="RFC3985"/><xref target="RFC4385"/><xref target="RFC7510"/>.
+  The approach is modeled on the operation of MPLS over
+  an IP Packet Switched Network (PSN) <xref target="RFC7510"/>.
   It maps the MPLS data plane encapsulation described in <xref
   target="I-D.ietf-detnet-mpls"/> to the DetNet IP data plane defined in <xref
   target="I-D.ietf-detnet-ip"/>.
@@ -183,7 +183,6 @@
     <t hangText="POF">Packet Ordering Function.</t>
     <t hangText="PRF">Packet Replication Function.</t>
     <t hangText="PSN">Packet Switched Network.</t>
-    <t hangText="PW">PseudoWire.</t>
     <t hangText="S-Label">A DetNet "service" label that is used between DetNet
     nodes that implement also the DetNet service sub-layer functions. An S-Label is
     also used to identify a DetNet flow at DetNet service sub-layer.</t>
@@ -347,14 +346,12 @@
 <back>
   <references title="Normative References">
    <?rfc include="reference.RFC.2119"?>
-   <?rfc include="reference.RFC.4385"?>
    <?rfc include="reference.RFC.7510"?>
    <?rfc include="reference.RFC.8174"?>
    <?rfc include="reference.I-D.ietf-detnet-mpls'?>
    <?rfc include="reference.I-D.ietf-detnet-ip'?>
   </references>
   <references title="Informative References">
-   <?rfc include="reference.RFC.3985"?>
    <?rfc include="reference.I-D.ietf-detnet-architecture"?>
    <?rfc include="reference.I-D.ietf-6man-segment-routing-header"?>
    <?rfc include="reference.I-D.ietf-detnet-security"?>
