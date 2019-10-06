@@ -163,6 +163,7 @@
             <t hangText="DN">DetNet.</t>
             <t hangText="DiffServ">Differentiated Services</t>
             <t hangText="DSCP">Differentiated Services Code Point</t>
+            <t hangText="ECN">Explicit Congestion Notification.</t>
             <t hangText="L2">Layer-2.</t>
             <t hangText="L3">Layer-3.</t>
             <t hangText="LSP">Label-switched path.</t>
@@ -223,7 +224,7 @@
         target="I-D.ietf-detnet-data-plane-framework"/>.
       </t>
       <t>
-        The DetNet IP data plane uses "6-tuple" based flow identification, where
+        The DetNet IP data plane primarily uses "6-tuple" based flow identification, where
         6-tuple refers to information carried in IP and higher layer protocol
         headers.  The 6-tuple referred to in this document is the same as
         that defined in <xref target="RFC3290"/>. Specifically 6-tuple is
@@ -234,14 +235,21 @@
         <xref target="RFC3670"/>.  <xref target="RFC7657"/> also provides
         useful background on the delivery of DiffServ and "tuple" based flow
         identification.
-
-        Referring to a 6-tuple allows DetNet nodes to forward packets with the
-        6-tuple as is or remap the DSCP where required by the DetNet service.
-
+      </t>
+      <t>
+        The DetNet IP data plane also allows for optional matching on two
+        additional data fields.  The optional fields are the ECN Field,
+        as in <xref target="RFC3168"/>, and the IPv6 flow label field,
+        as defined in <xref target="RFC8200"/>.
+      </t>
+      <t>
+        Generally the fields used in flow identification are forward
+        unmodified but modification is allowed, for example to a DSCP
+        value, when required by the DetNet service.
       </t>
       <t>
         DetNet flow aggregation may be enabled via the use of
-        wildcards, masks, prefixes and ranges. IP tunnels may also be
+        wildcards, masks, lists, prefixes and ranges. IP tunnels may also be
         used to support flow aggregation. In these cases, it is
         expected that DetNet aware intermediate nodes will provide
         DetNet service assurance on the aggregate through resource
@@ -543,7 +551,8 @@ DetNet                    |L2/SbN|          |L2/SbN|
           802.1 TSN.  The traffic control mechanisms used to deliver QoS for
           IP encapsulated DetNet flows are expected to be defined in a future
           document.  From an encapsulation perspective, the combination of the 6-tuple i.e.,
-          the typical 5-tuple enhanced with the DSCP code, uniquely identifies a DetNet
+          the typical 5-tuple enhanced with the DSCP and previously
+          mentioned two optional fields, uniquely identifies a DetNet
           service flow.
         </t>
         <t>
@@ -591,9 +600,9 @@ DetNet                    |L2/SbN|          |L2/SbN|
           impacts DetNet IP data plane flow identification and resource
           allocation.  As discussed above, IP flow identification uses
           the IP "6-tuple" for flow identification.  DetNet IP flows can
-          be aggregated using any of the 6-tuple fields defined in <xref
+          be aggregated using any of the 6-tuple, or two additional optional fields defined in <xref
           target="ip-flow-id"/>.  The use of prefixes, wildcards,
-          bitmasks, and value ranges allows a DetNet node to identify
+          lists, and value ranges allows a DetNet node to identify
           aggregate DetNet flows.  From a resource allocation
           perspective, DetNet nodes must provide service to a aggregate
           and not on a component flow basis.
@@ -739,11 +748,21 @@ DetNet                    |L2/SbN|          |L2/SbN|
               this document MUST support DetNet flow identification
               based on the IPv4 Type of Service field when processing
               IPv4 packets, and the IPv6 Traffic Class Field when
-              processing IPv6 packets. Implementations MUST support
-              bitmask based matching, where bits set to one (1) in the bitmask
-              indicate which subset of the bits in the field are to be
-              used in determining a match. Note that all bits set to zero (0) value as
-              a bitmask effectively means that these fields are ignored.
+              processing IPv6 packets. Implementations MUST support list
+              based matching of DSCP values, where the list is composed
+              of possible field values that are to be considered when
+              identifying a specific DetNet flow.  Implementations
+              SHOULD allow for this field to be ignored for a specific
+              DetNet flow.
+            </t>
+            <t>
+              Implementations of this document MUST allow the ECN field
+              to be ignored as part of DetNet flow identification.
+              Additionally, implementations SHOULD support
+              identification of DetNet flows based on the value carried
+              in the ECN field.  When this field is used to identify a
+              specific DetNet flow, implementations MUST support a list
+              of ECN values that match a specific slow.
             </t>
           </section>
           <section title="IPv6 Flow Label Field">
@@ -876,10 +895,18 @@ DetNet                    |L2/SbN|          |L2/SbN|
               <t>IPv6 next header field. A limited set of values is allowed,
               and the ability to ignore this field, e.g., via
               configuration of the value zero (0), is desirable.</t>
-              <t>IPv4 Type of Service and IPv6 Traffic Class Fields.</t>
-              <t>IPv4 Type of Service and IPv6 Traffic Class Field Bitmask, where a
-              zero (0) effectively means that theses fields are
-              ignored.</t>
+              <t>For the IPv4 Type of Service and IPv6 Traffic Class
+              Fields:
+              <list style="symbols">
+                <t>If the DSCP field is to be used in flow
+                identification. Ignoring the DSCP filed is optional.</t>
+                <t>When the DSCP field is used in flow identification, a
+                list of field values that may be used by a specific flow.</t>
+                <t>If the ECN field is to be used in flow
+                identification. Matching based on ECN filed values is optional.</t>
+                <t>When ECN field is used in flow identification, a
+                list of field values that may be used by a specific flow.</t>
+              </list></t>
               <t>IPv6 flow label field. This field can be optionally used
               for matching.  When used, can be exclusive of matching
               against the next header field.</t>
