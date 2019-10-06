@@ -399,7 +399,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
         is identified based on IP, and next level protocol, header information.
         Section 7.4. Aggregation Considerations in <xref
                 target="I-D.ietf-detnet-ip"/> defines that aggregation is
-        supported through the use of prefixes, wildcards, bitmasks, and port
+        supported through the use of prefixes, wildcards, lists, and port
         ranges.  Collectively, this results in the fairly straight forward
         procedures defined in this section.
       </t>
