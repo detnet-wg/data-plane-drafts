@@ -386,6 +386,10 @@
           this means that there are appropriate local node resources,
           e.g., buffers, to receive and process a DetNet flow packets.
         </t>
+        <t>
+          DetNet aware applications and end systems SHOULD NOT mix
+          DetNet and non-DetNet traffic within a single 5-tuple.
+        </t>
       </section>
 
       <section title="DetNet Domain-Specific Considerations" anchor="dn_dom_spec_cons">
@@ -572,6 +576,33 @@ DetNet                    |L2/SbN|          |L2/SbN|
               Class of Service marker.
             </t>
           </list>
+        </t>
+      </section>
+      <section title="Path Selection" anchor="path">
+        <t>
+          While path selection algorithms and mechanisms are out of
+          scope of the DetNet data plane definition, it is important to
+          highlight the implications of DetNet IP flow identification on
+          path selection and next hops.  As mentioned above, the DetNet
+          IP data plane identifies flows using "6-tuple" header
+          information as well as two additional optional header
+          fields. DetNet generally allows for both flow-specific traffic
+          treatment and flow-specific next-hops.
+        </t>
+        <t>
+          In non-DetNet IP forwarding, it is generally assumed that the
+          same series of next hops, i.e., the same path, will be used
+          for a particular 5-tuple or, in some cases, e.g., <xref
+          target="RFC5120"/>, for a particular 6-tuple.  This assumption
+          is reflected in higher protocol levels, e.g., see <xref
+          target="RFC3168"/>. Using different next hops for different
+          5-tuples does not take any special consideration within a
+          DetNet domain.  Care should be taken when using different next
+          hops for the same 5-tuple. Understanding of the application
+          and transport protocol impact of using different next
+          hops for the same 6-tuple is required. Again, this impacts
+          path selection for DetNet flows and this document only
+          indirectly.
         </t>
       </section>
       </section>
@@ -1028,6 +1059,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
       <?rfc include="reference.RFC.1122"?>
       <?rfc include="reference.RFC.3290"?>
       <?rfc include="reference.RFC.3670"?>
+      <?rfc include="reference.RFC.5120"?>
       <?rfc include="reference.RFC.5777"?>
       <?rfc include="reference.RFC.6434"?>
       <?rfc include="reference.RFC.7551"?>
