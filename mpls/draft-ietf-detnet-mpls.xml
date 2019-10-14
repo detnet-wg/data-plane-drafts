@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="US-ASCII"?>
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
 ]>
-<!--
-- From 2/25 call:
-  o finish discussed split/removal of foo (IP and TSN) over MPLS (Lou) <done>
-  After: All to
-  o identify missing conformance language, notably WRT forwarding
-    sub-layer
-  o Aggregation section needs to be cleaned up
-  o check conformance language in MPLS over TSN section
-
-  Resolved in Mar 5
-  - need for S-Labels to be from platform label space (Andy)
-    Pattern after e-vpn where stack is provided by downstream receiver
-  - Different S-Labels for same application flow (Balazs)
-    clarify that service sub-layer nodes can change s-labels
-
--->
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 <?rfc toc="yes"?>
 <?rfc symrefs="yes"?>
@@ -150,8 +134,8 @@
     MPLS encapsulated DetNet flows can carry different types of
     traffic.  The details of the types of traffic that are carried in
     DetNet are also out of scope of this document.  An example of IP
-    using DetNet MPLS sub-networks can be found in
-    [I-D.ietf-detnet-ip].  DetNet MPLS may use an associated controller
+    using DetNet MPLS sub-networks can be found in <xref
+    target="I-D.ietf-detnet-ip"/>. DetNet MPLS may use an associated controller
     and Operations, Administration, and Maintenance (OAM) functions
     that are defined outside of this document.
   </t>
@@ -808,7 +792,7 @@ DFx = DetNet member flow x over a TE LSP
          not limited to, <xref target="RFC3209"/>, <xref
          target="RFC3270"/>, <xref target="RFC3272"/>, <xref
          target="RFC3473"/>, <xref target="RFC4875"/>, <xref
-         target="RFC5440"/>, and <xref target="RFC6006"/>.
+         target="RFC5440"/>, and <xref target="RFC8306"/>.
        </t>
        <t>
          More specifically, as mentioned above, the DetNet forwarding
@@ -1447,11 +1431,12 @@ DFx = DetNet member flow x over a TE LSP
    <?rfc include="reference.RFC.5921"?>
    <?rfc include="reference.RFC.6073"?>
    <?rfc include="reference.RFC.6003"?>
-   <?rfc include="reference.RFC.6006"?>
    <?rfc include="reference.RFC.6790"?>
+   <?rfc include="reference.RFC.8306"?>
    <?rfc include="reference.I-D.ietf-detnet-security"?>
    <?rfc include="reference.I-D.ietf-detnet-architecture"?>
    <?rfc include="reference.I-D.ietf-detnet-data-plane-framework"?>
+   <?rfc include="reference.I-D.ietf-detnet-ip"?>
    <?rfc include="reference.I-D.ietf-detnet-ip-over-mpls"?>
    <?rfc include="reference.I-D.ietf-detnet-mpls-over-tsn"?>
    <?rfc include="reference.I-D.ietf-spring-segment-routing-mpls'?>
