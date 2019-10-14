@@ -387,6 +387,8 @@
           e.g., buffers, to receive and process a DetNet flow packets.
         </t>
         <t>
+          In order to maximize reuse of 5-tuple based mechanisms, e.g,
+          traceroute,
           DetNet aware applications and end systems SHOULD NOT mix
           DetNet and non-DetNet traffic within a single 5-tuple.
         </t>
@@ -526,6 +528,13 @@ DetNet                    |L2/SbN|          |L2/SbN|
               (L4) transport protocols or application protocols. However, these
               protocols are out of scope of this document.
             </t>
+            <t>
+              Note that not mixing DetNet and non-DetNet traffic within
+              a single 5-tuple, as described above, enables simpler
+              5-tuple filters to be reused at the edges of a DetNet
+              network to prevent non-congestion responsive DetNet
+              traffic from escaping the DetNet domain.
+            </t>
       </section>
 
       <section title="Forwarding Sub-Layer Considerations">
@@ -593,16 +602,19 @@ DetNet                    |L2/SbN|          |L2/SbN|
           In non-DetNet IP forwarding, it is generally assumed that the
           same series of next hops, i.e., the same path, will be used
           for a particular 5-tuple or, in some cases, e.g., <xref
-          target="RFC5120"/>, for a particular 6-tuple.  This assumption
-          is reflected in higher protocol levels, e.g., see <xref
-          target="RFC3168"/>. Using different next hops for different
-          5-tuples does not take any special consideration within a
-          DetNet domain.  Care should be taken when using different next
-          hops for the same 5-tuple. Understanding of the application
-          and transport protocol impact of using different next
-          hops for the same 6-tuple is required. Again, this impacts
-          path selection for DetNet flows and this document only
-          indirectly.
+          target="RFC5120"/>, for a particular 6-tuple.  Using different
+          next hops for different 5-tuples does not take any special
+          consideration for DetNet aware applications.
+        </t>
+        <t>
+          Care should be taken when using different next hops for the
+          same 5-tuple.  As discussed in <xref target="RFC7657"/>,
+          unexpected behavior can occur when a single 5-tuple
+          application flow experience reordering due to being split
+          across multiple next hops.  Understanding of the application
+          and transport protocol impact of using different next hops for
+          the same 6-tuple is required.  Again, this impacts path
+          selection for DetNet flows and this document only indirectly.
         </t>
       </section>
       </section>
