@@ -140,7 +140,7 @@
     that are defined outside of this document.
   </t>
   <t>
-    Important background information common to all data planes for DetNet
+    Background information common to all data planes for DetNet
     can be found in the DetNet Data
     Plane Framework <xref target="I-D.ietf-detnet-data-plane-framework"/>.
   </t>
