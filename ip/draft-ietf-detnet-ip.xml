@@ -163,7 +163,6 @@
             <t hangText="DN">DetNet.</t>
             <t hangText="DiffServ">Differentiated Services</t>
             <t hangText="DSCP">Differentiated Services Code Point</t>
-            <t hangText="ECN">Explicit Congestion Notification.</t>
             <t hangText="L2">Layer-2.</t>
             <t hangText="L3">Layer-3.</t>
             <t hangText="LSP">Label-switched path.</t>
@@ -237,9 +236,8 @@
         identification.
       </t>
       <t>
-        The DetNet IP data plane also allows for optional matching on two
-        additional data fields.  The optional fields are the ECN Field,
-        as in <xref target="RFC3168"/>, and the IPv6 flow label field,
+        The DetNet IP data plane also allows for optional matching on
+        the IPv6 flow label field,
         as defined in <xref target="RFC8200"/>.
       </t>
       <t>
@@ -542,9 +540,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
         <t>
           Class of Service (CoS) for DetNet flows carried in IPv6 is provided using the standard
           differentiated services code point (DSCP) field <xref
-          target="RFC2474"/> and related mechanisms.  The 2-bit explicit
-          congestion notification (ECN) <xref target="RFC3168"/> field MAY
-          also be used.
+          target="RFC2474"/> and related mechanisms.
         </t>
         <t>
           One additional consideration for DetNet nodes which support CoS
@@ -565,7 +561,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
           IP encapsulated DetNet flows are expected to be defined in a future
           document.  From an encapsulation perspective, the combination of the 6-tuple i.e.,
           the typical 5-tuple enhanced with the DSCP and previously
-          mentioned two optional fields, uniquely identifies a DetNet
+          mentioned optional field, uniquely identifies a DetNet
           service flow.
         </t>
         <t>
@@ -594,8 +590,8 @@ DetNet                    |L2/SbN|          |L2/SbN|
           highlight the implications of DetNet IP flow identification on
           path selection and next hops.  As mentioned above, the DetNet
           IP data plane identifies flows using "6-tuple" header
-          information as well as two additional optional header
-          fields. DetNet generally allows for both flow-specific traffic
+          information as well as the additional optional header
+          field. DetNet generally allows for both flow-specific traffic
           treatment and flow-specific next-hops.
         </t>
         <t>
@@ -643,7 +639,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
           impacts DetNet IP data plane flow identification and resource
           allocation.  As discussed above, IP flow identification uses
           the IP "6-tuple" for flow identification.  DetNet IP flows can
-          be aggregated using any of the 6-tuple, or two additional optional fields defined in <xref
+          be aggregated using any of the 6-tuple, and an additional optional field defined in <xref
           target="ip-flow-id"/>.  The use of prefixes, wildcards,
           lists, and value ranges allows a DetNet node to identify
           aggregate DetNet flows.  From a resource allocation
@@ -786,8 +782,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
           <section title="IPv4 Type of Service and IPv6 Traffic Class Fields">
             <t>
               These fields are used to support Differentiated Services
-              <xref target="RFC2474"/> and Explicit Congestion
-              Notification <xref target="RFC3168"/>.  Implementations of
+              <xref target="RFC2474"/>.  Implementations of
               this document MUST support DetNet flow identification
               based on the IPv4 Type of Service field when processing
               IPv4 packets, and the IPv6 Traffic Class Field when
@@ -797,15 +792,6 @@ DetNet                    |L2/SbN|          |L2/SbN|
               identifying a specific DetNet flow.  Implementations
               SHOULD allow for this field to be ignored for a specific
               DetNet flow.
-            </t>
-            <t>
-              Implementations of this document MUST allow the ECN field
-              to be ignored as part of DetNet flow identification.
-              Additionally, implementations SHOULD support
-              identification of DetNet flows based on the value carried
-              in the ECN field.  When this field is used to identify a
-              specific DetNet flow, implementations MUST support a list
-              of ECN values that match a specific slow.
             </t>
           </section>
           <section title="IPv6 Flow Label Field">
@@ -945,10 +931,6 @@ DetNet                    |L2/SbN|          |L2/SbN|
                 identification. Ignoring the DSCP filed is optional.</t>
                 <t>When the DSCP field is used in flow identification, a
                 list of field values that may be used by a specific flow.</t>
-                <t>If the ECN field is to be used in flow
-                identification. Matching based on ECN filed values is optional.</t>
-                <t>When ECN field is used in flow identification, a
-                list of field values that may be used by a specific flow.</t>
               </list></t>
               <t>IPv6 flow label field. This field can be optionally used
               for matching.  When used, can be exclusive of matching
@@ -957,7 +939,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
               required. Port ranges can optionally be used.</t>
               <t>TCP and UDP Destination Port. Exact and wildcard matching is
               required. Port ranges can optionally be used.</t>
-                          <t>IPsec Header SPI field. Exact matching is
+              <t>IPsec Header SPI field. Exact matching is
               required. </t>
             </list>
             This information MUST be provisioned per DetNet flow via
@@ -1058,7 +1040,6 @@ DetNet                    |L2/SbN|          |L2/SbN|
       <?rfc include="reference.RFC.1812"?>
       <?rfc include="reference.RFC.2119"?>
       <?rfc include="reference.RFC.2474"?>
-      <?rfc include="reference.RFC.3168"?>
       <?rfc include="reference.RFC.3473"?>
       <?rfc include="reference.RFC.4301"?>
       <?rfc include="reference.RFC.4302"?>
