@@ -178,14 +178,17 @@
 <figure anchor="fig_tsn_mpls_detnet" align="center"
 title="A TSN over DetNet MPLS Enabled Network">
 <artwork align="center"><![CDATA[
+   TSN           Edge          Transit         Edge          TSN
+End System       Node           Node           Node       End System
+                (T-PE)         (LSR)          (T-PE)
+
 +----------+                                             +----------+
-|TSN       | <-------- End to End TSN Service ---------> |TSN       |
-|Application                                             |Application
+|   TSN    | <---------End to End TSN Service----------> |   TSN    |
+|  Applic. |                                             |  Applic. |
 +----------+  +.........+                   +.........+  +----------+
-|          |  |   :<-Svc:                   :Svc->:   |  |          |
-|          |  |   | :Pxy:<-  DetNet Svc.  ->:Pxy: |   |  |          |
-|   TSN    |  |TSN| +---+                   +---+ |TSN|  |   TSN    |
-|          |  |   | |Svc|<-- DetNet flow -->|Svc| |   |  |          |
+|          |  | \S-Proxy:                   :S-Proxy/ |  |          |
+|   TSN    |  |   +.+---+<-- DetNet flow -->+---+ |   |  |   TSN    |
+|          |  |TSN| |Svc|                   |Svc| |TSN|  |          |
 +----------+  +---+ +---+    +----------+   +---+ +---+  +----------+
 |   L2     |  | L2| |Fwd|    |Forwarding|   |Fwd| |L2 |  |   L2     |
 +------.---+  +-.-+ +-.-+    +---.----.-+   +--.+ +-.-+  +---.------+
@@ -203,10 +206,10 @@ title="A TSN over DetNet MPLS Enabled Network">
   <t>
         In this example, edge nodes provide a service proxy function that 
         "associates" the DetNet flows and native flows (i.e., TSN Streams) at
-        the edge of the DetNet domain.  The TSN streams are treated as DetNet
-        Applicaions.  The service proxy behaves as a TSN relay node as far as
-        the TSN flows are concerned. For DetNet MPLS the service proxy presents
-        the TSN services as an application flow. 
+        the edge of the DetNet domain.  TSN streams are treated as App-flows 
+		for DetNet. The whole DetNet domain behaves as a TSN relay node for 
+		the TSN streams. The service proxy behaves as a port of that TSN 
+		relay node. 
   </t>
 
   <t>
@@ -403,32 +406,23 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
 
   <section title="Edge Node DetNet Service Proxy Procedures" anchor="tom_svc_prx_proc">
           <t>
-                The DetNet Edge Node TSN function MUST support the TSN Stream
+                The Service Proxy
+                function maps between App-flows and DetNet flows.
+				The DetNet Edge Node TSN function MUST support the TSN Stream
                 identification functions and the related managed objects as
                 defined in <xref target="IEEE8021CB">IEEE 802.1CB</xref> and
                 <xref target="IEEEP8021CBdb">IEEE P802.1CBdb</xref> to
-                recognize the App-flow related packets.  The service Proxy
-                presents TSN flows as a single application to a DetNet Flow.
-                The DetNet Flow is a statically defined service that connects
-                TSN service proxy capable Nodes. 
-                
-                <!-- This is interworking 
-                The Service Proxy
-                function maps between App-flows and DetNet flows.  It MUST
-                support the TSN Stream identification functions and the related
-                managed objects as defined in <xref target="IEEE8021CB">IEEE
-                802.1CB</xref> and <xref target="IEEEP8021CBdb">IEEE
-                P802.1CBdb</xref> to recognize the App-flow related
-                packets. 
-    </t>
-    <t>
+                recognize the App-flow related packets.  The Service Proxy
+                presents TSN Streams as an App-flow to a DetNet Flow.
+		  </t>
+		  <t>
                 Implementations of this document SHALL use management and
                 control information to map a TSN Stream to a DetNet flow. 
-                N:1 mapping (aggregating TSN Streams in a single
+                N:1 mapping (aggregating multiple TSN Streams in a single
                 DetNet flow) SHALL be supported. The management or control
                 function that provisions flow mapping SHALL ensure that
                 adequate resources are allocated and configured to provide
-                proper service requirements of the mapped flows. -->
+                proper service requirements of the mapped flows.
         </t>
         <t>
                 Due to the (intentional) similarities of the DetNet PREOF and
@@ -440,22 +434,9 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
                 left for further study.
         </t>
         <t>
-                The Service proxy SHALL support TSN MAC addresses allowing a
-                TSN connection to connect to another TSN network over the
-                DetNet Network. A service proxy SHALL be configured as either a
-                unicast DetNet application or a multicast application.  Service
-                proxies that support unicast service SHALL support TSN unicast
-                MAC addresses and Service proxies that support multicast
-                services SHALL support TSN multicast addresses.  The TSN
-                specific functions on the DetNet Edge Node SHOULD participate
-                in TSN Stream reservation protocols allowing TSN to establish
-                flows to the DetNet Edge node.  At the DetNet Edge node the TSN
-                functions are tunneled through the DetNet flow.
-        </t>
-        <t>
-                A static MPLS DetNet flow is configured to carry any number of
-                TSN flows. The Service proxy bandwidth profile SHOULD match the
-                bandwidth allocated to the MPLS Detnet Flow.  
+                A MPLS DetNet flow is configured to carry any number of
+                TSN flows. The DetNet flow specific bandwidth profile SHOULD 
+				match the required bandwidth of the App-flow aggregate.  
         </t>
   </section>
 
@@ -501,9 +482,9 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
    <t>
         TSN Stream(s) to DetNet flow mapping related information are
         required only for the service proxy function of MPLS (DetNet) Edge nodes. 
-        From the Data Plane perspective TSN flows are application flows for 
-        DetNet. The proxy behaves as an Application interface for DetNet and 
-        as a TSN relay node for TSN Ethernet flows.         
+        From the Data Plane perspective there is no practical difference
+		based on the origin of flow mapping related information	(management 
+		plane or control plane).
    </t>
    <t>
         MPLS DetNet Edge nodes are member of both the DetNet domain and the
@@ -512,19 +493,9 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
         management and control plane functionalities must be implemented.
         There are many similarities in the management plane techniques used in
         DetNet and TSN, but that is not the case for the control plane
-        protocols. For example, RSVP-TE and MSRP behaves differently.  Service
-        interworking is out of scope for this document.  TSN services simply
-        see the DetNet network as a TSN relay node that supports forwarding to
-        the MAC address in the TSN flow. 
-   </t>
-   <t>
-        The service Proxy is configured as a DetNet application and all functions are 
-        as described in <xref target="I-D.ietf-detnet-mpls"/>. As far as 
-        the TSN Network is concerned the service proxy is a TSN relay node that supports
-        one or more of TSN destination MAC addresses. These MAC address may be unicast or
-        multicast but the Detnet domain service proxy supports only one type at a time.
-        The service proxy is configured as a unicast or multicast Application for the DetNet 
-        interface.   
+        protocols. For example, RSVP-TE and MSRP behaves differently.  
+		Therefore management and control plane design is an important aspect 
+		of scenarios, where	mapping between DetNet and TSN is required.
    </t>
    <t>
         Note that, as the DetNet network is just a portion of the end to end TSN
@@ -534,14 +505,8 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
         handle all TSN Flows it will support.  At the egress of the Detnet Domain the MPLS
         headers are stripped and the TSN flow continues on as a normal TSN
         flow. 
-</t>
-
-<!--    <<<<This is service interworking text>>>>
-        Therefore management and control
-        plane design is an important aspect of scenarios, where        mapping between 
-        DetNet and TSN is required.
-   </t>
-   <t>
+	</t>
+	<t>
         In order to use a DetNet network to interconnect TSN segments,
         TSN specific information must be converted to DetNet domain
         specific ones. TSN Stream ID(s) and stream(s) related
@@ -575,7 +540,6 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
         and may not be visible in the DetNet domain. Service protection
         interworking scenarios are left for further study.
    </t>
--->
 </section> <!-- End of Management and Control Plane COnsiderations -->
 
 <section title="Security Considerations">
