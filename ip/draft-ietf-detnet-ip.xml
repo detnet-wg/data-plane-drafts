@@ -782,16 +782,16 @@ DetNet                    |L2/SbN|          |L2/SbN|
           <section title="IPv4 Type of Service and IPv6 Traffic Class Fields">
             <t>
               These fields are used to support Differentiated Services
-              <xref target="RFC2474"/>.  Implementations of
-              this document MUST support DetNet flow identification
-              based on the IPv4 Type of Service field when processing
-              IPv4 packets, and the IPv6 Traffic Class Field when
-              processing IPv6 packets. Implementations MUST support list
-              based matching of DSCP values, where the list is composed
-              of possible field values that are to be considered when
-              identifying a specific DetNet flow.  Implementations
-              SHOULD allow for this field to be ignored for a specific
-              DetNet flow.
+              <xref target="RFC2474"/> <xref target="RFC2475"/>.
+              Implementations of this document MUST support DetNet flow
+              identification based on the DSCP field in the IPv4 Type of
+              Service field when processing IPv4 packets, and the DSCP
+              field in the IPv6 Traffic Class Field when processing IPv6
+              packets.  Implementations MUST support list based matching
+              of DSCP values, where the list is composed of possible
+              field values that are to be considered when identifying a
+              specific DetNet flow.  Implementations SHOULD allow for
+              this field to be ignored for a specific DetNet flow.
             </t>
           </section>
           <section title="IPv6 Flow Label Field">
@@ -1027,7 +1027,10 @@ DetNet                    |L2/SbN|          |L2/SbN|
         The authors wish to thank Pat Thaler, Norman Finn, Loa Anderson, David Black,
         Rodney Cummings, Ethan Grossman, Tal Mizrahi, David Mozes, Craig Gunther,
         George Swallow, Yuanlong Jiang and Carlos J. Bernardos for their
-        various contributions to this work.
+        various contributions to this work. David Black served as
+        technical advisor to the DetNet working group during the
+        development of this document and provided many valuable
+        comments.
       </t>
     </section>
   </middle>
@@ -1040,6 +1043,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
       <?rfc include="reference.RFC.1812"?>
       <?rfc include="reference.RFC.2119"?>
       <?rfc include="reference.RFC.2474"?>
+      <?rfc include="reference.RFC.2475"?>
       <?rfc include="reference.RFC.3473"?>
       <?rfc include="reference.RFC.4301"?>
       <?rfc include="reference.RFC.4302"?>
