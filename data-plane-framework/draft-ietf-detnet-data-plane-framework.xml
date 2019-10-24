@@ -258,7 +258,9 @@
         </t>
 		<section title="Data Plane Technology" anchor="sec_dp_tech">
          <t>
-         The DetNet service sub-layer
+         The DetNet data plane is provided by the DetNet service and forwarding 
+		 sub layers. 
+		 The DetNet service sub-layer
 	 generally provides its functions for the DetNet application flows by using or applying
 	 existing standardized headers and/or encapsulations.  The Detnet
 	 forwarding sub-layer may provide capabilities leveraging that same
@@ -274,7 +276,7 @@
           DetNet encodes specific flow attributes
 	  (flow identity and sequence number) in packets. 
 	  For example, in DetNet IP, 
-          zero encapsulation may be used and no sequence number
+          zero encapsulation is used and no sequence number
           is available, and in DetNet MPLS, DetNet specific information may be added
           explicitly to the packets in the format of S-label and d-CW.  
          </t>
@@ -285,8 +287,12 @@
       <section title="Encapsulation" anchor="sec_dp_encap">
          <t>
 		 The encapsulation of a DetNet flow allows it to be sent over a   
-		 data plane technology other than its native type. For example, 
-		 an Ethernet TSN app flow can be sent as a DetNet app flow over MPLS.
+		 data plane technology other than its native type. 		 
+		 DetNet uses header information to perform traffic classification, 
+		 i.e., identify DetNet flows, and provide DetNet service and 
+		 forwarding functions. As mentioned above, DetNet may add headers, 
+		 as is the case for DN MPLS, or may use headers that are already 
+		 present, as is the case in DN IP.		 
 	   <xref target="dn_svc_encaps"/> illustrates some relationships 
 	   between the components.
          </t>
@@ -333,7 +339,7 @@
           </list>
           </t>
           <t>
-		  The DetNet data plane supports a Flow-ID (for identification of the 
+		  The DetNet data plane framework supports a Flow-ID (for identification of the 
 		  flow or aggregate flow) and/or a Sequence Number (for PREOF) for each 
 		  DetNet flow. The DetNet Service sub-layer requires both; the DetNet 
 		  forwarding sub-layer requires only Flow-ID. Metadata can also be 
@@ -447,7 +453,7 @@
       <t>
         Reservation of resources can allocate resources to specific DetNet
         flows.  This can eliminate packet contention and packet loss for DetNet
-        traffic. This also can reduce jitter for DetNet traffic.  So, resources 
+        traffic. This also can reduce jitter for DetNet traffic.  Resources 
 		allocated to a DetNet flow protect it from other traffic flows. On the 
 		other hand, DetNet flows are assumed to behave with respect to the reserved traffic
         profile. Misbehaving DetNet flows must be detected and it have to 
@@ -897,6 +903,8 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
         flow.  There are many techniques to achieve aggregation, for example in case of IP, 
 		it can be grouping of IP flows that share 6-tuple attributes or flow 
 		identifiers at the DetNet sub-layer.
+		Another example includes aggregation accomplished through the use of
+		hierarchical LSPs in MPLS and tunnels.
       </t>
        <t>
 	Control of aggregation involves a set of procedures listed here.  
