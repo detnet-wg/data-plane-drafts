@@ -1210,7 +1210,8 @@ DFx = DetNet member flow x over a TE LSP
         The forwarding sub-layer information associated with the output
         of the service sub-layer.  Note that when the PRF function is
         provisioned, this information is per DetNet member flow.
-        Logically this is a pointer to details provided below for
+        Logically the forwarding sub-layer information is a pointer to 
+		further details of
         transmission of Detnet flows at the forwarding sub-layer.
       </t>
     </list>
@@ -1224,7 +1225,8 @@ DFx = DetNet member flow x over a TE LSP
         The forwarding sub-layer information associated with the input
         of the service sub-layer.  Note that when the PEF function is
         provisioned, this information is per DetNet member flow.
-        Logically this is a pointer to details provided below related to
+        Logically the forwarding sub-layer information is a pointer to 
+		further details of
         the reception of Detnet flows at the forwarding sub-layer or
         A-Label.
       </t>
