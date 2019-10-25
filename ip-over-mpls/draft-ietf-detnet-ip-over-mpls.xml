@@ -258,16 +258,16 @@
           <xref target="fig_ip_detnet"/> illustrated DetNet
           enabled End Systems (hosts), connected to DetNet (DN) enabled
           IP networks, operating over a DetNet aware MPLS network.
-          iUsing this figure we can have a case where the Relay nodes act as
+          Using this figure we can have a case where the Relay nodes act as
           T-PEs and sit at the boundary of the MPLS
           domain since the non-MPLS domain is DetNet aware.  This case
           is very similar to the DetNet MPLS Network figure 2 in <xref
                   target="I-D.ietf-detnet-mpls"/>.  However in  <xref
                   target="I-D.ietf-detnet-mpls"/>  figure 2 the T-PEs are located at the
-         end syetem and MPLS spans the whole DetNet service.
+         end system and MPLS spans the whole DetNet service.
 
           The primary difference in this document is that the Relay nodes are at the edges of the
-          MPLS domain and therefore function as T-PEs, and that iMPLS service
+          MPLS domain and therefore function as T-PEs, and that MPLS service
           sub-layer functions are not provided over the DetNet IP
           network.  The transit node functions show above are identical
           to those described in <xref
@@ -315,7 +315,7 @@ System  |   +--------+       +--------+       +--------+   |  System
 
         <t>
           <xref target="fig_ip_detnet"/> illustrates DetNet
-          enabled End Systems (hosts), connected to DetNet (DN) enabled
+          enabled End Systems, connected to DetNet (DN) enabled
           MPLS network.  A similar situation occurs when
           end systems are are not DetNet aware.  In this case, edge nodes sit at
           the boundary of the MPLS domain since it is also a DetNet domain
@@ -330,7 +330,7 @@ System  |   +--------+       +--------+       +--------+   |  System
 
         <t>
           It is still possible to provided DetNet service protection for
-          non-DetNet aware end systems.  case is basically the
+          non-DetNet aware end systems. This case is basically the
           same as <xref target="fig_ip_pw_detnet"/>, with the exception
           that CE1 and CE2 are non-DetNet aware end systems and R1 and R3
           become edge nodes.
@@ -380,27 +380,27 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
         </artwork>
       </figure>
       <t>
-        In the figure, "App-Flow" indicates the payload carried by
+        In <xref target="fig_dn_ip_mpls_sn_ex"/> "App-Flow" indicates the payload carried by
         the DetNet IP data plane.  "IP" and "NProto" indicate the fields
-        described in Section 7.1.1. IP Header Information and Section 7.1.2.
+        described in Section 5.1.1. IP Header Information and Section 5.1.2.
                 Other Protocol Header Information in <xref target="I-D.ietf-detnet-ip"/>,
                 respectively.
         
-                "MPLS App-Flow" indicates
+                "App-Flow for MPLS" indicates
         that an individual DetNet IP flow is the payload from the
         perspective of the DetNet MPLS data plane defined in <xref
         target="I-D.ietf-detnet-mpls"/>.
       </t>
       <t>
         Per <xref target="I-D.ietf-detnet-mpls"/>, the DetNet MPLS data plane
-        uses a single S-Label to support a single app flow. Section 7.1. DetNet
+        uses a single S-Label to support a single app flow. Section 5.1. DetNet
         IP Flow Identification Procedures in <xref
                 target="I-D.ietf-detnet-ip"/> states that a single DetNet flow
         is identified based on IP, and next level protocol, header information.
-        Section 7.4. Aggregation Considerations in <xref
-                target="I-D.ietf-detnet-ip"/> defines that aggregation is
+        Section 4.4. Aggregation Considerations in <xref
+                target="I-D.ietf-detnet-ip"/> defines the ways in which aggregation is
         supported through the use of prefixes, wildcards, lists, and port
-        ranges.  Collectively, this results in the fairly straight forward
+        ranges.  Collectively, this results in the fairly straightforward
         procedures defined in this section.
       </t>
       <t>
@@ -409,10 +409,10 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
         sub-layer, from the IP to MPLS DetNet data planes and back
         again. Their related DetNet IP over DetNet MPLS data plane
         operation is comprised of two sets of procedures: the mapping of
-        flow identifiers; and ensuring proper traffic treatment.
+        flow identifiers, and ensuring proper traffic treatment.
       </t>
       <t>
-      Mapping of IP to the MPLS Detnet is similar for IP Detnet flows and IP flows.
+      Mapping of IP to DetNet MPLS is similar for DetNet IP flows and IP flows.
       The six-tuple of IP is mapped to the S-Label in both cases.
       The various fields may be mapped or ignored when going from IP to MPLS.
       </t>
@@ -454,7 +454,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
         <t>
           An implementation MUST support the provisioning for handling any
           received DetNet MPLS data plane as DetNet IP flows via configuration.
-          Note that such configuration MAY include support from PEOF on the
+          Note that such configuration MAY include support from PREOF on the
           incoming DetNet MPLS flow.
         </t>
       </section>
@@ -462,7 +462,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
                title="DetNet IP over DetNet MPLS Traffic Treatment Procedures">
         <t>
           The traffic treatment required for a particular DetNet IP flow is
-          provisioned via configuration or the controller plane. When an DetNet
+          provisioned via configuration or the controller plane. When a DetNet
           IP flow is sent over DetNet MPLS, a DetNet relay node MUST ensure that the
           provisioned DetNet IP traffic treatment is provided at the forwarding
           sub-layer as described in <xref target="I-D.ietf-detnet-mpls"/>
@@ -471,7 +471,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
         </t>
         <t>
           Traffic treatment for DetNet IP flows received over the DetNet
-          MPLS data plane MUST follow Section 7.3 DetNet IP Traffic
+          MPLS data plane MUST follow Section 5.3 DetNet IP Traffic
                   Treatment Procedures in <xref target="I-D.ietf-detnet-ip"/>.
         </t>
       </section>
@@ -489,13 +489,13 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
             Each MPLS App-Flow is identified using the IP flow
             identification information as defined in <xref
             target="I-D.ietf-detnet-ip"/>. The information is summarized
-            in Section 6 of that document, and includes all wildcards,
-            port ranges and ability to ignore specific IP fields.
+            in Section 5.1 of that document, and includes all wildcards,
+            port ranges and the ability to ignore specific IP fields.
           </t>
           <t>
             The DetNet MPLS service that is to be used to send the
-            matching IP traffic.  Logically this is a pointer to the
-            information provided in <xref
+            matching IP traffic.  This matching information is 
+             provided in <xref
             target="I-D.ietf-detnet-mpls"/> Section 5.1, and includes
             both service and traffic delivery information.
           </t>
