@@ -114,10 +114,11 @@
  <section title="Introduction" anchor="sec_intro">
   <t>
     Deterministic Networking (DetNet) is a service that can be offered by a
-    network to DetNet flows.  DetNet provides these flows with a low packet loss
-    rates and assured maximum end-to-end delivery latency.  General background
+    network to DetNet flows.  DetNet provides these flows extremely low packet 
+	loss rates and assured maximum end-to-end delivery latency.
+	General background
     and concepts of DetNet can be found in <xref
-    target="I-D.ietf-detnet-architecture"/>.
+    target="RFC8655"/>.
   </t>
 <!--  <t>
     The DetNet Architecture decomposes the DetNet related data plane
@@ -136,16 +137,16 @@
   target="I-D.ietf-detnet-ip"/>.
  </t>
  <t>
-  To carry DetNet flows with full functionality at the DetNet layer over an IP network, the
+  To carry DetNet MPLS flows with full functionality at the DetNet layer over an IP network, the
   following components are required (these are a subset of the requirements for MPLS encapsulation
   listed in <xref target="I-D.ietf-detnet-mpls"/>):
   </t>
   <t>
    <list style="numbers">
-    <t>A method of identifying the DetNet flow group to the processing element.</t>
-    <t>A method of carrying the DetNet sequence number.</t>
-    <t>A method of distinguishing DetNet OAM packets from DetNet data packets.</t>
-    <t>A method of carrying queuing and forwarding indication.</t>
+    <t>A method for identifying DetNet flows to the processing element.</t>
+    <t>A method for carrying the DetNet sequence number.</t>
+    <t>A method for distinguishing DetNet OAM packets from DetNet data packets.</t>
+    <t>A method for carrying queuing and forwarding indication.</t>
    </list>
   </t>
  <t>
@@ -159,7 +160,7 @@
   <section title="Terms Used in This Document">
   <t>
    This document uses the terminology established in the DetNet architecture
-   <xref target="I-D.ietf-detnet-architecture"/>, and the reader is assumed
+   <xref target="RFC8655"/>, and the reader is assumed
    to be familiar with that document and its terminology.
   </t>
   </section>
@@ -181,10 +182,11 @@
     <t hangText="OAM">Operations, Administration, and Maintenance.</t>
     <t hangText="PEF">Packet Elimination Function.</t>
     <t hangText="POF">Packet Ordering Function.</t>
+	<t hangText="PREOF">Packet Replication, Elimination and Ordering Functions.</t>
     <t hangText="PRF">Packet Replication Function.</t>
     <t hangText="PSN">Packet Switched Network.</t>
     <t hangText="S-Label">A DetNet "service" label that is used between DetNet
-    nodes that implement also the DetNet service sub-layer functions. An S-Label is
+    nodes that also implement the DetNet service sub-layer functions. An S-Label is
     also used to identify a DetNet flow at DetNet service sub-layer.</t>
    </list>
   </t>
@@ -246,7 +248,7 @@
  </artwork></figure>
 
   <t>
-    d-CW, S-Labels and zero or more F-Labels are used as defined in <xref
+    S-Labels, d-CW and zero or more F-Labels are used as defined in <xref
     target="I-D.ietf-detnet-mpls"/> and are not modified by this document.
     In case of aggregates the A-Label is treated as an S-Label and it
     too is not modified.
@@ -261,7 +263,7 @@
     Note, when PRF is performed at the MPLS service sub-layer, there
     will be multiple member flows, and each member flow will require the
     provisioning of their own UDP and IP header information.
-        The headers for each outgoing packet MUST be formatted on
+        The headers for each outgoing packet MUST be formatted according to
     the configuration information and as defined in <xref
     target="RFC7510"/>, with one exception.  Note that
     the UDP Source Port value MUST be set to uniquely identify the
@@ -291,9 +293,9 @@
                           be mapped to UDP/IP flow. Note that a single
                           S-Label can map to multiple sets of UPD/IP
                           information when PREOF is used.</t>
-              <t>IPv4 and IPv6 source address field.</t>
-              <t>IPv4 and IPv6 destination address field.</t>
-              <t>IPv4 Type of Service and IPv6 Traffic Class Fields.</t>
+              <t>IPv4 or IPv6 source address field.</t>
+              <t>IPv4 or IPv6 destination address field.</t>
+              <t>IPv4 Type of Service or IPv6 Traffic Class Fields.</t>
               <t>UDP Source Port. </t>
               <t>UDP Destination Port. </t>
             </list>
@@ -315,7 +317,7 @@
 <section title="Security Considerations">
   <t>
    The security considerations of DetNet in general are discussed in
-   <xref target="I-D.ietf-detnet-architecture"/>
+   <xref target="RFC8655"/>
    and <xref target="I-D.ietf-detnet-security"/>. MPLS and IP specific
    security considerations are described in <xref target="I-D.ietf-detnet-mpls"/>
    and <xref target="I-D.ietf-detnet-ip"/>. This draft does not have additional
@@ -352,7 +354,7 @@
    <?rfc include="reference.I-D.ietf-detnet-ip'?>
   </references>
   <references title="Informative References">
-   <?rfc include="reference.I-D.ietf-detnet-architecture"?>
+   <?rfc include="reference.RFC.8655"?>
    <?rfc include="reference.I-D.ietf-6man-segment-routing-header"?>
    <?rfc include="reference.I-D.ietf-detnet-security"?>
   </references>
