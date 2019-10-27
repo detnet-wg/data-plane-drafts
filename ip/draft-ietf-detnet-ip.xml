@@ -562,23 +562,34 @@ DetNet                    |L2/SbN|          |L2/SbN|
           document.  From an encapsulation perspective, the combination of the 6-tuple i.e.,
           the typical 5-tuple enhanced with the DSCP and previously
           mentioned optional field, uniquely identifies a DetNet
-          service flow.
+          IP flow.
         </t>
         <t>
-          Packets that are marked with a DetNet Class of Service value,
+          Packets that are identified as part of a DetNet IP flow
           but that have not been the subject of a completed reservation,
           can disrupt the QoS offered to properly reserved DetNet flows
           by using resources allocated to the reserved flows.
-          Therefore, the network nodes of a DetNet network must:
-
+          Therefore, the network nodes of a DetNet network MUST ensure
+          that no DetNet allocated resources, e.g., queue or shaper, is
+          used by such flows.
+          There are multiple methods that MAY be
+          used by an implementation to defend service delivery to
+          reserved DetNet flows, including but not limited to:
           <list style="symbols">
             <t>
-              Defend the DetNet QoS by discarding or remarking (to a
-              non-DetNet CoS) packets received that are not the subject
-              of a completed reservation.  </t><t> Not use a DetNet
-              reserved resource, e.g. a queue or shaper reserved for
-              DetNet flows, for any packet that does not carry a DetNet
-              Class of Service marker.
+              Treating packets associated with an incomplete reservation
+              as non-DetNet traffic.
+            </t>
+            <t>
+              Discarding packets associated with an incomplete
+              reservation.
+            </t>
+            <t>
+              Remarking packets associated with an incomplete
+              reservation.  Remarking can be accomplished by changing
+              the value of the DSCP, or optional, field to a value that
+              results in the packet no longer matching any other
+              reserved DetNet IP flow.
             </t>
           </list>
         </t>
