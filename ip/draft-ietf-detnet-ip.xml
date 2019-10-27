@@ -556,7 +556,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
           services is that they MUST ensure that the CoS service classes do
           not impact the congestion protection and latency control mechanisms
           used to provide DetNet QoS.  This requirement is similar to the 
-		  requirement for MPLS LSRs that CoS LSPs must not impact the resources 
+		  requirement for MPLS LSRs that CoS LSPs cannot impact the resources 
 		  allocated to TE LSPs <xref target="RFC3473"/>.
         </t>
       </section>
@@ -880,7 +880,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
           Specifically, implementations of this document SHALL use
           management and control information to select the one or more
           outgoing interfaces and next hops to be used for a packet
-          assiciated to a DetNet flow.
+          associated with a DetNet flow.
         </t>
         <t>
           The use of multiple paths or links, e.g., ECMP, to support a
