@@ -125,11 +125,10 @@
 		and packet elimination functions) and reordering. The
         forwarding sub-layer is used to provides congestion protection (low
         loss, assured latency, and limited out-of-order delivery). 
-		The service sub-layer requires additional fields to provide its service; 
-		for example to provide service protection via PREOF, each packet must 
-		be assigned a sequence number. Since no DetNet-specific fields 
-		(such as sequence number) are added to support DetNet IP flows, 
-		the DetNet service sub-layer for IP cannot support PREOF. Thus only 
+		The service sub-layer generally requires additional fields to provide 
+		its service; for example see <xref target="I-D.ietf-detnet-mpls"/>. 
+		Since no DetNet-specific fields are added to support DetNet 
+		IP flows, only 
 		the forwarding sub-layer functions are supported using the DetNet IP 
 		defined by this document.		
 		Service protection can be provided on a per
@@ -1071,6 +1070,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
       <?rfc include="reference.RFC.7551"?>
       <?rfc include="reference.RFC.7657"?>
       <?rfc include="reference.I-D.ietf-detnet-architecture"?>
+      <?rfc include="reference.I-D.ietf-detnet-mpls"?>
       <?rfc include="reference.I-D.ietf-detnet-dp-sol-mpls"?>
       <?rfc include="reference.I-D.ietf-detnet-flow-information-model"?>
       <?rfc include="reference.I-D.ietf-detnet-security"?>
