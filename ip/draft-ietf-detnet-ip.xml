@@ -364,12 +364,11 @@
 
       <section title="End-system-specific Considerations">
         <t>
-          IP Data-flows requiring DetNet service are generated and terminated 
-		  on IP end systems.
-		  Encapsulation of application data on the IP end system is application 
-		  specific and it has to match the encapsulation format of the peer IP
-		  end system.
-		  This said, DetNet's use of 6-tuple IP flow
+		  Data-flows requiring DetNet service are generated and terminated on
+		  end systems.  This document deals only with IP end systems. 
+		  The protocols used by an IP end system are specific to an application,
+		  and end systems peer with other end systems.  
+		  DetNet's use of 6-tuple IP flow
           identification means that DetNet must be aware of not only the
           format of the IP header, but also of the next protocol carried
           within an IP packet (see <xref target="nxt-proto-field"/>).
@@ -577,7 +576,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
           but that have not been the subject of a completed reservation,
           can disrupt the QoS offered to properly reserved DetNet flows
           by using resources allocated to the reserved flows.
-          Therefore, the network nodes of a DetNet network MUST:
+          Therefore, the network nodes of a DetNet network must:
 
           <list style="symbols">
             <t>
