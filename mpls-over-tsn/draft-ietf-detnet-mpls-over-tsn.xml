@@ -596,11 +596,11 @@ Note: * no service sub-layer required for transit nodes
    &rfc2119;
    <?rfc include="reference.RFC.3031"?>
    <?rfc include="reference.RFC.8174"?>
+      <?rfc include="reference.I-D.ietf-detnet-mpls"?>
   </references>
   <references title="Informative References">
       <?rfc include="reference.RFC.8655"?>
       <?rfc include="reference.I-D.ietf-detnet-ip"?>
-      <?rfc include="reference.I-D.ietf-detnet-mpls"?>
       <?rfc include="reference.I-D.ietf-detnet-security"?>
    
    <reference anchor='IEEE1588'>

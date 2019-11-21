@@ -546,10 +546,10 @@
     <references title="Normative references">
       <?rfc include="reference.RFC.2119"?>
       <?rfc include="reference.RFC.8174"?>
+      <?rfc include="reference.I-D.ietf-detnet-ip"?>
     </references>
     <references title="Informative references">
       <?rfc include="reference.RFC.8655"?>
-      <?rfc include="reference.I-D.ietf-detnet-ip"?>
       <?rfc include="reference.I-D.ietf-detnet-flow-information-model"?>
       <?rfc include="reference.I-D.ietf-detnet-security"?>
 

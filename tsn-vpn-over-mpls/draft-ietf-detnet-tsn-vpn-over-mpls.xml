@@ -582,6 +582,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
    &rfc2119;
    <?rfc include="reference.RFC.3031"?>
    <?rfc include="reference.RFC.8174"?>
+   <?rfc include="reference.I-D.ietf-detnet-mpls"?>
   </references>
   <references title="Informative References">
    &rfc3985;
@@ -589,7 +590,6 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
    &I-D.ietf-spring-segment-routing-mpls;
       <?rfc include="reference.RFC.8655"?>
       <?rfc include="reference.I-D.ietf-detnet-data-plane-framework"?>
-      <?rfc include="reference.I-D.ietf-detnet-mpls"?>
       <?rfc include="reference.I-D.ietf-detnet-security"?>
       <?rfc include="reference.RFC.4301"?>
 
