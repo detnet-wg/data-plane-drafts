@@ -108,7 +108,7 @@
         Deterministic Networking (DetNet) is a service that can be offered by a network to DetNet flows.
         DetNet provides these flows extremely low packet loss rates and assured maximum end-to-end
         delivery latency.  General background and concepts of DetNet can
-        be found in the DetNet Architecture <xref target="I-D.ietf-detnet-architecture"/>.
+        be found in the DetNet Architecture <xref target="RFC8655"/>.
       </t>
 <!--      <t>
         This document specifies the DetNet data plane operation for IP
@@ -143,7 +143,7 @@
       <section title="Terms Used In This Document">
         <t>
           This document uses the terminology and concepts established in
-          the DetNet architecture <xref target="I-D.ietf-detnet-architecture"/>
+          the DetNet architecture <xref target="RFC8655"/>
                   and <xref target="I-D.ietf-detnet-data-plane-framework"/>, and the
                   reader is assumed to be familiar with these documents and their
                   terminology.
@@ -153,7 +153,7 @@
       <section title="Abbreviations">
         <t>
           This document uses the abbreviations defined in the DetNet
-                  architecture <xref target="I-D.ietf-detnet-architecture"/> and
+                  architecture <xref target="RFC8655"/> and
                   <xref target="I-D.ietf-detnet-data-plane-framework"/>.
           This document uses the following abbreviations:
           <list style="hanging" hangIndent="14">
@@ -534,7 +534,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
        considerations for DetNet are described in detail in <xref
                target="I-D.ietf-detnet-security"/>. General security
        considerations are described in <xref
-               target="I-D.ietf-detnet-architecture"/>.  MPLS and IP specific
+               target="RFC8655"/>.  MPLS and IP specific
        considerations are described in <xref target="I-D.ietf-detnet-mpls"/>
        and <xref target="I-D.ietf-detnet-ip"/>.
       </t>
@@ -606,7 +606,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
     <references title="Normative references">
       <?rfc include="reference.RFC.2119"?>
       <?rfc include="reference.RFC.8174"?>
-      <?rfc include="reference.I-D.ietf-detnet-architecture"?>
+      <?rfc include="reference.RFC.8655"?>
           <?rfc include="reference.I-D.ietf-detnet-mpls'?>
       <?rfc include="reference.I-D.ietf-detnet-ip'?>
         </references>

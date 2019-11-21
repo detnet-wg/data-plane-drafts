@@ -109,7 +109,7 @@
     by a network to DetNet flows.  DetNet provides these flows extremely
     low packet loss rates and assured maximum end-to-end delivery
     latency.  General background and concepts of DetNet can be found in
-    <xref target="I-D.ietf-detnet-architecture"/>.
+    <xref target="RFC8655"/>.
   </t>
   <t>
     The DetNet Architecture models the DetNet related data plane functions
@@ -150,7 +150,7 @@
   <section title="Terms Used in This Document">
   <t>
    This document uses the terminology established in the DetNet
-   architecture <xref target="I-D.ietf-detnet-architecture"/> and the
+   architecture <xref target="RFC8655"/> and the
    the DetNet Data Plane Framework <xref
    target="I-D.ietf-detnet-data-plane-framework"/>. The reader is
    assumed to be familiar with these documents and any terminology
@@ -1094,7 +1094,7 @@ DFx = DetNet member flow x over a TE LSP
        elimination, described in <xref target="dn-dt-solution"/> above,
        DetNet provides zero congestion loss and bounded latency and
        jitter.  As described in <xref
-       target="I-D.ietf-detnet-architecture"/>, there are different
+       target="RFC8655"/>, there are different
        mechanisms that maybe used separately or in combination to
        deliver a zero congestion loss service.  This includes Quality of
        Service (QoS) mechanisms at the MPLS layer, that may be combined
@@ -1336,7 +1336,7 @@ DFx = DetNet member flow x over a TE LSP
   <t>
    Security considerations for DetNet are described in detail in
    <xref target="I-D.ietf-detnet-security"/>. General security considerations
-   are described in <xref target="I-D.ietf-detnet-architecture"/>. This section
+   are described in <xref target="RFC8655"/>. This section
    considers exclusively security considerations which are specific to the DetNet
    MPLS data plane.
   </t>
@@ -1436,7 +1436,7 @@ DFx = DetNet member flow x over a TE LSP
    <?rfc include="reference.RFC.6790"?>
    <?rfc include="reference.RFC.8306"?>
    <?rfc include="reference.I-D.ietf-detnet-security"?>
-   <?rfc include="reference.I-D.ietf-detnet-architecture"?>
+   <?rfc include="reference.RFC.8655"?>
    <?rfc include="reference.I-D.ietf-detnet-data-plane-framework"?>
    <?rfc include="reference.I-D.ietf-detnet-ip"?>
    <?rfc include="reference.I-D.ietf-detnet-ip-over-mpls"?>

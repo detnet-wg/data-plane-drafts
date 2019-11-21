@@ -74,7 +74,7 @@
         Deterministic Networking (DetNet) is a service that can be offered by a network to DetNet flows.
         DetNet provides these flows extremely low packet loss rates and assured maximum end-to-end
         delivery latency.  General background and concepts of DetNet can
-        be found in the DetNet Architecture <xref target="I-D.ietf-detnet-architecture"/>.
+        be found in the DetNet Architecture <xref target="RFC8655"/>.
       </t>
       <t>
         <xref target="I-D.ietf-detnet-ip"/> specifies the DetNet data plane operation for IP
@@ -106,7 +106,7 @@
         <t>
           This document uses the terminology and concepts established in
           the DetNet architecture <xref
-          target="I-D.ietf-detnet-architecture"/>, and the reader is assumed
+          target="RFC8655"/>, and the reader is assumed
           to be familiar with that document and its terminology.
         </t>
       </section>
@@ -517,7 +517,7 @@
     <section title="Security Considerations">
       <t>
         The security considerations of DetNet in general are discussed in
-        <xref target="I-D.ietf-detnet-architecture"/>
+        <xref target="RFC8655"/>
         and <xref target="I-D.ietf-detnet-security"/>. DetNet IP data plane 
 		specific considerations are summarized in 
 		<xref target="I-D.ietf-detnet-ip"/>. Encryption may provided by an 
@@ -548,7 +548,7 @@
       <?rfc include="reference.RFC.8174"?>
     </references>
     <references title="Informative references">
-      <?rfc include="reference.I-D.ietf-detnet-architecture"?>
+      <?rfc include="reference.RFC.8655"?>
       <?rfc include="reference.I-D.ietf-detnet-ip"?>
       <?rfc include="reference.I-D.ietf-detnet-flow-information-model"?>
       <?rfc include="reference.I-D.ietf-detnet-security"?>

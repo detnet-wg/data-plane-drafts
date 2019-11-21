@@ -106,7 +106,7 @@
         Deterministic Networking (DetNet) is a service that can be offered by a network to DetNet flows.
         DetNet provides these flows extremely low packet loss rates and assured maximum end-to-end
         delivery latency.  General background and concepts of DetNet can
-        be found in the DetNet Architecture <xref target="I-D.ietf-detnet-architecture"/>.
+        be found in the DetNet Architecture <xref target="RFC8655"/>.
       </t>
       <t>
         This document specifies the DetNet data plane operation for IP hosts
@@ -153,7 +153,7 @@
         <t>
           This document uses the terminology and concepts established in
           the DetNet architecture <xref
-          target="I-D.ietf-detnet-architecture"/>, and the reader is assumed
+          target="RFC8655"/>, and the reader is assumed
           to be familiar with that document and its terminology.
         </t>
       </section>
@@ -986,7 +986,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
       <t>
        Security considerations for DetNet are described in detail in
        <xref target="I-D.ietf-detnet-security"/>. General security considerations
-       are described in <xref target="I-D.ietf-detnet-architecture"/>. This section
+       are described in <xref target="RFC8655"/>. This section
        considers exclusively security considerations which are specific to the DetNet
        IP data plane.
       </t>
@@ -1079,7 +1079,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
       <?rfc include="reference.RFC.6434"?>
       <?rfc include="reference.RFC.7551"?>
       <?rfc include="reference.RFC.7657"?>
-      <?rfc include="reference.I-D.ietf-detnet-architecture"?>
+      <?rfc include="reference.RFC.8655"?>
       <?rfc include="reference.I-D.ietf-detnet-mpls"?>
       <?rfc include="reference.I-D.ietf-detnet-dp-sol-mpls"?>
       <?rfc include="reference.I-D.ietf-detnet-flow-information-model"?>
