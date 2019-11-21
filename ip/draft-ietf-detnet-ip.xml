@@ -390,8 +390,7 @@
           e.g., buffers, to receive and process the packets of that DetNet flow.
         </t>
         <t>
-          In order to maximize reuse of 5-tuple based mechanisms, e.g,
-          traceroute,
+          In order to maximize reuse of existing mechanisms,
           DetNet-aware applications and end systems SHOULD NOT mix
           DetNet and non-DetNet traffic within a single 5-tuple.
         </t>
@@ -884,7 +883,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
         <t>
           General requirements for IP nodes are defined in <xref
           target="RFC1122"/>, <xref target="RFC1812"/> and <xref
-          target="RFC6434"/>, and are not modified by this document. The
+          target="RFC8504"/>, and are not modified by this document. The
           typical next-hop selection process is impacted by DetNet.
           Specifically, implementations of this document SHALL use
           management and control information to select the one or more
@@ -1061,7 +1060,6 @@ DetNet                    |L2/SbN|          |L2/SbN|
       <?rfc include="reference.RFC.1812"?>
       <?rfc include="reference.RFC.2119"?>
       <?rfc include="reference.RFC.2474"?>
-      <?rfc include="reference.RFC.2475"?>
       <?rfc include="reference.RFC.3473"?>
       <?rfc include="reference.RFC.4301"?>
       <?rfc include="reference.RFC.4302"?>
@@ -1072,11 +1070,12 @@ DetNet                    |L2/SbN|          |L2/SbN|
     </references>
     <references title="Informative references">
       <?rfc include="reference.RFC.1122"?>
+      <?rfc include="reference.RFC.2475"?>
       <?rfc include="reference.RFC.3290"?>
       <?rfc include="reference.RFC.3670"?>
       <?rfc include="reference.RFC.5120"?>
       <?rfc include="reference.RFC.5777"?>
-      <?rfc include="reference.RFC.6434"?>
+      <?rfc include="reference.RFC.8504"?>
       <?rfc include="reference.RFC.7551"?>
       <?rfc include="reference.RFC.7657"?>
       <?rfc include="reference.RFC.8655"?>
