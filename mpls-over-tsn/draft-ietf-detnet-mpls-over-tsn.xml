@@ -78,7 +78,7 @@
     network to DetNet flows.  DetNet provides these flows with a low packet loss
     rates and assured maximum end-to-end delivery latency.  General background
     and concepts of DetNet can be found in <xref
-    target="I-D.ietf-detnet-architecture"/>.
+    target="RFC8655"/>.
   </t>
   <t>
     The DetNet Architecture decomposes the DetNet related data plane
@@ -104,7 +104,7 @@
   <section title="Terms Used in This Document">
   <t>
    This document uses the terminology established in the DetNet architecture
-   <xref target="I-D.ietf-detnet-architecture"/> and 
+   <xref target="RFC8655"/> and 
    <xref target="I-D.ietf-detnet-mpls"/>, and the reader is assumed
    to be familiar with that document and its terminology.
   </t>
@@ -260,7 +260,7 @@
 			</t>
 		</list>
 		As described in the DetNet architecture 
-		<xref target="I-D.ietf-detnet-architecture"/> and also illustrated here 
+		<xref target="RFC8655"/> and also illustrated here 
 		in <xref target="fig_mpls_detnet_part"/> a sub-network provides from 
 		MPLS perspective a single hop connection between MPLS (DetNet) nodes. 
 		Functions used for resource allocation and explicit routes 
@@ -566,7 +566,7 @@ Note: * no service sub-layer required for transit nodes
 <section title="Security Considerations">
   <t>
         The security considerations of DetNet in general are discussed in
-        <xref target="I-D.ietf-detnet-architecture"/>
+        <xref target="RFC8655"/>
         and <xref target="I-D.ietf-detnet-security"/>. DetNet IP data plane 
 		specific considerations are summarized in 
 		<xref target="I-D.ietf-detnet-ip"/>. Encryption may provided by an 
@@ -596,11 +596,11 @@ Note: * no service sub-layer required for transit nodes
    &rfc2119;
    <?rfc include="reference.RFC.3031"?>
    <?rfc include="reference.RFC.8174"?>
+      <?rfc include="reference.I-D.ietf-detnet-mpls"?>
   </references>
   <references title="Informative References">
-      <?rfc include="reference.I-D.ietf-detnet-architecture"?>
+      <?rfc include="reference.RFC.8655"?>
       <?rfc include="reference.I-D.ietf-detnet-ip"?>
-      <?rfc include="reference.I-D.ietf-detnet-mpls"?>
       <?rfc include="reference.I-D.ietf-detnet-security"?>
    
    <reference anchor='IEEE1588'>

@@ -97,7 +97,7 @@
 	specified unicast or multicast data flows for real-time applications
 	with extremely low packet loss rates and assured maximum end-to-end
 	delivery latency.  A description of the general background and concepts
-	of DetNet can be found in <xref target="I-D.ietf-detnet-architecture"/>.
+	of DetNet can be found in <xref target="RFC8655"/>.
       </t>
        <t>
         This document describes the concepts needed by any DetNet data plane specification
@@ -149,7 +149,7 @@
       <section title="Terms Used in This Document">
         <t>
           This document uses the terminology established in the DetNet
-          architecture <xref target="I-D.ietf-detnet-architecture"/>,
+          architecture <xref target="RFC8655"/>,
           and the reader is assumed to be familiar with that document
           and its terminology.
         </t>
@@ -189,13 +189,13 @@
         <t>
         This document describes how application flows, or app-flows, are
         carried over DetNet networks. The DetNet Architecture, <xref
-                target="I-D.ietf-detnet-architecture"/>, models the DetNet
+                target="RFC8655"/>, models the DetNet
         related data plane functions as decomposed into two sub-layers: a service
         sub-layer and a forwarding sub-layer.
        </t>
 
         <t>
-        <xref target="ProtStack1"/> reproduced from the  <xref target="I-D.ietf-detnet-architecture"/>,shows a logical DetNet service with the two
+        <xref target="ProtStack1"/> reproduced from the  <xref target="RFC8655"/>,shows a logical DetNet service with the two
         sub-layers.
 
        </t>
@@ -793,7 +793,7 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
         the scope of this document, there are particular
         considerations and requirements for such that result from the
         unique characteristics of the DetNet architecture <xref
-        target="I-D.ietf-detnet-architecture"/> and data plane as
+        target="RFC8655"/> and data plane as
         defined herein.
       </t>
       <t>
@@ -876,7 +876,7 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
       considered separately, from the Data Plane perspective there is no
       practical difference based on the origin of flow provisioning
       information, and the DetNet architecture <xref
-      target="I-D.ietf-detnet-architecture"/> refers to these collectively
+      target="RFC8655"/> refers to these collectively
       as the 'Controller Plane'.  This document therefore does not
       distinguish between information provided by distributed control
       plane protocols, e.g., RSVP-TE <xref target="RFC3209"/> and <xref
@@ -1093,7 +1093,7 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
   <t>
     Security considerations for DetNet are described in detail in
     <xref target="I-D.ietf-detnet-security"/>. General security considerations
-    are described in <xref target="I-D.ietf-detnet-architecture"/>. This section
+    are described in <xref target="RFC8655"/>. This section
     considers general security considerations applicable to all data planes.
    </t>
    <t>
@@ -1179,7 +1179,7 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
    <?rfc include="reference.RFC.8040"?>
    <?rfc include="reference.RFC.8227"?>
    <?rfc include="reference.RFC.4301"?>
-   <?rfc include="reference.I-D.ietf-detnet-architecture"?>
+   <?rfc include="reference.RFC.8655"?>
    <?rfc include="reference.I-D.ietf-pce-pcep-extension-for-pce-controller"?>
    <?rfc include="reference.I-D.ietf-detnet-flow-information-model"?>
    <?rfc include="reference.I-D.ietf-detnet-ip"?>
