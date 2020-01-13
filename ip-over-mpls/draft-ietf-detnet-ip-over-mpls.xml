@@ -166,7 +166,10 @@
             <t hangText="LSP">Label-switched path.</t>
             <t hangText="MPLS">Multiprotocol Label Switching.</t>
             <t hangText="PE">Provider Edge.</t>
-            <t hangText="PREOF">Packet Replication, Ordering and Elimination Function.</t>
+            <t hangText="PEF">Packet Elimination Function.</t>
+            <t hangText="PRF">Packet Replication Function.</t>
+            <t hangText="PREOF">Packet Replication, Elimination and Ordering Functions.</t>
+            <t hangText="POF">Packet Ordering Function.</t>
             <t hangText="PSN">Packet Switched Network.</t>
             <t hangText="PW">Pseudowire.</t>
             <t hangText="TE">Traffic Engineering.</t>
@@ -422,7 +425,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
      <section anchor="iom-proc" title="IP over DetNet MPLS Procedures">
       <section anchor="iom-ids"
                title="DetNet IP over DetNet MPLS Flow Identification
-                      Procedures">
+                      and Aggregation Procedures">
  <!-- 
       <t>
         [Editor's note: several proposed changes to clarify referred
@@ -433,10 +436,10 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
           A DetNet relay node (ingress T-PE) that sends a DetNet IP flow over a DetNet MPLS network
           MUST map a DetNet IP flow, as identified in <xref target="I-D.ietf-detnet-ip"/> into a single MPLS DetNet flow and MUST
           process it in accordance to the procedures defined in
-          <xref target="I-D.ietf-detnet-mpls"/> Section 6.1.  PRF MAY be
+          <xref target="I-D.ietf-detnet-mpls"/>.  PRF MAY be
           supported at the MPLS level for DetNet IP flows sent over an DetNet MPLS network.
           Aggregation MAY be supported as defined in <xref
-                  target="I-D.ietf-detnet-mpls"/> Section 5.4. Aggregation
+          target="I-D.ietf-detnet-mpls"/> Section 4.4. Aggregation
           considerations in <xref target="I-D.ietf-detnet-ip"/> MAY be used to
           identify an individual DetNet IP flow. The provisioning of the
           mapping of DetNet IP flows to DetNet MPLS flows MUST
@@ -449,7 +452,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
           examination of IP headers. Alternatively, packets received via the
           DetNet MPLS data plane MAY follow the normal DetNet IP flow
           identification procedures defined in <xref
-                  target="I-D.ietf-detnet-ip"/>  Section 7.1.
+          target="I-D.ietf-detnet-ip"/> Section 5.1.
         </t>
         <t>
           An implementation MUST support the provisioning for handling any
