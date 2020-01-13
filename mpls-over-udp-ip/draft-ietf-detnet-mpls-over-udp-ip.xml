@@ -152,6 +152,7 @@
  <t>
   These requirements are satisfied by the DetNet over MPLS Encapsulation
   described in <xref target="I-D.ietf-detnet-mpls"/> and they are partly satisfied
+  (requirement 1 and 4) 
   by the DetNet IP data plane defined in <xref target="I-D.ietf-detnet-ip"/>
  </t>
 </section>
@@ -250,8 +251,7 @@
   <t>
     S-Labels, d-CW and zero or more F-Labels are used as defined in <xref
     target="I-D.ietf-detnet-mpls"/> and are not modified by this document.
-    In case of aggregates the A-Label is treated as an S-Label and it
-    too is not modified.
+    In case of aggregates the A-Label (if present) is not modified as well.
   </t>
 </section>
 
@@ -263,17 +263,18 @@
     Note, when PRF is performed at the MPLS service sub-layer, there
     will be multiple member flows, and each member flow will require the
     provisioning of their own UDP and IP header information.
-        The headers for each outgoing packet MUST be formatted according to
-    the configuration information and as defined in <xref
-    target="RFC7510"/>, with one exception.  Note that
-    the UDP Source Port value MUST be set to uniquely identify the
-    DetNet flow.  The packet MUST then be handed
+	The headers for each outgoing packet MUST be formatted according to 
+	the configuration information and as defined in <xref
+    target="RFC7510"/>, and the 
+	UDP Source Port value MUST be set to uniquely identify the DetNet flow.
+	The packet MUST then be handled
     as a DetNet IP packet, per <xref target="I-D.ietf-detnet-ip"/>.
     This includes QoS related traffic treatment.
   </t>
 
   <t>
-    To support receive processing an implementation MUST also support
+    To support processing incoming DetNet MPLS over UDP/IP encapsulation, an 
+	implementation MUST also support
     the provisioning of received UDP and IP header information.
         The provisioned information MUST be used to
     identify incoming app-flows based on the combination of S-Label and
@@ -289,23 +290,24 @@
             The following summarizes the set of information that is needed to
             configure DetNet MPLS over UDP/IP:
             <list style="symbols">
-                          <t>Label information (S-label or F-label) to
-                          be mapped to UDP/IP flow. Note that a single
-                          S-Label can map to multiple sets of UPD/IP
+                          <t>Label information (A-label, S-label or F-label) to
+                          be mapped to UDP/IP flow. Note that for example, a single
+                          S-Label can map to multiple sets of UDP/IP
                           information when PREOF is used.</t>
               <t>IPv4 or IPv6 source address field.</t>
               <t>IPv4 or IPv6 destination address field.</t>
-              <t>IPv4 Type of Service or IPv6 Traffic Class Fields.</t>
+              <t>DSCP Field in either IPv4 Type of Service or IPv6 Traffic Class Fields.</t>
               <t>UDP Source Port. </t>
               <t>UDP Destination Port. </t>
             </list>
             This information MUST be provisioned per DetNet flow via
-            configuration, e.g., via the controller or management plane.
+            configuration, e.g., via the controller <xref target="RFC8655"/> 
+			or management plane.
           </t>
           <t>
             It is the responsibility of the DetNet controller plane to
             properly provision both flow identification information and
-            the flow specific resources needed to provided the traffic
+            the flow specific resources needed to provide the traffic
             treatment needed to meet each flow's service requirements.
             This applies for aggregated and individual flows.
           </t>
