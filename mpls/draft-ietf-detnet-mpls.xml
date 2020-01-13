@@ -153,8 +153,9 @@
    architecture <xref target="RFC8655"/> and the
    the DetNet Data Plane Framework <xref
    target="I-D.ietf-detnet-data-plane-framework"/>. The reader is
-   assumed to be familiar with these documents and any terminology
-   defined therein.
+   assumed to be familiar with these documents, any terminology
+   defined therein and basic MPLS related terminologies in 
+   <xref target="RFC3031"/>.
   </t>
   <t>
    The following terminology is introduced in this document:
@@ -430,9 +431,9 @@ DFx = DetNet member flow x over a TE LSP
    the sequence number space does not wrap whilst packets are in flight.
   </t>
   <t>
-   The LSP used to forward the DetNet packet may be of any type
-   (MPLS-LDP, MPLS-TE, MPLS-TP <xref target="RFC5921"/>,  or MPLS-SR
-   <xref target="I-D.ietf-spring-segment-routing-mpls"/>).
+   The LSP used to forward the DetNet packet is not restricted regarding 
+   any method used for establishing that LSP (for example, MPLS-LDP, MPLS-TE, 
+   MPLS-TP <xref target="RFC5921"/>, MPLS-SR <xref target="RFC8660"/>, etc.).
    The LSP (F-Label) label
    and/or the S-Label may be used to indicate the queue processing as
    well as the forwarding parameters.  Note that the possible use of
@@ -505,6 +506,9 @@ DFx = DetNet member flow x over a TE LSP
    Word (PWMCW) defined in <xref target="RFC4385"/>. The d-CW formatted
    as shown in <xref target="fig_detnet_cw"/> MUST be present in all
    DetNet packets containing app-flow data.
+   This format of the d-CW was created in order (1) to allow larger S/N 
+   space to avoid S/N rollover frequency in some applications and (2) to 
+   allow non-skip zero S/N what simplifies implementation."
   </t>
     <figure title="DetNet Control Word" anchor="fig_detnet_cw">
     <artwork align="center"><![CDATA[
@@ -884,6 +888,8 @@ DFx = DetNet member flow x over a TE LSP
    <t>The reader is referred to <xref target="RFC5085"/> for a more detailed
     description of the Associated Channel mechanism, and to the
     DetNet work on OAM for more information DetNet OAM.
+   </t>
+   <t> Additional considerations on DetNet specific OAM are further study.
    </t>
   </section>
 
@@ -1334,9 +1340,11 @@ DFx = DetNet member flow x over a TE LSP
 
 <section title="Security Considerations">
   <t>
-   Security considerations for DetNet are described in detail in
-   <xref target="I-D.ietf-detnet-security"/>. General security considerations
-   are described in <xref target="RFC8655"/>. This section
+   General security considerations
+   are described in <xref target="RFC8655"/>. 
+   Additionally, security considerations and a threat analysis are described in 
+   <xref target="I-D.ietf-detnet-security"/>. 
+   This section
    considers exclusively security considerations which are specific to the DetNet
    MPLS data plane.
   </t>
@@ -1419,6 +1427,7 @@ DFx = DetNet member flow x over a TE LSP
    <?rfc include="reference.RFC.5462"?>
    <?rfc include="reference.RFC.4385"?>
    <?rfc include="reference.RFC.8174"?>
+   <?rfc include="reference.RFC.8655"?>
   </references>
   <references title="Informative References">
    <?rfc include="reference.RFC.2205"?>
@@ -1435,13 +1444,12 @@ DFx = DetNet member flow x over a TE LSP
    <?rfc include="reference.RFC.6003"?>
    <?rfc include="reference.RFC.6790"?>
    <?rfc include="reference.RFC.8306"?>
-   <?rfc include="reference.I-D.ietf-detnet-security"?>
-   <?rfc include="reference.RFC.8655"?>
+   <?rfc include="reference.RFC.8660"?>
    <?rfc include="reference.I-D.ietf-detnet-data-plane-framework"?>
    <?rfc include="reference.I-D.ietf-detnet-ip"?>
    <?rfc include="reference.I-D.ietf-detnet-ip-over-mpls"?>
    <?rfc include="reference.I-D.ietf-detnet-mpls-over-tsn"?>
-   <?rfc include="reference.I-D.ietf-spring-segment-routing-mpls'?>
+   <?rfc include="reference.I-D.ietf-detnet-security"?>
    <reference anchor="IEEE802.1AE-2018"
       target="https://ieeexplore.ieee.org/document/8585421">
       <front>
