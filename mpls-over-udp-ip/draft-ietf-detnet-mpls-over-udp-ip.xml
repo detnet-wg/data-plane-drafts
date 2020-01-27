@@ -152,7 +152,7 @@
  <t>
   These requirements are satisfied by the DetNet over MPLS Encapsulation
   described in <xref target="I-D.ietf-detnet-mpls"/> and they are partly satisfied
-  (requirement 1 and 4) 
+  (i.e., IP flows can be identified however no DetNet sequence number is carried) 
   by the DetNet IP data plane defined in <xref target="I-D.ietf-detnet-ip"/>
  </t>
 </section>
@@ -249,9 +249,9 @@
  </artwork></figure>
 
   <t>
-    S-Labels, d-CW and zero or more F-Labels are used as defined in <xref
+    S-Labels, A-Labels (when present), d-CW and zero or more F-Labels are used as defined in <xref
     target="I-D.ietf-detnet-mpls"/> and are not modified by this document.
-    In case of aggregates the A-Label (if present) is not modified as well.
+
   </t>
 </section>
 
@@ -273,7 +273,7 @@
   </t>
 
   <t>
-    To support processing incoming DetNet MPLS over UDP/IP encapsulation, an 
+    To support the receive processing defined in this document, an 
 	implementation MUST also support
     the provisioning of received UDP and IP header information.
         The provisioned information MUST be used to
@@ -290,7 +290,7 @@
             The following summarizes the set of information that is needed to
             configure DetNet MPLS over UDP/IP:
             <list style="symbols">
-                          <t>Label information (A-label, S-label or F-label) to
+                          <t>Label information (A-labels, S-labels and F-labels) to
                           be mapped to UDP/IP flow. Note that for example, a single
                           S-Label can map to multiple sets of UDP/IP
                           information when PREOF is used.</t>
