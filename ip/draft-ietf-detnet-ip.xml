@@ -50,12 +50,14 @@
       </address>
     </author>
 
+    <!--
     <author fullname="Don Fedyk" initials="D." surname="Fedyk">
       <organization>LabN Consulting, L.L.C.</organization>
       <address>
         <email>dfedyk@labn.net</email>
       </address>
     </author>
+    -->
 
     <author fullname="Andrew G. Malis" initials="A.G." surname="Malis">
       <organization>Independent</organization>
@@ -68,13 +70,6 @@
       <organization>Futurewei Technologies</organization>
       <address>
         <email>stewart.bryant@gmail.com</email>
-      </address>
-    </author>
-
-    <author fullname="Jouni Korhonen" initials="J." surname="Korhonen">
-      <!--organization abbrev="Nordic">Nordic Semiconductor</organization-->
-      <address>
-        <email>jouni.nospam@gmail.com</email>
       </address>
     </author>
 
@@ -123,7 +118,7 @@
         service sub-layer and a forwarding sub-layer.  The service sub-layer is
         used to provide DetNet service protection (e.g., by packet replication 
 		and packet elimination functions) and reordering. The
-        forwarding sub-layer is used to provides congestion protection (low
+        forwarding sub-layer is used to provide congestion protection (low
         loss, assured latency, and limited out-of-order delivery). 
 		The service sub-layer generally requires additional fields to provide 
 		its service; for example see <xref target="I-D.ietf-detnet-mpls"/>. 
@@ -163,17 +158,17 @@
           The following abbreviations used in this document:
           <!-- [JiK] Update later -->
           <list style="hanging" hangIndent="14">
-            <t hangText="CoS">Class of Service.</t>
-            <t hangText="DetNet">Deterministic Networking.</t>
-            <t hangText="DN">DetNet.</t>
+            <t hangText="CoS">Class of Service</t>
+            <t hangText="DetNet">Deterministic Networking</t>
+            <t hangText="DN">DetNet</t>
             <t hangText="DiffServ">Differentiated Services</t>
             <t hangText="DSCP">Differentiated Services Code Point</t>
-            <t hangText="L2">Layer-2.</t>
-            <t hangText="L3">Layer-3.</t>
-            <t hangText="LSP">Label-switched path.</t>
-            <t hangText="MPLS">Multiprotocol Label Switching.</t>
-            <t hangText="PREOF">Packet Replication, Elimination and Ordering Function.</t>
-            <t hangText="QoS">Quality of Service.</t>
+            <t hangText="L2">Layer-2</t>
+            <t hangText="L3">Layer-3</t>
+            <t hangText="LSP">Label-switched path</t>
+            <t hangText="MPLS">Multiprotocol Label Switching</t>
+            <t hangText="PREOF">Packet Replication, Elimination and Ordering Function</t>
+            <t hangText="QoS">Quality of Service</t>
             <t hangText="TSN">Time-Sensitive Networking, TSN is a Task Group of the IEEE
             802.1 Working Group.</t>
           </list>
@@ -238,7 +233,8 @@
         to identify flows and support Quality of Service (QoS) can be found in
         <xref target="RFC3670"/>.  <xref target="RFC7657"/> also provides
         useful background on the delivery of DiffServ and "tuple" based flow
-        identification.
+        identification. Note that a 6-tuple is composed of a 5-tuple
+        plus the addition of a DSCP component.
       </t>
       <t>
         The DetNet IP data plane also allows for optional matching on
@@ -292,8 +288,8 @@
         aware but do not perform any DetNet service sub-layer function, e.g., PREOF.
       </t>
       <t>
-        Note: The sub-network can represent a TSN, MPLS or IP network
-        segment.
+        Note: The sub-network can represent a TSN, MPLS network or other
+        network technology that can carry DetNet IP traffic.
       </t>
 
 
@@ -403,9 +399,7 @@
 		  the number of 6-tuple flow ID combinations that could be used by the 
 		  end systems. From a practical standpoint this
           means that all nodes along the end-to-end path of DetNet flows need
-          to agree on what fields are used for flow identification, and the
-          transport protocols (e.g., TCP/UDP/IPsec) which can be used to
-          identify 6-tuple protocol ports.
+          to agree on what fields are used for flow identification.
         </t>
         <t>
           From a connection type perspective two scenarios are identified:
@@ -903,7 +897,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
 
       <section anchor="ip-svc" title="DetNet IP Traffic Treatment Procedures">
         <t>
-          Implementations if this document MUST ensure that a DetNet flow
+          Implementations of this document MUST ensure that a DetNet flow
           receives the traffic treatment that is provisioned for it via
           configuration or the controller plane, e.g., via <xref target="I-D.ietf-detnet-yang"/>.
           General information on DetNet service can be found in <xref
@@ -1050,6 +1044,20 @@ DetNet                    |L2/SbN|          |L2/SbN|
         comments.
       </t>
     </section>
+
+    <section anchor="contrib" title="Contributors">
+      <t>
+        This document is derived from an earlier draft that was edited
+        by Jouni Korhonen (jouni.nospam@gmail.com) and as such, he
+        contributed to and authored text in this document.
+      </t>
+      <t>
+        Don Fedyk (dfedyk@labn.net) also authored text contained in this
+        document.
+      </t>
+    </section>
+
+
   </middle>
 
   <back>
