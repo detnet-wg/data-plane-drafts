@@ -506,6 +506,9 @@ DFx = DetNet member flow x over a TE LSP
    Word (PWMCW) defined in <xref target="RFC4385"/>. The d-CW formatted
    as shown in <xref target="fig_detnet_cw"/> MUST be present in all
    DetNet packets containing app-flow data.
+   This format of the d-CW was created in order (1) to allow larger S/N 
+   space to avoid S/N rollover frequency in some applications and (2) to 
+   allow non-skip zero S/N what simplifies implementation.
   </t>
     <figure title="DetNet Control Word" anchor="fig_detnet_cw">
     <artwork align="center"><![CDATA[
