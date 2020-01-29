@@ -258,12 +258,15 @@
          simple ordering and dropping out-of-order packets to more complex
          reordering of a fixed number of out-of-order, minimally delayed
          packets.  Reordering requires buffer resources and has impact on the
-         delay and jitter of packets in the DetNet flow.        
+	 delay and jitter of packets in the DetNet flow. 
+	 These functions are optional and many require sequence numbers that are 
+	 provided by the service sub-layer or available to the service sub-layer from a higher layer
+	 or from metadata as described in <xref target="sec_dp_metadata"/>. 	 
        </t>
        <t>
          The method of instantiating each of the layers is specific to the 
-                 particular DetNet data plane method, and more than one approach may 
-                 be applicable to a given bearer network type.
+         particular DetNet data plane method, and more than one approach may 
+         be applicable to a given bearer network type.
        </t>
 
       <section title="Data Plane Characteristics" anchor="sec_dp_char">
@@ -1045,12 +1048,14 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
         be able to provide these functions is a necessary part of
         the DetNet controller plane. It is also necessary to be
         able to control the required queuing mechanisms used to
-        provide these functions along a flow's path through the
-        network. See  <xref target="I-D.ietf-detnet-ip"/> and <xref
-        target="control-management-requirements"/> for further
-        discussion of these requirements. Some forms of protection
-        may minimize packet loss or change 
-        jitter characteristics in the cases where packets are reordered when out-of-order packets are received at the service sub-layer.   
+	provide these functions along a flow's path through the network. See
+	<xref target="I-D.ietf-detnet-ip"/> Section 4.3.2 and <xref
+		target="I-D.ietf-detnet-mpls"/> Section 4.6.2 that discuss
+	Quality of Service and <xref target="control-management-requirements"/>
+	in this document for further discussion of these requirements. Some
+	forms of protection may minimize packet loss or change jitter
+	characteristics in the cases where packets are reordered when
+	out-of-order packets are received at the service sub-layer.   
       </t>
     </section>
     <section title="Bidirectional Traffic">
