@@ -667,7 +667,7 @@ CE1----EN1--------R1-------R2-------R3--------EN2-----CE2
      uses the sequence number to eliminate duplicate packets and large
      differential delays combined with high numbers of packets may exceed the
      ability of this elimination function to eliminate all duplicate packets.
-     Network engineering of DetNet services needs to take these factors into
+     Path selection for DetNet services needs to take these factors into
      account.  
      </t>
    </section>
@@ -1049,7 +1049,7 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
         network. See  <xref target="I-D.ietf-detnet-ip"/> and <xref
         target="control-management-requirements"/> for further
         discussion of these requirements. Some forms of protection
-        may enforce packet loss or change 
+        may minimize packet loss or change 
         jitter characteristics in the cases where packets are reordered when out-of-order packets are received at the service sub-layer.   
       </t>
     </section>
