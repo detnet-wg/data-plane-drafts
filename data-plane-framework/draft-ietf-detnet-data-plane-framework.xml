@@ -657,18 +657,20 @@ CE1----EN1--------R1-------R2-------R3--------EN2-----CE2
    </section>
      <section title="Path Differential Delay">
              <t>
-     In the preceding example, reordering of packets is dependent on the number
-     of out-of-order packets that can be buffered and the delay difference of
-     arriving packets.  DetNet uses configuration of the number of maximum
-     number out-of-order packets and the maximum delay that out-of-order
-     packets can be held before being delivered. If the differential delay
-     between paths is large enough or the arrival rate of packets large enough
-     packets may be dropped instead of being reordered.  Likewise elimination
-     uses the sequence number to eliminate duplicate packets and large
-     differential delays combined with high numbers of packets may exceed the
-     ability of this elimination function to eliminate all duplicate packets.
-     Path selection for DetNet services needs to take these factors into
-     account.  
+     In the preceding example, proper working of duplicate
+     elimination and reordering of packets are dependent
+     on the number of out-of-order packets that can be
+     buffered and the delay difference of arriving packets.
+     DetNet uses flow specific requirements (e.g., maximum
+     number of out-of-order packets, maximum latency
+     of the flow, etc.) for configuration of POF related buffers.
+     If the differential delay between paths is excessively large 
+     or there is excessive mis-ordering of the packets, then packets may
+     be dropped instead of being reordered.
+     Likewise, PEF
+     uses the sequence number to identify duplicate packets, and large
+     differential delays combined with high numbers of packets may exceed 
+     the ability of the PEF to work properly.
      </t>
    </section>
      <section title="Ring Service Protection">
