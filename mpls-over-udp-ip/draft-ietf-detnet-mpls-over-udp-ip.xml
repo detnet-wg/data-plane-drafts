@@ -80,13 +80,13 @@
       </address>
     </author>
 
-    <author fullname="Jouni Korhonen" initials="J." surname="Korhonen">
-      <!--organization abbrev="Nordic">Nordic Semiconductor</organization-->
+<!--    <author fullname="Jouni Korhonen" initials="J." surname="Korhonen">
+      <!--organization abbrev="Nordic">Nordic Semiconductor</organization
       <address>
         <email>jouni.nospam@gmail.com</email>
       </address>
     </author>
-
+-->
   <!--author fullname="Donald Fauntleroy Duck" initials="D. F." surname="Duck">
    <organization abbrev="Royal Bros.">Royal Bros.</organization>
    <address>
