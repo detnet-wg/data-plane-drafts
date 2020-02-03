@@ -601,6 +601,12 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
       </t>
     </section>
 
+    <section anchor="contrib" title="Contributors">
+      <t>
+        J&aacute;nos Farkas contributed substantially to the content of this
+        document.
+      </t>
+    </section>
 
 
   </middle>
