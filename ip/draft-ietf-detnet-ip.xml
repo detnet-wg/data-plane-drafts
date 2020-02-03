@@ -50,14 +50,12 @@
       </address>
     </author>
 
-    <!--
     <author fullname="Don Fedyk" initials="D." surname="Fedyk">
       <organization>LabN Consulting, L.L.C.</organization>
       <address>
         <email>dfedyk@labn.net</email>
       </address>
     </author>
-    -->
 
     <author fullname="Andrew G. Malis" initials="A.G." surname="Malis">
       <organization>Independent</organization>
@@ -1050,10 +1048,6 @@ DetNet                    |L2/SbN|          |L2/SbN|
         This document is derived from an earlier draft that was edited
         by Jouni Korhonen (jouni.nospam@gmail.com) and as such, he
         contributed to and authored text in this document.
-      </t>
-      <t>
-        Don Fedyk (dfedyk@labn.net) also authored text contained in this
-        document.
       </t>
     </section>
 
