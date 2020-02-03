@@ -30,7 +30,7 @@
       </address>
     </author>
 
-    <author fullname="J&aacute;nos Farkas" initials="J." surname="Farkas">
+<!--    <author fullname="J&aacute;nos Farkas" initials="J." surname="Farkas">
       <organization>Ericsson</organization>
       <address>
         <postal>
@@ -42,7 +42,7 @@
         <email>janos.farkas@ericsson.com</email>
       </address>
     </author>
-
+-->
     <author fullname="Lou Berger" initials="L." surname="Berger">
       <organization>LabN Consulting, L.L.C.</organization>
       <address>
