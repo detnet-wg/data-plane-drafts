@@ -4,7 +4,7 @@
 <!ENTITY rfc3031 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3031.xml">
 <!ENTITY rfc3985 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3985.xml">
 <!ENTITY rfc5921 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5921.xml">
-<!ENTITY I-D.ietf-spring-segment-routing-mpls PUBLIC "" "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-spring-segment-routing-mpls">
+<!ENTITY rfc8660 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8660.xml">
 
 ]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
@@ -114,7 +114,6 @@
    <list style="hanging" hangIndent="14">
     <t hangText="AC">Attachment Circuit.</t>
     <t hangText="CE">Customer Edge equipment.</t>
-    <t hangText="CoS">Class of Service.</t>
     <t hangText="CW">Control Word.</t>
     <t hangText="DetNet">Deterministic Networking.</t>
     <t hangText="DF">DetNet Flow.</t>
@@ -127,17 +126,11 @@
     <t hangText="MPLS">Multiprotocol Label Switching.</t>
     <t hangText="MPLS-TE">Multiprotocol Label Switching - Traffic Engineering.</t>
     <t hangText="MPLS-TP">Multiprotocol Label Switching - Transport Profile.</t>
-    <t hangText="MS-PW">Multi-Segment PseudoWire (MS-PW).</t>
     <t hangText="NSP">Native Service Processing.</t>
     <t hangText="OAM">Operations, Administration, and Maintenance.</t>
     <t hangText="PE">Provider Edge.</t>
-    <t hangText="PEF">Packet Elimination Function.</t>
-    <t hangText="PRF">Packet Replication Function.</t>
     <t hangText="PREOF">Packet Replication, Elimination and Ordering Functions.</t>
-    <t hangText="POF">Packet Ordering Function.</t>
-    <t hangText="PSN">Packet Switched Network.</t>
     <t hangText="PW">PseudoWire.</t>
-    <t hangText="QoS">Quality of Service.</t>
     <t hangText="S-PE">Switching Provider Edge.</t>
     <t hangText="T-PE">Terminating Provider Edge.</t>
     <t hangText="TSN">Time-Sensitive Network.</t>
@@ -464,7 +457,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
 		<t>		
 			When a DetNet Service Proxy receives a packet from the TSN Entity
 			it MUST check whether such an App-flow is present in its mapping table.
-			If present it attaches the internal DetNet flow-ID to the packet and 
+			If present it associates the internal DetNet flow-ID to the packet and 
 			MUST forward it to the DetNet Service and Forwarding sub-layers. If 
 			no matching statement is present it MUST drop the packet.
 		</t>
@@ -519,7 +512,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
         <t>
                 The LSP used to forward the DetNet packet may be of any type (MPLS-LDP, 
                 MPLS-TE, MPLS-TP <xref target="RFC5921"/>, or MPLS-SR 
-                <xref target="I-D.ietf-spring-segment-routing-mpls"/>).  The LSP 
+                <xref target="RFC8660"/>).  The LSP 
                 (F-Label) label and/or the S-Label may be used to indicate the queue 
                 processing as well as the forwarding parameters.
         </t>
@@ -660,7 +653,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
   <references title="Informative References">
    &rfc3985;
    &rfc5921;
-   &I-D.ietf-spring-segment-routing-mpls;
+   &rfc8660;
       <?rfc include="reference.RFC.8655"?>
       <?rfc include="reference.I-D.ietf-detnet-data-plane-framework"?>
       <?rfc include="reference.I-D.ietf-detnet-security"?>
