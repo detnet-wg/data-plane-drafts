@@ -98,9 +98,6 @@
     </section>
 
     <section title="Terminology">
-      <t>
-        [Editor's note: Needs clean up.].
-      </t>
 
       <section title="Terms Used In This Document">
         <t>
@@ -117,6 +114,8 @@
           <list style="hanging" hangIndent="14">
             <t hangText="DetNet">Deterministic Networking.</t>
             <t hangText="DF">DetNet Flow.</t>
+			<t hangText="FRER">Frame Replication and Elimination for Redundancy 
+			(TSN function).</t>
             <t hangText="L2">Layer-2.</t>
             <t hangText="L3">Layer-3.</t>
             <t hangText="PREOF">Packet Replication, Ordering and Elimination Function.</t>
@@ -139,11 +138,6 @@
 </section>
 
 <section title="DetNet IP Data Plane Overview" anchor="sec_dt_dp">
-      <t>
-        [Editor's note: this section and highlights that
-		DetNet IP over subnets scenario being the focus in 
-		the remaining part of the document.].
-      </t>
       <t>
         <xref target="I-D.ietf-detnet-ip"/> describes how IP is used by DetNet 
 		nodes, i.e., hosts and routers, to identify DetNet flows and provide a 
@@ -222,12 +216,6 @@
 
     <section anchor="mapping-tsn" title="DetNet IP Flows over an IEEE 802.1 
 	TSN sub-network">
-      <t>
-        [Authors note: how do we handle control protocols such as
-         ICMP, IPsec, etc.? If such protocols are part of the DetNet flow 
-		 they can be identified by the Mask-and-match Stream identification 
-		 function of P802.1CBdb.]
-      </t>
       <t>
         This section covers how DetNet IP flows operate over an IEEE 802.1 TSN
         sub-network.  <xref target="fig_ip_detnet_to_tsn"/> illustrates such a
@@ -440,11 +428,6 @@
 
 <section title="Management and Control Implications">
         <t>
-           [Editor's note: This section covers management/control plane related
-		   implications of creation, mapping, removal of TSN Stream IDs, their
-		   related parameters and, when needed, the configuration of FRER.]
-        </t>
-        <t>
 			DetNet flow and TSN Stream mapping related information are
 			required only for TSN-aware IP (DetNet) nodes. From the
 			Data Plane perspective there is no practical difference
@@ -553,18 +536,6 @@
       <?rfc include="reference.I-D.ietf-detnet-flow-information-model"?>
       <?rfc include="reference.I-D.ietf-detnet-security"?>
 
-      <reference anchor='IEEE1588'>
-        <front>
-          <title>IEEE 1588 Standard for a Precision Clock Synchronization
-          Protocol for Networked Measurement and Control Systems Version 2
-          </title>
-          <author>
-            <organization>IEEE</organization>
-          </author>
-          <date year='2008' />
-        </front>
-      </reference>
-
     <reference anchor="IEEE802.1AE-2018"
       target="https://ieeexplore.ieee.org/document/8585421">
       <front>
@@ -614,32 +585,6 @@
         </front>
         <seriesInfo name="IEEE P802.1CBdb /D0.2" value="P802.1CBdb"/>
         <format type="PDF" target="http://www.ieee802.org/1/files/private/cb-drafts/d2/802-1CB-d2-1.pdf"/>
-      </reference>
-
-      <reference anchor="G.8275.1"
-                 target="https://www.itu.int/rec/T-REC-G.8275.1/en">
-        <front>
-          <title>Precision time protocol telecom profile for phase/time
-          synchronization with full timing support from the network</title>
-          <author>
-            <organization>International Telecommunication Union</organization>
-          </author>
-          <date month="June" year="2016"/>
-        </front>
-        <seriesInfo name="ITU-T G.8275.1/Y.1369.1" value="G.8275.1"/>
-      </reference>
-
-      <reference anchor="G.8275.2"
-                 target="https://www.itu.int/rec/T-REC-G.8275.2/en">
-        <front>
-          <title>Precision time protocol telecom profile for phase/time
-          synchronization with partial timing support from the network</title>
-          <author>
-            <organization>International Telecommunication Union</organization>
-          </author>
-          <date month="June" year="2016"/>
-        </front>
-        <seriesInfo name="ITU-T G.8275.2/Y.1369.2" value="G.8275.2"/>
       </reference>
 
     </references>
