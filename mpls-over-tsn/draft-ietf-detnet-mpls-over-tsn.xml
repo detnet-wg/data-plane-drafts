@@ -98,9 +98,7 @@
  </section>
 
  <section title="Terminology">
-      <t>
-        [Editor's note: Needs clean up.].
-      </t>
+
   <section title="Terms Used in This Document">
   <t>
    This document uses the terminology established in the DetNet architecture
@@ -490,11 +488,6 @@ Note: * no service sub-layer required for transit nodes
 
 <section title="Management and Control Implications">
         <t>
-           [Editor's note: This section covers management/control plane related
-		   implications of creation, mapping, removal of TSN Stream IDs, their
-		   related parameters and, when needed, the configuration of FRER.]
-        </t>
-        <t>
 			DetNet flow and TSN Stream mapping related information are
 			required only for TSN-aware MPLS (DetNet) nodes. From the
 			Data Plane perspective there is no practical difference
@@ -603,18 +596,6 @@ Note: * no service sub-layer required for transit nodes
       <?rfc include="reference.I-D.ietf-detnet-ip"?>
       <?rfc include="reference.I-D.ietf-detnet-security"?>
    
-   <reference anchor='IEEE1588'>
-     <front>
-       <title>IEEE 1588 Standard for a Precision Clock Synchronization
-       Protocol for Networked Measurement and Control Systems Version 2
-       </title>
-       <author>
-         <organization>IEEE</organization>
-       </author>
-       <date year='2008' />
-     </front>
-   </reference>
-
     <reference anchor="IEEE802.1AE-2018"
       target="https://ieeexplore.ieee.org/document/8585421">
       <front>
@@ -663,30 +644,6 @@ Note: * no service sub-layer required for transit nodes
         <seriesInfo name="IEEE P802.1CBdb /D0.2" value="P802.1CBdb"/>
         <format type="PDF" target="http://www.ieee802.org/1/files/private/cb-drafts/d2/802-1CB-d2-1.pdf"/>
       </reference>
-
-   <reference anchor="G.8275.1"
-              target="https://www.itu.int/rec/T-REC-G.8275.1/en">
-     <front>
-       <title>Precision time protocol telecom profile for phase/time synchronization with full timing support from the network</title>
-       <author>
-         <organization>International Telecommunication Union</organization>
-       </author>
-       <date month="June" year="2016"/>
-     </front>
-     <seriesInfo name="ITU-T G.8275.1/Y.1369.1" value="G.8275.1"/>
-   </reference>
-
-   <reference anchor="G.8275.2"
-              target="https://www.itu.int/rec/T-REC-G.8275.2/en">
-     <front>
-       <title>Precision time protocol telecom profile for phase/time synchronization with partial timing support from the network</title>
-       <author>
-         <organization>International Telecommunication Union</organization>
-       </author>
-       <date month="June" year="2016"/>
-     </front>
-     <seriesInfo name="ITU-T G.8275.2/Y.1369.2" value="G.8275.2"/>
-   </reference>
 
   </references>
 
