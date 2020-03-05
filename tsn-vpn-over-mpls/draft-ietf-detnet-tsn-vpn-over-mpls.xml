@@ -4,7 +4,7 @@
 <!ENTITY rfc3031 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3031.xml">
 <!ENTITY rfc3985 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3985.xml">
 <!ENTITY rfc5921 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5921.xml">
-<!ENTITY I-D.ietf-spring-segment-routing-mpls PUBLIC "" "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-spring-segment-routing-mpls">
+<!ENTITY rfc8660 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8660.xml">
 
 ]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
@@ -114,7 +114,6 @@
    <list style="hanging" hangIndent="14">
     <t hangText="AC">Attachment Circuit.</t>
     <t hangText="CE">Customer Edge equipment.</t>
-    <t hangText="CoS">Class of Service.</t>
     <t hangText="CW">Control Word.</t>
     <t hangText="DetNet">Deterministic Networking.</t>
     <t hangText="DF">DetNet Flow.</t>
@@ -127,17 +126,11 @@
     <t hangText="MPLS">Multiprotocol Label Switching.</t>
     <t hangText="MPLS-TE">Multiprotocol Label Switching - Traffic Engineering.</t>
     <t hangText="MPLS-TP">Multiprotocol Label Switching - Transport Profile.</t>
-    <t hangText="MS-PW">Multi-Segment PseudoWire (MS-PW).</t>
     <t hangText="NSP">Native Service Processing.</t>
     <t hangText="OAM">Operations, Administration, and Maintenance.</t>
     <t hangText="PE">Provider Edge.</t>
-    <t hangText="PEF">Packet Elimination Function.</t>
-    <t hangText="PRF">Packet Replication Function.</t>
     <t hangText="PREOF">Packet Replication, Elimination and Ordering Functions.</t>
-    <t hangText="POF">Packet Ordering Function.</t>
-    <t hangText="PSN">Packet Switched Network.</t>
     <t hangText="PW">PseudoWire.</t>
-    <t hangText="QoS">Quality of Service.</t>
     <t hangText="S-PE">Switching Provider Edge.</t>
     <t hangText="T-PE">Terminating Provider Edge.</t>
     <t hangText="TSN">Time-Sensitive Network.</t>
@@ -372,6 +365,12 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
                 </t>
         </list>
   </t>
+  <t>  
+		The sub-sections describe procedures for forwarding packets by DetNet 
+		Edge nodes, where such packets are received from either directly 
+		connected CEs (TSN nodes) or some other DetNet Edge nodes.
+  </t>
+  
 
   <section title="Edge Node TSN Procedures" anchor="tom_tsn_proc">
     <t>
@@ -384,9 +383,10 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
           </t>
           <t>
                 TSN specific functions are executed on the data received by 
-                the PE from the CE before presentation to the DetNet PW for 
+                the DetNet Edge Node from the connected CE before forwarded to 
+				connected CE(s) or presentation to the DetNet Service Proxy function for 
                 transmission across the DetNet domain, or on the data received from 
-                a DetNet PW by a PE before it is output on the Attachment Circuit (AC). 
+                a DetNet PW by a PE before it is output on the Attachment Circuit(s) (AC). 
           </t>
           <t>
                 TSN specific function(s) of Edge Nodes (T-PE) are belonging to the 
@@ -396,6 +396,45 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
                 overwriting or adding VLAN tags, etc.). Depending on the TSN role of 
                 the Edge Node in the end-to-end TSN service selected TSN functions 
                 must be supported. 
+    </t>
+    <t>		
+			When a PE receives a packet from a CE, on a given AC with DetNet service,
+			it MUST first check via Stream Identification whether the packet belongs 
+			to a configured TSN Stream (i.e., App-flow from DetNet perspective). 
+			If no Stream ID is matched and no other (VPN) service is configured 
+			for the AC then packet MUST be dropped. If there is a matching TSN 
+			Stream then the Stream-ID specific TSN functions MUST be executed 
+			(e.g., ingress policing, header field manipulation in case 
+			of active Stream Identification, FRER, etc.). Source MAC lookup 
+			MAY also be used for local MAC address learning.
+    </t>
+    <t>		
+			If the PE decides to forward the packet, the packet MUST be forwarded 
+			according to the TSN Stream specific configuration to connected CE(s) 
+			(in case of local bridging) and/or to the DetNet Service Proxy 
+			(in case of forwarding to remote CE(s) required). If there are no 
+			TSN Stream specific forwarding configurations the PE MUST flood 
+			the packet to other locally attached CE(s) and to the DetNet Service 
+			Proxy. If the administrative policy on the PE does not allow 
+			flooding the PE MUST drop the packet.
+    </t>
+    <t>		
+			When a TSN entity of the PE receives a packet from the DetNet 
+			Service Proxy, it MUST first check via Stream Identification whether 
+			the packet belongs to a configured TSN Stream. If no Stream ID is 
+			matched then packet MUST be dropped. If there is a matching TSN 
+			Stream then the Stream ID specific TSN functions MUST be executed 
+			(e.g., header field manipulation in case of active Stream 
+			Identification, FRER, etc.). Source MAC lookup MAY also be used for 
+			local MAC address learning.
+    </t>
+    <t>		
+			If the PE decides to forward the packet, the packet MUST be forwarded 
+			according to the TSN Stream specific configuration to connected CE(s).
+			If there are no TSN Stream specific forwarding configurations the 
+			PE MUST flood the packet to locally attached CE(s). If the 
+			administrative policy on the PE does not allow flooding the PE MUST 
+			drop the packet.
     </t>
     <t>
                 Implementations of this document SHALL use management and
@@ -408,13 +447,25 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
           <t>
                 The Service Proxy
                 function maps between App-flows and DetNet flows.
-				The DetNet Edge Node TSN function MUST support the TSN Stream
+				The DetNet Edge Node TSN entity MUST support the TSN Stream
                 identification functions and the related managed objects as
                 defined in <xref target="IEEE8021CB">IEEE 802.1CB</xref> and
                 <xref target="IEEEP8021CBdb">IEEE P802.1CBdb</xref> to
                 recognize the App-flow related packets.  The Service Proxy
                 presents TSN Streams as an App-flow to a DetNet Flow.
 		  </t>
+		<t>		
+			When a DetNet Service Proxy receives a packet from the TSN Entity
+			it MUST check whether such an App-flow is present in its mapping table.
+			If present it associates the internal DetNet flow-ID to the packet and 
+			MUST forward it to the DetNet Service and Forwarding sub-layers. If 
+			no matching statement is present it MUST drop the packet.
+		</t>
+		<t>		
+			When a DetNet Service Proxy receives a packet from the DetNet Service 
+			and Forwarding sub-layers it MUST be forwarded to the Edge Node 
+			TSN Entity. 
+		</t>
 		  <t>
                 Implementations of this document SHALL use management and
                 control information to map a TSN Stream to a DetNet flow. 
@@ -461,12 +512,27 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
         <t>
                 The LSP used to forward the DetNet packet may be of any type (MPLS-LDP, 
                 MPLS-TE, MPLS-TP <xref target="RFC5921"/>, or MPLS-SR 
-                <xref target="I-D.ietf-spring-segment-routing-mpls"/>).  The LSP 
+                <xref target="RFC8660"/>).  The LSP 
                 (F-Label) label and/or the S-Label may be used to indicate the queue 
                 processing as well as the forwarding parameters.
         </t>
+    <t>		
+			When a PE receives a packet from the Service Proxy function it MUST
+			add to the packet the DetNet flow-ID specific S-label and create a 
+			d-CW. The PE MUST forward the packet according to the configured 
+			DetNet Service and Forwarding sub-layer rules to other PE nodes. 
+    </t>
+    <t>		
+			When a PE receives an MPLS packet from a remote PE, then, after 
+			processing the MPLS label stack, if the top MPLS label ends up being 
+			a DetNet S-label that was advertised by this node, then the PE 
+			MUST forward the packet according to the configured DetNet Service and 
+			Forwarding sub-layer rules to other PE nodes or via the Detnet Service 
+			Proxy function towards locally connected CE(s). 
+    </t>
     <t>
-                For further details see <xref target="I-D.ietf-detnet-mpls"/>.
+                For further details on DetNet Service and Forwarding sub-layers 
+				see <xref target="I-D.ietf-detnet-mpls"/>.
         </t>
   </section>
 
@@ -587,7 +653,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
   <references title="Informative References">
    &rfc3985;
    &rfc5921;
-   &I-D.ietf-spring-segment-routing-mpls;
+   &rfc8660;
       <?rfc include="reference.RFC.8655"?>
       <?rfc include="reference.I-D.ietf-detnet-data-plane-framework"?>
       <?rfc include="reference.I-D.ietf-detnet-security"?>
