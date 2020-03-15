@@ -112,7 +112,7 @@
       </t>
       <t>
         The DetNet Architecture models the DetNet related data plane functions
-        as two sub-layers: functions into two sub-layers: a
+        as two sub-layers: a
         service sub-layer and a forwarding sub-layer.  The service sub-layer is
         used to provide DetNet service protection (e.g., by packet replication 
 		and packet elimination functions) and reordering. The
@@ -123,7 +123,7 @@
 		Since no DetNet-specific fields are added to support DetNet 
 		IP flows, only 
 		the forwarding sub-layer functions are supported using the DetNet IP 
-		defined by this document.		
+		defined by this document.
 		Service protection can be provided on a per
         sub-net basis using technologies such as MPLS <xref
         target="I-D.ietf-detnet-dp-sol-mpls"/> and Ethernet as
@@ -833,6 +833,11 @@ DetNet                    |L2/SbN|          |L2/SbN|
               fields share a common format and common DetNet flow
               identification procedures.
             </t>
+            <t>
+              The rules defined in this section only apply when the
+              IPv4 Protocol or IPv6 Next Header Field contains the IANA
+              defined value for UDP or TCP.
+            </t>
             <section title="Source Port Field">
               <t>
                 Implementations of this document MUST support DetNet flow
@@ -866,6 +871,11 @@ DetNet                    |L2/SbN|          |L2/SbN|
               carried in the field, i.e., an exact value.  Implementation SHOULD
               also allow for the field to be ignored for a specific
               DetNet flow.
+            </t>
+            <t>
+              The rules defined in this section only apply when the
+              IPv4 Protocol or IPv6 Next Header Field contains the IANA
+              defined value for AH or ESP.
             </t>
           </section>
         </section>
@@ -937,7 +947,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
               Fields:
               <list style="symbols">
                 <t>If the DSCP field is to be used in flow
-                identification. Ignoring the DSCP filed is optional.</t>
+                identification. Ignoring the DSCP field is optional.</t>
                 <t>When the DSCP field is used in flow identification, a
                 list of field values that may be used by a specific flow.</t>
               </list></t>
@@ -949,7 +959,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
               <t>TCP and UDP Destination Port. Exact and wildcard matching is
               required. Port ranges can optionally be used.</t>
               <t>IPsec Header SPI field. Exact matching is
-              required. </t>
+              required. Support for wildcard matching is recommended.</t>
             </list>
             This information MUST be provisioned per DetNet flow via
             configuration, e.g., via the controller or management plane.
