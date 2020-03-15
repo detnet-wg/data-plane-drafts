@@ -536,7 +536,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
       <section title="Forwarding Sub-Layer Considerations">
       <section title="Class of Service">
         <t>
-          Class of Service (CoS) for DetNet flows carried in IPv6 is provided using the standard
+          Class of Service (CoS) for DetNet flows carried in IPv4 and IPv6 is provided using the standard
           differentiated services code point (DSCP) field <xref
           target="RFC2474"/> and related mechanisms.
         </t>
