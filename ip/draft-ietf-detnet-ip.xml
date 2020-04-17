@@ -93,11 +93,28 @@
     </abstract>
   </front>
 
+<!-- 
+***********************************************
+IESG review comment resolutions in this version:
+
+DONE
+- Roni Even, (Gen-ART), (03-09), Ready with Nits
+- Sabrina Tanamal, IANA, (03-12), OK
+- David Black (03-12), Include ICMP
+- Tero Kivinen 03-12, Nits
+- Bob Briscoe, (03-15), Comments and Many nits
+
+To be discussed:
+- Security section
+- Deborah, (04-09), decrease authors to 5 !!!
+***********************************************
+-->
+
   <middle>
     <section title="Introduction" anchor="sec_intro">
       <t>
         Deterministic Networking (DetNet) is a service that can be offered by a network to DetNet flows.
-        DetNet provides these flows extremely low packet loss rates and assured maximum end-to-end
+        DetNet provides these flows with extremely low packet loss rates and assured maximum end-to-end
         delivery latency.  General background and concepts of DetNet can
         be found in the DetNet Architecture <xref target="RFC8655"/>.
       </t>
@@ -118,7 +135,7 @@
 		and packet elimination functions) and reordering. The
         forwarding sub-layer is used to provide congestion protection (low
         loss, assured latency, and limited out-of-order delivery). 
-		The service sub-layer generally requires additional fields to provide 
+		The service sub-layer generally requires additional header fields to provide 
 		its service; for example see <xref target="I-D.ietf-detnet-mpls"/>. 
 		Since no DetNet-specific fields are added to support DetNet 
 		IP flows, only 
@@ -127,7 +144,7 @@
 		Service protection can be provided on a per
         sub-net basis using technologies such as MPLS <xref
         target="I-D.ietf-detnet-dp-sol-mpls"/> and Ethernet as
-        specified in the IEEE 802.1 TSN task group(referred to in this document
+        specified in the IEEE 802.1 TSN (Time-Sensitive Networking) task group (referred to in this document
         simply as IEEE802.1 TSN).
       </t>
       <t>
@@ -234,6 +251,13 @@
         identification. Note that a 6-tuple is composed of a 5-tuple
         plus the addition of a DSCP component.
       </t>
+	  <t>
+	    For some of the protocols 5-tuples and 6-tuples cannot be used because 
+		the port information is not available (e.g., ICMP, IPSec ESP). Same can 
+		be valid for flow aggregates. In such cases using smaller tuples are 
+		appropriate, e.g., a 3-tuple (2 IP addresses, IP protocol) or even a 
+		2-tuple (all IP traffic between two IP addresses).
+	  </t>
       <t>
         The DetNet IP data plane also allows for optional matching on
         the IPv6 flow label field,
@@ -243,7 +267,7 @@
 	    Non-DetNet and DetNet IP packets are identical on the wire. 
 		Generally the fields used in flow identification are forwarded 
 		unmodified, however modification of these fields is allowed, 
-		for example to a DSCP value, when required by the DetNet service.
+		for example changing the DSCP value, when required by the DetNet service.
       </t>
       <t>
         DetNet flow aggregation may be enabled via the use of
@@ -277,13 +301,14 @@
       <t>
         <xref target="fig_ip_detnet_simple"/> illustrates a DetNet enabled IP
         network.  The DetNet enabled end systems originate IP encapsulated
-        traffic those are identified within the DetNet domain as DetNet flows, 
-		relay nodes understand the
+        traffic that is identified within the DetNet domain as DetNet flows. 
+		Relay nodes understand the
         forwarding requirements of the DetNet flow and ensure that node,
         interface and sub-network resources are allocated to ensure DetNet
         service requirements. The dotted line around the Service component of
         the Relay Nodes indicates that the transit routers are DetNet service
-        aware but do not perform any DetNet service sub-layer function, e.g., PREOF.
+        aware but do not perform any DetNet service sub-layer function, e.g., PREOF
+		(Packet Replication, Elimination and Ordering Function).
       </t>
       <t>
         Note: The sub-network can represent a TSN, MPLS network or other
@@ -335,7 +360,7 @@
         behavior.  As shown above, edge nodes provide a Service Proxy
         function that "associates" one or more IP flows with the
         appropriate DetNet flow-specific information and ensures that
-        the receives the proper traffic treatment within the domain.
+        the flow receives the proper traffic treatment within the domain.
       </t>
       <t>
         Note: The operation of IEEE802.1 TSN end systems over DetNet
@@ -537,7 +562,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
       <section title="Class of Service">
         <t>
           Class of Service (CoS) for DetNet flows carried in IPv4 and IPv6 is provided using the standard
-          differentiated services code point (DSCP) field <xref
+          differentiated services (DSCP) field <xref
           target="RFC2474"/> and related mechanisms.
         </t>
         <t>
@@ -559,7 +584,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
           IP encapsulated DetNet flows are expected to be defined in a future
           document.  From an encapsulation perspective, the combination of the 6-tuple i.e.,
           the typical 5-tuple enhanced with the DSCP and previously
-          mentioned optional field, uniquely identifies a DetNet
+          mentioned optional field (i.e., flow label), uniquely identifies a DetNet
           IP flow.
         </t>
         <t>
@@ -585,7 +610,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
             <t>
               Remarking packets associated with an incomplete
               reservation.  Remarking can be accomplished by changing
-              the value of the DSCP, or optional, field to a value that
+              the value of the DSCP field to a value that
               results in the packet no longer matching any other
               reserved DetNet IP flow.
             </t>
@@ -648,12 +673,12 @@ DetNet                    |L2/SbN|          |L2/SbN|
           impacts DetNet IP data plane flow identification and resource
           allocation.  As discussed above, IP flow identification uses
           the IP "6-tuple" for flow identification.  DetNet IP flows can
-          be aggregated using any of the 6-tuple, and an additional optional field defined in <xref
-          target="ip-flow-id"/>.  The use of prefixes, wildcards,
+          be aggregated using any of the 6-tuple, and an additional optional 
+		  field (i.e., flow label).  The use of prefixes, wildcards,
           lists, and value ranges allows a DetNet node to identify
           aggregate DetNet flows.  From a resource allocation
-          perspective, DetNet nodes must provide service to an aggregate
-          and not on a component flow basis.
+          perspective, DetNet nodes ought to provide service to an 
+		  aggregate rather than on a component flow basis.
        </t>
        <t>
           It is the responsibility of the DetNet controller plane to
@@ -708,14 +733,14 @@ DetNet                    |L2/SbN|          |L2/SbN|
       <t>
         DetNet IP data plane establishment and operational procedures
         also have requirements on the control and management systems
-        for DetNet flows and these are referred in this section.
+        for DetNet flows and these are referred to in this section.
         Specifically this section identifies a
         number of information elements that require support via the
         management and control interfaces supported by a DetNet node.
         The specific mechanism used for such support is out of the scope
         of this document.  A summary of the requirements for management and control
         related information is included.  Conformance
-        language is not used in the summary since applies to future
+        language is not used in the summary since it applies to future
         mechanisms such as those that may be provided in YANG models
         <xref target="I-D.ietf-detnet-yang"/>.
       </t>
@@ -820,7 +845,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
           <t>
             Implementations of this document MUST support DetNet flow
             identification based on header information identified in this
-            section. Support for TCP, UDP and IPsec flows is defined.
+            section. Support for TCP, UDP, ICMP and IPsec flows is defined.
             Future documents are expected to define support for other
             protocols.
           </t>
@@ -860,6 +885,13 @@ DetNet                    |L2/SbN|          |L2/SbN|
                 for the field to be ignored for a specific DetNet flow.
               </t>
             </section>
+          </section>
+          <section title="ICMP">
+            <t>
+              DetNet flow identification for ICMP is achieved based on the 
+			  protocol's header. Note that ICMP type is not included in the 
+			  flow definition. 
+            </t>
           </section>
           <section title="IPsec AH and ESP">
             <t>
@@ -915,10 +947,9 @@ DetNet                    |L2/SbN|          |L2/SbN|
           buffers) and provisioning or related parameters (such as shaping, and
           policing). Support can also be provided via an underlying network
           technology such as MPLS <xref target="I-D.ietf-detnet-ip-over-mpls"/> or
-          IEEE802.1 TSN <xref target="I-D.ietf-detnet-ip-over-tsn"/>.  Other than in
-          the TSN case, the specific mechanisms used by a DetNet node to ensure
-          DetNet service delivery requirements are met for supported DetNet
-          flows is outside the scope of this document.
+          IEEE802.1 TSN <xref target="I-D.ietf-detnet-ip-over-tsn"/>.  
+		  Other mechanisms than the ones used in the TSN case are outside the 
+		  scope of this document. 
         </t>
       </section>
 
@@ -946,10 +977,11 @@ DetNet                    |L2/SbN|          |L2/SbN|
               <t>For the IPv4 Type of Service and IPv6 Traffic Class
               Fields:
               <list style="symbols">
-                <t>If the DSCP field is to be used in flow
-                identification. Ignoring the DSCP field is optional.</t>
-                <t>When the DSCP field is used in flow identification, a
-                list of field values that may be used by a specific flow.</t>
+                <t>Whether or not the DSCP field is used in flow identification.
+				Use of the DSCP field for flow identification is optional.</t>
+                <t>If the DSCP field is used to identify a flow, then the flow
+				identification information (for that flow) includes a list of
+				DSCPs used by that flow.</t>
               </list></t>
               <t>IPv6 flow label field. This field can be optionally used
               for matching.  When used, can be used instead of matching against 
