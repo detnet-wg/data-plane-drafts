@@ -100,6 +100,24 @@
   </abstract>
   </front>
 
+<!-- 
+***********************************************
+IESG review comment resolutions in this version:
+
+DONE
+- Sabrina Tanamal, IANA, (03-12), OK
+- Michael Tüxen, (03-15), Ready with Issues: Seq.Num.Space
+- Shwetha Bhandari, (03-13), Ready
+
+To be discussed:
+- Security section
+- Watson Ladd, SecDir, (03-11), Not Ready
+- Uri Blumenthal, (03-13), Security 
+- Deborah, (04-09), decrease authors to 6 !!!
+***********************************************
+-->
+
+
  <middle>
  <section title="Introduction" anchor="sec_intro">
 <!-- Note: There are no dedicated section to procedures like "DetNet IP Data Plane Procedures" here. Do we need it like in DetNet-IP document ??? -->
@@ -529,6 +547,7 @@ DFx = DetNet member flow x over a TE LSP
       <t hangText="Sequence Number (bits 4 to 31)">
         <vspace blankLines="1"/>
         An unsigned value implementing the DetNet sequence number.
+		The sequence number space is a circular one.
       </t>
     </list>
   </t>
