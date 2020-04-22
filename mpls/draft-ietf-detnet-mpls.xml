@@ -50,15 +50,8 @@
       </address>
     </author>
 
-    <author fullname="Don Fedyk" initials="D." surname="Fedyk">
-      <organization>LabN Consulting, L.L.C.</organization>
-      <address>
-        <email>dfedyk@labn.net</email>
-      </address>
-    </author>
-
     <author fullname="Andrew G. Malis" initials="A.G." surname="Malis">
-      <organization>Independent</organization>
+      <organization>Malis Consulting</organization>
       <address>
         <email>agmalis@gmail.com</email>
       </address>
@@ -1386,8 +1379,8 @@ DFx = DetNet member flow x over a TE LSP
     service, provisions can be made against DOS attacks and delay
     attacks. To protect against DOS attacks, excess traffic due to
     malicious or malfunctioning devices is prevented or mitigated
-    through the use of existing mechanism, such as through policing and
-    shaping.  To prevent DetNet packets from
+    through the use of existing mechanisms, for example by policing and 
+	shaping incoming traffic. To prevent DetNet packets from
     being delayed by an entity external to a DetNet domain, DetNet
     technology definition can allow for the mitigation of
     Man-In-The-Middle attacks, for example through use of
@@ -1404,7 +1397,7 @@ DFx = DetNet member flow x over a TE LSP
 <section anchor="acks" title="Acknowledgements">
       <t>
                 The authors wish to thank Pat Thaler, Norman Finn, Loa Anderson, David Black,
-                Rodney Cummings, Ethan Grossman, Tal Mizrahi, David Mozes, Craig Gunther,
+                Rodney Cummings, Ethan Grossman, Don Fedyk, Tal Mizrahi, David Mozes, Craig Gunther,
                 George Swallow, Yuanlong Jiang and Carlos J. Bernardos for their
                 various contributions to this work.
       </t>
