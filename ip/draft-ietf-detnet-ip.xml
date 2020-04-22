@@ -57,13 +57,6 @@
       </address>
     </author>
 
-    <author fullname="Andrew G. Malis" initials="A.G." surname="Malis">
-      <organization>Independent</organization>
-      <address>
-        <email>agmalis@gmail.com</email>
-      </address>
-    </author>
-
     <author fullname="Stewart Bryant" initials="S." surname="Bryant">
       <organization>Futurewei Technologies</organization>
       <address>
@@ -1076,7 +1069,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
     <section anchor="acks" title="Acknowledgements">
       <t>
         The authors wish to thank Pat Thaler, Norman Finn, Loa Anderson, David Black,
-        Rodney Cummings, Ethan Grossman, Tal Mizrahi, David Mozes, Craig Gunther,
+        Rodney Cummings, Ethan Grossman, Andrew G. Malis, Tal Mizrahi, David Mozes, Craig Gunther,
         George Swallow, Yuanlong Jiang and Carlos J. Bernardos for their
         various contributions to this work. David Black served as
         technical advisor to the DetNet working group during the
