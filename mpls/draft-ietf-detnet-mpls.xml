@@ -100,24 +100,6 @@
   </abstract>
   </front>
 
-<!-- 
-***********************************************
-IESG review comment resolutions in this version:
-
-DONE
-- Sabrina Tanamal, IANA, (03-12), OK
-- Michael Tüxen, (03-15), Ready with Issues: Seq.Num.Space
-- Shwetha Bhandari, (03-13), Ready
-
-To be discussed:
-- Security section
-- Watson Ladd, SecDir, (03-11), Not Ready
-- Uri Blumenthal, (03-13), Security 
-- Deborah, (04-09), decrease authors to 6 !!!
-***********************************************
--->
-
-
  <middle>
  <section title="Introduction" anchor="sec_intro">
 <!-- Note: There are no dedicated section to procedures like "DetNet IP Data Plane Procedures" here. Do we need it like in DetNet-IP document ??? -->
@@ -1365,8 +1347,10 @@ DFx = DetNet member flow x over a TE LSP
    Additionally, security considerations and a threat analysis are described in 
    <xref target="I-D.ietf-detnet-security"/>. 
    This section
-   considers exclusively security considerations which are specific to the DetNet
-   MPLS data plane.
+   considers security considerations which are specific to the DetNet
+   MPLS data plane. The considerations raised related to MPLS networks
+   in general in <xref target="RFC5920"/> are equally applicable to the
+   the DetNet MPLS data plane.
   </t>
   <t>
    Security aspects which are unique to DetNet are those whose aim is to
@@ -1401,9 +1385,9 @@ DFx = DetNet member flow x over a TE LSP
     To provide uninterrupted availability of the DetNet
     service, provisions can be made against DOS attacks and delay
     attacks. To protect against DOS attacks, excess traffic due to
-    malicious or malfunctioning devices can be prevented or mitigated,
-    for example through the use of existing mechanism such as policing and shaping applied at
-    the input of a DetNet domain. To prevent DetNet packets from
+    malicious or malfunctioning devices is prevented or mitigated
+    through the use of existing mechanism, such as through policing and
+    shaping.  To prevent DetNet packets from
     being delayed by an entity external to a DetNet domain, DetNet
     technology definition can allow for the mitigation of
     Man-In-The-Middle attacks, for example through use of
@@ -1459,6 +1443,7 @@ DFx = DetNet member flow x over a TE LSP
    <?rfc include="reference.RFC.4301"?>
    <?rfc include="reference.RFC.5440"?>
    <?rfc include="reference.RFC.5586"?>
+   <?rfc include="reference.RFC.5920"?>
    <?rfc include="reference.RFC.5921"?>
    <?rfc include="reference.RFC.6073"?>
    <?rfc include="reference.RFC.6003"?>
