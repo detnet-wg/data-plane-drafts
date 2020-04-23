@@ -50,15 +50,8 @@
       </address>
     </author>
 
-    <author fullname="Don Fedyk" initials="D." surname="Fedyk">
-      <organization>LabN Consulting, L.L.C.</organization>
-      <address>
-        <email>dfedyk@labn.net</email>
-      </address>
-    </author>
-
     <author fullname="Andrew G. Malis" initials="A.G." surname="Malis">
-      <organization>Independent</organization>
+      <organization>Malis Consulting</organization>
       <address>
         <email>agmalis@gmail.com</email>
       </address>
@@ -1386,8 +1379,8 @@ DFx = DetNet member flow x over a TE LSP
     service, provisions can be made against DOS attacks and delay
     attacks. To protect against DOS attacks, excess traffic due to
     malicious or malfunctioning devices is prevented or mitigated
-    through the use of existing mechanism, such as through policing and
-    shaping.  To prevent DetNet packets from
+    through the use of existing mechanisms, for example by policing and 
+	shaping incoming traffic. To prevent DetNet packets from
     being delayed by an entity external to a DetNet domain, DetNet
     technology definition can allow for the mitigation of
     Man-In-The-Middle attacks, for example through use of
@@ -1410,7 +1403,20 @@ DFx = DetNet member flow x over a TE LSP
       </t>
 </section>
 
+<section anchor="Contributors" title="Contributors">
+  <t>
+    RFC7322 limits the number of authors listed on the front page of a
+    draft to a maximum of 5. The editor wishes to thank and acknowledge
+    the follow author for contributing text to this draft.
+  </t>
 
+  <figure> <artwork><![CDATA[
+   Don Fedyk
+   LabN Consulting, L.L.C.
+   Email: dfedyk@labn.net
+   ]]></artwork>
+  </figure>
+</section>
 
 </middle>
 

@@ -57,13 +57,6 @@
       </address>
     </author>
 
-    <author fullname="Andrew G. Malis" initials="A.G." surname="Malis">
-      <organization>Independent</organization>
-      <address>
-        <email>agmalis@gmail.com</email>
-      </address>
-    </author>
-
     <author fullname="Stewart Bryant" initials="S." surname="Bryant">
       <organization>Futurewei Technologies</organization>
       <address>
@@ -1087,10 +1080,20 @@ DetNet                    |L2/SbN|          |L2/SbN|
 
     <section anchor="contrib" title="Contributors">
       <t>
-        This document is derived from an earlier draft that was edited
-        by Jouni Korhonen (jouni.nospam@gmail.com) and as such, he
-        contributed to and authored text in this document.
+        RFC7322 limits the number of authors listed on the front page of
+        a draft to a maximum of 5. The editor wishes to thank and
+        acknowledge the follow authors for contributing text to this
+        draft.
       </t>
+      <figure> <artwork><![CDATA[
+   Jouni Korhonen
+   Email: jouni.nospam@gmail.com
+
+   Andrew G. Malis
+   Malis Consulting
+   Email: agmalis@gmail.com
+   ]]></artwork>
+      </figure>
     </section>
 
 
