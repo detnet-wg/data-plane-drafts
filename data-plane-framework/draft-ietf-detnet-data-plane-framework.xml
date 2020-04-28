@@ -79,7 +79,8 @@
         This document provides an overall framework for the DetNet
         data plane.  It covers concepts and considerations that
         are generally common to any Deterministic Networking data plane
-        specification.
+        specification. It collects related controller plane 
+		considerations as well.
       </t>
     </abstract>
   </front>
@@ -121,7 +122,7 @@ I-D.ietf-detnet-security is reviewed and becomes an RFC.)
       </t>
       <t>
         The DetNet Architecture models the DetNet related data plane functions
-        decomposed into two sub-layers: a service sub-layer and a forwarding
+        as being decomposed into two sub-layers: a service sub-layer and a forwarding
         sub-layer.  The service sub-layer is used to provide DetNet service
         protection and reordering. The forwarding sub-layer leverages Traffic
         Engineering mechanisms and provides congestion protection (low loss,
@@ -149,7 +150,7 @@ I-D.ietf-detnet-security is reviewed and becomes an RFC.)
         of a forwarding layer capability that is typically not replicated in
         other forwarding technologies. Most of DetNet benefits can be gained by
         running over a data link layer that has not been specifically enhanced
-        to support all TSN capabilities but for certain networks and traffic
+        to support all TSN capabilities but for such networks and traffic
         mixes delay and jitter performance may vary due to the forwarding
         sub-layer intrinsic properties. 
       </t>
@@ -267,9 +268,9 @@ I-D.ietf-detnet-security is reviewed and becomes an RFC.)
  </t>
  <t>
          The service sub-layer provides additional support beyond the
-         connectivity function of the forwarding sub-layer. An example of this
-         is Packet Replication, Elimination, and Ordering functions see <xref
-                 target="PREOF"/>.  The ordering function (POF) uses sequence numbers
+         connectivity function of the forwarding sub-layer. See <xref
+         target="PREOF"/> as an example for Packet Replication, Elimination, 
+		 and Ordering functions.  The ordering function (POF) uses sequence numbers
          added to packets enabling a range of packet order protection from
          simple ordering and dropping out-of-order packets to more complex
          reordering of a fixed number of out-of-order, minimally delayed
@@ -279,7 +280,7 @@ I-D.ietf-detnet-security is reviewed and becomes an RFC.)
        <t>
          The method of instantiating each of the layers is specific to the 
                  particular DetNet data plane method, and more than one approach may 
-                 be applicable to a given bearer network type.
+                 be applicable to a given network type.
        </t>
 
       <section title="Data Plane Characteristics" anchor="sec_dp_char">
@@ -296,8 +297,8 @@ I-D.ietf-detnet-security is reviewed and becomes an RFC.)
          existing standardized headers and/or encapsulations.  The Detnet
          forwarding sub-layer may provide capabilities leveraging that same
          header or encapsulation technology (e.g., DN IP or DN MPLS) or it
-         may be achieved by other technologies (e.g.,  <xref
-                 target="dn_svc_encaps"/>).
+         may be achieved by other technologies as shown in <xref
+                 target="dn_svc_encaps"/>.
          DetNet is currently defined for operation over packet-switched (IP)
           networks or label-switched (MPLS) networks.  
          </t>
@@ -309,7 +310,7 @@ I-D.ietf-detnet-security is reviewed and becomes an RFC.)
           For example, in DetNet IP, 
           zero encapsulation is used and no sequence number
           is available, and in DetNet MPLS, DetNet-specific information may be added
-          explicitly to the packets in the format of S-label and d-CW
+          explicitly to the packets in the form of S-label and d-CW
           <xref target="I-D.ietf-detnet-mpls"/> .  
          </t>
 
@@ -371,8 +372,8 @@ I-D.ietf-detnet-security is reviewed and becomes an RFC.)
           <t>
                   The DetNet data plane framework supports a Flow-ID (for identification of the 
                   flow or aggregate flow) and/or a Sequence Number (for PREOF) for each 
-                  DetNet flow. The DetNet Service sub-layer requires both; the DetNet 
-                  forwarding sub-layer requires only Flow-ID. Metadata can also be 
+                  DetNet flow. The Flow-ID is used by both the service and forwarding sub-layers, 
+				  but the sequence number is only used by the service layer. Metadata can also be 
                   used for OAM indications and instrumentation of DetNet data plane 
                   operation.
           </t>
@@ -407,10 +408,10 @@ I-D.ietf-detnet-security is reviewed and becomes an RFC.)
           for use by the network of the receiving host. 
         </t>
         <t>
-          Some MPLS examples of implicit metadata include the sequence number for use by
-          the PREOF function, or even all the essential information being
-          included into the DetNet over MPLS label stack (the DetNet Control
-          Word and the DetNet Service label).  
+		  An MPLS example of explicit metadata is the sequence number
+		  used by the PREOF function, or even the case where all the 
+		  essential information being included into the DetNet over MPLS 
+		  label stack (the DetNet Control Word and the DetNet Service label).
          </t>
 
       </section>
@@ -546,10 +547,10 @@ I-D.ietf-detnet-security is reviewed and becomes an RFC.)
   </section>
   <section title="Load sharing">
       <t>
-        Use of packet-by-packet distribution of the same DetNet flow over
+        Use of packet-by-packet load sharing of the same DetNet flow over
         multiple paths is not recommended except for the cases listed above
         where PREOF is utilized to improve protection of traffic and maintain order.
-        Packet by packet load sharing, e.g., via ECMP or UCMP, impacts ordering and
+        Packet-by-packet load sharing, e.g., via ECMP or UCMP, impacts ordering and
         possibly jitter.
       </t>
       <!-- I think this section below should refer to OAM for the various underlying
@@ -733,7 +734,8 @@ CE1----EN1--------R1-------R2-------R3--------EN2-----CE2
    <t>
    IP aggregation has both data plane and controller plane aspects. For the
    data plane, flows may be aggregated for treatment based on shared
-   characteristics such as 6-tuple.  Alternatively,  an IP encapsulation may be
+   characteristics such as 6-tuple <xref target="I-D.ietf-detnet-ip"/>.  
+   Alternatively,  an IP encapsulation may be
    used to tunnel an aggregate number of DetNet Flows between relay nodes.
    </t>
    </section>
@@ -906,11 +908,11 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
         forwarded through the domain using the DetNet data plane.
       </t>
       <t>
-        However, from a practical and implementation standpoint, they are not
+        However, from a practical and implementation standpoint, controller plane alternatives are not
         equivalent at all. Some approaches are more scalable than others in
-        terms of signaling load on the network. Some can take advantage of
+        terms of signaling load on the network. Some alternatives can take advantage of
         global tracking of resources in the DetNet domain for better overall
-        network resource optimization. Some are more resilient than others if
+        network resource optimization. Some solutions are more resilient than others if
         link, node, or management equipment failures occur. While a detailed
         analysis of the control plane alternatives is out of the scope of this
         document, the requirements from this document can be used as the basis
@@ -1010,7 +1012,7 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
         DetNet application with the required service.  A requirement for the
         DetNet Controller Plane will be the ability to assign a particular
         identified DetNet IP flow to a path through the DetNet domain that has
-        been assigned the required nodal resources.  This provides the
+        been assigned the required per-node resources.  This provides the
         appropriate traffic treatment for the flow and also includes particular
         links as a part of the path that are able to support the DetNet flow.
         For example, by using IEEE 802.1 TSN links (as discussed in
@@ -1048,7 +1050,7 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
         See <xref target="control-management-requirements"/> for
         further discussion of these alternatives. In addition, <xref
         target="RFC2386"/> contains useful background information on
-        QoS-based routing, and <xref target="RFC5575"/> discusses a
+        QoS-based routing, and <xref target="RFC5575"/> <!-- <xref target="I-D.ietf-idr-rfc5575bis"/> --> discusses a
         specific mechanism used by BGP for traffic flow specification
         and policy-based routing.
       </t>
@@ -1138,7 +1140,7 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
         said, it should be noted that the ability to determine, for a
         particular flow, optimal packet replication and elimination
         points in the DetNet domain requires explicit support. There may
-        be capabilities that can be used, or extended, for example GMPLS
+        be existing capabilities that can be used, or extended, for example GMPLS
         end-to-end recovery <xref target="RFC4872"/> and GMPLS segment
         recovery <xref target="RFC4873"/>.
       </t>
@@ -1151,16 +1153,18 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
     Security considerations for DetNet are described in detail in
     <xref target="I-D.ietf-detnet-security"/>. General security considerations
     for DetNet architecture are described in <xref target="RFC8655"/>. This section
-    considers general security considerations applicable to all data planes.
+    considers architecture-level DetNet security considerations applicable to all data planes.
    </t>
    <t>
-    Security aspects which are unique to DetNet are those whose aim is to
-    provide the specific quality of service aspects of DetNet, which are
-    primarily to deliver data flows with extremely low packet loss rates
-    and bounded end-to-end delivery latency.
+	Part of what makes DetNet unique is its ability to provide specific and 
+	reliable quality of service (delivering data flows with extremely low 
+	packet loss rates and bounded end-to-end delivery latency), and the 
+	security-related aspects of protecting that quality of service are 
+	similarly unique.
      </t>
      <t>
-     The primary consideration for the data plane is to maintain
+     As for all communications protocols,
+	 the primary consideration for the data plane is to maintain
      integrity of data and delivery of the associated DetNet service traversing
      the DetNet network.
      Application flows can be protected through whatever means is
@@ -1229,12 +1233,12 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
 
 <back>
   <references title="Normative References">
-   <?rfc include="reference.RFC.3209"?>
-   <?rfc include="reference.RFC.3473"?>
-   <?rfc include="reference.RFC.4385"?>
    <?rfc include="reference.RFC.8655"?>
   </references>
   <references title="Informative References">
+   <?rfc include="reference.RFC.3209"?>
+   <?rfc include="reference.RFC.3473"?>
+   <?rfc include="reference.RFC.4385"?>
    <?rfc include="reference.RFC.2205"?>
    <?rfc include="reference.RFC.2386"?>
    <?rfc include="reference.RFC.4872"?>
@@ -1257,6 +1261,7 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
    <?rfc include="reference.I-D.ietf-detnet-mpls-over-tsn"?>
    <?rfc include="reference.I-D.ietf-detnet-mpls-over-udp-ip"?>
    <?rfc include="reference.I-D.ietf-detnet-security"?>
+   <?rfc include="reference.I-D.ietf-idr-rfc5575bis"?>
 
    <!--reference anchor='I-D.ietf-detnet-ip-over-tsn'>
      <front>
