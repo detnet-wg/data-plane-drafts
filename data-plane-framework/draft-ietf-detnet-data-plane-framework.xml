@@ -79,7 +79,7 @@
         This document provides an overall framework for the DetNet
         data plane.  It covers concepts and considerations that
         are generally common to any Deterministic Networking data plane
-        specification. It collects related controller plane 
+        specification. It describes related controller plane 
 		considerations as well.
       </t>
     </abstract>
@@ -1048,11 +1048,12 @@ Sub-Network        |  L2  |  | TSN  |  | UDP  |
           </t>
         </list>
         See <xref target="control-management-requirements"/> for
-        further discussion of these alternatives. In addition, <xref
-        target="RFC2386"/> contains useful background information on
-        QoS-based routing, and <xref target="RFC5575"/> <!-- <xref target="I-D.ietf-idr-rfc5575bis"/> --> discusses a
-        specific mechanism used by BGP for traffic flow specification
-        and policy-based routing.
+        further discussion of these alternatives. In addition, 
+	<xref target="RFC2386"/> contains useful background information 
+	on QoS-based routing, and <xref target="RFC5575"/> (being 
+	updated by <xref target="I-D.ietf-idr-rfc5575bis"/>) discusses 
+	a specific mechanism used by BGP for traffic flow specification 
+	and policy-based routing.
       </t>
     </section>
     <section title="Contention Loss and Jitter Reduction">
