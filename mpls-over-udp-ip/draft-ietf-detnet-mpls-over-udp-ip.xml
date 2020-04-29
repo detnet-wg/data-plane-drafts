@@ -67,7 +67,7 @@
     </author>
 
     <author fullname="Andrew G. Malis" initials="A.G." surname="Malis">
-      <organization>Independent</organization>
+      <organization>Malis Consulting</organization>
       <address>
         <email>agmalis@gmail.com</email>
       </address>
@@ -282,6 +282,12 @@
     can then take place.
   </t>
 
+  <t>
+    As specified in <xref target="RFC7510"/>: "MPLS-in-UDP MUST NOT be
+    used over the general Internet, or over non-cooperating network
+    operators, to carry traffic that is not congestion controlled."
+  </t>
+
 </section>
 
 <section anchor="ip-flow-id-info"
@@ -318,9 +324,13 @@
 
 <section title="Security Considerations">
   <t>
-   The security considerations of DetNet in general are discussed in
-   <xref target="RFC8655"/>
-   and <xref target="I-D.ietf-detnet-security"/>. MPLS and IP specific
+    The solution defined in this document reuses mechanisms specified in
+    other documents, and the security considerations in those documents
+    apply equally to this document. Notably <xref target="RFC7510"/>, as
+    this document is primarily an application of
+    MPLS-in-UDP. Additionally, the security considerations of DetNet in
+    general are discussed in <xref target="RFC8655"/>
+   and <xref target="I-D.ietf-detnet-security"/>. Finally,MPLS and IP specific
    security considerations are described in <xref target="I-D.ietf-detnet-mpls"/>
    and <xref target="I-D.ietf-detnet-ip"/>. This draft does not have additional
    security considerations.
