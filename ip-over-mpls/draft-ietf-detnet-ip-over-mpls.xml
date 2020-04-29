@@ -536,12 +536,11 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
     </section>
     <section title="Security Considerations">
      <t>
-       This draft does not have additional security considerations.  Security
+       Generals ecurity
        considerations for DetNet are described in detail in <xref
-               target="I-D.ietf-detnet-security"/>. General security
-       considerations are described in <xref
-               target="RFC8655"/>.  MPLS and IP specific
-       considerations are described in <xref target="I-D.ietf-detnet-mpls"/>
+               target="I-D.ietf-detnet-security"/>.
+       DetNet MPLS and DetNet IP security considerations equally apply to this document and
+       are described in <xref target="I-D.ietf-detnet-mpls"/>
        and <xref target="I-D.ietf-detnet-ip"/>.
       </t>
       <t>
