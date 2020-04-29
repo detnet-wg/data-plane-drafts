@@ -57,14 +57,14 @@
       </address>
     </author>
 
-
+<!--
     <author fullname="Andrew G. Malis" initials="A.G." surname="Malis">
       <organization>Independent</organization>
       <address>
         <email>agmalis@gmail.com</email>
       </address>
     </author>
-
+-->
     <author fullname="Stewart Bryant" initials="S." surname="Bryant">
       <organization>Futurewei Technologies</organization>
       <address>
@@ -158,6 +158,7 @@
           This document uses the following abbreviations:
           <list style="hanging" hangIndent="14">
             <t hangText="CE">Customer Edge equipment.</t>
+		    <t hangText="d-CW">DetNet Control Word.</t>
             <t hangText="DetNet">Deterministic Networking.</t>
             <t hangText="DF">DetNet Flow.</t>
             <t hangText="DN">DetNet.</t>
@@ -172,8 +173,10 @@
             <t hangText="POF">Packet Ordering Function.</t>
             <t hangText="PSN">Packet Switched Network.</t>
             <t hangText="PW">Pseudowire.</t>
+		    <t hangText="S-Label">DetNet "service" label.</t>
+		    <t hangText="T-PE">Terminating Provider Edge.</t>
             <t hangText="TE">Traffic Engineering.</t>
-            <t hangText="TSN">Time-Sensitive Networking, TSN is a Task Group of the IEEE
+            <t hangText="TSN">Time-Sensitive Networking, TSN is a Task Group of the IEEE			
             802.1 Working Group.</t>
           </list>
         </t>
@@ -214,7 +217,7 @@
       </t>
 
       <figure align="center" anchor="fig_ip_detnet"
-              title="DetNet IP Over DetNet MPLS Network">
+              title="Architecture: DetNet IP Over DetNet MPLS Network">
         <artwork><![CDATA[
  DetNet IP       Relay         Transit         Relay      DetNet IP
  End System      Node           Node           Node       End System
@@ -289,7 +292,7 @@
         </t>
 
         <figure align="center" anchor="fig_ip_pw_detnet"
-                title="DetNet IP Over DetNet MPLS Network">
+                title="Service Protection Over DetNet MPLS Network for DetNet IP">
           <artwork><![CDATA[
       DetNet                                         DetNet
 IP    Service         Transit          Transit       Service  IP
@@ -385,9 +388,9 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
       <t>
         In <xref target="fig_dn_ip_mpls_sn_ex"/> "App-Flow" indicates the payload carried by
         the DetNet IP data plane.  "IP" and "NProto" indicate the fields
-        described in Section 5.1.1. IP Header Information and Section 5.1.2.
-                Other Protocol Header Information in <xref target="I-D.ietf-detnet-ip"/>,
-                respectively.
+        described in Section 5.1.1. (IP Header Information) and Section 5.1.2.
+        (Other Protocol Header Information) of <xref target="I-D.ietf-detnet-ip"/>,
+        respectively.
         
                 "App-Flow for MPLS" indicates
         that an individual DetNet IP flow is the payload from the
@@ -395,13 +398,13 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
         target="I-D.ietf-detnet-mpls"/>.
       </t>
       <t>
-        Per <xref target="I-D.ietf-detnet-mpls"/>, the DetNet MPLS data plane
-        uses a single S-Label to support a single app flow. Section 5.1. DetNet
-        IP Flow Identification Procedures in <xref
-                target="I-D.ietf-detnet-ip"/> states that a single DetNet flow
-        is identified based on IP, and next level protocol, header information.
-        Section 4.4. Aggregation Considerations in <xref
-                target="I-D.ietf-detnet-ip"/> defines the ways in which aggregation is
+	    Per Section 5.1 of <xref target="I-D.ietf-detnet-mpls"/>, the DetNet 
+		MPLS data plane uses a single S-Label to support a single app flow. 
+		DetNet IP Flow Identification Procedures in Section 4.4 of 
+		<xref target="I-D.ietf-detnet-ip"/> states that a single DetNet flow 
+		is identified based on IP, and next level protocol, header information.
+        Section 4.4. (Aggregation Considerations) of <xref
+        target="I-D.ietf-detnet-ip"/> defines the ways in which aggregation is
         supported through the use of prefixes, wildcards, lists, and port
         ranges.  Collectively, this results in the fairly straightforward
         procedures defined in this section.
@@ -533,12 +536,11 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
     </section>
     <section title="Security Considerations">
      <t>
-       This draft does not have additional security considerations.  Security
+       Generals security
        considerations for DetNet are described in detail in <xref
-               target="I-D.ietf-detnet-security"/>. General security
-       considerations are described in <xref
-               target="RFC8655"/>.  MPLS and IP specific
-       considerations are described in <xref target="I-D.ietf-detnet-mpls"/>
+               target="I-D.ietf-detnet-security"/>.
+       DetNet MPLS and DetNet IP security considerations equally apply to this document and
+       are described in <xref target="I-D.ietf-detnet-mpls"/>
        and <xref target="I-D.ietf-detnet-ip"/>.
       </t>
       <t>
@@ -602,6 +604,27 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
     </section>
 
     <section anchor="contrib" title="Contributors">
+      <t>
+        RFC7322 limits the number of authors listed on the front page of
+        a draft to a maximum of 5. The editor wishes to thank and
+        acknowledge the follow authors for contributing text to this
+        draft.
+      </t>
+      <figure> <artwork><![CDATA[
+   Janos Farkas
+   Ericsson
+   Magyar Tudosok krt. 11.
+   Budapest  1117
+   Hungary
+   Email: janos.farkas@ericsson.com
+
+   Andrew G. Malis
+   Malis Consulting
+   Email: agmalis@gmail.com
+   ]]></artwork>
+      </figure>
+    </section>
+
       <t>
         J&aacute;nos Farkas contributed substantially to the content of this
         document.
