@@ -57,14 +57,14 @@
       </address>
     </author>
 
-
+<!--
     <author fullname="Andrew G. Malis" initials="A.G." surname="Malis">
       <organization>Independent</organization>
       <address>
         <email>agmalis@gmail.com</email>
       </address>
     </author>
-
+-->
     <author fullname="Stewart Bryant" initials="S." surname="Bryant">
       <organization>Futurewei Technologies</organization>
       <address>
@@ -536,7 +536,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
     </section>
     <section title="Security Considerations">
      <t>
-       Generals ecurity
+       Generals security
        considerations for DetNet are described in detail in <xref
                target="I-D.ietf-detnet-security"/>.
        DetNet MPLS and DetNet IP security considerations equally apply to this document and
@@ -604,6 +604,27 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
     </section>
 
     <section anchor="contrib" title="Contributors">
+      <t>
+        RFC7322 limits the number of authors listed on the front page of
+        a draft to a maximum of 5. The editor wishes to thank and
+        acknowledge the follow authors for contributing text to this
+        draft.
+      </t>
+      <figure> <artwork><![CDATA[
+   Janos Farkas
+   Ericsson
+   Magyar Tudosok krt. 11.
+   Budapest  1117
+   Hungary
+   Email: janos.farkas@ericsson.com
+
+   Andrew G. Malis
+   Malis Consulting
+   Email: agmalis@gmail.com
+   ]]></artwork>
+      </figure>
+    </section>
+
       <t>
         J&aacute;nos Farkas contributed substantially to the content of this
         document.
