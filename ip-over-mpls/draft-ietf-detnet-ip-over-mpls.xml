@@ -613,20 +613,17 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
       <figure> <artwork><![CDATA[
    Janos Farkas
    Ericsson
-   Magyar Tudosok krt. 11.
-   Budapest  1117
-   Hungary
    Email: janos.farkas@ericsson.com
 
    Andrew G. Malis
    Malis Consulting
    Email: agmalis@gmail.com
    ]]></artwork>
-      </figure>
-    </section>
+      </figure> 
+<!--    </section> -->
 
       <t>
-        J&aacute;nos Farkas contributed substantially to the content of this
+        Janos Farkas contributed substantially to the content of this
         document.
       </t>
     </section>
