@@ -50,7 +50,7 @@
     </author>
 
     <author fullname="Andrew G. Malis" initials="A.G." surname="Malis">
-      <organization>Independent</organization>
+      <organization>Malis Consulting</organization>
       <address>
         <email>agmalis@gmail.com</email>
       </address>
@@ -303,7 +303,7 @@ System |    +--------+       +--------+       +--------+   |  System
  <section anchor="tom-encap"
                title="TSN over DetNet MPLS Encapsulation">
  <t>
-        The basic encapsulation approach is to treat a TSN Stream as an app-flow 
+        The basic encapsulation approach is to treat a TSN Stream as an App-flow 
         from the DetNet MPLS perspective. The corresponding example shown in 
         <xref target="fig_tsn_mpls_ex"/>.
  </t>
@@ -382,6 +382,11 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
                 replication and elimination functions for a TSN network.
           </t>
           <t>
+		  	  The implementation of TSN entity (i.e., TSN packet processing 
+			  functions) MUST be compliant with the relevant IEEE 802.1 
+			  standards.
+          </t>
+          <t>
                 TSN specific functions are executed on the data received by 
                 the DetNet Edge Node from the connected CE before forwarded to 
 				connected CE(s) or presentation to the DetNet Service Proxy function for 
@@ -389,17 +394,20 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
                 a DetNet PW by a PE before it is output on the Attachment Circuit(s) (AC). 
           </t>
           <t>
-                TSN specific function(s) of Edge Nodes (T-PE) are belonging to the 
+                TSN packet processing function(s) of Edge Nodes (T-PE) are belonging to the 
                 native service processing (NSP) <xref target="RFC3985"/> 
                 block. This is similar to other functionalities being defined by standard 
                 bodies other than the IETF (for example in case of Ethernet: stripping, 
                 overwriting or adding VLAN tags, etc.). Depending on the TSN role of 
                 the Edge Node in the end-to-end TSN service selected TSN functions 
-                must be supported. 
+                are supported. 
     </t>
     <t>		
 			When a PE receives a packet from a CE, on a given AC with DetNet service,
-			it MUST first check via Stream Identification whether the packet belongs 
+			it MUST first check via Stream Identification 
+			(see Clause 6. of <xref target="IEEE8021CB">IEEE 802.1CB</xref> and
+            <xref target="IEEEP8021CBdb">IEEE P802.1CBdb</xref>) 
+			whether the packet belongs 
 			to a configured TSN Stream (i.e., App-flow from DetNet perspective). 
 			If no Stream ID is matched and no other (VPN) service is configured 
 			for the AC then packet MUST be dropped. If there is a matching TSN 
@@ -420,7 +428,9 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
     </t>
     <t>		
 			When a TSN entity of the PE receives a packet from the DetNet 
-			Service Proxy, it MUST first check via Stream Identification whether 
+			Service Proxy, it MUST first check via Stream Identification 
+			(see Clause 6. of <xref target="IEEE8021CB">IEEE 802.1CB</xref> and
+            <xref target="IEEEP8021CBdb">IEEE P802.1CBdb</xref>) whether 
 			the packet belongs to a configured TSN Stream. If no Stream ID is 
 			matched then packet MUST be dropped. If there is a matching TSN 
 			Stream then the Stream ID specific TSN functions MUST be executed 
@@ -449,7 +459,8 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
                 function maps between App-flows and DetNet flows.
 				The DetNet Edge Node TSN entity MUST support the TSN Stream
                 identification functions and the related managed objects as
-                defined in <xref target="IEEE8021CB">IEEE 802.1CB</xref> and
+                defined in Clause 6. and Clause 9. of 
+				<xref target="IEEE8021CB">IEEE 802.1CB</xref> and
                 <xref target="IEEEP8021CBdb">IEEE P802.1CBdb</xref> to
                 recognize the App-flow related packets.  The Service Proxy
                 presents TSN Streams as an App-flow to a DetNet Flow.
@@ -613,18 +624,14 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
      Security considerations for DetNet are described in detail in <xref
              target="I-D.ietf-detnet-security"/>. General security
      considerations are described in <xref
-             target="RFC8655"/>.  DetNet MPLS data plane
-     specific considerations are summarized in <xref
-             target="I-D.ietf-detnet-mpls"/>.  
-     
-     The primary considerations for
-     the data plane is to maintain integrity of data and delivery of the
-     associated DetNet service traversing the DetNet network.  Application
-     flows can be protected through whatever means is provided by the
-     underlying technology. For example, encryption may be used, such as that
-     provided by IPSec <xref target="RFC4301"/> for IP flows and/or by an
-     underlying sub-net using MACSec <xref target="IEEE802.1AE-2018"/> for IP
-     over Ethernet (Layer-2) flows. 
+             target="RFC8655"/>.  
+  </t>
+  <t>     
+     DetNet MPLS data plane specific considerations are summarized and 
+	 described in <xref target="I-D.ietf-detnet-mpls"/> including any 
+	 application flow types. This document focuses on the scenario where TSN 
+	 Streams are the application flows for DetNet and it is already covered 
+	 by those DetNet MPLS data plane security considerations. 
     </t>
 </section>
 
@@ -636,9 +643,9 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
 
 <section anchor="acks" title="Acknowledgements">
    <t>
-                The authors wish to thank Norman Finn, Lou Berger, Craig Gunther,
-                Christophe Mangin and Jouni Korhonen for their various contributions 
-                to this work.
+    The authors wish to thank Norman Finn, Lou Berger, Craig Gunther,
+	Christophe Mangin and Jouni Korhonen for their various contributions
+	to this work.
    </t>
 </section>
 </middle>
