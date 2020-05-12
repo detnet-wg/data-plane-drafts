@@ -47,7 +47,7 @@
     </author>
 
 		<author fullname="Andrew G. Malis" initials="A.G." surname="Malis">
-      <organization>Independent</organization>
+      <organization>Malis Consulting</organization>
       <address>
         <email>agmalis@gmail.com</email>
       </address>
@@ -106,23 +106,6 @@
    <xref target="I-D.ietf-detnet-mpls"/>, and the reader is assumed
    to be familiar with that document and its terminology.
   </t>
-<!--  <t>
-   The following terminology is introduced in this document:
-   <list style="hanging" hangIndent="14">
-
-    <t hangText="F-Label">A Detnet "forwarding" label that identifies the LSP used to
-    forward a DetNet flow across an MPLS PSN, e.g., a hop-by-hop
-    label used between label switching routers (LSR).</t>
-
-    <t hangText="S-Label">A DetNet "service" label that is used between DetNet
-    nodes that implement also the DetNet service sub-layer functions. An S-Label is
-    also used to identify a DetNet flow at DetNet service sub-layer.</t>
-
-    <t hangText="d-CW">
-	  A DetNet Control Word (d-CW) is used for sequencing and identifying duplicate packets of a DetNet flow at the DetNet service
-      sub-layer. </t>
-    </list>
-   </t>		-->
   </section>
 
   <section title="Abbreviations">
@@ -310,7 +293,7 @@ Note: * no service sub-layer required for transit nodes
     </t>
     <t>
         TSN capabilities of the TSN sub-network are made available for MPLS
-        (DetNet) flows via the protocol interworking function defined in
+        (DetNet) flows via the protocol interworking function defined in Annex C.5 of 
         <xref target="IEEE8021CB">IEEE 802.1CB</xref>. For example,
         applied on the TSN edge port it can convert an ingress unicast 
 		MPLS (DetNet) flow to use a specific Layer-2 multicast destination 
@@ -338,12 +321,12 @@ Note: * no service sub-layer required for transit nodes
 			  mapped TSN Stream.  
             </t>
             <t>
-			  <xref target="IEEEP8021CBdb">IEEE P802.1CBdb</xref> defines a
+			  Clause 6.8 of <xref target="IEEEP8021CBdb">IEEE P802.1CBdb</xref> defines a
 			  Mask-and-Match Stream identification function that can be used 
 			  as a passive function for MPLS DetNet flows.
             </t>
             <t>
-			  <xref target="IEEE8021CB">IEEE 802.1CB</xref> defines an
+			  Clause 6.6 of <xref target="IEEE8021CB">IEEE 802.1CB</xref> defines an
               Active Destination MAC and VLAN Stream identification function,
               what can replace some Ethernet header fields namely (1) the
               destination MAC-address, (2) the VLAN-ID and (3) priority
@@ -363,7 +346,9 @@ Note: * no service sub-layer required for transit nodes
           <section title="TSN requirements of MPLS DetNet nodes">
             <t>
               This section covers required behavior of a TSN-aware MPLS (DetNet)
-			  node using a TSN sub-network.
+			  node using a TSN sub-network. The implementation of TSN packet 
+			  processing functions MUST be compliant with the relevant IEEE 802.1 
+			  standards.
             </t>
             <t>
               From the TSN sub-network perspective MPLS (DetNet) nodes are treated 
@@ -429,7 +414,7 @@ Note: * no service sub-layer required for transit nodes
             <t>
 			  A TSN-aware MPLS (DetNet) node implementations MUST support the 
 			  Sequencing function and the Sequence encode/decode function as 
-			  defined in <xref target="IEEE8021CB">IEEE 802.1CB</xref> if FRER 
+			  defined in  Clause 7.4 and 7.6 of <xref target="IEEE8021CB">IEEE 802.1CB</xref> if FRER 
 			  is used inside the TSN sub-network.
             </t>
             <t>
@@ -441,14 +426,14 @@ Note: * no service sub-layer required for transit nodes
 			  A TSN-aware MPLS (DetNet) node implementations MUST support the 
 			  Stream splitting 
 			  function and the Individual recovery function as defined in 
-			  <xref target="IEEE8021CB">IEEE 802.1CB</xref> when the node is 
+			  Clause 7.7 and 7.5 of <xref target="IEEE8021CB">IEEE 802.1CB</xref> when the node is 
 			  a replication or elimination point for FRER.
             </t>
 		  </section>
           <section title="Service protection within the TSN sub-network">
             <t>
               TSN Streams supporting DetNet flows may use Frame Replication
-              and Elimination for Redundancy (FRER) as defined in 
+              and Elimination for Redundancy (FRER) as defined in Clause 8. of
 			  <xref target="IEEE8021CB">IEEE 802.1CB</xref> based on the
               loss service requirements of the TSN Stream, which is derived
               from the DetNet service requirements of the DetNet mapped flow.
@@ -558,13 +543,28 @@ Note: * no service sub-layer required for transit nodes
 
 <section title="Security Considerations">
   <t>
-        The security considerations of DetNet in general are discussed in
-        <xref target="RFC8655"/>
-        and <xref target="I-D.ietf-detnet-security"/>. DetNet IP data plane 
-		specific considerations are summarized in 
-		<xref target="I-D.ietf-detnet-ip"/>. Encryption may provided by an 
-		underlying sub-net using MACSec
-        <xref target="IEEE802.1AE-2018"/> for DetNet IP over TSN flows.
+	  Security considerations for DetNet are described in detail in
+	  <xref target="I-D.ietf-detnet-security"/>. General security considerations
+      are described in <xref target="RFC8655"/>. 
+	  DetNet MPLS data plane specific considerations are summarized in 
+	  <xref target="I-D.ietf-detnet-mpls"/>. 
+	  This section considers exclusively security considerations which are 
+	  specific to the DetNet MPLS over TSN sub-network scenario.
+      </t>
+      <t>
+	  The sub-network between DetNet nodes needs to be subject to appropriate 
+	  confidentiality. Additionally, knowledge of what DetNet/TSN services are 
+	  provided by a sub-network may supply information that can be used in a 
+	  variety of security attacks. The ability to modify information exchanges 
+	  between connected DetNet nodes may result in bogus operations. Therefore, 
+	  it is important that the interface between DetNet nodes and TSN 
+	  sub-network are subject to authorization, authentication, and encryption.
+      </t>
+      <t>
+	  The TSN sub-network operates at Layer-2 so various security mechanisms 
+	  defined by IEEE can be used to secure the connection between the DetNet 
+	  nodes (e.g., encryption may be provided using MACSec 
+	  <xref target="IEEE802.1AE-2018"/>).
   </t>
 </section>
 
