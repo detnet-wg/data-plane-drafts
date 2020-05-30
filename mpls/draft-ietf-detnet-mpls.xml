@@ -1030,18 +1030,18 @@ DFx = DetNet member flow x over a TE LSP
    <section title="Relay Node Processing" anchor="sec_s_pe">
      <t>
        A DetNet Relay node operates in the DetNet forwarding sub-layer and service sub-layer.  For
-       DetNet using MPLS forwarding processing is performed on the F-Label.  This
+       DetNet using MPLS forwarding related processing is performed on the F-Label.  This
        processing is done within an extended forwarder function. Whether an
        ingress DetNet member flow receives DetNet specific processing depends
        on how the forwarding is programmed.  Some relay nodes may be DetNet
        service aware for certain DetNet services, while for other DetNet services 
-	   the node may perform as unmodified LSRs that only understand
-       how to switch MPLS-TE LSPs, i.e., as a transit node,
+	   these nodes may perform as unmodified LSRs that only understand
+       how to switch MPLS-TE LSPs, i.e., as a transit nodes,
        see <xref target="FAG"/>.  Again, this is entirely up to
        how the forwarding has been programmed.
      </t>
      <t>
-	   During elimination and the replication process the
+	   During the elimination and replication process the
        sequence number of the DetNet member flow MUST be preserved and
        copied to the egress DetNet member flow. Specifically, a relay node 
 	   sends the same sequence number in an outgoing packet of a DetNet member 
@@ -1054,7 +1054,7 @@ DFx = DetNet member flow x over a TE LSP
        document. However the reader's attention is drawn to the need to
        make any PREOF state available to the packet processor(s) dealing
        with packets to which the PREOF functions must be applied, and to
-       maintain that state is such as way that it is available to the
+       maintain that state is such away that it is available to the
        packet processor operation on the next packet in the DetNet flow
        (which may be a duplicate, a late packet, or the next packet in
        sequence.
