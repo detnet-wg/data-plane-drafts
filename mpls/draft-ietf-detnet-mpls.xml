@@ -1042,8 +1042,8 @@ DFx = DetNet member flow x over a TE LSP
      </t>
      <t>
 	   During the elimination and replication process the
-       sequence number of the DetNet member flow MUST be preserved and
-       copied to the egress DetNet member flow. Specifically, a relay node 
+       sequence number of the ingress DetNet member flow MUST be preserved and
+       copied to the corresponding egress DetNet member flow. Specifically, a relay node 
 	   sends the same sequence number in an outgoing packet of a DetNet member 
 	   flow that is received in the corresponding incoming packet of a DetNet 
 	   compound flow. This is true whether or not PREOF is performed at the 
