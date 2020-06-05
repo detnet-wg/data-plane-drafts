@@ -480,6 +480,26 @@ Note: * no service sub-layer required for transit nodes
 			(management plane or control plane).
         </t>
         <t>
+            The following summarizes the set of information that is needed to
+            configure DetNet MPLS over TSN:
+            <list style="symbols">
+			  <t>DetNet MPLS related configuration information according to the 
+			     DetNet role of the DetNet MPLS node, as per 
+			     <xref target="I-D.ietf-detnet-mpls"/>. </t>
+			  <t>TSN related configuration information according to the 
+			     TSN role of the DetNet MPLS node, as per 
+				 <xref target="IEEE8021Q"/>, <xref target="IEEE8021CB"/> and
+			     <xref target="IEEEP8021CBdb"/>. </t>
+              <t>Mapping between DetNet MPLS flow(s) (label information: 
+			  A-labels, S-labels and F-labels as defined in 
+			  <xref target="I-D.ietf-detnet-mpls"/>) and TSN 
+			  Stream(s) (as stream identification information defined in 
+			  <xref target="IEEEP8021CBdb"/>). 
+			  </t>
+            </list>
+            This information MUST be provisioned per DetNet flow.
+        </t>
+        <t>
 			TSN-aware MPLS DetNet nodes are member of both the DetNet
 			domain and the TSN sub-network.  Within the TSN
 			sub-network the TSN-aware MPLS (DetNet) node has a TSN-aware
