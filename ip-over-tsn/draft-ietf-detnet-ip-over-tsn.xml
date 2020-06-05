@@ -437,6 +437,27 @@
 			(management plane or control plane).
         </t>
         <t>
+            The following summarizes the set of information that is needed to
+            configure DetNet IP over TSN:
+            <list style="symbols">
+			  <t>DetNet IP related configuration information according to the 
+			     DetNet role of the DetNet IP node, as per 
+			     <xref target="I-D.ietf-detnet-ip"/>. </t>
+			  <t>TSN related configuration information according to the 
+			     TSN role of the DetNet IP node, as per 
+				 <xref target="IEEE8021Q"/>, <xref target="IEEE8021CB"/> and
+			     <xref target="IEEEP8021CBdb"/>. </t>
+              <t>Mapping between DetNet IP flow(s) (as flow identification 
+			  defined in <xref target="I-D.ietf-detnet-ip"/>, it is summarized 
+			  in Section 5.1 of that document, and includes all wildcards, port 
+			  ranges and the ability to ignore specific IP fields) and TSN 
+			  Stream(s) (as stream identification information defined in 
+			  <xref target="IEEE8021CB"/> and <xref target="IEEEP8021CBdb"/>). 
+			  </t>
+            </list>
+            This information MUST be provisioned per DetNet flow.
+        </t>
+        <t>
 			TSN-aware IP DetNet nodes are member of both the DetNet
 			domain and the TSN sub-network.  Within the TSN
 			sub-network the TSN-aware IP (DetNet) node has a TSN-aware
