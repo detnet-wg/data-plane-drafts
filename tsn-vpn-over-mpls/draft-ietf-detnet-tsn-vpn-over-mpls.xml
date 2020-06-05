@@ -164,7 +164,7 @@
    They also support the imposition and disposition of the required DetNet
    encapsulation.  These are functionally similar to pseudowire (PW)
    Terminating Provider Edge (T-PE) nodes which use MPLS-TE LSPs.  In this
-   example TSN Streams are simple applicaions over DetNet flows.  The specific
+   example TSN Streams are simple applications over DetNet flows.  The specific
    of this operation are discussed later in this document.
   </t>
 
@@ -563,6 +563,24 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
 		based on the origin of flow mapping related information	(management 
 		plane or control plane).
    </t>
+        <t>
+            The following summarizes the set of information that is needed to
+            configure TSN over DetNet MPLS:
+            <list style="symbols">
+			  <t>TSN related configuration information according to the 
+			     TSN role of the DetNet MPLS node, as per 
+				 <xref target="IEEE8021Q"/>, <xref target="IEEE8021CB"/> and
+			     <xref target="IEEEP8021CBdb"/>. </t>
+			  <t>DetNet MPLS related configuration information according to the 
+			     DetNet role of the DetNet MPLS node, as per 
+			     <xref target="I-D.ietf-detnet-mpls"/>. </t>
+              <t>App-Flow identification information to map received TSN 
+			  Stream(s) to the DetNet flow. Parameters fo TSN stream 
+			  identification are defined in <xref target="IEEE8021CB"/> and 
+			  <xref target="IEEEP8021CBdb"/>. </t>
+            </list>
+            This information MUST be provisioned per DetNet flow.
+        </t>
    <t>
         MPLS DetNet Edge nodes are member of both the DetNet domain and the
         connected TSN network. From the TSN network perspective the MPLS
