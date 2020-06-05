@@ -494,7 +494,9 @@ Note: * no service sub-layer required for transit nodes
 			  A-labels, S-labels and F-labels as defined in 
 			  <xref target="I-D.ietf-detnet-mpls"/>) and TSN 
 			  Stream(s) (as stream identification information defined in 
-			  <xref target="IEEEP8021CBdb"/>). 
+			  <xref target="IEEEP8021CBdb"/>).
+			  Note, that managed objects for TSN Stream identification can be 
+			  found in <xref target="IEEEP8021CBcv"/>.			  
 			  </t>
             </list>
             This information MUST be provisioned per DetNet flow.
@@ -665,6 +667,18 @@ Note: * no service sub-layer required for transit nodes
         <format type="PDF" target="http://www.ieee802.org/1/files/private/cb-drafts/d2/802-1CB-d2-1.pdf"/>
       </reference>
 
+      <reference anchor="IEEEP8021CBcv"
+                 target="http://www.ieee802.org/1/files/private/cv-drafts/d0/802-1CBcv-d0-3.pdf">
+        <front>
+          <title>FRER YANG Data Model and Management Information Base Module</title>
+          <author initials="S." surname="Kehrer" fullname="Stephan Kehrer">
+            <organization>IEEE 802.1</organization>
+          </author>
+          <date month="May" year="2020"/>
+        </front>
+        <seriesInfo name="IEEE P802.1CBcv /D0.3" value="P802.1CBcv"/>
+        <format type="PDF" target="http://www.ieee802.org/1/files/private/cv-drafts/d0/802-1CBcv-d0-3.pdf"/>
+      </reference>
   </references>
 
  </back>
