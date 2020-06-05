@@ -44,7 +44,7 @@
     </author>
 
     <author fullname="Andrew G. Malis" initials="A.G." surname="Malis">
-      <organization>Independent</organization>
+      <organization>Malis Consulting</organization>
       <address>
         <email>agmalis@gmail.com</email>
       </address>
@@ -159,7 +159,7 @@
 		(queuing, policing, shaping) are supported using the underlying link 
 		/ sub-net specific mechanisms.  Service protections (packet
         replication and packet elimination functions) are not provided at
-		the DetNet layer end to end due the lack of a unified end to end 
+		the DetNet layer end-to-end due the lack of a unified end-to-end 
 		sequencing information that would be available for intermediate nodes.  
 		However, such service protection can be provided on a per underlying 
 		L2 link and sub-network basis.
@@ -201,7 +201,7 @@
 		being the primary focus of this document. 
       </t>
       <t>
-	    DetNet routers ensure that detnet service requirements are met per hop 
+	    DetNet routers ensure that DetNet service requirements are met per hop 
 		by allocating local resources, both receive and transmit, and by mapping 
 		the service requirements of each flow to appropriate sub-network 
 		mechanisms.  Such mappings are sub-network technology specific.  
@@ -248,7 +248,7 @@
         Working Group have defined (and are defining) a number of
         amendments to <xref target="IEEE8021Q">IEEE 802.1Q</xref> that
         provide zero congestion loss and bounded latency in bridged
-        networks. Furthermore <xref target="IEEE8021CB">IEEE
+        networks. Furthermore, <xref target="IEEE8021CB">IEEE
         802.1CB</xref> defines frame replication and elimination
         functions for reliability that should prove both compatible with
         and useful to DetNet networks.  All these functions have to
@@ -256,7 +256,7 @@
 	  </t>
       <t>
         TSN capabilities of the TSN sub-network are made available for IP
-        (DetNet) flows via the protocol interworking function defined in
+        (DetNet) flows via the protocol interworking function desribed in Annex C.5 of
         <xref target="IEEE8021CB">IEEE 802.1CB</xref>. For example,
         applied on the TSN edge port it can convert an ingress unicast 
 		IP (DetNet) flow to use a specific Layer-2 multicast destination 
@@ -269,7 +269,7 @@
       <t>
         Placement of TSN functions depends on the TSN capabilities of
         nodes. IP (DetNet) Nodes may or may not support TSN functions. For
-        a given TSN Stream (i.e., DetNet flow) an IP (DetNet) node is
+        a given TSN Stream (i.e., a mapped DetNet flow) an IP (DetNet) node is
         treated as a Talker or a Listener inside the TSN sub-network.
       </t>
 
@@ -277,22 +277,22 @@
             <t>
               Mapping of a DetNet IP flow to a TSN Stream is provided via 
 			  the combination of a passive and an active stream identification 
-			  function that operate at the frame level. The passive stream
+			  function that operate at the frame level (Layer-2). The passive stream
 			  identification function is used to catch the 6-tuple of a DetNet
 			  IP flow and the active stream identification function is used to
-			  modify the Ethernet header according to ID of the mapped TSN 
+			  modify the Ethernet header according to the ID of the mapped TSN 
 			  Stream.  
             </t>
             <t>
-			  <xref target="IEEE8021CB">IEEE 802.1CB</xref> defines an IP Stream
+			  Clause 6.7 of <xref target="IEEE8021CB">IEEE 802.1CB</xref> defines an IP Stream
 			  identification function that can be used as a passive function
-			  for IP DetNet flows using UDP or TCP. 
+			  for IP DetNet flows using UDP or TCP. Clause 6.8 of
 			  <xref target="IEEEP8021CBdb">IEEE P802.1CBdb</xref> defines a
 			  Mask-and-Match Stream identification function that can be used 
 			  as a passive function for any IP DetNet flows.
             </t>
             <t>
-			  <xref target="IEEE8021CB">IEEE 802.1CB</xref> defines an
+			  Clause 6.6 of <xref target="IEEE8021CB">IEEE 802.1CB</xref> defines an
               Active Destination MAC and VLAN Stream identification function,
               what can replace some Ethernet header fields namely (1) the
               destination MAC-address, (2) the VLAN-ID and (3) priority
@@ -312,7 +312,9 @@
           <section title="TSN requirements of IP DetNet nodes">
             <t>
               This section covers required behavior of a TSN-aware DetNet node 
-			  using a TSN sub-network.
+			  using a TSN sub-network. The implementation of TSN packet 
+			  processing functions MUST be compliant with the relevant IEEE 802.1 
+			  standards.
             </t>
             <t>
               From the TSN sub-network perspective DetNet IP nodes are treated 
@@ -376,7 +378,7 @@
             <t>
 			  A TSN-aware IP (DetNet) node implementations MUST support the 
 			  Sequencing function and the Sequence encode/decode function as 
-			  defined in <xref target="IEEE8021CB">IEEE 802.1CB</xref> if FRER 
+			  defined in Clause 7.4 and 7.6 of <xref target="IEEE8021CB">IEEE 802.1CB</xref> if FRER 
 			  is used inside the TSN sub-network.
             </t>
             <t>
@@ -387,7 +389,7 @@
             <t>
 			  A TSN-aware IP (DetNet) node implementations MUST support the 
 			  Stream splitting 
-			  function and the Individual recovery function as defined in 
+			  function and the Individual recovery function as defined in Clause 7.7 and 7.5 of
 			  <xref target="IEEE8021CB">IEEE 802.1CB</xref> when the node is 
 			  a replication or elimination point for FRER.
             </t>
@@ -396,7 +398,7 @@
           <section title="Service protection within the TSN sub-network">
             <t>
               TSN Streams supporting DetNet flows may use Frame Replication
-              and Elimination for Redundancy (FRER) as defined in 
+              and Elimination for Redundancy (FRER) as defined in Clause 8. of
 			  <xref target="IEEE8021CB">IEEE 802.1CB</xref> based on the
               loss service requirements of the TSN Stream, which is derived
               from the DetNet service requirements of the DetNet mapped flow.
@@ -435,6 +437,29 @@
 			(management plane or control plane).
         </t>
         <t>
+            The following summarizes the set of information that is needed to
+            configure DetNet IP over TSN:
+            <list style="symbols">
+			  <t>DetNet IP related configuration information according to the 
+			     DetNet role of the DetNet IP node, as per 
+			     <xref target="I-D.ietf-detnet-ip"/>. </t>
+			  <t>TSN related configuration information according to the 
+			     TSN role of the DetNet IP node, as per 
+				 <xref target="IEEE8021Q"/>, <xref target="IEEE8021CB"/> and
+			     <xref target="IEEEP8021CBdb"/>. </t>
+              <t>Mapping between DetNet IP flow(s) (as flow identification 
+			  defined in <xref target="I-D.ietf-detnet-ip"/>, it is summarized 
+			  in Section 5.1 of that document, and includes all wildcards, port 
+			  ranges and the ability to ignore specific IP fields) and TSN 
+			  Stream(s) (as stream identification information defined in 
+			  <xref target="IEEE8021CB"/> and <xref target="IEEEP8021CBdb"/>). 
+			  Note, that managed objects for TSN Stream identification can be 
+			  found in <xref target="IEEEP8021CBcv"/>.
+			  </t>
+            </list>
+            This information MUST be provisioned per DetNet flow.
+        </t>
+        <t>
 			TSN-aware IP DetNet nodes are member of both the DetNet
 			domain and the TSN sub-network.  Within the TSN
 			sub-network the TSN-aware IP (DetNet) node has a TSN-aware
@@ -453,7 +478,7 @@
 	      sub-network specific ones. DetNet flow ID and flow related
 	      parameters/requirements must be converted to a TSN Stream
 	      ID and stream related parameters/requirements. Note that,
-	      as the TSN sub-network is just a portion of the end2end
+	      as the TSN sub-network is just a portion of the end-to-end
 	      DetNet path (i.e., single hop from IP perspective), some
 	      parameters (e.g., delay) may differ significantly. Other
 	      parameters (like bandwidth) also may have to be tuned due
@@ -499,13 +524,28 @@
 
     <section title="Security Considerations">
       <t>
-        The security considerations of DetNet in general are discussed in
-        <xref target="RFC8655"/>
-        and <xref target="I-D.ietf-detnet-security"/>. DetNet IP data plane 
-		specific considerations are summarized in 
-		<xref target="I-D.ietf-detnet-ip"/>. Encryption may provided by an 
-		underlying sub-net using MACSec
-        <xref target="IEEE802.1AE-2018"/> for DetNet IP over TSN flows.
+	  Security considerations for DetNet are described in detail in
+	  <xref target="I-D.ietf-detnet-security"/>. General security considerations
+      are described in <xref target="RFC8655"/>. 
+	  DetNet IP data plane specific considerations are summarized in 
+	  <xref target="I-D.ietf-detnet-ip"/>. 
+	  This section considers exclusively security considerations which are 
+	  specific to the DetNet IP over TSN sub-network scenario.
+      </t>
+      <t>
+	  The sub-network between DetNet nodes needs to be subject to appropriate 
+	  confidentiality. Additionally, knowledge of what DetNet/TSN services are 
+	  provided by a sub-network may supply information that can be used in a 
+	  variety of security attacks. The ability to modify information exchanges 
+	  between connected DetNet nodes may result in bogus operations. Therefore, 
+	  it is important that the interface between DetNet nodes and TSN 
+	  sub-network are subject to authorization, authentication, and encryption.
+      </t>
+      <t>
+	  The TSN sub-network operates at Layer-2 so various security mechanisms 
+	  defined by IEEE can be used to secure the connection between the DetNet 
+	  nodes (e.g., encryption may be provided using MACSec 
+	  <xref target="IEEE802.1AE-2018"/>).
       </t>
     </section>
 
@@ -587,6 +627,18 @@
         <format type="PDF" target="http://www.ieee802.org/1/files/private/cb-drafts/d2/802-1CB-d2-1.pdf"/>
       </reference>
 
+      <reference anchor="IEEEP8021CBcv"
+                 target="http://www.ieee802.org/1/files/private/cv-drafts/d0/802-1CBcv-d0-3.pdf">
+        <front>
+          <title>FRER YANG Data Model and Management Information Base Module</title>
+          <author initials="S." surname="Kehrer" fullname="Stephan Kehrer">
+            <organization>IEEE 802.1</organization>
+          </author>
+          <date month="May" year="2020"/>
+        </front>
+        <seriesInfo name="IEEE P802.1CBcv /D0.3" value="P802.1CBcv"/>
+        <format type="PDF" target="http://www.ieee802.org/1/files/private/cv-drafts/d0/802-1CBcv-d0-3.pdf"/>
+      </reference>
     </references>
 
   </back>
