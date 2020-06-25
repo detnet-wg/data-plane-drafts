@@ -80,8 +80,12 @@
 
     <abstract>
       <t>
-     This document specifies the Deterministic Networking data plane
-     when operating in an IP packet switched network.
+        This document specifies the DetNet data plane operation for IP hosts
+        and routers that provide DetNet service to IP encapsulated data. No
+        DetNet-specific encapsulation is defined to support IP flows; instead
+        the existing IP and higher layer protocol header information is used to
+        support flow identification and DetNet service delivery.  This
+        document builds on the DetNet Architecture and Data Plane Framework.
       </t>
     </abstract>
   </front>
@@ -412,6 +416,20 @@ To be discussed:
           e.g., buffers, to receive and process the packets of that DetNet flow.
         </t>
         <t>
+          An important additional consideration for DetNet-aware end
+          systems is avoiding IP fragmentation.  Full 6-tuple flow
+          identification is not possible on IP fragments as fragments
+          don't include the transport headers or their port
+          information. As such, it is important that applications and/or
+          end-systems use an IP packet size that will avoid
+          fragmentation within the network when sending DetNet flows.
+          The maximum size can be learned via path MTU discovery, <xref
+          target="RFC1192"/> and <xref target="RFC8201"/>,  or via
+          the controller plane.  Note that path MTU discovery relies on
+          ICMP, which may not follow the same path as an individual
+          DetNet flow.
+        </t>
+        <t>
           In order to maximize reuse of existing mechanisms,
           DetNet-aware applications and end systems SHOULD NOT mix
           DetNet and non-DetNet traffic within a single 5-tuple.
@@ -707,10 +725,9 @@ DetNet                    |L2/SbN|          |L2/SbN|
       <section title="Bidirectional Traffic">
         <t>
           While the DetNet IP data plane must support bidirectional
-          DetNet flows, there are no special bidirectional features with
-          respect to the data plane other than the need for the two
-          directions of a co-routed bidirectional flow to take the same
-          path. That is to say that bidirectional DetNet flows are
+          DetNet flows, there are no special bidirectional features within
+          the data plane.  The special case of co-routed bidirectional
+          DetNet flows are
           solely represented at the management and control plane levels,
           without specific support or knowledge within the DetNet data
           plane.  Fate sharing and associated or co-routed
@@ -1004,7 +1021,10 @@ DetNet                    |L2/SbN|          |L2/SbN|
               <t>TCP and UDP Destination Port. Support for both exact and wildcard matching is
               required. Port ranges can optionally be used.</t>
               <t>IPsec Header SPI field. Exact matching is
-              required. Support for wildcard matching is recommended.</t>
+              required. Support for wildcard matching is
+              recommended.</t>
+              <t>For end systems, an optional maximum IP packet size
+              that should be used for that outgoing DetNet IP flow.</t>
             </list>
             This information MUST be provisioned per DetNet flow via
             configuration, e.g., via the controller or management plane.
@@ -1098,7 +1118,8 @@ DetNet                    |L2/SbN|          |L2/SbN|
         technical advisor to the DetNet working group during the
         development of this document and provided many valuable
         comments. IESG comments were provided by Murray Kucherawy, 
-        Roman Danyliw, Alvaro Retana, Benjamin Kaduk, and Rob Wilton.
+        Roman Danyliw, Alvaro Retana, Benjamin Kaduk, Rob Wilton, and
+        Erik Vyncke.
       </t>
     </section>
 
@@ -1142,6 +1163,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
     </references>
     <references title="Informative references">
       <?rfc include="reference.RFC.1122"?>
+      <?rfc include="reference.RFC.1192"?>
       <?rfc include="reference.RFC.2475"?>
       <?rfc include="reference.RFC.3290"?>
       <?rfc include="reference.RFC.3473"?>
@@ -1151,6 +1173,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
       <?rfc include="reference.RFC.8504"?>
       <?rfc include="reference.RFC.7551"?>
       <?rfc include="reference.RFC.7657"?>
+      <?rfc include="reference.RFC.8201"?>
       <?rfc include="reference.I-D.ietf-detnet-mpls"?>
       <?rfc include="reference.I-D.ietf-detnet-dp-sol-mpls"?>
       <?rfc include="reference.I-D.ietf-detnet-flow-information-model"?>
