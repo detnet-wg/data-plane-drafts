@@ -257,7 +257,8 @@ To be discussed:
         as defined in <xref target="RFC8200"/>.
       </t>
       <t>
-	    Non-DetNet and DetNet IP packets are identical on the wire. 
+	    Non-DetNet and DetNet IP packets can have the same protocol
+            header format on the wire. 
 		Generally the fields used in flow identification are forwarded 
 		unmodified. However, standard modification of the
                 DSCP field <xref target="RFC2474"/> is not precluded.
@@ -299,7 +300,8 @@ To be discussed:
       <t>
         <xref target="fig_ip_detnet_simple"/> illustrates a DetNet enabled IP
         network.  The DetNet enabled end systems originate IP encapsulated
-        traffic that is identified within the DetNet domain as DetNet flows. 
+        traffic that is identified within the DetNet domain as DetNet
+        flows based on IP header information. 
 		Relay nodes understand the
         forwarding requirements of the DetNet flow and ensure that node,
         interface and sub-network resources are allocated to ensure DetNet
@@ -351,7 +353,8 @@ To be discussed:
         End Systems can communicate over a DetNet IP network with IP End Systems.
       </t>
       <t>
-        As non-DetNet and DetNet IP packets are identical on the wire, from
+        As non-DetNet and DetNet IP packets can have the same protocol
+        header format on the wire, from
         a data plane perspective, the only difference is that there is
         flow-associated DetNet information on each DetNet node that
         defines the flow related characteristics and required forwarding
@@ -387,19 +390,19 @@ To be discussed:
 		  and end systems peer with other end systems.  
 		  DetNet's use of 6-tuple IP flow
           identification means that DetNet must be aware of not only the
-          format of the IP header, but also of the next protocol carried
+          format of the IP header, but also of the next protocol value carried
           within an IP packet (see <xref target="nxt-proto-field"/>).
         </t>
         <t>
-          When IP end systems are DetNet-aware, no application-level or
-          service-level proxy functions are needed inside the DetNet domain.
           For DetNet unaware IP end systems service-level proxy functions are
           needed inside the DetNet domain.
         </t>
         <t>
+          When IP end systems are DetNet-aware, no application-level or
+          service-level proxy functions are needed inside the DetNet domain.
           End systems need to ensure that DetNet service requirements are met
           when processing packets associated to a DetNet flow.  When
-          forwarding packets, this means that packets are
+          sending packets, this means that packets are
           appropriately shaped on transmission and receive appropriate traffic
           treatment on the connected sub-network; see <xref target="QoS"/> and
           <xref target="dn_dom_spec_cons"/> for more details.  When receiving packets,
@@ -598,7 +601,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
           Therefore, the network nodes of a DetNet network MUST ensure
           that no DetNet allocated resources, e.g., queue or shaper, is
           used by such flows.
-          There are multiple methods that MAY be
+          There are multiple methods that may be
           used by an implementation to defend service delivery to
           reserved DetNet flows, including but not limited to:
           <list style="symbols">
@@ -627,7 +630,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
           highlight the implications of DetNet IP flow identification on
           path selection and next hops.  As mentioned above, the DetNet
           IP data plane identifies flows using "6-tuple" header
-          information as well as the additional optional header
+          information as well as the additional optional (flow label) header
           field. DetNet generally allows for both flow-specific traffic
           treatment and flow-specific next-hops.
         </t>
@@ -646,7 +649,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
           application flow experiences reordering due to being split
           across multiple next hops.  Understanding of the application
           and transport protocol impact of using different next hops for
-          the same 6-tuple is required.  Again, this impacts path
+          the same 5-tuple is required.  Again, this impacts path
           selection for DetNet flows and this document only indirectly.
         </t>
       </section>
@@ -813,10 +816,10 @@ DetNet                    |L2/SbN|          |L2/SbN|
               Implementations of this document MUST support DetNet flow
               identification based on the IPv4 Protocol field when
               processing IPv4 packets, and the IPv6 Next Header Field
-              when processing IPv6 packets. An implementation MUST
-              support flow identification based on the next protocol
-              values defined in <xref target="nxt-proto"/>.  Other
-              non-zero values MUST be used for flow identification.
+              when processing IPv6 packets. This includes 
+              the next protocol
+              values defined in <xref target="nxt-proto"/> and other
+              non-zero values.
               Implementations SHOULD allow for these fields to be
               ignored for a specific DetNet flow.
             </t>
@@ -829,7 +832,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
               identification based on the DSCP field in the IPv4 Type of
               Service field when processing IPv4 packets, and the DSCP
               field in the IPv6 Traffic Class Field when processing IPv6
-              packets.  Implementations MUST support list based matching
+              packets.  Implementations MUST support list-based matching
               of DSCP values, where the list is composed of possible
               field values that are to be considered when identifying a
               specific DetNet flow.  Implementations SHOULD allow for
@@ -1026,8 +1029,8 @@ DetNet                    |L2/SbN|          |L2/SbN|
 
     <section title="Security Considerations">
       <t>
-       Security considerations for DetNet are described in detail in
-       <xref target="I-D.ietf-detnet-security"/>. General security considerations
+       Detailed security considerations for DetNet are cataloged in
+       <xref target="I-D.ietf-detnet-security"/>, and more general security considerations
        are described in <xref target="RFC8655"/>. This section
        considers exclusively security considerations which are specific to the DetNet
        IP data plane.
@@ -1042,7 +1045,9 @@ DetNet                    |L2/SbN|          |L2/SbN|
         The primary consideration for the DetNet data plane is to maintain
         integrity of data and delivery of the associated DetNet service traversing
         the DetNet network.
-        The integrity, and confidentiality, of application flows can be protected through whatever means are
+        Since no DetNet-specific fields are available in the DetNet IP
+        data plane,
+        the integrity and confidentiality of application flows can be protected through whatever means are
         provided by the underlying technology. For example, encryption may be
         used, such as that provided by IPSec <xref target="RFC4301"/> for IP
         flows and/or by an underlying sub-net using MACSec
@@ -1091,7 +1096,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
         technical advisor to the DetNet working group during the
         development of this document and provided many valuable
         comments. IESG comments were provided by Murray Kucherawy, 
-        Roman Danyliw, and Alvaro Retana.
+        Roman Danyliw, Alvaro Retana, and Benjamin Kaduk.
       </t>
     </section>
 
@@ -1125,7 +1130,6 @@ DetNet                    |L2/SbN|          |L2/SbN|
       <?rfc include="reference.RFC.1812"?>
       <?rfc include="reference.RFC.2119"?>
       <?rfc include="reference.RFC.2474"?>
-      <?rfc include="reference.RFC.3473"?>
       <?rfc include="reference.RFC.4301"?>
       <?rfc include="reference.RFC.4302"?>
       <?rfc include="reference.RFC.4303"?>
@@ -1138,6 +1142,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
       <?rfc include="reference.RFC.1122"?>
       <?rfc include="reference.RFC.2475"?>
       <?rfc include="reference.RFC.3290"?>
+      <?rfc include="reference.RFC.3473"?>
       <?rfc include="reference.RFC.3670"?>
       <?rfc include="reference.RFC.5120"?>
       <?rfc include="reference.RFC.5777"?>
