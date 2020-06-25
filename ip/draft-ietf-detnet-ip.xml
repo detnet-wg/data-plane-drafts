@@ -593,7 +593,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
         </t>
         <t>
           One additional consideration for DetNet nodes which support CoS
-          services is that they MUST ensure that the CoS service classes do
+          services is that they must ensure that the CoS service classes do
           not impact the congestion protection and latency control mechanisms
           used to provide DetNet QoS.  This requirement is similar to the 
 		  requirement for MPLS LSRs that CoS LSPs cannot impact the resources 
@@ -603,7 +603,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
 
       <section title="Quality of Service" anchor="QoS">
         <t>
-          Quality of Service (QoS) for DetNet service flows carried in IP MUST be provided locally by
+          Quality of Service (QoS) for DetNet service flows carried in IP must be provided locally by
           the DetNet-aware hosts and routers supporting DetNet flows.  Such
           support leverages the underlying network layer such as
           802.1 TSN.  The node-internal traffic control mechanisms used to deliver QoS for
@@ -838,7 +838,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
               when processing IPv6 packets. This includes 
               the next protocol
               values defined in <xref target="nxt-proto"/> and other
-              non-zero values.
+              values, including zero.
               Implementations SHOULD allow for these fields to be
               ignored for a specific DetNet flow.
             </t>
@@ -967,7 +967,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
 
       <section anchor="ip-svc" title="DetNet IP Traffic Treatment Procedures">
         <t>
-          Implementations of this document MUST ensure that a DetNet flow
+          Implementations of this document must ensure that a DetNet flow
           receives the traffic treatment that is provisioned for it via
           configuration or the controller plane, e.g., via <xref target="I-D.ietf-detnet-yang"/>.
           General information on DetNet service can be found in <xref
@@ -999,11 +999,9 @@ DetNet                    |L2/SbN|          |L2/SbN|
               zero (0) effectively means that the address field is
               ignored.</t>
               <t>IPv4 protocol field. A limited set of values is allowed,
-              and the ability to ignore this field, e.g., via
-              configuration of the value zero (0), is desirable.</t>
+              and the ability to ignore this field is desirable.</t>
               <t>IPv6 next header field. A limited set of values is allowed,
-              and the ability to ignore this field, e.g., via
-              configuration of the value zero (0), is desirable.</t>
+              and the ability to ignore this field is desirable.</t>
               <t>For the IPv4 Type of Service and IPv6 Traffic Class
               Fields:
               <list style="symbols">
