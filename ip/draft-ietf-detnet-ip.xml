@@ -1160,6 +1160,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
       <?rfc include="reference.RFC.8174"?>
       <?rfc include="reference.RFC.8200"?>
       <?rfc include="reference.RFC.8655"?>
+      <?rfc include="reference.I-D.ietf-detnet-data-plane-framework'?>
     </references>
     <references title="Informative references">
       <?rfc include="reference.RFC.1122"?>
@@ -1181,7 +1182,6 @@ DetNet                    |L2/SbN|          |L2/SbN|
       <?rfc include="reference.I-D.ietf-detnet-yang"?>
       <?rfc include="reference.I-D.ietf-detnet-ip-over-tsn'?>
       <?rfc include="reference.I-D.ietf-detnet-ip-over-mpls'?>
-      <?rfc include="reference.I-D.ietf-detnet-data-plane-framework'?>
       <?rfc include="reference.I-D.ietf-detnet-tsn-vpn-over-mpls'?>
     <reference anchor="IEEE802.1AE-2018"
       target="https://ieeexplore.ieee.org/document/8585421">
