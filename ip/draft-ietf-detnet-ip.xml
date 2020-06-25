@@ -274,7 +274,9 @@ To be discussed:
       <t>
         The specific procedures that are required to be implemented by a
         DetNet node supporting this document can be found in <xref
-        target="ip-procs"/>.
+        target="ip-procs"/>.  The DetNet controller plane, as defined in
+        <xref target="RFC8655"/>, is responsible for providing each node
+        with the information needed to identify an handle each DetNet flow.
       </t>
       <figure align="center" anchor="fig_ip_detnet_simple"
               title="A Simple DetNet (DN) Enabled IP Network">
@@ -531,7 +533,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
 <![CDATA[
 
      <-------------------- DenNet IP ------------------------>
-                                      ______
+                                 ______
                        ____     /      \__
             ____      /     \__/          \___   ______
 +----+   __/    +====+                       +==+      \     +----+
@@ -1096,7 +1098,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
         technical advisor to the DetNet working group during the
         development of this document and provided many valuable
         comments. IESG comments were provided by Murray Kucherawy, 
-        Roman Danyliw, Alvaro Retana, and Benjamin Kaduk.
+        Roman Danyliw, Alvaro Retana, Benjamin Kaduk, and Rob Wilton.
       </t>
     </section>
 
