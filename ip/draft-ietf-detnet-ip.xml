@@ -228,7 +228,7 @@ To be discussed:
         header information is used to support flow identification and DetNet
         service delivery. Common data plane procedures and control information
         for all DetNet data planes can be found in the <xref
-        target="I-D.ietf-detnet-data-plane-framework"/>.
+        target="I-D.ietf-detnet-data-plane-framework"/>.  
       </t>
       <t>
         The DetNet IP data plane primarily uses "6-tuple" based flow identification, where
@@ -269,6 +269,11 @@ To be discussed:
         expected that DetNet-aware intermediate nodes will provide
         DetNet service on the aggregate through resource
         allocation and congestion control mechanisms.
+      </t>
+      <t>
+        The specific procedures that are required to be implemented by a
+        DetNet node supporting this document can be found in <xref
+        target="ip-procs"/>.
       </t>
       <figure align="center" anchor="fig_ip_detnet_simple"
               title="A Simple DetNet (DN) Enabled IP Network">
@@ -368,7 +373,7 @@ To be discussed:
 
     <section title="DetNet IP Data Plane Considerations" anchor="dn-gen-encap-solution">
       <t>
-        This section provides informative considerations related to
+        This section provides considerations related to
         providing DetNet service to flows which are identified
         based on their header information.
       </t>
@@ -682,6 +687,11 @@ DetNet                    |L2/SbN|          |L2/SbN|
           component-flow service requirements are satisfied by the
           aggregate, see <xref target="ip-svc"/>.
        </t>
+       <t>
+         The DetNet controller plane MUST ensure that
+         non-congestion-responsive DetNet traffic is not forwarded
+         outside a DetNet domain.
+       </t>
      </section>
 
       <section title="Bidirectional Traffic">
@@ -882,7 +892,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
           <section title="ICMP">
             <t>
               DetNet flow identification for ICMP is achieved based on the 
-			  protocol's header. Note that ICMP type is not included in the 
+			  protocol number in the IP header. Note that ICMP type is not included in the 
 			  flow definition. 
             </t>
           </section>
@@ -1023,10 +1033,10 @@ DetNet                    |L2/SbN|          |L2/SbN|
        and bounded end-to-end delivery latency.
         </t>
         <t>
-        The primary considerations for the data plane is to maintain
+        The primary consideration for the DetNet data plane is to maintain
         integrity of data and delivery of the associated DetNet service traversing
         the DetNet network.
-        Application flows can be protected through whatever means are
+        The integrity, and confidentiality, of application flows can be protected through whatever means are
         provided by the underlying technology. For example, encryption may be
         used, such as that provided by IPSec <xref target="RFC4301"/> for IP
         flows and/or by an underlying sub-net using MACSec
@@ -1074,7 +1084,8 @@ DetNet                    |L2/SbN|          |L2/SbN|
         various contributions to this work. David Black served as
         technical advisor to the DetNet working group during the
         development of this document and provided many valuable
-        comments. IESG comments were provided by Murray Kucherawy.
+        comments. IESG comments were provided by Murray Kucherawy, and
+        Roman Danyliw.
       </t>
     </section>
 
