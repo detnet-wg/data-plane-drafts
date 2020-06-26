@@ -951,7 +951,9 @@ DetNet                    |L2/SbN|          |L2/SbN|
           Specifically, implementations of this document SHALL use
           management and control information to select the one or more
           outgoing interfaces and next hops to be used for a packet
-          associated with a DetNet flow.
+          associated with a DetNet flow. Specific management and control
+          information will be defined in future documents, e.g., <xref
+          target="I-D.ietf-detnet-yang"/>. 
         </t>
         <t>
           The use of multiple paths or links, e.g., ECMP, to support a
