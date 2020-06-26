@@ -261,7 +261,7 @@ To be discussed:
         as defined in <xref target="RFC8200"/>.
       </t>
       <t>
-	    Non-DetNet and DetNet IP packets can have the same protocol
+	    Non-DetNet and DetNet IP packets have the same protocol
             header format on the wire. 
 		Generally the fields used in flow identification are forwarded 
 		unmodified. However, standard modification of the
@@ -359,7 +359,7 @@ To be discussed:
         End Systems can communicate over a DetNet IP network with IP End Systems.
       </t>
       <t>
-        As non-DetNet and DetNet IP packets can have the same protocol
+        As non-DetNet and DetNet IP packets have the same protocol
         header format on the wire, from
         a data plane perspective, the only difference is that there is
         flow-associated DetNet information on each DetNet node that
@@ -608,10 +608,9 @@ DetNet                    |L2/SbN|          |L2/SbN|
           support leverages the underlying network layer such as
           802.1 TSN.  The node-internal traffic control mechanisms used to deliver QoS for
           IP encapsulated DetNet flows are outside the scope of this
-          document. From an encapsulation perspective, the combination of the 6-tuple i.e.,
-          the typical 5-tuple enhanced with the DSCP and previously
-          mentioned optional field (i.e., flow label), uniquely identifies a DetNet
-          IP flow.
+          document. From an encapsulation perspective, the combination of the 6-tuple
+          (the typical 5-tuple enhanced with the DSCP) and optionally
+          the flow label uniquely identifies a DetNet IP flow.
         </t>
         <t>
           Packets that are identified as part of a DetNet IP flow
@@ -699,8 +698,8 @@ DetNet                    |L2/SbN|          |L2/SbN|
           impacts DetNet IP data plane flow identification and resource
           allocation.  As discussed above, IP flow identification uses
           the IP "6-tuple" for flow identification.  DetNet IP flows can
-          be aggregated using any of the 6-tuple, and an additional optional 
-		  field (i.e., flow label).  The use of prefixes, wildcards,
+          be aggregated using any of the 6-tuple and optionally also by 
+	  the flow label.  The use of prefixes, wildcards,
           lists, and value ranges allows a DetNet node to identify
           aggregate DetNet flows.  From a resource allocation
           perspective, DetNet nodes ought to provide service to an 
@@ -1060,7 +1059,15 @@ DetNet                    |L2/SbN|          |L2/SbN|
        provide the specific quality of service aspects of DetNet, which are
        primarily to deliver data flows with extremely low packet loss rates
        and bounded end-to-end delivery latency.
-        </t>
+       Achieving such loss rates and bounded latency may not be possible
+       in the face of a highly capable adversary, such as the one
+       envisioned by the Internet Threat Model of BCP 72 that can
+       arbitrarily drop or delay any or all traffic.  In order to
+       present meaningful security considerations, we consider a
+       somewhat weaker attacker who does not control the physical links
+       of the DetNet domain, but may have the ability to control a
+       network node within the boundary of the DetNet domain.
+      </t>
         <t>
         The primary consideration for the DetNet data plane is to maintain
         integrity of data and delivery of the associated DetNet service traversing
@@ -1092,7 +1099,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
         attacks. To protect against DOS attacks, excess traffic due to
         malicious or malfunctioning devices can be prevented or mitigated,
         for example through the use of existing mechanism such as policing and shaping applied at
-        the input of a DetNet domain. To prevent DetNet packets from
+        the input of a DetNet domain or within an edge IEEE802.1 TSN domain. To prevent DetNet packets from
         being delayed by an entity external to a DetNet domain, DetNet
         technology definition can allow for the mitigation of
         Man-In-The-Middle attacks, for example through use of
