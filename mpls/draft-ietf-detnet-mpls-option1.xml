@@ -652,7 +652,8 @@ DFx = DetNet member flow x over a TE LSP
 	   as described above, an implementation MUST check if PRF is configured 
 	   for that DetNet flow.  When configured, the packet MUST be replicated 
 	   with unchanged d-CW and there will be multiple outgoing DetNet member 
-	   flows. 
+	   flows. Outgoing DetNet member flows MAY have different outgoing S-Label, 
+	   defined by the downstream DetNet service sub-layer node.
      </t>
      <t>
 	   MPLS ingress nodes (i.e., MPLS-aware DetNet end systems and edge 
@@ -660,7 +661,7 @@ DFx = DetNet member flow x over a TE LSP
 	   of an app-flow to generate the DetNet flow. An implementation MUST check 
 	   if PRF is configured for that DetNet flow.  When configured, the 
 	   app-flow packet MUST be replicated with the same d-CW and the outgoing 
-	   DetNet member flows use S-Labels, defined by the 
+	   DetNet member flows MAY have different outgoing S-Label, defined by the 
 	   downstream DetNet service sub-layer nodes.
      </t>
    </section>

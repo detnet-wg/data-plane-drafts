@@ -581,12 +581,15 @@ DFx = DetNet member flow x over a TE LSP
     Incoming and outgoing S-Label values MUST be provisioned per DetNet flow 
 	via configuration, e.g., via
     the controller plane described in
-    <xref target="I-D.ietf-detnet-data-plane-framework"/>.
+    <xref target="I-D.ietf-detnet-data-plane-framework"/>. Same S-Label value 
+	MUST be used for all outgoing DetNet member flows.
     Note that S-Labels provide DetNet flow identification at the downstream
     DetNet service sub-layer receiver, not the sender.  As such,
     S-Labels MUST be allocated by the entity that controls the service
     sub-layer receiving node's label space, and MAY be allocated from
     the platform label space <xref target="RFC3031"/>.
+	If there are multiple receiving nodes (e.g., in case of PRF) they all	
+	MUST allocate the same S-Label.
     Because S-Labels are local to each node rather than being a
     global identifier within a domain, they must be advertised to their
     upstream DetNet service-aware peer nodes (e.g., a DetNet MPLS End
@@ -652,7 +655,8 @@ DFx = DetNet member flow x over a TE LSP
 	   as described above, an implementation MUST check if PRF is configured 
 	   for that DetNet flow.  When configured, the packet MUST be replicated 
 	   with unchanged d-CW and there will be multiple outgoing DetNet member 
-	   flows. 
+	   flows. Outgoing DetNet member flows MUST have the same outgoing S-Label, 
+	   defined by the downstream DetNet service sub-layer node.
      </t>
      <t>
 	   MPLS ingress nodes (i.e., MPLS-aware DetNet end systems and edge 
@@ -660,7 +664,7 @@ DFx = DetNet member flow x over a TE LSP
 	   of an app-flow to generate the DetNet flow. An implementation MUST check 
 	   if PRF is configured for that DetNet flow.  When configured, the 
 	   app-flow packet MUST be replicated with the same d-CW and the outgoing 
-	   DetNet member flows use S-Labels, defined by the 
+	   DetNet member flows MUST have the same outgoing S-Label, defined by the 
 	   downstream DetNet service sub-layer nodes.
      </t>
    </section>
@@ -1255,7 +1259,7 @@ DFx = DetNet member flow x over a TE LSP
         Outgoing DetNet meber or compound flow(s) (if any). Outgoing S-Label and the 
 		forwarding sub-layer information associated with the output
         of the service sub-layer.  Note that when the PRF function is
-        provisioned, this information is per outgoing DetNet member flow.
+        provisioned, same S-Label is used for all outgoing DetNet member flows.
       </t>
       <t>
         Egress native App-flow information (if any).
