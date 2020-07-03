@@ -280,7 +280,7 @@ To be discussed:
         DetNet node supporting this document can be found in <xref
         target="ip-procs"/>.  The DetNet controller plane, as defined in
         <xref target="RFC8655"/>, is responsible for providing each node
-        with the information needed to identify an handle each DetNet flow.
+        with the information needed to identify and handle each DetNet flow.
       </t>
       <figure align="center" anchor="fig_ip_detnet_simple"
               title="A Simple DetNet (DN) Enabled IP Network">
@@ -445,7 +445,7 @@ To be discussed:
           means that all nodes along the end-to-end path of DetNet flows need
           to agree on what fields are used for flow identification.
           Possible consequences of not having such an agreement include
-          having some flows interfering with other flows, and for a
+          some flows interfering with other flows, and
           the traffic treatment expected for a service not being
           provided. 
         </t>
@@ -649,7 +649,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
           highlight the implications of DetNet IP flow identification on
           path selection and next hops.  As mentioned above, the DetNet
           IP data plane identifies flows using "6-tuple" header
-          information as well as the additional optional (flow label) header
+          information as well as the optional (flow label) header
           field. DetNet generally allows for both flow-specific traffic
           treatment and flow-specific next-hops.
         </t>
@@ -698,7 +698,7 @@ DetNet                    |L2/SbN|          |L2/SbN|
           impacts DetNet IP data plane flow identification and resource
           allocation.  As discussed above, IP flow identification uses
           the IP "6-tuple" for flow identification.  DetNet IP flows can
-          be aggregated using any of the 6-tuple and optionally also by 
+          be aggregated using any of the 6-tuple fields and optionally also by 
 	  the flow label.  The use of prefixes, wildcards,
           lists, and value ranges allows a DetNet node to identify
           aggregate DetNet flows.  From a resource allocation
@@ -836,8 +836,8 @@ DetNet                    |L2/SbN|          |L2/SbN|
               processing IPv4 packets, and the IPv6 Next Header Field
               when processing IPv6 packets. This includes 
               the next protocol
-              values defined in <xref target="nxt-proto"/> and other
-              values, including zero.
+              values defined in <xref target="nxt-proto"/> and any other
+              value, including zero.
               Implementations SHOULD allow for these fields to be
               ignored for a specific DetNet flow.
             </t>
