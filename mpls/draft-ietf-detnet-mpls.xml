@@ -163,7 +163,7 @@
        A DetNet "service" label that is used between DetNet nodes that
        implement also the DetNet service sub-layer functions. An S-Label
        is also used to identify a DetNet flow at DetNet service
-       sub-layer.
+       sub-layer at a receiving DetNet node.
      </t>
 
      <t hangText="A-Label">
@@ -259,18 +259,19 @@ Top of Stack         .
   </t>
 
   <t>
-    A node operating on a DetNet flow in the Detnet service
-    sub-layer, uses the local context associated with that S-Label,
-    provided by a received F-Label, to determine what local DetNet
+    A node operating on a received DetNet flow at the Detnet service
+    sub-layer uses the local context associated with a received S-Label,
+    i.e., a received F-Label, to determine which local DetNet
     operation(s) are applied to that packet.
     An S-Label may be taken from the platform label space
     <xref target="RFC3031"/>, making it unique, enabling DetNet
     flow identification regardless of which input interface or
-    LSP the packet arrives on.
+    LSP the packet arrives on. It is important to note that S-Label
+    values are driven by the receiver, not the sender.
   </t>
 
   <t>
-    The  DetNet forwarding sub-layer is supported by zero or more
+    The DetNet forwarding sub-layer is supported by zero or more
     forwarding labels (F-Labels). MPLS Traffic Engineering
     encapsulations and mechanisms can be utilized to provide a
     forwarding sub-layer that is responsible for providing resource
@@ -407,8 +408,8 @@ DFx = DetNet member flow x over a TE LSP
   </list>
   </t>
   <t>
-   In this design an MPLS service label (the S-Label), similar to a
-   pseudowire (PW) label <xref target="RFC3985"/>,
+   In this design an MPLS service label (the S-Label), is similar to a
+   pseudowire (PW) label <xref target="RFC3985"/>, and
    is used to identify both the
    DetNet flow identity and the payload MPLS payload type satisfying
    (1) and (2) in the list above.
@@ -428,7 +429,7 @@ DFx = DetNet member flow x over a TE LSP
    any method used for establishing that LSP (for example, MPLS-LDP, MPLS-TE, 
    MPLS-TP <xref target="RFC5921"/>, MPLS-SR <xref target="RFC8660"/>, etc.).
    The LSP (F-Label) label(s)
-   and/or the S-Label may be used to indicate the queue processing as
+   and/or the S-Label may be used to indicate the required queue processing as
    well as the forwarding parameters.  Note that the possible use of
    Penultimate Hop Popping (PHP) means that the S-Label may be the
    only label received at the terminating DetNet service.
@@ -578,7 +579,7 @@ DFx = DetNet member flow x over a TE LSP
 	outgoing S-Labels of a DetNet flow can be different.
    </t>
    <t>
-    The S-Label value MUST be provisioned per DetNet service via
+    S-Label values MUST be provisioned per DetNet service via
     configuration, e.g., via
     the controller plane described in
     <xref target="I-D.ietf-detnet-data-plane-framework"/>.
@@ -594,7 +595,7 @@ DFx = DetNet member flow x over a TE LSP
     context of their received F-Label(s).
    </t>
    <t>
-    The S-Label will normally be at the bottom of the label stack once
+    An S-Label will normally be at the bottom of the label stack once
     the last F-Label is removed, immediately preceding the d-CW.
     To support service sub-layer level OAM, an OAM Associated Channel
     Header (ACH) <xref target="RFC4385"/>
@@ -649,7 +650,7 @@ DFx = DetNet member flow x over a TE LSP
        for a particular DetNet service MUST be provisioned via configuration,
        e.g., via the controller plane described in
        <xref target="I-D.ietf-detnet-data-plane-framework"/>.  When replication
-       is supported, the same app-flow data will be sent over multiple
+       is configure, the same app-flow data will be sent over multiple
        outgoing DetNet member flows using forwarding sub-layer LSPs.
        The same d-CW field value MUST be used on all outgoing member flows for
        each replicated MPLS packet.
@@ -753,7 +754,7 @@ DFx = DetNet member flow x over a TE LSP
          F-Label(s) can also provide context for an S-Label.
          To
          allow for the omission of F-Label(s), an implementation SHOULD
-         also allow an outgoing interface to be used.
+         also allow an outgoing interface to be configured.
      </t>
      <t>
        When PRF
