@@ -528,7 +528,7 @@ DFx = DetNet member flow x over a TE LSP
   </t>
   <t>
    A separate sequence number space MUST be maintained by
-   the node that adds the d-CW for each DetNet app-flow.
+   the node that adds the d-CW for each DetNet app-flow, i.e., DetNet service.
    The following sequence number field lengths MUST be supported:
    <list style="bullets">
      <t>0 bits</t>
@@ -536,7 +536,7 @@ DFx = DetNet member flow x over a TE LSP
      <t>28 bits</t>
    </list>
    The sequence number length MUST be provisioned on a per
-   app-flow basis via
+   Detnet service basis via
    configuration, i.e., via the controller plane described in
    <xref target="I-D.ietf-detnet-data-plane-framework"/>.
   </t>
@@ -570,18 +570,19 @@ DFx = DetNet member flow x over a TE LSP
   </section>
   <section anchor="flow-identification" title="S-Labels">
    <t>
-    App-flow identification at a DetNet service sub-layer is realized by
+    A DetNet flow at the DetNet service sub-layer is identified by
     an S-Label.  MPLS-aware DetNet end systems
     and edge nodes, which are by definition MPLS ingress and egress
-    nodes, MUST add (push) and remove (pop) an app-flow specific d-CW and S-Label.  Relay nodes MAY
-    swap S-Label values when processing an app-flow.
+    nodes, MUST add (push) and remove (pop) a DetNet service-specific d-CW and S-Label.  Relay nodes MAY
+    swap S-Label values when processing a DetNet flow, i.e., incoming and 
+	outgoing S-Labels of a DetNet flow can be different.
    </t>
    <t>
-    The S-Label value MUST be provisioned per app-flow via
+    The S-Label value MUST be provisioned per DetNet service via
     configuration, e.g., via
     the controller plane described in
     <xref target="I-D.ietf-detnet-data-plane-framework"/>.
-    Note that S-Labels provide app-flow identification at the downstream
+    Note that S-Labels provide identification at the downstream
     DetNet service sub-layer receiver, not the sender.  As such,
     S-Labels MUST be allocated by the entity that controls the service
     sub-layer receiving node's label space, and MAY be allocated from
@@ -613,24 +614,24 @@ DFx = DetNet member flow x over a TE LSP
    </t>
    <t>
      When receiving a DetNet MPLS packet, an implementation MUST identify
-     the app-flow associated with the incoming packet based on the
+     the DetNet service associated with the incoming packet based on the
      S-Label.  When a node is using platform labels for S-Labels, no
      additional information is needed as the S-label uniquely identifies
-     the app-flow.  In the case where platform labels are not used, zero
+     the DetNet service.  In the case where platform labels are not used, zero
      or more F-Labels and optionally, the incoming interface, proceeding the S-Label MUST be used together with
-     the S-Label to uniquely identify the app-flows associated with a
+     the S-Label to uniquely identify the DetNet service associated with a
      received packet.
      The incoming interface MAY also be used together with
      any present F-Label(s) and the S-Label to uniquely identify an
-     incoming app-flows, for example, to in the case where PHP is used.  Note that choice to use platform label space
-     for S-Label or S-Label plus one or more F-Labels to identify app
-     flows is a local implementation choice, with one caveat.  When one
+     incoming DetNet service, for example, in the case where PHP is used.  Note that choice to use platform label space
+     for S-Label or S-Label plus one or more F-Labels to identify 
+     DetNet services is a local implementation choice, with one caveat.  When one
      or more F-labels, or incoming interface, is needed together with an
-     S-Label to uniquely identify, the controller plane must ensure that
+     S-Label to uniquely identify a server, the controller plane must ensure that
      incoming DetNet MPLS packets arrive with the needed information
      (F-label(s) and/or incoming interface) and provision the needed
      information. The provisioned information MUST then be used to
-       identify incoming app-flows based on the combination of S-Label
+       identify incoming DetNet service based on the combination of S-Label
        and F-Label(s) or incoming interface.
    </t>
    <t>
@@ -652,7 +653,7 @@ DFx = DetNet member flow x over a TE LSP
        outgoing DetNet member flows using forwarding sub-layer LSPs.
        The same d-CW field value MUST be used on all outgoing member flows for
        each replicated MPLS packet.
-       PRF MUST NOT be used with app-flows configured
+       PRF MUST NOT be used with DetNet services configured
        with a d-CW sequence number field length of 0 bits.
 <!-- [Note: What if multiple receivers? We may use the PRF for serving multiple end-points.] -->
      </t>
@@ -662,14 +663,14 @@ DFx = DetNet member flow x over a TE LSP
      <t>
        Implementations MAY support the Packet Elimination Function (PEF)
        for received DetNet MPLS flows.  When supported, use of the PEF
-       for a particular app-flow MUST be provisioned via configuration,
+       for a particular DetNet service MUST be provisioned via configuration,
        e.g., via the controller plane described in
        <xref target="I-D.ietf-detnet-data-plane-framework"/>.
      </t>
      <t>
-       After an app-flow is identified for a received DetNet MPLS
+       After a DetNet service is identified for a received DetNet MPLS
        packet, as described above, an implementation MUST check if PEF
-       is configured for that app-flow.  When configured, the
+       is configured for that DetNet service.  When configured, the
        implementation MUST track the sequence number contained in
        received d-CWs and MUST ensure that duplicate (replicated)
        instances of a particular sequence number are discarded.  The
@@ -693,7 +694,7 @@ DFx = DetNet member flow x over a TE LSP
      <t>
        A function that is related to in-order delivery is the Packet Ordering Function
        (POF).  Implementations MAY support POF. When
-       supported, use of the POF for a particular app-flow MUST be
+       supported, use of the POF for a particular DetNet service MUST be
        provisioned via configuration, e.g., via the controller plane
        described by
        <xref target="I-D.ietf-detnet-data-plane-framework"/>.
@@ -702,16 +703,16 @@ DFx = DetNet member flow x over a TE LSP
        Elimination and Ordering Functions in an implementation.
      </t>
      <t>
-       After an app-flow is identified for a received DetNet MPLS
+       After a DetNet service is identified for a received DetNet MPLS
        packet, as described above, an implementation MUST check if POF
-       is configured for that app-flow.  When configured, the
+       is configured for that DetNet service.  When configured, the
        implementation MUST track the sequence number contained in
        received d-CWs and MUST ensure that packets are processed in the
        order indicated in the received d-CW sequence number field, which
        may not be in the order the packets are received. As defined in
        <xref target="dn-sn"/> the sequence number field length may be 16
-       or 28 bits, is incremented by one (1) for each new app-flow packet
-       sent, and the field value can wrap.  The specific mechanisms used
+       or 28 bits, is incremented by one (1) for each new MPLS packet
+       sent for a particular DetNet service, and the field value can wrap.  The specific mechanisms used
        for an implementation to identify the order of received packets
        is an implementation choice.
      </t>
@@ -736,17 +737,17 @@ DFx = DetNet member flow x over a TE LSP
 
        <t>
           DetNet MPLS end systems, edge nodes and relay nodes may operate at
-          the DetNet service sub-layer with understanding of app-flows and their
+          the DetNet service sub-layer with understanding of DetNet services and their
           requirements.  As mentioned earlier, when operating at this layer
           such nodes can push, pop or swap (pop then push) S-Labels.  In all
-          cases, the F-Label(s) used for the app-flow are always replaced and
+          cases, the F-Label(s) used for a DetNet service are always replaced and
           the following procedures apply.
        </t>
        <t>
          When sending a DetNet flow, zero or more F-Labels MAY be pushed
          on top of an S-Label by the node pushing an S-Label. The
-         F-Label(s) to be pushed when sending a particular app-flow MUST
-         be provisioned per app-flow via configuration, e.g., via the
+         F-Label(s) to be pushed when sending a particular DetNet service MUST
+         be provisioned per DetNet service via configuration, e.g., via the
          controller plane discussed in
          <xref target="I-D.ietf-detnet-data-plane-framework"/>.
          F-Label(s) can also provide context for an S-Label.
@@ -765,7 +766,7 @@ DFx = DetNet member flow x over a TE LSP
      </t>
      <t>
        When a single set of F-Labels is provisioned for a particular
-       outgoing app-flow, that set of F-labels MUST be pushed after
+       outgoing S-Label, that set of F-labels MUST be pushed after
        the S-Label is pushed.
        The outgoing packet is then forwarded as
        described below in <xref target="f-labels-all"/>. When a single
@@ -774,7 +775,7 @@ DFx = DetNet member flow x over a TE LSP
      </t>
      <t>
        When multiple sets of F-Labels or interfaces are provisioned for
-       a particular outgoing app-flow, a copy of the outgoing packet, including
+       a particular outgoing DetNet service, a copy of the outgoing packet, including
        the pushed S-Label, MUST be made per F-label set and outgoing
        interface. Each set of provisioned F-Labels are then pushed onto
        a copy of the packet.  Each copy is then forwarded as described
@@ -782,12 +783,12 @@ DFx = DetNet member flow x over a TE LSP
      </t>
      <t>
        As described in the previous section, when receiving a DetNet MPLS flow, an implementation
-       identifies the app-flow associated with the incoming packet based
+       identifies the DetNet service associated with the incoming packet based
        on the S-Label.  When a node is using platform labels for
        S-Labels, any F-Labels can be popped and the S-label uniquely
-       identifies the app-flow.  In the case where platform labels are
+       identifies the DetNet service.  In the case where platform labels are
        not used, F-Label(s) and, optionally, the incoming interface MUST also be provisioned for incoming
-       app-flows.  
+       DetNet services.
      </t>
      </section>
      <section anchor="f-labels-all"
@@ -799,7 +800,7 @@ DFx = DetNet member flow x over a TE LSP
          push, pop and swap operations.  Such processing is essentially
          the same type of processing provided for TE LSPs, although the
          specific service parameters, or traffic specification, can
-         differ.  When the DetNet service parameters of the app-flow or
+         differ.  When the DetNet service parameters of the DetNet flow or
          flows carried in an LSP represented by an F-Label can be met by
          an existing TE mechanism, the forwarding sub-layer processing
          node MAY be a DetNet unaware, i.e., standard, MPLS LSR.  Such
@@ -1059,8 +1060,8 @@ DFx = DetNet member flow x over a TE LSP
      </t>
      <t>
 	   During the elimination and replication process the
-       sequence number of the incoming DetNet member flow MUST be preserved and
-       copied to the corresponding outgoing DetNet member flow. Specifically, a relay node 
+       sequence number of an incoming DetNet packet MUST be preserved and
+       carried in the corresponding outgoing DetNet packet. Specifically, a relay node 
 	   sends the same sequence number in an outgoing packet of a DetNet member 
 	   flow that is received in the corresponding incoming packet of a DetNet 
 	   compound flow. This is true whether or not PREOF is performed at the 
@@ -1240,7 +1241,7 @@ DFx = DetNet member flow x over a TE LSP
   </t>
   <t>
     The following summarizes the information that is needed on service
-    sub-layer aware nodes that receives DetNet MPLS traffic, on a per
+    sub-layer aware nodes that receive DetNet MPLS traffic, on a per
     service basis:
     <list style="symbols">
       <t>
