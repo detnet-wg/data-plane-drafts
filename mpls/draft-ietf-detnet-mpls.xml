@@ -626,16 +626,37 @@ DFx = DetNet member flow x over a TE LSP
      for S-Label or S-Label plus one or more F-Labels to identify app
      flows is a local implementation choice, with one caveat.  When one
      or more F-labels, or incoming interface, is needed together with an
-     S-Label to uniquely identify, the controller plane MUST ensure that
+     S-Label to uniquely identify, the controller plane must ensure that
      incoming DetNet MPLS packets arrive with the needed information
-     (F-label(s) and/or incoming interface); the details of such are
-     outside the scope of this document.
+     (F-label(s) and/or incoming interface) and provision the needed
+     information. The provisioned information MUST then be used to
+       identify incoming app-flows based on the combination of S-Label
+       and F-Label(s) or incoming interface.
    </t>
    <t>
      The use of platform labels for S-Labels matches other pseudowire
      encapsulations for consistency but there is no hard requirement in
      this regard.
    </t>
+   
+   <section anchor="prf-requirements" title="Packet Replication Function
+                                             Processing">
+     
+     <t>
+       The Packet Replication Function (PRF) function MAY be supported
+       by an implementation for outgoing DetNet flows. The use of the PRF
+       for a particular DetNet service MUST be provisioned via configuration,
+       e.g., via the controller plane described in
+       <xref target="I-D.ietf-detnet-data-plane-framework"/>.  When replication
+       is supported, the same app-flow data will be sent over multiple
+       outgoing DetNet member flows using forwarding sub-layer LSPs.
+       The same d-CW field value MUST be used on all outgoing member flows for
+       each replicated MPLS packet.
+       PRF MUST NOT be used with app-flows configured
+       with a d-CW sequence number field length of 0 bits.
+<!-- [Note: What if multiple receivers? We may use the PRF for serving multiple end-points.] -->
+     </t>
+   </section>
    <section anchor="pef-requirements" title="Packet Elimination Function
                                              Processing">
      <t>
@@ -711,7 +732,7 @@ DFx = DetNet member flow x over a TE LSP
        sub-layer processing nodes.
      </t>
      <section anchor="f-labels-ssl"
-              title="Service Sub-Layer and Packet Replication Function Processing">
+              title="Service Sub-Layer Related Processing">
 
        <t>
           DetNet MPLS end systems, edge nodes and relay nodes may operate at
@@ -734,16 +755,13 @@ DFx = DetNet member flow x over a TE LSP
          also allow an outgoing interface to be used.
      </t>
      <t>
-       The Packet Replication Function (PRF) function MAY be supported
-       by an implementation for outgoing DetNet flows. When replication
+       When PRF
        is supported, the same app-flow data will be sent over multiple
        outgoing  DetNet member flows using forwarding sub-layer LSPs. To support PRF an
        implementation MUST support the setting of different sets of
        F-Labels per DetNet member flow. To allow for the omission of F-Labels,
        an implementation SHOULD also allow multiple outgoing interfaces
-       to be provisioned.  PRF MUST NOT be used with app-flows configured
-       with a d-CW sequence number field length of 0 bits.
-<!-- [Note: What if multiple receivers? We may use the PRF for serving multiple end-points.] -->
+       to be provisioned. 
      </t>
      <t>
        When a single set of F-Labels is provisioned for a particular
@@ -769,9 +787,7 @@ DFx = DetNet member flow x over a TE LSP
        S-Labels, any F-Labels can be popped and the S-label uniquely
        identifies the app-flow.  In the case where platform labels are
        not used, F-Label(s) and, optionally, the incoming interface MUST also be provisioned for incoming
-       app-flows.  The provisioned information MUST then be used to
-       identify incoming app-flows based on the combination of S-Label
-       and F-Label(s) or incoming interface.
+       app-flows.  
      </t>
      </section>
      <section anchor="f-labels-all"
