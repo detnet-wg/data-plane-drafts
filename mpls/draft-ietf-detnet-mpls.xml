@@ -593,6 +593,10 @@ DFx = DetNet member flow x over a TE LSP
     upstream DetNet service-aware peer nodes (e.g., a DetNet MPLS End
     System or a DetNet Relay or Edge Node) and interpreted in the
     context of their received F-Label(s).
+    In some PREOF topologies, the node performing replication will be
+    sending to multiple nodes performing PEF or POF, and may need to
+    send different S-Label values for the different member flows for the
+    same DetNet service.
    </t>
    <t>
     An S-Label will normally be at the bottom of the label stack once
@@ -652,6 +656,7 @@ DFx = DetNet member flow x over a TE LSP
        <xref target="I-D.ietf-detnet-data-plane-framework"/>.  When replication
        is configure, the same app-flow data will be sent over multiple
        outgoing DetNet member flows using forwarding sub-layer LSPs.
+       An S-Label value MUST be configured per outgoing member flow.
        The same d-CW field value MUST be used on all outgoing member flows for
        each replicated MPLS packet.
 <!--   PRF MUST NOT be used with DetNet services configured
@@ -748,22 +753,21 @@ DFx = DetNet member flow x over a TE LSP
          When sending a DetNet flow, zero or more F-Labels MAY be pushed
          on top of an S-Label by the node pushing an S-Label. The
          F-Label(s) to be pushed when sending a particular DetNet service MUST
-         be provisioned per DetNet service via configuration, e.g., via the
+         be provisioned per outgoing S-Label via configuration, e.g., via the
          controller plane discussed in
          <xref target="I-D.ietf-detnet-data-plane-framework"/>.
          F-Label(s) can also provide context for an S-Label.
          To
          allow for the omission of F-Label(s), an implementation SHOULD
-         also allow an outgoing interface to be configured.
+         also allow an outgoing interface to be configured per S-Label.
      </t>
      <t>
-       When PRF
+       Note, when PRF
        is supported, the same app-flow data will be sent over multiple
-       outgoing  DetNet member flows using forwarding sub-layer LSPs. To support PRF an
-       implementation MUST support the setting of different sets of
-       F-Labels per DetNet member flow. To allow for the omission of F-Labels,
-       an implementation SHOULD also allow multiple outgoing interfaces
-       to be provisioned. 
+       outgoing  DetNet member flows using forwarding sub-layer
+       LSPs. This means that 
+       implementation may be sending different sets of
+       F-Labels per DetNet member flow, each with a different S-Label.
      </t>
      <t>
        When a single set of F-Labels is provisioned for a particular
@@ -777,7 +781,7 @@ DFx = DetNet member flow x over a TE LSP
      <t>
        When multiple sets of outgoing F-Labels or interfaces are provisioned for
        a particular DetNet service, a copy of the outgoing packet, including
-       the pushed S-Label, MUST be made per F-label set and outgoing
+       the pushed member flow-specific S-Label, MUST be made per F-label set and outgoing
        interface. Each set of provisioned F-Labels are then pushed onto
        a copy of the packet.  Each copy is then forwarded as described
        below in <xref target="f-labels-all"/>.
@@ -1219,10 +1223,10 @@ DFx = DetNet member flow x over a TE LSP
         PEF or POF is configured for the service.
       </t>
       <t>
-        The outgoing S-Label for the service.
+        If PRF is to be provided for the service.
       </t>
       <t>
-        If PRF is to be provided for the service.
+        The outgoing S-Label for each of the service's outgoing DetNet (member) flow.
       </t>
       <t>
         The forwarding sub-layer information associated with the output
