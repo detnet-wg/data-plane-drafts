@@ -594,6 +594,9 @@ DFx = DetNet member flow x over a TE LSP
     System or a DetNet Relay or Edge Node) and interpreted in the
     context of their received F-Label(s). Note that a single S-Label is
     used to identify a DetNet service on any service aware node.
+    An implication of this is that where there are multiple outgoing
+    member flows, the same S-Label value is used on each and all
+    receivers must use this same value.
    </t>
    <t>
     An S-Label will normally be at the bottom of the label stack once
@@ -629,7 +632,7 @@ DFx = DetNet member flow x over a TE LSP
      for S-Label or S-Label plus one or more F-Labels to identify 
      DetNet services is a local implementation choice, with one caveat.  When one
      or more F-labels, or incoming interface, is needed together with an
-     S-Label to uniquely identify a server, the controller plane must ensure that
+     S-Label to uniquely identify a service, the controller plane must ensure that
      incoming DetNet MPLS packets arrive with the needed information
      (F-label(s) and/or incoming interface) and provision the needed
      information. The provisioned information MUST then be used to
@@ -656,9 +659,9 @@ DFx = DetNet member flow x over a TE LSP
        An S-Label value MUST be configured per DetNet service.
        The same d-CW field value MUST be used on all outgoing member flows for
        each replicated MPLS packet.
-       PRF MUST NOT be used with DetNet services configured
+<!--   PRF MUST NOT be used with DetNet services configured
        with a d-CW sequence number field length of 0 bits.
-<!-- [Note: What if multiple receivers? We may use the PRF for serving multiple end-points.] -->
+       [Note: What if multiple receivers? We may use the PRF for serving multiple end-points.] -->
      </t>
    </section>
    <section anchor="pef-requirements" title="Packet Elimination Function
@@ -756,10 +759,10 @@ DFx = DetNet member flow x over a TE LSP
          F-Label(s) can also provide context for an S-Label.
          To
          allow for the omission of F-Label(s), an implementation SHOULD
-         also allow an outgoing interface to be configured per S-Label.
+         also allow an outgoing interface to be configured.
      </t>
      <t>
-       Note, when PRF
+       When PRF
        is supported, the same app-flow data will be sent over multiple
        outgoing  DetNet member flows using forwarding sub-layer LSPs. To support PRF an
        implementation MUST support the setting of different sets of
@@ -777,8 +780,8 @@ DFx = DetNet member flow x over a TE LSP
        forwarded as described below in <xref target="f-labels-all"/>.
      </t>
      <t>
-       When multiple sets of F-Labels or interfaces are provisioned for
-       a particular outgoing DetNet service, a copy of the outgoing packet, including
+       When multiple sets of outgoing F-Labels or interfaces are provisioned for
+       a particular DetNet service, a copy of the outgoing packet, including
        the pushed S-Label, MUST be made per F-label set and outgoing
        interface. Each set of provisioned F-Labels are then pushed onto
        a copy of the packet.  Each copy is then forwarded as described
@@ -790,8 +793,8 @@ DFx = DetNet member flow x over a TE LSP
        on the S-Label.  When a node is using platform labels for
        S-Labels, any F-Labels can be popped and the S-label uniquely
        identifies the DetNet service.  In the case where platform labels are
-       not used, F-Label(s) and, optionally, the incoming interface MUST also be provisioned for incoming
-       DetNet services.
+       not used, incoming F-Label(s) and, optionally, the incoming interface MUST also be provisioned for a
+       DetNet service.
      </t>
      </section>
      <section anchor="f-labels-all"
@@ -1030,23 +1033,17 @@ DFx = DetNet member flow x over a TE LSP
 
    <section title="Edge Node Processing" anchor="sec_t_pe">
      <t>
-       An edge node is responsible for matching incoming packets to the
-       service they require and encapsulating them accordingly. An edge
-       node may participate in the packet replication and duplicate packet
-       elimination.
-     </t>
-     <t>
-       The DetNet-aware forwarder selects the egress DetNet member flow
-       segment based on the flow identification.  The mapping of ingress
-       DetNet member flow segment to egress DetNet member flow segment
-       may be statically or dynamically configured. Additionally the
-       DetNet-aware forwarder does duplicate frame elimination based on
-       the flow identification and the sequence number combination. The
-       packet replication is also done within the DetNet-aware
-       forwarder. 
+       A DetNet Edge node operates in the DetNet forwarding sub-layer
+       and service sub-layer.  An edge node is responsible for matching
+       incoming packets to the service they require and encapsulating
+       them accordingly. An edge node may perform PRF, PEF, and or POF.
+       Details on encapsulation can be found in <xref
+       target="pwSolution"/>; details on PRF can be found in <xref
+       target="prf-requirements"/>; details on PEF can be found in <xref
+       target="pef-requirements"/>; and details on POF can be found in
+       <xref target="pof-requirements"/>.
      </t>
    </section>
-
 
    <section title="Relay Node Processing" anchor="sec_s_pe">
      <t>
@@ -1064,11 +1061,11 @@ DFx = DetNet member flow x over a TE LSP
      <t>
 	   During the elimination and replication process the
        sequence number of an incoming DetNet packet MUST be preserved and
-       carried in the corresponding outgoing DetNet packet. Specifically, a relay node 
-	   sends the same sequence number in an outgoing packet of a DetNet member 
-	   flow that is received in the corresponding incoming packet of a DetNet 
-	   compound flow. This is true whether or not PREOF is performed at the 
-	   relay node.
+       carried in the corresponding outgoing DetNet
+       packet.  For example, a relay node that performs both PEF and PRF
+       first performs PEF on incoming packets to create a compound
+       flow. It then performs PRF and copies the app-flow data and the
+       d-CW into packets for each outgoing DetNet member flow.
      </t>
      <t>
        The internal design of a relay node is out of scope of this
@@ -1214,20 +1211,20 @@ DFx = DetNet member flow x over a TE LSP
          title="Service Sub-Layer Information Summary">
   <t>
     The following summarizes the information that is needed on service
-    sub-layer aware nodes on a per service basis:
+    sub-layer aware nodes that transmit DetNet MPLS traffic, on a per service basis:
     <list style="symbols">
       <t>
-        App-Flow identification information, e.g., an incoming
-        service on a relay node or IP information as defined in <xref
-        target="I-D.ietf-detnet-ip-over-mpls"/>.
+        App-Flow identification information, e.g., IP information as
+        defined in <xref target="I-D.ietf-detnet-ip-over-mpls"/>.  Note,
+        this information is not needed on DetNet relay nodes.
       </t>
       <t>
         The sequence number length to be used for the service.  Valid
         values included 0, 16 and 28 bits. 0 bits cannot be used when
-        PRF is configured for the service.
+        PEF or POF is configured for the service.
       </t>
       <t>
-        The S-Label for the service.
+        The outgoing S-Label for the service.
       </t>
       <t>
         If PRF is to be provided for the service.
@@ -1257,7 +1254,7 @@ DFx = DetNet member flow x over a TE LSP
         A-Label.
       </t>
       <t>
-        The S-Label for the received service.
+        The incoming S-Label for the service.
       </t>
       <t>
         If PEF or POF is to be provided for the service.
@@ -1266,6 +1263,11 @@ DFx = DetNet member flow x over a TE LSP
         The sequence number length to be used for the service.  Valid
         values included 0, 16 and 28 bits. 0 bits cannot be used when
         PEF or POF are configured for the service.
+      </t>
+      <t>
+        App-Flow identification information, e.g., IP information as
+        defined in <xref target="I-D.ietf-detnet-ip-over-mpls"/>.  Note,
+        this information is not needed on DetNet relay nodes.
       </t>
     </list>
   </t>
