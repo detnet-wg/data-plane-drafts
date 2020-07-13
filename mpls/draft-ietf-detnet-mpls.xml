@@ -88,7 +88,10 @@
   <abstract>
    <t>
      This document specifies the Deterministic Networking data plane
-     when operating over an MPLS Packet Switched Networks.
+     when operating over an MPLS Packet Switched Network.  It leverages
+     existing pseudowire (PW) encapsulations and MPLS Traffic
+     Engineering encapsulations and mechanisms.  This document builds on
+     the DetNet Architecture and Data Plane Framework.
    </t>
   </abstract>
   </front>
@@ -99,7 +102,7 @@
 
   <t>
     Deterministic Networking (DetNet) is a service that can be offered
-    by a network to DetNet flows.  DetNet provides these flows extremely
+    by a network to DetNet flows.  DetNet provides these flows with extremely
     low packet loss rates and assured maximum end-to-end delivery
     latency.  General background and concepts of DetNet can be found in
     <xref target="RFC8655"/>.
@@ -442,7 +445,7 @@ DFx = DetNet member flow x over a TE LSP
     encapsulation.  The MPLS-based encapsulation of the DetNet flows
     is well suited for the scenarios described in
     <xref target="I-D.ietf-detnet-data-plane-framework"/>.
-    Furthermore, an end to end DetNet
+    Furthermore, an end-to-end DetNet
     service i.e., native DetNet deployment (see <xref
     target="sec_mpls_dt_dp_scen"/>) is also possible if DetNet end
     systems are capable of initiating and termination MPLS encapsulated
@@ -841,10 +844,13 @@ DFx = DetNet member flow x over a TE LSP
          LSP.  Typical mechanisms used to provide different treatment to
          different flows includes the allocation of system resources
          (such as queues and buffers) and provisioning or related
-         parameters (such as shaping, and policing). Support can also be
+         parameters (such as shaping, and policing) that may be found in
+         implementations of <xref target="RFC2205">Resource ReSerVation Protocol
+       (RSVP)</xref> (RSVP) and RSVP-TE <xref target="RFC3209"/> and
+       <xref target="RFC3473"/>. Support can also be
          provided via an underlying network technology such IEEE802.1
          TSN <xref target="I-D.ietf-detnet-mpls-over-tsn"/>.
-         The specific mechanisms used by a DetNet node to ensure DetNet
+         The specific mechanisms selected by a DetNet node to ensure DetNet
          service delivery requirements are met for supported DetNet
          flows is outside the scope of this document.
        </t>
@@ -1205,6 +1211,9 @@ DFx = DetNet member flow x over a TE LSP
         space are out of scope of this document.
         There are particular DetNet considerations and requirements that
         are discussed in <xref target="I-D.ietf-detnet-data-plane-framework"/>.
+    Conformance language is not used in the summary since it applies to
+    future mechanisms such as those that may be provided in signaling
+    and YANG models, e.g., <xref target="I-D.ietf-detnet-yang"/>.
   </t>
   <section anchor="mc_summary_ssl"
          title="Service Sub-Layer Information Summary">
@@ -1361,12 +1370,10 @@ DFx = DetNet member flow x over a TE LSP
 
 <section title="Security Considerations">
   <t>
-   General security considerations
-   are described in <xref target="RFC8655"/>. 
-   Additionally, security considerations and a threat analysis are described in 
-   <xref target="I-D.ietf-detnet-security"/>. 
-   This section
-   considers security considerations which are specific to the DetNet
+   Detailed security considerations for DetNet are cataloged in
+   <xref target="I-D.ietf-detnet-security"/>, and more general security considerations
+   are described in <xref target="RFC8655"/>. This section
+   considers exclusively security considerations which are specific to the DetNet
    MPLS data plane. The considerations raised related to MPLS networks
    in general in <xref target="RFC5920"/> are equally applicable to the
    the DetNet MPLS data plane.
@@ -1376,14 +1383,22 @@ DFx = DetNet member flow x over a TE LSP
    provide the specific quality of service aspects of DetNet, which are
    primarily to deliver data flows with extremely low packet loss rates
    and bounded end-to-end delivery latency.
+       Achieving such loss rates and bounded latency may not be possible
+       in the face of a highly capable adversary, such as the one
+       envisioned by the Internet Threat Model of BCP 72 that can
+       arbitrarily drop or delay any or all traffic.  In order to
+       present meaningful security considerations, we consider a
+       somewhat weaker attacker who does not control the physical links
+       of the DetNet domain, but may have the ability to control a
+       network node within the boundary of the DetNet domain.
     </t>
     <t>
-    The primary considerations for the data plane is to maintain
+    The primary consideration for the DetNet data plane is to maintain
     integrity of data and delivery of the associated DetNet service traversing
     the DetNet network.
-    Application flows can be protected through whatever means is
+    Application flows can be protected through whatever means are
     provided by the underlying technology. For example, encryption may be
-    used, such as that provided by IPSec <xref target="RFC4301"/> for IP
+    used, such as that provided by IPsec <xref target="RFC4301"/> for IP
     flows and/or by an underlying sub-net using MACSec
     <xref target="IEEE802.1AE-2018"/> for IP over Ethernet (Layer-2) flows.
     </t>
@@ -1487,6 +1502,7 @@ DFx = DetNet member flow x over a TE LSP
    <?rfc include="reference.I-D.ietf-detnet-ip-over-mpls"?>
    <?rfc include="reference.I-D.ietf-detnet-mpls-over-tsn"?>
    <?rfc include="reference.I-D.ietf-detnet-security"?>
+   <?rfc include="reference.I-D.ietf-detnet-yang"?>
    <reference anchor="IEEE802.1AE-2018"
       target="https://ieeexplore.ieee.org/document/8585421">
       <front>
