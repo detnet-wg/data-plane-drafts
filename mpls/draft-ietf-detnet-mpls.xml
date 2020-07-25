@@ -118,7 +118,7 @@
   <t>
     This document specifies the DetNet data plane operation and the on-wire
     encapsulation of DetNet flows over an MPLS-based Packet Switched Network
-    (PSN) using the service sub-layer reference model.  MPLS encapsulation
+    (PSN) using the service reference model.  MPLS encapsulation
     already provides a solid foundation of building blocks to enable the DetNet
     service and forwarding sub-layer functions.  MPLS encapsulated DetNet can
     be carried over a variety of different network technologies that can
@@ -403,7 +403,7 @@ DFx = DetNet member flow x over a TE LSP
 
   <list style="numbers">
    <t>A method of identifying the MPLS payload type.</t>
-   <t>A method of identifying the DetNet flow group to the processing element.</t>
+   <t>A method of identifying the DetNet flow(s) to the processing element.</t>
    <t>A method of distinguishing DetNet OAM packets from DetNet data packets.</t>
    <t>A method of carrying the DetNet sequence number.</t>
    <t>A suitable LSP to deliver the packet to the egress PE.</t>
