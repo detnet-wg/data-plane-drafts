@@ -113,7 +113,8 @@
     into two sub-layers: a service sub-layer and a forwarding sub-layer.  The
     service sub-layer is used to provide DetNet service functions such as
     protection and reordering.  The forwarding sub-layer is used to provide
-    forwarding assurance (low loss, assured latency, and limited reordering).
+    forwarding assurance (low loss, assured latency, and limited out-of-order
+	delivery).
   </t>
   <t>
     This document specifies the DetNet data plane operation and the on-wire
@@ -364,11 +365,11 @@ End System        Node         Node           Node        End System
       <figure align="center" anchor="fig_pw_detnet"
               title="MPLS-Based Native DetNet">
         <artwork><![CDATA[
-DetNet                                           DetNet
-MPLS  Service          Transit          Transit       Service MPLS
-DetNet  |             |<-Tnl->|        |<-Tnl->|            | DetNet
-End     |             V   1   V        V   2   V            | End
-System  |    +--------+       +--------+       +--------+   | System
+        DetNet                                        DetNet
+DetNet  Service        Transit          Transit       Service  DetNet
+MPLS    |             |<-Tnl->|        |<-Tnl->|            |  MPLS
+End     |             V   1   V        V   2   V            |  End
+System  |    +--------+       +--------+       +--------+   |  System
 +---+   |    |   R1   |=======|   R2   |=======|   R3   |   |  +---+
 |  X...DFa...|._X_....|..DF1..|.__ ___.|..DF3..|...._X_.|.DFa..|.X |
 |CE1|========|    \   |       |   X    |       |   /    |======|CE2|
@@ -657,7 +658,7 @@ DFx = DetNet member flow x over a TE LSP
        for a particular DetNet service MUST be provisioned via configuration,
        e.g., via the controller plane described in
        <xref target="I-D.ietf-detnet-data-plane-framework"/>.  When replication
-       is configure, the same app-flow data will be sent over multiple
+       is configured, the same app-flow data will be sent over multiple
        outgoing DetNet member flows using forwarding sub-layer LSPs.
        An S-Label value MUST be configured per outgoing member flow.
        The same d-CW field value MUST be used on all outgoing member flows for
@@ -692,9 +693,9 @@ DFx = DetNet member flow x over a TE LSP
      </t>
      <t>
        Note that an implementation MAY wish to constrain the maximum
-       number sequence numbers that are tracked, on platform-wide or per
+       number of sequence numbers that are tracked, on platform-wide or per
        flow basis.  Some implementations MAY support the provisioning of
-       the maximum number sequence numbers that are tracked number on
+       the maximum number of sequence numbers that are tracked on
        either a platform-wide or per flow basis.
      </t>
    </section>
@@ -1111,7 +1112,7 @@ DFx = DetNet member flow x over a TE LSP
        target="RFC3270"/>.  The Uniform, Pipe, and Short Pipe DiffServ
        tunneling and TTL processing models are described in <xref
        target="RFC3270"/> and <xref target="RFC3443"/> and MAY be used
-       for MPLS LSPs supporting DetNet flows. MPLS ECN MAY also be used
+       for MPLS LSPs supporting DetNet flows. MPLS Explicit Congestion Notification (ECN) MAY also be used
        as defined in ECN <xref target="RFC5129"/> and updated by <xref
        target="RFC5462"/>.
      </t>
