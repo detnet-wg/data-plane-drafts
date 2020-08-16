@@ -1,0 +1,1396 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+
+  <title>DetNet Data Plane: MPLS</title>
+
+  <style type="text/css" title="Xml2Rfc (sans serif)">
+  /*<![CDATA[*/
+	  a {
+	  text-decoration: none;
+	  }
+      /* info code from SantaKlauss at http://www.madaboutstyle.com/tooltip2.html */
+      a.info {
+          /* This is the key. */
+          position: relative;
+          z-index: 24;
+          text-decoration: none;
+      }
+      a.info:hover {
+          z-index: 25;
+          color: #FFF; background-color: #900;
+      }
+      a.info span { display: none; }
+      a.info:hover span.info {
+          /* The span will display just on :hover state. */
+          display: block;
+          position: absolute;
+          font-size: smaller;
+          top: 2em; left: -5em; width: 15em;
+          padding: 2px; border: 1px solid #333;
+          color: #900; background-color: #EEE;
+          text-align: left;
+      }
+	  a.smpl {
+	  color: black;
+	  }
+	  a:hover {
+	  text-decoration: underline;
+	  }
+	  a:active {
+	  text-decoration: underline;
+	  }
+	  address {
+	  margin-top: 1em;
+	  margin-left: 2em;
+	  font-style: normal;
+	  }
+	  body {
+	  color: black;
+	  font-family: verdana, helvetica, arial, sans-serif;
+	  font-size: 10pt;
+	  max-width: 55em;
+	  
+	  }
+	  cite {
+	  font-style: normal;
+	  }
+	  dd {
+	  margin-right: 2em;
+	  }
+	  dl {
+	  margin-left: 2em;
+	  }
+	
+	  ul.empty {
+	  list-style-type: none;
+	  }
+	  ul.empty li {
+	  margin-top: .5em;
+	  }
+	  dl p {
+	  margin-left: 0em;
+	  }
+	  dt {
+	  margin-top: .5em;
+	  }
+	  h1 {
+	  font-size: 14pt;
+	  line-height: 21pt;
+	  page-break-after: avoid;
+	  }
+	  h1.np {
+	  page-break-before: always;
+	  }
+	  h1 a {
+	  color: #333333;
+	  }
+	  h2 {
+	  font-size: 12pt;
+	  line-height: 15pt;
+	  page-break-after: avoid;
+	  }
+	  h3, h4, h5, h6 {
+	  font-size: 10pt;
+	  page-break-after: avoid;
+	  }
+	  h2 a, h3 a, h4 a, h5 a, h6 a {
+	  color: black;
+	  }
+	  img {
+	  margin-left: 3em;
+	  }
+	  li {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  ol {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  ol p {
+	  margin-left: 0em;
+	  }
+	  p {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  pre {
+	  margin-left: 3em;
+	  background-color: lightyellow;
+	  padding: .25em;
+	  }
+	  pre.text2 {
+	  border-style: dotted;
+	  border-width: 1px;
+	  background-color: #f0f0f0;
+	  width: 69em;
+	  }
+	  pre.inline {
+	  background-color: white;
+	  padding: 0em;
+	  }
+	  pre.text {
+	  border-style: dotted;
+	  border-width: 1px;
+	  background-color: #f8f8f8;
+	  width: 69em;
+	  }
+	  pre.drawing {
+	  border-style: solid;
+	  border-width: 1px;
+	  background-color: #f8f8f8;
+	  padding: 2em;
+	  }
+	  table {
+	  margin-left: 2em;
+	  }
+	  table.tt {
+	  vertical-align: top;
+	  }
+	  table.full {
+	  border-style: outset;
+	  border-width: 1px;
+	  }
+	  table.headers {
+	  border-style: outset;
+	  border-width: 1px;
+	  }
+	  table.tt td {
+	  vertical-align: top;
+	  }
+	  table.full td {
+	  border-style: inset;
+	  border-width: 1px;
+	  }
+	  table.tt th {
+	  vertical-align: top;
+	  }
+	  table.full th {
+	  border-style: inset;
+	  border-width: 1px;
+	  }
+	  table.headers th {
+	  border-style: none none inset none;
+	  border-width: 1px;
+	  }
+	  table.left {
+	  margin-right: auto;
+	  }
+	  table.right {
+	  margin-left: auto;
+	  }
+	  table.center {
+	  margin-left: auto;
+	  margin-right: auto;
+	  }
+	  caption {
+	  caption-side: bottom;
+	  font-weight: bold;
+	  font-size: 9pt;
+	  margin-top: .5em;
+	  }
+	
+	  table.header {
+	  border-spacing: 1px;
+	  width: 95%;
+	  font-size: 10pt;
+	  color: white;
+	  }
+	  td.top {
+	  vertical-align: top;
+	  }
+	  td.topnowrap {
+	  vertical-align: top;
+	  white-space: nowrap; 
+	  }
+	  table.header td {
+	  background-color: gray;
+	  width: 50%;
+	  }
+	  table.header a {
+	  color: white;
+	  }
+	  td.reference {
+	  vertical-align: top;
+	  white-space: nowrap;
+	  padding-right: 1em;
+	  }
+	  thead {
+	  display:table-header-group;
+	  }
+	  ul.toc, ul.toc ul {
+	  list-style: none;
+	  margin-left: 1.5em;
+	  margin-right: 0em;
+	  padding-left: 0em;
+	  }
+	  ul.toc li {
+	  line-height: 150%;
+	  font-weight: bold;
+	  font-size: 10pt;
+	  margin-left: 0em;
+	  margin-right: 0em;
+	  }
+	  ul.toc li li {
+	  line-height: normal;
+	  font-weight: normal;
+	  font-size: 9pt;
+	  margin-left: 0em;
+	  margin-right: 0em;
+	  }
+	  li.excluded {
+	  font-size: 0pt;
+	  }
+	  ul p {
+	  margin-left: 0em;
+	  }
+	
+	  .comment {
+	  background-color: yellow;
+	  }
+	  .center {
+	  text-align: center;
+	  }
+	  .error {
+	  color: red;
+	  font-style: italic;
+	  font-weight: bold;
+	  }
+	  .figure {
+	  font-weight: bold;
+	  text-align: center;
+	  font-size: 9pt;
+	  }
+	  .filename {
+	  color: #333333;
+	  font-weight: bold;
+	  font-size: 12pt;
+	  line-height: 21pt;
+	  text-align: center;
+	  }
+	  .fn {
+	  font-weight: bold;
+	  }
+	  .hidden {
+	  display: none;
+	  }
+	  .left {
+	  text-align: left;
+	  }
+	  .right {
+	  text-align: right;
+	  }
+	  .title {
+	  color: #990000;
+	  font-size: 18pt;
+	  line-height: 18pt;
+	  font-weight: bold;
+	  text-align: center;
+	  margin-top: 36pt;
+	  }
+	  .vcardline {
+	  display: block;
+	  }
+	  .warning {
+	  font-size: 14pt;
+	  background-color: yellow;
+	  }
+	
+	
+	  @media print {
+	  .noprint {
+		display: none;
+	  }
+	
+	  a {
+		color: black;
+		text-decoration: none;
+	  }
+	
+	  table.header {
+		width: 90%;
+	  }
+	
+	  td.header {
+		width: 50%;
+		color: black;
+		background-color: white;
+		vertical-align: top;
+		font-size: 12pt;
+	  }
+	
+	  ul.toc a::after {
+		content: leader('.') target-counter(attr(href), page);
+	  }
+	
+	  ul.ind li li a {
+		content: target-counter(attr(href), page);
+	  }
+	
+	  .print2col {
+		column-count: 2;
+		-moz-column-count: 2;
+		column-fill: auto;
+	  }
+	  }
+	
+	  @page {
+	  @top-left {
+		   content: "Internet-Draft"; 
+	  } 
+	  @top-right {
+		   content: "December 2010"; 
+	  } 
+	  @top-center {
+		   content: "Abbreviated Title";
+	  } 
+	  @bottom-left {
+		   content: "Doe"; 
+	  } 
+	  @bottom-center {
+		   content: "Expires June 2011"; 
+	  } 
+	  @bottom-right {
+		   content: "[Page " counter(page) "]"; 
+	  } 
+	  }
+	
+	  @page:first { 
+		@top-left {
+		  content: normal;
+		}
+		@top-right {
+		  content: normal;
+		}
+		@top-center {
+		  content: normal;
+		}
+	  }
+  /*]]>*/
+  </style>
+
+  <link href="#rfc.toc" rel="Contents">
+<link href="#rfc.section.1" rel="Chapter" title="1 Introduction">
+<link href="#rfc.section.2" rel="Chapter" title="2 Terminology">
+<link href="#rfc.section.2.1" rel="Chapter" title="2.1 Terms Used in This Document">
+<link href="#rfc.section.2.2" rel="Chapter" title="2.2 Abbreviations">
+<link href="#rfc.section.2.3" rel="Chapter" title="2.3 Requirements Language">
+<link href="#rfc.section.3" rel="Chapter" title="3 DetNet MPLS Data Plane Overview">
+<link href="#rfc.section.3.1" rel="Chapter" title="3.1 Layers of DetNet Data Plane">
+<link href="#rfc.section.3.2" rel="Chapter" title="3.2 DetNet MPLS Data Plane Scenarios">
+<link href="#rfc.section.4" rel="Chapter" title="4 MPLS-Based DetNet Data Plane Solution">
+<link href="#rfc.section.4.1" rel="Chapter" title="4.1 DetNet Over MPLS Encapsulation Components">
+<link href="#rfc.section.4.2" rel="Chapter" title="4.2 MPLS Data Plane Encapsulation">
+<link href="#rfc.section.4.2.1" rel="Chapter" title="4.2.1 DetNet Control Word and the DetNet Sequence Number">
+<link href="#rfc.section.4.2.2" rel="Chapter" title="4.2.2 S-Labels">
+<link href="#rfc.section.4.2.3" rel="Chapter" title="4.2.3 F-Labels">
+<link href="#rfc.section.4.3" rel="Chapter" title="4.3 OAM Indication">
+<link href="#rfc.section.4.4" rel="Chapter" title="4.4 Flow Aggregation">
+<link href="#rfc.section.4.4.1" rel="Chapter" title="4.4.1 Aggregation Via LSP Hierarchy">
+<link href="#rfc.section.4.4.2" rel="Chapter" title="4.4.2 Aggregating DetNet Flows as a new DetNet flow">
+<link href="#rfc.section.4.5" rel="Chapter" title="4.5 Service Sub-Layer Considerations">
+<link href="#rfc.section.4.5.1" rel="Chapter" title="4.5.1 Edge Node Processing">
+<link href="#rfc.section.4.5.2" rel="Chapter" title="4.5.2 Relay Node Processing">
+<link href="#rfc.section.4.6" rel="Chapter" title="4.6 Forwarding Sub-Layer Considerations">
+<link href="#rfc.section.4.6.1" rel="Chapter" title="4.6.1 Class of Service">
+<link href="#rfc.section.4.6.2" rel="Chapter" title="4.6.2 Quality of Service">
+<link href="#rfc.section.5" rel="Chapter" title="5 Management and Control Information Summary">
+<link href="#rfc.section.5.1" rel="Chapter" title="5.1 Service Sub-Layer Information Summary">
+<link href="#rfc.section.5.1.1" rel="Chapter" title="5.1.1 Service Aggregation Information Summary">
+<link href="#rfc.section.5.2" rel="Chapter" title="5.2 Forwarding Sub-Layer Information Summary">
+<link href="#rfc.section.6" rel="Chapter" title="6 Security Considerations">
+<link href="#rfc.section.7" rel="Chapter" title="7 IANA Considerations">
+<link href="#rfc.section.8" rel="Chapter" title="8 Acknowledgements">
+<link href="#rfc.section.9" rel="Chapter" title="9 Contributors">
+<link href="#rfc.references" rel="Chapter" title="10 References">
+<link href="#rfc.references.1" rel="Chapter" title="10.1 Normative References">
+<link href="#rfc.references.2" rel="Chapter" title="10.2 Informative References">
+<link href="#rfc.authors" rel="Chapter">
+
+
+  <meta name="generator" content="xml2rfc version 2.12.3 - https://tools.ietf.org/tools/xml2rfc" />
+  <link rel="schema.dct" href="http://purl.org/dc/terms/" />
+
+  <meta name="dct.creator" content="Varga, B., Ed., Farkas, J., Berger, L., Malis, A., Bryant, S., and J. Korhonen" />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-detnet-mpls-11" />
+  <meta name="dct.issued" scheme="ISO8601" content="2020-16" />
+  <meta name="dct.abstract" content="This document specifies the Deterministic Networking data plane when operating over an MPLS Packet Switched Network.  It leverages existing pseudowire (PW) encapsulations and MPLS Traffic Engineering encapsulations and mechanisms.  This document builds on the DetNet Architecture and Data Plane Framework.  " />
+  <meta name="description" content="This document specifies the Deterministic Networking data plane when operating over an MPLS Packet Switched Network.  It leverages existing pseudowire (PW) encapsulations and MPLS Traffic Engineering encapsulations and mechanisms.  This document builds on the DetNet Architecture and Data Plane Framework.  " />
+
+</head>
+
+<body>
+
+  <table class="header">
+    <tbody>
+    
+    	<tr>
+<td class="left">DetNet</td>
+<td class="right">B. Varga, Ed.</td>
+</tr>
+<tr>
+<td class="left">Internet-Draft</td>
+<td class="right">J. Farkas</td>
+</tr>
+<tr>
+<td class="left">Intended status: Standards Track</td>
+<td class="right">Ericsson</td>
+</tr>
+<tr>
+<td class="left">Expires: February 17, 2021</td>
+<td class="right">L. Berger</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">LabN Consulting, L.L.C.</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">A. Malis</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">Malis Consulting</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">S. Bryant</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">Futurewei Technologies</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">J. Korhonen</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">August 16, 2020</td>
+</tr>
+
+    	
+    </tbody>
+  </table>
+
+  <p class="title">DetNet Data Plane: MPLS<br />
+  <span class="filename">draft-ietf-detnet-mpls-11</span></p>
+  
+  <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
+<p>This document specifies the Deterministic Networking data plane when operating over an MPLS Packet Switched Network.  It leverages existing pseudowire (PW) encapsulations and MPLS Traffic Engineering encapsulations and mechanisms.  This document builds on the DetNet Architecture and Data Plane Framework.  </p>
+<h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
+<p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
+<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
+<p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
+<p>This Internet-Draft will expire on February 17, 2021.</p>
+<h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
+<p>Copyright (c) 2020 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
+
+  
+  <hr class="noprint" />
+  <h1 class="np" id="rfc.toc"><a href="#rfc.toc">Table of Contents</a></h1>
+  <ul class="toc">
+
+  	<li>1.   <a href="#rfc.section.1">Introduction</a>
+</li>
+<li>2.   <a href="#rfc.section.2">Terminology</a>
+</li>
+<ul><li>2.1.   <a href="#rfc.section.2.1">Terms Used in This Document</a>
+</li>
+<li>2.2.   <a href="#rfc.section.2.2">Abbreviations</a>
+</li>
+<li>2.3.   <a href="#rfc.section.2.3">Requirements Language</a>
+</li>
+</ul><li>3.   <a href="#rfc.section.3">DetNet MPLS Data Plane Overview</a>
+</li>
+<ul><li>3.1.   <a href="#rfc.section.3.1">Layers of DetNet Data Plane</a>
+</li>
+<li>3.2.   <a href="#rfc.section.3.2">DetNet MPLS Data Plane Scenarios</a>
+</li>
+</ul><li>4.   <a href="#rfc.section.4">MPLS-Based DetNet Data Plane Solution</a>
+</li>
+<ul><li>4.1.   <a href="#rfc.section.4.1">DetNet Over MPLS Encapsulation Components</a>
+</li>
+<li>4.2.   <a href="#rfc.section.4.2">MPLS Data Plane Encapsulation</a>
+</li>
+<ul><li>4.2.1.   <a href="#rfc.section.4.2.1">DetNet Control Word and the DetNet Sequence Number</a>
+</li>
+<li>4.2.2.   <a href="#rfc.section.4.2.2">S-Labels</a>
+</li>
+<li>4.2.3.   <a href="#rfc.section.4.2.3">F-Labels</a>
+</li>
+</ul><li>4.3.   <a href="#rfc.section.4.3">OAM Indication</a>
+</li>
+<li>4.4.   <a href="#rfc.section.4.4">Flow Aggregation</a>
+</li>
+<ul><li>4.4.1.   <a href="#rfc.section.4.4.1">Aggregation Via LSP Hierarchy</a>
+</li>
+<li>4.4.2.   <a href="#rfc.section.4.4.2">Aggregating DetNet Flows as a new DetNet flow</a>
+</li>
+</ul><li>4.5.   <a href="#rfc.section.4.5">Service Sub-Layer Considerations</a>
+</li>
+<ul><li>4.5.1.   <a href="#rfc.section.4.5.1">Edge Node Processing</a>
+</li>
+<li>4.5.2.   <a href="#rfc.section.4.5.2">Relay Node Processing</a>
+</li>
+</ul><li>4.6.   <a href="#rfc.section.4.6">Forwarding Sub-Layer Considerations</a>
+</li>
+<ul><li>4.6.1.   <a href="#rfc.section.4.6.1">Class of Service</a>
+</li>
+<li>4.6.2.   <a href="#rfc.section.4.6.2">Quality of Service</a>
+</li>
+</ul></ul><li>5.   <a href="#rfc.section.5">Management and Control Information Summary</a>
+</li>
+<ul><li>5.1.   <a href="#rfc.section.5.1">Service Sub-Layer Information Summary</a>
+</li>
+<ul><li>5.1.1.   <a href="#rfc.section.5.1.1">Service Aggregation Information Summary</a>
+</li>
+</ul><li>5.2.   <a href="#rfc.section.5.2">Forwarding Sub-Layer Information Summary</a>
+</li>
+</ul><li>6.   <a href="#rfc.section.6">Security Considerations</a>
+</li>
+<li>7.   <a href="#rfc.section.7">IANA Considerations</a>
+</li>
+<li>8.   <a href="#rfc.section.8">Acknowledgements</a>
+</li>
+<li>9.   <a href="#rfc.section.9">Contributors</a>
+</li>
+<li>10.   <a href="#rfc.references">References</a>
+</li>
+<ul><li>10.1.   <a href="#rfc.references.1">Normative References</a>
+</li>
+<li>10.2.   <a href="#rfc.references.2">Informative References</a>
+</li>
+</ul><li><a href="#rfc.authors">Authors' Addresses</a>
+</li>
+
+
+  </ul>
+
+  <h1 id="rfc.section.1">
+<a href="#rfc.section.1">1.</a> <a href="#sec_intro" id="sec_intro">Introduction</a>
+</h1>
+<p id="rfc.section.1.p.1">Deterministic Networking (DetNet) is a service that can be offered by a network to DetNet flows.  DetNet provides these flows with extremely low packet loss rates and assured maximum end-to-end delivery latency.  General background and concepts of DetNet can be found in <a href="#RFC8655" class="xref">[RFC8655]</a>.  </p>
+<p id="rfc.section.1.p.2">The DetNet Architecture models the DetNet related data plane functions decomposed into two sub-layers: a service sub-layer and a forwarding sub-layer.  The service sub-layer is used to provide DetNet service functions such as protection and reordering.  The forwarding sub-layer is used to provide forwarding assurance (low loss, assured latency, and limited out-of-order delivery).  </p>
+<p id="rfc.section.1.p.3">This document specifies the DetNet data plane operation and the on-wire encapsulation of DetNet flows over an MPLS-based Packet Switched Network (PSN) using the service reference model.  MPLS encapsulation already provides a solid foundation of building blocks to enable the DetNet service and forwarding sub-layer functions.  MPLS encapsulated DetNet can be carried over a variety of different network technologies that can provide the DetNet required level of service.  However, the specific details of how DetNet MPLS is carried over different network technologies is out of scope of this document.  </p>
+<p id="rfc.section.1.p.4">MPLS encapsulated DetNet flows can carry different types of traffic.  The details of the types of traffic that are carried in DetNet are also out of scope of this document.  An example of IP using DetNet MPLS sub-networks can be found in <a href="#I-D.ietf-detnet-ip" class="xref">[I-D.ietf-detnet-ip]</a>. DetNet MPLS may use an associated controller and Operations, Administration, and Maintenance (OAM) functions that are defined outside of this document.  </p>
+<p id="rfc.section.1.p.5">Background information common to all data planes for DetNet can be found in the DetNet Data Plane Framework <a href="#I-D.ietf-detnet-data-plane-framework" class="xref">[I-D.ietf-detnet-data-plane-framework]</a>.  </p>
+<h1 id="rfc.section.2">
+<a href="#rfc.section.2">2.</a> Terminology</h1>
+<h1 id="rfc.section.2.1">
+<a href="#rfc.section.2.1">2.1.</a> Terms Used in This Document</h1>
+<p id="rfc.section.2.1.p.1">This document uses the terminology established in the DetNet architecture <a href="#RFC8655" class="xref">[RFC8655]</a> and the DetNet Data Plane Framework <a href="#I-D.ietf-detnet-data-plane-framework" class="xref">[I-D.ietf-detnet-data-plane-framework]</a>. The reader is assumed to be familiar with these documents, any terminology defined therein and basic MPLS related terminologies in <a href="#RFC3031" class="xref">[RFC3031]</a>.  </p>
+<p id="rfc.section.2.1.p.2">The following terminology is introduced in this document: </p>
+
+<dl>
+<dt>F-Label</dt>
+<dd style="margin-left: 14">A Detnet "forwarding" label that identifies the LSP used to forward a DetNet flow across an MPLS PSN, e.g., a hop-by-hop label used between label switching routers (LSR).  </dd>
+<dt>S-Label</dt>
+<dd style="margin-left: 14">A DetNet "service" label that is used between DetNet nodes that implement also the DetNet service sub-layer functions. An S-Label is also used to identify a DetNet flow at DetNet service sub-layer at a receiving DetNet node.  </dd>
+<dt>A-Label</dt>
+<dd style="margin-left: 14">A special case of an S-Label, whose aggregation properties are known only at the aggregation and deaggregation end-points.  </dd>
+<dt>d-CW</dt>
+<dd style="margin-left: 14">A DetNet Control Word (d-CW) is used for sequencing information of a DetNet flow at the DetNet service sub-layer.  </dd>
+</dl>
+
+<p> </p>
+<h1 id="rfc.section.2.2">
+<a href="#rfc.section.2.2">2.2.</a> Abbreviations</h1>
+<p id="rfc.section.2.2.p.1">The following abbreviations are used in this document: </p>
+
+<dl>
+<dt>CoS</dt>
+<dd style="margin-left: 14">Class of Service.</dd>
+<dt>CW</dt>
+<dd style="margin-left: 14">Control Word.</dd>
+<dt>DetNet</dt>
+<dd style="margin-left: 14">Deterministic Networking.</dd>
+<dt>LSR</dt>
+<dd style="margin-left: 14">Label Switching Router.</dd>
+<dt>MPLS</dt>
+<dd style="margin-left: 14">Multiprotocol Label Switching.</dd>
+<dt>MPLS-TE</dt>
+<dd style="margin-left: 14">Multiprotocol Label Switching - Traffic Engineering.</dd>
+<dt>MPLS-TP</dt>
+<dd style="margin-left: 14">Multiprotocol Label Switching - Transport Profile.</dd>
+<dt>OAM</dt>
+<dd style="margin-left: 14">Operations, Administration, and Maintenance.</dd>
+<dt>PE</dt>
+<dd style="margin-left: 14">Provider Edge.</dd>
+<dt>PEF</dt>
+<dd style="margin-left: 14">Packet Elimination Function.</dd>
+<dt>PRF</dt>
+<dd style="margin-left: 14">Packet Replication Function.</dd>
+<dt>PREOF</dt>
+<dd style="margin-left: 14">Packet Replication, Elimination and Ordering Functions.</dd>
+<dt>POF</dt>
+<dd style="margin-left: 14">Packet Ordering Function.</dd>
+<dt>PSN</dt>
+<dd style="margin-left: 14">Packet Switched Network.</dd>
+<dt>PW</dt>
+<dd style="margin-left: 14">PseudoWire.</dd>
+<dt>QoS</dt>
+<dd style="margin-left: 14">Quality of Service.</dd>
+<dt>S-PE</dt>
+<dd style="margin-left: 14">Switching Provider Edge.</dd>
+<dt>T-PE</dt>
+<dd style="margin-left: 14">Terminating Provider Edge.</dd>
+<dt>TSN</dt>
+<dd style="margin-left: 14">Time-Sensitive Network.</dd>
+</dl>
+
+<p> </p>
+<h1 id="rfc.section.2.3">
+<a href="#rfc.section.2.3">2.3.</a> Requirements Language</h1>
+<p id="rfc.section.2.3.p.1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 <a href="#RFC2119" class="xref">[RFC2119]</a> <a href="#RFC8174" class="xref">[RFC8174]</a> when, and only when, they appear in all capitals, as shown here.  </p>
+<h1 id="rfc.section.3">
+<a href="#rfc.section.3">3.</a> <a href="#sec_dt_dp" id="sec_dt_dp">DetNet MPLS Data Plane Overview</a>
+</h1>
+<h1 id="rfc.section.3.1">
+<a href="#rfc.section.3.1">3.1.</a> <a href="#sec_lay_dt_dp" id="sec_lay_dt_dp">Layers of DetNet Data Plane</a>
+</h1>
+<p id="rfc.section.3.1.p.1">MPLS provides a wide range of capabilities that can be utilised by DetNet.  A straight forward approach utilizing MPLS for a DetNet service sub-layer is based on the existing pseudowire (PW) encapsulations and by utilizing existing MPLS Traffic Engineering encapsulations and mechanisms.  Background on PWs can be found in <a href="#RFC3985" class="xref">[RFC3985]</a> and <a href="#RFC3031" class="xref">[RFC3031]</a>. Background on MPLS Traffic Engineering can be found in <a href="#RFC3272" class="xref">[RFC3272]</a> and <a href="#RFC3209" class="xref">[RFC3209]</a>.  </p>
+<div id="rfc.figure.1"></div>
+<div id="dn_mpls_dp_approach"></div>
+<pre>
+
+                   DetNet        MPLS
+                     .
+Bottom of Stack      .
+(inner label)    +------------+
+                 |  Service   | d-CW, S-Label (A-Label)
+                 +------------+
+                 | Forwarding | F-Label(s)
+                 +------------+
+Top of Stack         .
+(outer label)        .
+
+    </pre>
+<p class="figure">Figure 1: DetNet Adaptation to MPLS Data Plane</p>
+<p id="rfc.section.3.1.p.2">The DetNet MPLS data plane representation is illustrated in <a href="#dn_mpls_dp_approach" class="xref">Figure 1</a>.  The service sub-layer includes a DetNet control word (d-CW) and an identifying service label (S-Label).  The DetNet control word (d-CW) conforms to the Generic PW MPLS Control Word (PWMCW) defined in <a href="#RFC4385" class="xref">[RFC4385]</a>. An aggregation label (A-Label) is a special case of S-Label used for aggregation.  </p>
+<p id="rfc.section.3.1.p.3">A node operating on a received DetNet flow at the Detnet service sub-layer uses the local context associated with a received S-Label, i.e., a received F-Label, to determine which local DetNet operation(s) are applied to that packet.  An S-Label may be taken from the platform label space <a href="#RFC3031" class="xref">[RFC3031]</a>, making it unique, enabling DetNet flow identification regardless of which input interface or LSP the packet arrives on. It is important to note that S-Label values are driven by the receiver, not the sender.  </p>
+<p id="rfc.section.3.1.p.4">The DetNet forwarding sub-layer is supported by zero or more forwarding labels (F-Labels). MPLS Traffic Engineering encapsulations and mechanisms can be utilized to provide a forwarding sub-layer that is responsible for providing resource allocation and explicit routes.  </p>
+<h1 id="rfc.section.3.2">
+<a href="#rfc.section.3.2">3.2.</a> <a href="#sec_mpls_dt_dp_scen" id="sec_mpls_dt_dp_scen">DetNet MPLS Data Plane Scenarios</a>
+</h1>
+<div id="rfc.figure.2"></div>
+<div id="fig_dn_mpls_detnet"></div>
+<pre>
+DetNet MPLS       Relay       Transit         Relay       DetNet MPLS
+End System        Node         Node           Node        End System
+   (T-PE)        (S-PE)       (LSR)          (S-PE)         (T-PE)
++----------+                                             +----------+
+|   Appl.  |&lt;------------ End to End Service -----------&gt;|   Appl.  |
++----------+   +---------+                 +---------+   +----------+
+| Service  |&lt;--| Service |-- DetNet flow --| Service |--&gt;| Service  |
++----------+   +---------+  +----------+   +---------+   +----------+
+|Forwarding|   |Fwd| |Fwd|  |Forwarding|   |Fwd| |Fwd|   |Forwarding|
++-------.--+   +-.-+ +-.-+  +----.---.-+   +-.-+ +-.-+   +---.------+
+        :  Link  :    /  ,-----.  \   : Link :    /  ,-----.  \
+        +........+    +-[  Sub  ]-+   +......+    +-[  Sub  ]-+
+                        [Network]                   [Network]
+                         `-----'                     `-----'
+        |&lt;- LSP --&gt;| |&lt;-------- LSP -----------| |&lt;--- LSP --&gt;|
+
+        |&lt;----------------- DetNet MPLS ---------------------&gt;|
+
+        </pre>
+<p class="figure">Figure 2: A DetNet MPLS Network</p>
+<p><a href="#fig_dn_mpls_detnet" class="xref">Figure 2</a> illustrates a hypothetical DetNet MPLS-only network composed of DetNet aware MPLS enabled end systems, operating over a DetNet aware MPLS network.  In this figure, the relay nodes are PE devices that define the MPLS LSP boundaries and the transit nodes are LSRs.  </p>
+<p id="rfc.section.3.2.p.2">DetNet end systems and relay nodes understand the particular needs of DetNet flows and provide both DetNet service and forwarding sub-layer functions.  In the case of MPLS, DetNet service-aware nodes add, remove and process d-CWs, S-Labels and F-labels as needed.  DetNet MPLS nodes provide functionality analogous to T-PEs when they sit at the edge of an MPLS domain, and S-PEs when they are in the middle of an MPLS domain, see <a href="#RFC6073" class="xref">[RFC6073]</a>.  </p>
+<p id="rfc.section.3.2.p.3">In a DetNet MPLS network, transit nodes may be DetNet service aware or may be DetNet unaware MPLS Label Switching Routers (LSRs).  In this latter case, such LSRs would be unaware of the special requirements of the DetNet service sub-layer, but would still provide traffic engineering functions and the QoS capabilities needed to ensure that the (TE) LSPs meet the service requirements of the carried DetNet flows.  </p>
+<p id="rfc.section.3.2.p.4">The application of DetNet using MPLS supports a number of control plane/management plane types. These types support certain MPLS data plane deployments. For example RSVP-TE, MPLS-TP, or MPLS Segment Routing (when extended to support resource allocation) are all valid MPLS deployment cases.  </p>
+<p><a href="#fig_pw_detnet" class="xref">Figure 3</a> illustrates how an end-to-end MPLS-based DetNet service is provided in a more detail.  In this figure, the customer end systems, CE1 and CE2, are able to send and receive MPLS encapsulated DetNet flows, and R1, R2 and R3 are relay nodes in the middle of a DetNet network.  The 'X' in the end systems, and relay nodes represents potential DetNet compound flow packet replication and elimination points.  In this example, service protection is supported utilizing at least two DetNet member flows and TE LSPs.  For a unidirectional flow, R1 supports PRF and R3 supports PEF and POF.  Note that the relay nodes may change the underlying forwarding sub-layer, for example tunneling MPLS over IEEE 802.1 TSN <a href="#I-D.ietf-detnet-mpls-over-tsn" class="xref">[I-D.ietf-detnet-mpls-over-tsn]</a>, or simply over interconnect network links.  </p>
+<div id="rfc.figure.3"></div>
+<div id="fig_pw_detnet"></div>
+<pre>
+        DetNet                                        DetNet
+DetNet  Service        Transit          Transit       Service  DetNet
+MPLS    |             |&lt;-Tnl-&gt;|        |&lt;-Tnl-&gt;|            |  MPLS
+End     |             V   1   V        V   2   V            |  End
+System  |    +--------+       +--------+       +--------+   |  System
++---+   |    |   R1   |=======|   R2   |=======|   R3   |   |  +---+
+|  X...DFa...|._X_....|..DF1..|.__ ___.|..DF3..|...._X_.|.DFa..|.X |
+|CE1|========|    \   |       |   X    |       |   /    |======|CE2|
+|   |   |    |     \_.|..DF2..|._/ \__.|..DF4..|._/     |   |  |   |
++---+        |        |=======|        |=======|        |      +---+
+    ^        +--------+       +--------+       +--------+      ^
+    |        Relay Node       Relay Node       Relay Node      |
+    |          (S-PE)           (S-PE)           (S-PE)        |
+    |                                                          |
+    |&lt;---------------------- DetNet MPLS ---------------------&gt;|
+    |                                                          |
+    |&lt;--------------- End to End DetNet Service --------------&gt;|
+
+    -------------------------- Data Flow -------------------------&gt;
+
+X   = Optional service protection (none, PRF, PREOF, PEF/POF)
+DFx = DetNet member flow x over a TE LSP
+        </pre>
+<p class="figure">Figure 3: MPLS-Based Native DetNet</p>
+<h1 id="rfc.section.4">
+<a href="#rfc.section.4">4.</a> <a href="#dn-dt-solution" id="dn-dt-solution">MPLS-Based DetNet Data Plane Solution</a>
+</h1>
+<h1 id="rfc.section.4.1">
+<a href="#rfc.section.4.1">4.1.</a> <a href="#dn-MPLS-en-comps" id="dn-MPLS-en-comps">DetNet Over MPLS Encapsulation Components</a>
+</h1>
+<p id="rfc.section.4.1.p.1">To carry DetNet over MPLS the following is required: </p>
+
+<ol>
+<li>A method of identifying the MPLS payload type.</li>
+<li>A method of identifying the DetNet flow(s) to the processing element.</li>
+<li>A method of distinguishing DetNet OAM packets from DetNet data packets.</li>
+<li>A method of carrying the DetNet sequence number.</li>
+<li>A suitable LSP to deliver the packet to the egress PE.</li>
+<li>A method of carrying queuing and forwarding indication.</li>
+</ol>
+
+<p> </p>
+<p id="rfc.section.4.1.p.2">In this design an MPLS service label (the S-Label), is similar to a pseudowire (PW) label <a href="#RFC3985" class="xref">[RFC3985]</a>, and is used to identify both the DetNet flow identity and the payload MPLS payload type satisfying (1) and (2) in the list above.  OAM traffic discrimination happens through the use of the Associated Channel method described in <a href="#RFC4385" class="xref">[RFC4385]</a>.  The DetNet sequence number is carried in the DetNet Control word which carries the Data/OAM discriminator.  To simplify implementation and to maximize interoperability two sequence number sizes are supported: a 16 bit sequence number and a 28 bit sequence number.  The 16 bit sequence number is needed to support some types of legacy clients. The 28 bit sequence number is used in situations where it is necessary ensure that in high speed networks the sequence number space does not wrap whilst packets are in flight.  </p>
+<p id="rfc.section.4.1.p.3">The LSP used to forward the DetNet packet is not restricted regarding any method used for establishing that LSP (for example, MPLS-LDP, MPLS-TE, MPLS-TP <a href="#RFC5921" class="xref">[RFC5921]</a>, MPLS-SR <a href="#RFC8660" class="xref">[RFC8660]</a>, etc.).  The LSP (F-Label) label(s) and/or the S-Label may be used to indicate the required queue processing as well as the forwarding parameters.  Note that the possible use of Penultimate Hop Popping (PHP) means that the S-Label may be the only label received at the terminating DetNet service.  </p>
+<h1 id="rfc.section.4.2">
+<a href="#rfc.section.4.2">4.2.</a> <a href="#pwSolution" id="pwSolution">MPLS Data Plane Encapsulation</a>
+</h1>
+<p><a href="#fig_pw_mpls" class="xref">Figure 4</a> illustrates a DetNet data plane MPLS encapsulation.  The MPLS-based encapsulation of the DetNet flows is well suited for the scenarios described in <a href="#I-D.ietf-detnet-data-plane-framework" class="xref">[I-D.ietf-detnet-data-plane-framework]</a>.  Furthermore, an end-to-end DetNet service i.e., native DetNet deployment (see <a href="#sec_mpls_dt_dp_scen" class="xref">Section 3.2</a>) is also possible if DetNet end systems are capable of initiating and termination MPLS encapsulated packets.  </p>
+<p id="rfc.section.4.2.p.2">The MPLS-based DetNet data plane encapsulation consists of: </p>
+
+<ul>
+<li>DetNet control word (d-CW) containing sequencing information for packet replication and duplicate elimination purposes, and the OAM indicator.</li>
+<li>DetNet service Label (S-Label) that identifies a DetNet flow at the receiving DetNet service sub-layer processing node.  </li>
+<li>Zero or more Detnet MPLS  Forwarding label(s) (F-Label) used to direct the packet along the label switched path (LSP) to the next DetNet service sub-layer processing node along the path.  When Penultimate Hop Popping is in use there may be no label F-Label in the protocol stack on the final hop.  </li>
+<li>The necessary data-link encapsulation is then applied prior to transmission over the physical media.  </li>
+</ul>
+
+<p> </p>
+<div id="rfc.figure.4"></div>
+<div id="fig_pw_mpls"></div>
+<pre>
+  DetNet MPLS-based encapsulation
+
++---------------------------------+
+|                                 |
+|         DetNet App-Flow         |
+|         Payload  Packet         |
+|                                 |
++---------------------------------+ &lt;--\
+|       DetNet Control Word       |    |
++---------------------------------+    +--&gt; DetNet data plane
+|           S-Label               |    |    MPLS encapsulation
++---------------------------------+    |
+|         [ F-Label(s) ]          |    |
++---------------------------------+ &lt;--/
+|           Data-Link             |
++---------------------------------+
+|           Physical              |
++---------------------------------+
+
+    </pre>
+<p class="figure">Figure 4: Encapsulation of a DetNet App-Flow in an MPLS PSN</p>
+<h1 id="rfc.section.4.2.1">
+<a href="#rfc.section.4.2.1">4.2.1.</a> <a href="#dn-sn" id="dn-sn">DetNet Control Word and the DetNet Sequence Number</a>
+</h1>
+<p id="rfc.section.4.2.1.p.1">A DetNet control word (d-CW) conforms to the Generic PW MPLS Control Word (PWMCW) defined in <a href="#RFC4385" class="xref">[RFC4385]</a>. The d-CW formatted as shown in <a href="#fig_detnet_cw" class="xref">Figure 5</a> MUST be present in all DetNet packets containing app-flow data.  This format of the d-CW was created in order (1) to allow larger S/N space to avoid S/N rollover frequency in some applications and (2) to allow non-skip zero S/N what simplifies implementation.  </p>
+<div id="rfc.figure.5"></div>
+<div id="fig_detnet_cw"></div>
+<pre>
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|0 0 0 0|                Sequence Number                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+    </pre>
+<p class="figure">Figure 5: DetNet Control Word</p>
+<p></p>
+
+<dl>
+<dt>(bits 0 to 3)</dt>
+<dd style="margin-left: 8">
+<br><br> Per <a href="#RFC4385" class="xref">[RFC4385]</a>, MUST be set to zero (0).  </dd>
+<dt>Sequence Number (bits 4 to 31)</dt>
+<dd style="margin-left: 8">
+<br><br> An unsigned value implementing the DetNet sequence number.  The sequence number space is a circular one.  </dd>
+</dl>
+
+<p> </p>
+<p id="rfc.section.4.2.1.p.3">A separate sequence number space MUST be maintained by the node that adds the d-CW for each DetNet app-flow, i.e., DetNet service.  The following sequence number field lengths MUST be supported: <a href="#I-D.ietf-detnet-data-plane-framework" class="xref">[I-D.ietf-detnet-data-plane-framework]</a>.  </p>
+
+<ul class="empty">
+<li>0 bits</li>
+<li>16 bits</li>
+<li>28 bits</li>
+</ul>
+
+<p> The sequence number length MUST be provisioned on a per Detnet service basis via configuration, i.e., via the controller plane described in </p>
+<p id="rfc.section.4.2.1.p.4">A 0 bit sequence number field length indicates that there is no DetNet sequence number used for the flow.  When the length is zero, the sequence number field MUST be set to zero (0) on all packets sent for the flow.  </p>
+<p id="rfc.section.4.2.1.p.5">When the sequence number field length is 16 or 28 bits for a flow, the sequence number MUST be incremented by one for each new app-flow packet sent. When the field length is 16 bits, d-CW bits 4 to 15 MUST be set to zero (0). The values carried in this field can wrap and it is important to note that zero (0) is a valid field value.  For example, were the sequence number size is 16 bits, the sequence will contain: 65535, 0, 1, where zero (0) is an ordinary sequence number.  </p>
+<p id="rfc.section.4.2.1.p.6">It is important to note that this document differs from <a href="#RFC4448" class="xref">[RFC4448]</a> where a sequence number of zero (0) is used to indicate that the sequence number check algorithm is not used.  </p>
+<p id="rfc.section.4.2.1.p.7">The sequence number is optionally used during receive processing as described below in <a href="#pef-requirements" class="xref">Section 4.2.2.2</a> and <a href="#pof-requirements" class="xref">Section 4.2.2.3</a>.  </p>
+<h1 id="rfc.section.4.2.2">
+<a href="#rfc.section.4.2.2">4.2.2.</a> <a href="#flow-identification" id="flow-identification">S-Labels</a>
+</h1>
+<p id="rfc.section.4.2.2.p.1">A DetNet flow at the DetNet service sub-layer is identified by an S-Label.  MPLS-aware DetNet end systems and edge nodes, which are by definition MPLS ingress and egress nodes, MUST add (push) and remove (pop) a DetNet service-specific d-CW and S-Label.  Relay nodes MAY swap S-Label values when processing a DetNet flow, i.e., incoming and outgoing S-Labels of a DetNet flow can be different.  </p>
+<p id="rfc.section.4.2.2.p.2">S-Label values MUST be provisioned per DetNet service via configuration, e.g., via the controller plane described in <a href="#I-D.ietf-detnet-data-plane-framework" class="xref">[I-D.ietf-detnet-data-plane-framework]</a>.  Note that S-Labels provide identification at the downstream DetNet service sub-layer receiver, not the sender.  As such, S-Labels MUST be allocated by the entity that controls the service sub-layer receiving node's label space, and MAY be allocated from the platform label space <a href="#RFC3031" class="xref">[RFC3031]</a>.  Because S-Labels are local to each node rather than being a global identifier within a domain, they must be advertised to their upstream DetNet service-aware peer nodes (e.g., a DetNet MPLS End System or a DetNet Relay or Edge Node) and interpreted in the context of their received F-Label(s).  In some PREOF topologies, the node performing replication will be sending to multiple nodes performing PEF or POF, and may need to send different S-Label values for the different member flows for the same DetNet service.  </p>
+<p id="rfc.section.4.2.2.p.3">An S-Label will normally be at the bottom of the label stack once the last F-Label is removed, immediately preceding the d-CW.  To support service sub-layer level OAM, an OAM Associated Channel Header (ACH) <a href="#RFC4385" class="xref">[RFC4385]</a> together with a Generic Associated Channel Label (GAL) <a href="#RFC5586" class="xref">[RFC5586]</a> MAY be used in place of a d-CW.  </p>
+<p id="rfc.section.4.2.2.p.4">Similarly, an Entropy Label Indicator/Entropy Label (ELI/EL) <a href="#RFC6790" class="xref">[RFC6790]</a> MAY be carried below the S-Label in the label stack in networks where DetNet flows would otherwise received ECMP treatment.  When ELs are used, the same EL value SHOULD be used for all of the packets sent using a specific S-Label to force the flow to follow the same path.  However, as outlines in <a href="#I-D.ietf-detnet-data-plane-framework" class="xref">[I-D.ietf-detnet-data-plane-framework]</a> the use of ECMP for DetNet flows is NOT RECOMMENDED. ECMP MAY be used for non-DetNet flows within a DetNet domain.  </p>
+<p id="rfc.section.4.2.2.p.5">When receiving a DetNet MPLS packet, an implementation MUST identify the DetNet service associated with the incoming packet based on the S-Label.  When a node is using platform labels for S-Labels, no additional information is needed as the S-label uniquely identifies the DetNet service.  In the case where platform labels are not used, zero or more F-Labels and optionally, the incoming interface, proceeding the S-Label MUST be used together with the S-Label to uniquely identify the DetNet service associated with a received packet.  The incoming interface MAY also be used together with any present F-Label(s) and the S-Label to uniquely identify an incoming DetNet service, for example, in the case where PHP is used.  Note that choice to use platform label space for S-Label or S-Label plus one or more F-Labels to identify DetNet services is a local implementation choice, with one caveat.  When one or more F-labels, or incoming interface, is needed together with an S-Label to uniquely identify a service, the controller plane must ensure that incoming DetNet MPLS packets arrive with the needed information (F-label(s) and/or incoming interface) and provision the needed information. The provisioned information MUST then be used to identify incoming DetNet service based on the combination of S-Label and F-Label(s) or incoming interface.  </p>
+<p id="rfc.section.4.2.2.p.6">The use of platform labels for S-Labels matches other pseudowire encapsulations for consistency but there is no hard requirement in this regard.  </p>
+<h1 id="rfc.section.4.2.2.1">
+<a href="#rfc.section.4.2.2.1">4.2.2.1.</a> <a href="#prf-requirements" id="prf-requirements">Packet Replication Function                                              Processing</a>
+</h1>
+<p id="rfc.section.4.2.2.1.p.1">The Packet Replication Function (PRF) function MAY be supported by an implementation for outgoing DetNet flows. The use of the PRF for a particular DetNet service MUST be provisioned via configuration, e.g., via the controller plane described in <a href="#I-D.ietf-detnet-data-plane-framework" class="xref">[I-D.ietf-detnet-data-plane-framework]</a>.  When replication is configured, the same app-flow data will be sent over multiple outgoing DetNet member flows using forwarding sub-layer LSPs.  An S-Label value MUST be configured per outgoing member flow.  The same d-CW field value MUST be used on all outgoing member flows for each replicated MPLS packet.  </p>
+<h1 id="rfc.section.4.2.2.2">
+<a href="#rfc.section.4.2.2.2">4.2.2.2.</a> <a href="#pef-requirements" id="pef-requirements">Packet Elimination Function                                              Processing</a>
+</h1>
+<p id="rfc.section.4.2.2.2.p.1">Implementations MAY support the Packet Elimination Function (PEF) for received DetNet MPLS flows.  When supported, use of the PEF for a particular DetNet service MUST be provisioned via configuration, e.g., via the controller plane described in <a href="#I-D.ietf-detnet-data-plane-framework" class="xref">[I-D.ietf-detnet-data-plane-framework]</a>.  </p>
+<p id="rfc.section.4.2.2.2.p.2">After a DetNet service is identified for a received DetNet MPLS packet, as described above, an implementation MUST check if PEF is configured for that DetNet service.  When configured, the implementation MUST track the sequence number contained in received d-CWs and MUST ensure that duplicate (replicated) instances of a particular sequence number are discarded.  The specific mechanisms used for an implementation to identify which received packets are duplicates and which are new is an implementation choice.   Note that per <a href="#dn-sn" class="xref">Section 4.2.1</a> the sequence number field length may be 16 or 28 bits, and the field value can wrap. PEF MUST NOT be used with DetNet flows configured with a d-CW sequence number field length of 0 bits.  </p>
+<p id="rfc.section.4.2.2.2.p.3">Note that an implementation MAY wish to constrain the maximum number of sequence numbers that are tracked, on platform-wide or per flow basis.  Some implementations MAY support the provisioning of the maximum number of sequence numbers that are tracked on either a platform-wide or per flow basis.  </p>
+<h1 id="rfc.section.4.2.2.3">
+<a href="#rfc.section.4.2.2.3">4.2.2.3.</a> <a href="#pof-requirements" id="pof-requirements">Packet Ordering Function                                              Processing</a>
+</h1>
+<p id="rfc.section.4.2.2.3.p.1">A function that is related to in-order delivery is the Packet Ordering Function (POF).  Implementations MAY support POF. When supported, use of the POF for a particular DetNet service MUST be provisioned via configuration, e.g., via the controller plane described by <a href="#I-D.ietf-detnet-data-plane-framework" class="xref">[I-D.ietf-detnet-data-plane-framework]</a>.  Implementations MAY required that PEF and POF be used in combination.  There is no requirement related to the order of execution of the Packet Elimination and Ordering Functions in an implementation.  </p>
+<p id="rfc.section.4.2.2.3.p.2">After a DetNet service is identified for a received DetNet MPLS packet, as described above, an implementation MUST check if POF is configured for that DetNet service.  When configured, the implementation MUST track the sequence number contained in received d-CWs and MUST ensure that packets are processed in the order indicated in the received d-CW sequence number field, which may not be in the order the packets are received. As defined in <a href="#dn-sn" class="xref">Section 4.2.1</a> the sequence number field length may be 16 or 28 bits, is incremented by one (1) for each new MPLS packet sent for a particular DetNet service, and the field value can wrap.  The specific mechanisms used for an implementation to identify the order of received packets is an implementation choice.  </p>
+<p id="rfc.section.4.2.2.3.p.3">Note that an implementation MAY wish to constrain the maximum number of out of order packets that can be processed, on platform-wide or per flow basis.  Some implementations MAY support the provisioning of this number on either a platform-wide or per flow basis.  The number of out of order packets that can be processed also impacts the latency of a flow.  </p>
+<h1 id="rfc.section.4.2.3">
+<a href="#rfc.section.4.2.3">4.2.3.</a> <a href="#f-labels" id="f-labels">F-Labels</a>
+</h1>
+<p id="rfc.section.4.2.3.p.1">F-Labels are supported the DetNet forwarding sub-layer. F-Labels are used to provide LSP-based connectivity between DetNet service sub-layer processing nodes.  </p>
+<h1 id="rfc.section.4.2.3.1">
+<a href="#rfc.section.4.2.3.1">4.2.3.1.</a> <a href="#f-labels-ssl" id="f-labels-ssl">Service Sub-Layer Related Processing</a>
+</h1>
+<p id="rfc.section.4.2.3.1.p.1">DetNet MPLS end systems, edge nodes and relay nodes may operate at the DetNet service sub-layer with understanding of DetNet services and their requirements.  As mentioned earlier, when operating at this layer such nodes can push, pop or swap (pop then push) S-Labels.  In all cases, the F-Label(s) used for a DetNet service are always replaced and the following procedures apply.  </p>
+<p id="rfc.section.4.2.3.1.p.2">When sending a DetNet flow, zero or more F-Labels MAY be pushed on top of an S-Label by the node pushing an S-Label. The F-Label(s) to be pushed when sending a particular DetNet service MUST be provisioned per outgoing S-Label via configuration, e.g., via the controller plane discussed in <a href="#I-D.ietf-detnet-data-plane-framework" class="xref">[I-D.ietf-detnet-data-plane-framework]</a>.  F-Label(s) can also provide context for an S-Label.  To allow for the omission of F-Label(s), an implementation SHOULD also allow an outgoing interface to be configured per S-Label.  </p>
+<p id="rfc.section.4.2.3.1.p.3">Note, when PRF is supported, the same app-flow data will be sent over multiple outgoing  DetNet member flows using forwarding sub-layer LSPs. This means that implementation may be sending different sets of F-Labels per DetNet member flow, each with a different S-Label.  </p>
+<p id="rfc.section.4.2.3.1.p.4">When a single set of F-Labels is provisioned for a particular outgoing S-Label, that set of F-labels MUST be pushed after the S-Label is pushed.  The outgoing packet is then forwarded as described below in <a href="#f-labels-all" class="xref">Section 4.2.3.2</a>. When a single outgoing interface is provisioned, the outgoing packet is then forwarded as described below in <a href="#f-labels-all" class="xref">Section 4.2.3.2</a>.  </p>
+<p id="rfc.section.4.2.3.1.p.5">When multiple sets of outgoing F-Labels or interfaces are provisioned for a particular DetNet service, a copy of the outgoing packet, including the pushed member flow-specific S-Label, MUST be made per F-label set and outgoing interface. Each set of provisioned F-Labels are then pushed onto a copy of the packet.  Each copy is then forwarded as described below in <a href="#f-labels-all" class="xref">Section 4.2.3.2</a>.  </p>
+<p id="rfc.section.4.2.3.1.p.6">As described in the previous section, when receiving a DetNet MPLS flow, an implementation identifies the DetNet service associated with the incoming packet based on the S-Label.  When a node is using platform labels for S-Labels, any F-Labels can be popped and the S-label uniquely identifies the DetNet service.  In the case where platform labels are not used, incoming F-Label(s) and, optionally, the incoming interface MUST also be provisioned for a DetNet service.  </p>
+<h1 id="rfc.section.4.2.3.2">
+<a href="#rfc.section.4.2.3.2">4.2.3.2.</a> <a href="#f-labels-all" id="f-labels-all">Common F-Label Processing</a>
+</h1>
+<p id="rfc.section.4.2.3.2.p.1">All DetNet aware MPLS nodes process F-Labels as needed to meet the service requirements of the DetNet flow or flows carried in the LSPs represented by the F-Labels.  This includes normal push, pop and swap operations.  Such processing is essentially the same type of processing provided for TE LSPs, although the specific service parameters, or traffic specification, can differ.  When the DetNet service parameters of the DetNet flow or flows carried in an LSP represented by an F-Label can be met by an existing TE mechanism, the forwarding sub-layer processing node MAY be a DetNet unaware, i.e., standard, MPLS LSR.  Such TE LSPs may provide LSP forwarding service as defined in, but not limited to, <a href="#RFC3209" class="xref">[RFC3209]</a>, <a href="#RFC3270" class="xref">[RFC3270]</a>, <a href="#RFC3272" class="xref">[RFC3272]</a>, <a href="#RFC3473" class="xref">[RFC3473]</a>, <a href="#RFC4875" class="xref">[RFC4875]</a>, <a href="#RFC5440" class="xref">[RFC5440]</a>, and <a href="#RFC8306" class="xref">[RFC8306]</a>.  </p>
+<p id="rfc.section.4.2.3.2.p.2">More specifically, as mentioned above, the DetNet forwarding sub-layer provides explicit routes and allocated resources, and F-Labels are used to map to each.  Explicit routes are supported based on the topmost (outermost) F-Label that is pushed or swapped and the LSP that corresponds to this label.  This topmost (outgoing) label MUST be associated with a provisioned outgoing interface and, for non-point-to-point outgoing interfaces, a next hop LSR.  Note that this information MUST be provisioned via configuration or the controller plane.  In the previously mentioned special case where there are no added F-labels and the outgoing interface is not a point-to-point interface, the outgoing interface MUST also be associated with a next hop LSR.  </p>
+<p id="rfc.section.4.2.3.2.p.3">Resources may be allocated in a hierarchical fashion per LSP that is represented by each F-Label. Each LSP MAY be provisioned with a service parameters that dictates the specific traffic treatment to be received by the traffic carried over that LSP.  Implementations of this document MUST ensure that traffic carried over each LSP represented by one or more F-Labels receives the traffic treatment provisioned for that LSP.  Typical mechanisms used to provide different treatment to different flows includes the allocation of system resources (such as queues and buffers) and provisioning or related parameters (such as shaping, and policing) that may be found in implementations of <a href="#RFC2205" class="xref">Resource ReSerVation Protocol (RSVP)</a> (RSVP) and RSVP-TE <a href="#RFC3209" class="xref">[RFC3209]</a> and <a href="#RFC3473" class="xref">[RFC3473]</a>. Support can also be provided via an underlying network technology such IEEE802.1 TSN <a href="#I-D.ietf-detnet-mpls-over-tsn" class="xref">[I-D.ietf-detnet-mpls-over-tsn]</a>.  The specific mechanisms selected by a DetNet node to ensure DetNet service delivery requirements are met for supported DetNet flows is outside the scope of this document.  </p>
+<p id="rfc.section.4.2.3.2.p.4">Packets that are marked in a way that do not correspond to allocated resources, e.g., lack a provisioned F-Label, can disrupt the QoS offered to properly reserved DetNet flows by using resources allocated to the reserved flows.  Therefore, the network nodes of a DetNet network: </p>
+
+<ul>
+<li>MUST defend the DetNet QoS by discarding or remarking (to an allocated DetNet flow or non-competing non-DetNet flow) packets received that are not associated with a completed resource allocation.  </li>
+<li>MUST NOT use a DetNet allocated resource, e.g. a queue or shaper reserved for DetNet flows, for any packet that does match the corresponding DetNet flow.  </li>
+<li>MUST ensure a QoS flow does not exceed its allocated resources or provisioned service level, </li>
+<li>MUST ensure a CoS flow or service class does not impact the service delivered to other flows.  This requirement is similar to requirement for MPLS LSRs to that CoS LSPs do not impact the resources allocated to TE LSPs, e.g., via <a href="#RFC3473" class="xref">[RFC3473]</a>.  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.4.2.3.2.p.5">Subsequent sections provide additional considerations related to CoS (<a href="#CoS" class="xref">Section 4.6.1</a>), QoS (<a href="#QoS" class="xref">Section 4.6.2</a>) and aggregation (<a href="#FAG" class="xref">Section 4.4</a>).  </p>
+<h1 id="rfc.section.4.3">
+<a href="#rfc.section.4.3">4.3.</a> <a href="#oam-indication" id="oam-indication">OAM Indication</a>
+</h1>
+<p id="rfc.section.4.3.p.1">OAM follows the procedures set out in <a href="#RFC5085" class="xref">[RFC5085]</a> with the restriction that only Virtual Circuit Connectivity Verification (VCCV) type 1 is supported.</p>
+<p id="rfc.section.4.3.p.2">As shown in Figure 3 of <a href="#RFC5085" class="xref">[RFC5085]</a> when the first nibble of the d-CW is 0x0 the payload following the d-CW is normal user data. However, when the first nibble of the d-CW is 0X1, the payload that follows the d-CW is an OAM payload with the OAM type indicated by the value in the d-CW Channel Type field.</p>
+<p id="rfc.section.4.3.p.3">The reader is referred to <a href="#RFC5085" class="xref">[RFC5085]</a> for a more detailed description of the Associated Channel mechanism, and to the DetNet work on OAM for more information DetNet OAM.  </p>
+<p id="rfc.section.4.3.p.4">Additional considerations on DetNet-specific OAM are subjects for further study.  </p>
+<h1 id="rfc.section.4.4">
+<a href="#rfc.section.4.4">4.4.</a> <a href="#FAG" id="FAG">Flow Aggregation</a>
+</h1>
+<p id="rfc.section.4.4.p.1">The ability to aggregate individual flows, and their associated resource control, into a larger aggregate is an important technique for improving scaling of control in the data, management and control planes.  The DetNet data plane allows for the aggregation of DetNet flows, to improved scaling. There are two methods of supporting flow aggregation covered in this section.  </p>
+<p id="rfc.section.4.4.p.2">The resource control and management aspects of aggregation (including the configuration of queuing, shaping, and policing) are the responsibility of the DetNet controller plane and is out of scope of this documents.  It is also the responsibility of the controller plane to ensure that consistent aggregation methods are used.  </p>
+<h1 id="rfc.section.4.4.1">
+<a href="#rfc.section.4.4.1">4.4.1.</a> <a href="#aggregation-at-the-lsp" id="aggregation-at-the-lsp">Aggregation Via LSP Hierarchy</a>
+</h1>
+<p id="rfc.section.4.4.1.p.1">DetNet flows forwarded via MPLS can leverage MPLS-TE's existing support for hierarchical LSPs (H-LSPs), see <a href="#RFC4206" class="xref">[RFC4206]</a>.  H-LSPs are typically used to aggregate control and resources, they may also be used to provide OAM or protection for the aggregated LSPs.  Arbitrary levels of aggregation naturally falls out of the definition for hierarchy and the MPLS label stack <a href="#RFC3032" class="xref">[RFC3032]</a>.  DetNet nodes which support aggregation (LSP hierarchy) map one or more LSPs (labels) into and from an H-LSP.  Both carried LSPs and H-LSPs may or may not use the TC field, i.e., L-LSPs or E-LSPs.  Such nodes will need to ensure that individual LSPs and H-LSPs receive the traffic treatment required to ensure the required DetNet service is preserved.  </p>
+<p id="rfc.section.4.4.1.p.2">Additional details of the traffic control capabilities needed at a DetNet-aware node may be covered in the new service definitions mentioned above or in separate future documents.  Controller plane mechanisms will also need to ensure that the service required on the aggregate flow are provided, which may include the discarding or remarking mentioned in the previous sections.  </p>
+<h1 id="rfc.section.4.4.2">
+<a href="#rfc.section.4.4.2">4.4.2.</a> <a href="#aggregating-detnet-flows-as-a-new-detnet-flow" id="aggregating-detnet-flows-as-a-new-detnet-flow">Aggregating DetNet Flows as a new DetNet flow</a>
+</h1>
+<p id="rfc.section.4.4.2.p.1">An aggregate can be built by layering DetNet flows, including both their S-Label and, when present, F-Labels as shown below: </p>
+<div id="rfc.figure.6"></div>
+<div id="fig_detnet_agg_flow"></div>
+<pre>
++---------------------------------+
+|                                 |
+|           DetNet Flow           |
+|         Payload  Packet         |
+|                                 |
++---------------------------------+ &lt;--\
+|       DetNet Control Word       |    |
++=================================+    |
+|            S-Label              |    |
++---------------------------------+    |
+|         [ F-Label(s) ]          |    +----DetNet data plane
++---------------------------------+    |
+|       DetNet Control Word       |    |
++=================================+    |
+|            A-Label              |    |
++---------------------------------+    |
+|           F-Label(s)            | &lt;--/
++---------------------------------+
+|           Data-Link             |
++---------------------------------+
+|           Physical              |
++---------------------------------+
+</pre>
+<p class="figure">Figure 6: DetNet Aggregation as a new DetNet Flow</p>
+<p id="rfc.section.4.4.2.p.2">Both the aggregation label, which is referred to as an A-Label, and the individual flow's S-Label have their MPLS S bit set indicating bottom of stack, and the d-CW allows the PREOF to work.  An A-Label is a special case of an S-Label, whose properties are known only at the aggregation and deaggregation end-points.  </p>
+<p id="rfc.section.4.4.2.p.3">It is a property of the A-Label that what follows is a d-CW followed by an MPLS label stack.  A relay node processing the A-Label would not know the underlying payload type, and the A-Label would be processed as a normal S-Label. This would only be known to a node that was a peer of the node imposing the S-Label. However there is no real need for it to know the payload type during aggregation processing.  </p>
+<p id="rfc.section.4.4.2.p.4">As in the previous section, nodes supporting this type of aggregation will need to ensure that individual and aggregated flows receive the traffic treatment required to ensure the required DetNet service is preserved. Also, it is the controller plane's responsibility to to ensure that the service required on the aggregate flow are properly provisioned.  </p>
+<h1 id="rfc.section.4.5">
+<a href="#rfc.section.4.5">4.5.</a> Service Sub-Layer Considerations</h1>
+<p id="rfc.section.4.5.p.1">The edge and relay node internal procedures related to PREOF are implementation specific.  The order of a packet elimination or replication is out of scope in this specification.  </p>
+<p id="rfc.section.4.5.p.2">It is important that the DetNet layer is configured such that a DetNet node never receives its own replicated packets. If it were to receive such packets the replication function would make the loop more destructive of bandwidth than a conventional unicast loop.  Ultimately the TTL in the S-Label will cause the packet to die during a transient loop, but given the sensitivity of applications to packet latency the impact on the DetNet application would be severe.  To avoid the problem of a transient forwarding loop, changes to an LSP supporting DetNet MUST be loop-free.  </p>
+<h1 id="rfc.section.4.5.1">
+<a href="#rfc.section.4.5.1">4.5.1.</a> <a href="#sec_t_pe" id="sec_t_pe">Edge Node Processing</a>
+</h1>
+<p id="rfc.section.4.5.1.p.1">A DetNet Edge node operates in the DetNet forwarding sub-layer and service sub-layer.  An edge node is responsible for matching incoming packets to the service they require and encapsulating them accordingly. An edge node may perform PRF, PEF, and or POF.  Details on encapsulation can be found in <a href="#pwSolution" class="xref">Section 4.2</a>; details on PRF can be found in <a href="#prf-requirements" class="xref">Section 4.2.2.1</a>; details on PEF can be found in <a href="#pef-requirements" class="xref">Section 4.2.2.2</a>; and details on POF can be found in <a href="#pof-requirements" class="xref">Section 4.2.2.3</a>.  </p>
+<h1 id="rfc.section.4.5.2">
+<a href="#rfc.section.4.5.2">4.5.2.</a> <a href="#sec_s_pe" id="sec_s_pe">Relay Node Processing</a>
+</h1>
+<p id="rfc.section.4.5.2.p.1">A DetNet Relay node operates in the DetNet forwarding sub-layer and service sub-layer.  For DetNet using MPLS forwarding related processing is performed on the F-Label.  This processing is done within an extended forwarder function. Whether an incoming DetNet flow receives DetNet specific processing depends on how the forwarding is programmed.  Some relay nodes may be DetNet service aware for certain DetNet services, while for other DetNet services these nodes may perform as unmodified LSRs that only understand how to switch MPLS-TE LSPs, i.e., as a transit node, see <a href="#FAG" class="xref">Section 4.4</a>.  Again, this is entirely up to how the forwarding has been programmed.  </p>
+<p id="rfc.section.4.5.2.p.2">During the elimination and replication process the sequence number of an incoming DetNet packet MUST be preserved and carried in the corresponding outgoing DetNet packet.  For example, a relay node that performs both PEF and PRF first performs PEF on incoming packets to create a compound flow. It then performs PRF and copies the app-flow data and the d-CW into packets for each outgoing DetNet member flow.  </p>
+<p id="rfc.section.4.5.2.p.3">The internal design of a relay node is out of scope of this document. However the reader's attention is drawn to the need to make any PREOF state available to the packet processor(s) dealing with packets to which the PREOF functions must be applied, and to maintain that state is such a way that it is available to the packet processor operation on the next packet in the DetNet flow (which may be a duplicate, a late packet, or the next packet in sequence).  </p>
+<h1 id="rfc.section.4.6">
+<a href="#rfc.section.4.6">4.6.</a> Forwarding Sub-Layer Considerations</h1>
+<h1 id="rfc.section.4.6.1">
+<a href="#rfc.section.4.6.1">4.6.1.</a> <a href="#CoS" id="CoS">Class of Service</a>
+</h1>
+<p id="rfc.section.4.6.1.p.1">Class and quality of service, i.e., CoS and QoS, are terms that are often used interchangeably and confused with each other. In the context of DetNet, CoS is used to refer to mechanisms that provide traffic forwarding treatment based on aggregate group basis and QoS is used to refer to mechanisms that provide traffic forwarding treatment based on a specific DetNet flow basis.  Examples of existing network level CoS mechanisms include DiffServ which is enabled by IP header differentiated services code point (DSCP) field <a href="#RFC2474" class="xref">[RFC2474]</a> and MPLS label traffic class field <a href="#RFC5462" class="xref">[RFC5462]</a>, and at Layer-2, by IEEE 802.1p priority code point (PCP).  </p>
+<p id="rfc.section.4.6.1.p.2">CoS for DetNet flows carried in PWs and MPLS is provided using the existing MPLS Differentiated Services (DiffServ) architecture <a href="#RFC3270" class="xref">[RFC3270]</a>.  Both E-LSP and L-LSP MPLS DiffServ modes MAY be used to support DetNet flows.  The Traffic Class field (formerly the EXP field) of an MPLS label follows the definition of <a href="#RFC5462" class="xref">[RFC5462]</a> and <a href="#RFC3270" class="xref">[RFC3270]</a>.  The Uniform, Pipe, and Short Pipe DiffServ tunneling and TTL processing models are described in <a href="#RFC3270" class="xref">[RFC3270]</a> and <a href="#RFC3443" class="xref">[RFC3443]</a> and MAY be used for MPLS LSPs supporting DetNet flows. MPLS Explicit Congestion Notification (ECN) MAY also be used as defined in ECN <a href="#RFC5129" class="xref">[RFC5129]</a> and updated by <a href="#RFC5462" class="xref">[RFC5462]</a>.  </p>
+<h1 id="rfc.section.4.6.2">
+<a href="#rfc.section.4.6.2">4.6.2.</a> <a href="#QoS" id="QoS">Quality of Service</a>
+</h1>
+<p id="rfc.section.4.6.2.p.1">In addition to explicit routes, and packet replication and elimination, described in <a href="#dn-dt-solution" class="xref">Section 4</a> above, DetNet provides zero congestion loss and bounded latency and jitter.  As described in <a href="#RFC8655" class="xref">[RFC8655]</a>, there are different mechanisms that maybe used separately or in combination to deliver a zero congestion loss service.  This includes Quality of Service (QoS) mechanisms at the MPLS layer, that may be combined with the mechanisms defined by the underlying network layer such as 802.1TSN.  </p>
+<p id="rfc.section.4.6.2.p.2">Quality of Service (QoS) mechanisms for flow specific traffic treatment typically includes a guarantee/agreement for the service, and allocation of resources to support the service.  Example QoS mechanisms include discrete resource allocation, admission control, flow identification and isolation, and sometimes path control, traffic protection, shaping, policing and remarking. Example protocols that support QoS control include <a href="#RFC2205" class="xref">Resource ReSerVation Protocol (RSVP)</a> (RSVP) and RSVP-TE <a href="#RFC3209" class="xref">[RFC3209]</a> and <a href="#RFC3473" class="xref">[RFC3473]</a>.  The existing MPLS mechanisms defined to support CoS <a href="#RFC3270" class="xref">[RFC3270]</a> can also be used to reserve resources for specific traffic classes.  </p>
+<p id="rfc.section.4.6.2.p.3">A baseline set of QoS capabilities for DetNet flows carried in PWs and MPLS can provided by MPLS with Traffic Engineering (MPLS-TE) <a href="#RFC3209" class="xref">[RFC3209]</a> and <a href="#RFC3473" class="xref">[RFC3473]</a>.  TE LSPs can also support explicit routes (path pinning).  Current service definitions for packet TE LSPs can be found in "Specification of the Controlled Load Quality of Service", <a href="#RFC2211" class="xref">[RFC2211]</a>, "Specification of Guaranteed Quality of Service", <a href="#RFC2212" class="xref">[RFC2212]</a>, and "Ethernet Traffic Parameters", <a href="#RFC6003" class="xref">[RFC6003]</a>. Additional service definitions are expected in future documents to support the full range of DetNet services.  In all cases, the existing label-based marking mechanisms defined for TE-LSPs and even E-LSPs are use to support the identification of flows requiring DetNet QoS.  </p>
+<h1 id="rfc.section.5">
+<a href="#rfc.section.5">5.</a> <a href="#mc_summary" id="mc_summary">Management and Control Information Summary</a>
+</h1>
+<p id="rfc.section.5.p.1">The specific information needed for the processing of each DetNet service depends on the DetNet node type and the functions being provided on the node.  This section summarizes based on the DetNet sub-layer and if the DetNet traffic is being sent or received.  All DetNet node types are DetNet forwarding sub-layer aware, while all but transit nodes are service sub-layer aware.  This is shown in <a href="#fig_dn_mpls_detnet" class="xref">Figure 2</a>.  </p>
+<p id="rfc.section.5.p.2">Much like other MPLS labels, there are a number of alternatives available for DetNet S-Label and F-Label advertisement to an upstream peer node. These include distributed signaling protocols such as RSVP-TE, centralized label distribution via a controller that manages both the sender and the receiver using NETCONF/YANG, BGP, PCEP, etc., and hybrid combinations of the two.  The details of the controller plane solution required for the label distribution and the management of the label number space are out of scope of this document.  There are particular DetNet considerations and requirements that are discussed in <a href="#I-D.ietf-detnet-data-plane-framework" class="xref">[I-D.ietf-detnet-data-plane-framework]</a>.  Conformance language is not used in the summary since it applies to future mechanisms such as those that may be provided in signaling and YANG models, e.g., <a href="#I-D.ietf-detnet-yang" class="xref">[I-D.ietf-detnet-yang]</a>.  </p>
+<h1 id="rfc.section.5.1">
+<a href="#rfc.section.5.1">5.1.</a> <a href="#mc_summary_ssl" id="mc_summary_ssl">Service Sub-Layer Information Summary</a>
+</h1>
+<p id="rfc.section.5.1.p.1">The following summarizes the information that is needed on service sub-layer aware nodes that transmit DetNet MPLS traffic, on a per service basis: </p>
+
+<ul>
+<li>App-Flow identification information, e.g., IP information as defined in <a href="#I-D.ietf-detnet-ip-over-mpls" class="xref">[I-D.ietf-detnet-ip-over-mpls]</a>.  Note, this information is not needed on DetNet relay nodes.  </li>
+<li>The sequence number length to be used for the service.  Valid values included 0, 16 and 28 bits. 0 bits cannot be used when PEF or POF is configured for the service.  </li>
+<li>If PRF is to be provided for the service.  </li>
+<li>The outgoing S-Label for each of the service's outgoing DetNet (member) flow.  </li>
+<li>The forwarding sub-layer information associated with the output of the service sub-layer.  Note that when the PRF function is provisioned, this information is per DetNet member flow.  Logically the forwarding sub-layer information is a pointer to further details of transmission of Detnet flows at the forwarding sub-layer.  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.5.1.p.2">The following summarizes the information that is needed on service sub-layer aware nodes that receive DetNet MPLS traffic, on a per service basis: </p>
+
+<ul>
+<li>The forwarding sub-layer information associated with the input of the service sub-layer.  Note that when the PEF function is provisioned, this information is per DetNet member flow.  Logically the forwarding sub-layer information is a pointer to further details of the reception of Detnet flows at the forwarding sub-layer or A-Label.  </li>
+<li>The incoming S-Label for the service.  </li>
+<li>If PEF or POF is to be provided for the service.  </li>
+<li>The sequence number length to be used for the service.  Valid values included 0, 16 and 28 bits. 0 bits cannot be used when PEF or POF are configured for the service.  </li>
+<li>App-Flow identification information, e.g., IP information as defined in <a href="#I-D.ietf-detnet-ip-over-mpls" class="xref">[I-D.ietf-detnet-ip-over-mpls]</a>.  Note, this information is not needed on DetNet relay nodes.  </li>
+</ul>
+
+<p> </p>
+<h1 id="rfc.section.5.1.1">
+<a href="#rfc.section.5.1.1">5.1.1.</a> <a href="#mc_summary_ssl_agg" id="mc_summary_ssl_agg">Service Aggregation Information Summary</a>
+</h1>
+<p id="rfc.section.5.1.1.p.1">Nodes performing aggregation using A-Labels, per Section <a href="#aggregating-detnet-flows-as-a-new-detnet-flow" class="xref">Section 4.4.2</a>, require the additional information summarized in this section.  </p>
+<p id="rfc.section.5.1.1.p.2">The following summarizes the additional information that is needed on a node that sends aggregated flows using A-Labels: </p>
+
+<ul>
+<li>The S-Labels or F-Labels that are to be carried over each aggregated service.  </li>
+<li>The A-Label associated with each aggregated service.</li>
+<li>The other S-Label information summarized above.</li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.5.1.1.p.3">On the receiving node, the A-Label provides the forwarding context of an incoming interface or an F-Label and is used in subsequent service or forwarding sub-layer receive processing, as appropriated.  The related addition configuration that may be provided discussed elsewhere in this section.  </p>
+<h1 id="rfc.section.5.2">
+<a href="#rfc.section.5.2">5.2.</a> <a href="#mc_summary_fsl" id="mc_summary_fsl">Forwarding Sub-Layer Information Summary</a>
+</h1>
+<p id="rfc.section.5.2.p.1">The following summarizes the information that is needed on forwarding sub-layer aware nodes that send DetNet MPLS traffic, on a per forwarding sub-layer flow basis: </p>
+
+<ul>
+<li>The outgoing F-Label stack to be pushed. The stack may include H-LSP labels.  </li>
+<li>The traffic parameters associated with a specific label in the stack.  Note that there may be multiple sets of traffic paramters associated with specific labels in the stack, e.g., when H-LSPs are used.  </li>
+<li>Outgoing interface and, for unicast traffic, the next hop information.  </li>
+<li>Sub-network specific parameters on a technology specific basis. For example, see <a href="#I-D.ietf-detnet-mpls-over-tsn" class="xref">[I-D.ietf-detnet-mpls-over-tsn]</a>.  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.5.2.p.2">The following summarizes the information that is needed on forwarding sub-layer aware nodes that receive DetNet MPLS traffic, on a per forwarding sub-layer flow basis: </p>
+
+<ul>
+<li>The incoming interface.  For some implementations and deployment scenarios, this information may not be needed.  </li>
+<li>The incoming F-Label stack to be popped. The stack may include H-LSP labels.  </li>
+<li>How the incoming forwarding sub-layer flow is to be handled, i.e., forwarded as a transit node, or provided to the service sub-layer.  </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.5.2.p.3">It is the responsibility of the DetNet controller plane to properly provision both flow identification information and the flow specific resources needed to provided the traffic treatment needed to meet each flow's service requirements.  This applies for aggregated and individual flows.  </p>
+<h1 id="rfc.section.6">
+<a href="#rfc.section.6">6.</a> Security Considerations</h1>
+<p id="rfc.section.6.p.1">Detailed security considerations for DetNet are cataloged in <a href="#I-D.ietf-detnet-security" class="xref">[I-D.ietf-detnet-security]</a>, and more general security considerations are described in <a href="#RFC8655" class="xref">[RFC8655]</a>. This section considers exclusively security considerations which are specific to the DetNet MPLS data plane. The considerations raised related to MPLS networks in general in <a href="#RFC5920" class="xref">[RFC5920]</a> are equally applicable to the the DetNet MPLS data plane.  </p>
+<p id="rfc.section.6.p.2">Security aspects which are unique to DetNet are those whose aim is to provide the specific quality of service aspects of DetNet, which are primarily to deliver data flows with extremely low packet loss rates and bounded end-to-end delivery latency.  Achieving such loss rates and bounded latency may not be possible in the face of a highly capable adversary, such as the one envisioned by the Internet Threat Model of BCP 72 that can arbitrarily drop or delay any or all traffic.  In order to present meaningful security considerations, we consider a somewhat weaker attacker who does not control the physical links of the DetNet domain, but may have the ability to control a network node within the boundary of the DetNet domain.  </p>
+<p id="rfc.section.6.p.3">The primary consideration for the DetNet data plane is to maintain integrity of data and delivery of the associated DetNet service traversing the DetNet network.  Application flows can be protected through whatever means are provided by the underlying technology. For example, encryption may be used, such as that provided by IPsec <a href="#RFC4301" class="xref">[RFC4301]</a> for IP flows and/or by an underlying sub-net using MACSec <a href="#IEEE802.1AE-2018" class="xref">[IEEE802.1AE-2018]</a> for IP over Ethernet (Layer-2) flows.  </p>
+<p id="rfc.section.6.p.4">From a data plane perspective this document does not add or modify any header information.  </p>
+<p id="rfc.section.6.p.5">At the management and control level DetNet flows are identified on a per-flow basis, which may provide controller plane attackers with additional information about the data flows (when compared to controller planes that do not include per-flow identification).  This is an inherent property of DetNet which has security implications that should be considered when determining if DetNet is a suitable technology for any given use case.  </p>
+<p id="rfc.section.6.p.6">To provide uninterrupted availability of the DetNet service, provisions can be made against DOS attacks and delay attacks. To protect against DOS attacks, excess traffic due to malicious or malfunctioning devices is prevented or mitigated through the use of existing mechanisms, for example by policing and shaping incoming traffic. To prevent DetNet packets from being delayed by an entity external to a DetNet domain, DetNet technology definition can allow for the mitigation of Man-In-The-Middle attacks, for example through use of authentication and authorization of devices within the DetNet domain.  </p>
+<h1 id="rfc.section.7">
+<a href="#rfc.section.7">7.</a> <a href="#iana" id="iana">IANA Considerations</a>
+</h1>
+<p id="rfc.section.7.p.1">This document makes no IANA requests.  </p>
+<h1 id="rfc.section.8">
+<a href="#rfc.section.8">8.</a> <a href="#acks" id="acks">Acknowledgements</a>
+</h1>
+<p id="rfc.section.8.p.1">The authors wish to thank Pat Thaler, Norman Finn, Loa Anderson, David Black, Rodney Cummings, Ethan Grossman, Tal Mizrahi, David Mozes, Craig Gunther, George Swallow, Yuanlong Jiang, Jeong-dong Ryoo and Carlos J. Bernardos for their various contributions to this work.  </p>
+<h1 id="rfc.section.9">
+<a href="#rfc.section.9">9.</a> <a href="#Contributors" id="Contributors">Contributors</a>
+</h1>
+<p id="rfc.section.9.p.1">RFC7322 limits the number of authors listed on the front page of a draft to a maximum of 5. The editor wishes to thank and acknowledge the follow author for contributing text to this draft.  </p>
+<pre>
+   Don Fedyk
+   LabN Consulting, L.L.C.
+   Email: dfedyk@labn.net
+   </pre>
+<h1 id="rfc.references">
+<a href="#rfc.references">10.</a> References</h1>
+<h1 id="rfc.references.1">
+<a href="#rfc.references.1">10.1.</a> Normative References</h1>
+<table><tbody>
+<tr>
+<td class="reference"><b id="RFC2119">[RFC2119]</b></td>
+<td class="top">
+<a>Bradner, S.</a>, "<a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC2211">[RFC2211]</b></td>
+<td class="top">
+<a>Wroclawski, J.</a>, "<a href="https://tools.ietf.org/html/rfc2211">Specification of the Controlled-Load Network Element Service</a>", RFC 2211, DOI 10.17487/RFC2211, September 1997.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC2212">[RFC2212]</b></td>
+<td class="top">
+<a>Shenker, S.</a>, <a>Partridge, C.</a> and <a>R. Guerin</a>, "<a href="https://tools.ietf.org/html/rfc2212">Specification of Guaranteed Quality of Service</a>", RFC 2212, DOI 10.17487/RFC2212, September 1997.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC3031">[RFC3031]</b></td>
+<td class="top">
+<a>Rosen, E.</a>, <a>Viswanathan, A.</a> and <a>R. Callon</a>, "<a href="https://tools.ietf.org/html/rfc3031">Multiprotocol Label Switching Architecture</a>", RFC 3031, DOI 10.17487/RFC3031, January 2001.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC3032">[RFC3032]</b></td>
+<td class="top">
+<a>Rosen, E.</a>, <a>Tappan, D.</a>, <a>Fedorkow, G.</a>, <a>Rekhter, Y.</a>, <a>Farinacci, D.</a>, <a>Li, T.</a> and <a>A. Conta</a>, "<a href="https://tools.ietf.org/html/rfc3032">MPLS Label Stack Encoding</a>", RFC 3032, DOI 10.17487/RFC3032, January 2001.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC3209">[RFC3209]</b></td>
+<td class="top">
+<a>Awduche, D.</a>, <a>Berger, L.</a>, <a>Gan, D.</a>, <a>Li, T.</a>, <a>Srinivasan, V.</a> and <a>G. Swallow</a>, "<a href="https://tools.ietf.org/html/rfc3209">RSVP-TE: Extensions to RSVP for LSP Tunnels</a>", RFC 3209, DOI 10.17487/RFC3209, December 2001.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC3270">[RFC3270]</b></td>
+<td class="top">
+<a>Le Faucheur, F.</a>, <a>Wu, L.</a>, <a>Davie, B.</a>, <a>Davari, S.</a>, <a>Vaananen, P.</a>, <a>Krishnan, R.</a>, <a>Cheval, P.</a> and <a>J. Heinanen</a>, "<a href="https://tools.ietf.org/html/rfc3270">Multi-Protocol Label Switching (MPLS) Support of Differentiated Services</a>", RFC 3270, DOI 10.17487/RFC3270, May 2002.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC3443">[RFC3443]</b></td>
+<td class="top">
+<a>Agarwal, P.</a> and <a>B. Akyol</a>, "<a href="https://tools.ietf.org/html/rfc3443">Time To Live (TTL) Processing in Multi-Protocol Label Switching (MPLS) Networks</a>", RFC 3443, DOI 10.17487/RFC3443, January 2003.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC3473">[RFC3473]</b></td>
+<td class="top">
+<a>Berger, L.</a>, "<a href="https://tools.ietf.org/html/rfc3473">Generalized Multi-Protocol Label Switching (GMPLS) Signaling Resource ReserVation Protocol-Traffic Engineering (RSVP-TE) Extensions</a>", RFC 3473, DOI 10.17487/RFC3473, January 2003.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC4206">[RFC4206]</b></td>
+<td class="top">
+<a>Kompella, K.</a> and <a>Y. Rekhter</a>, "<a href="https://tools.ietf.org/html/rfc4206">Label Switched Paths (LSP) Hierarchy with Generalized Multi-Protocol Label Switching (GMPLS) Traffic Engineering (TE)</a>", RFC 4206, DOI 10.17487/RFC4206, October 2005.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC4385">[RFC4385]</b></td>
+<td class="top">
+<a>Bryant, S.</a>, <a>Swallow, G.</a>, <a>Martini, L.</a> and <a>D. McPherson</a>, "<a href="https://tools.ietf.org/html/rfc4385">Pseudowire Emulation Edge-to-Edge (PWE3) Control Word for Use over an MPLS PSN</a>", RFC 4385, DOI 10.17487/RFC4385, February 2006.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC5085">[RFC5085]</b></td>
+<td class="top">
+<a>Nadeau, T.</a> and <a>C. Pignataro</a>, "<a href="https://tools.ietf.org/html/rfc5085">Pseudowire Virtual Circuit Connectivity Verification (VCCV): A Control Channel for Pseudowires</a>", RFC 5085, DOI 10.17487/RFC5085, December 2007.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC5129">[RFC5129]</b></td>
+<td class="top">
+<a>Davie, B.</a>, <a>Briscoe, B.</a> and <a>J. Tay</a>, "<a href="https://tools.ietf.org/html/rfc5129">Explicit Congestion Marking in MPLS</a>", RFC 5129, DOI 10.17487/RFC5129, January 2008.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC5462">[RFC5462]</b></td>
+<td class="top">
+<a>Andersson, L.</a> and <a>R. Asati</a>, "<a href="https://tools.ietf.org/html/rfc5462">Multiprotocol Label Switching (MPLS) Label Stack Entry: "EXP" Field Renamed to "Traffic Class" Field</a>", RFC 5462, DOI 10.17487/RFC5462, February 2009.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8174">[RFC8174]</b></td>
+<td class="top">
+<a>Leiba, B.</a>, "<a href="https://tools.ietf.org/html/rfc8174">Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</a>", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8655">[RFC8655]</b></td>
+<td class="top">
+<a>Finn, N.</a>, <a>Thubert, P.</a>, <a>Varga, B.</a> and <a>J. Farkas</a>, "<a href="https://tools.ietf.org/html/rfc8655">Deterministic Networking Architecture</a>", RFC 8655, DOI 10.17487/RFC8655, October 2019.</td>
+</tr>
+</tbody></table>
+<h1 id="rfc.references.2">
+<a href="#rfc.references.2">10.2.</a> Informative References</h1>
+<table><tbody>
+<tr>
+<td class="reference"><b id="I-D.ietf-detnet-data-plane-framework">[I-D.ietf-detnet-data-plane-framework]</b></td>
+<td class="top">
+<a>Varga, B.</a>, <a>Farkas, J.</a>, <a>Berger, L.</a>, <a>Malis, A.</a> and <a>S. Bryant</a>, "<a href="https://tools.ietf.org/html/draft-ietf-detnet-data-plane-framework-06">DetNet Data Plane Framework</a>", Internet-Draft draft-ietf-detnet-data-plane-framework-06, May 2020.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.ietf-detnet-ip">[I-D.ietf-detnet-ip]</b></td>
+<td class="top">
+<a>Varga, B.</a>, <a>Farkas, J.</a>, <a>Berger, L.</a>, <a>Fedyk, D.</a> and <a>S. Bryant</a>, "<a href="https://tools.ietf.org/html/draft-ietf-detnet-ip-07">DetNet Data Plane: IP</a>", Internet-Draft draft-ietf-detnet-ip-07, July 2020.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.ietf-detnet-ip-over-mpls">[I-D.ietf-detnet-ip-over-mpls]</b></td>
+<td class="top">
+<a>Varga, B.</a>, <a>Berger, L.</a>, <a>Fedyk, D.</a>, <a>Bryant, S.</a> and <a>J. Korhonen</a>, "<a href="https://tools.ietf.org/html/draft-ietf-detnet-ip-over-mpls-06">DetNet Data Plane: IP over MPLS</a>", Internet-Draft draft-ietf-detnet-ip-over-mpls-06, May 2020.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.ietf-detnet-mpls-over-tsn">[I-D.ietf-detnet-mpls-over-tsn]</b></td>
+<td class="top">
+<a>Varga, B.</a>, <a>Farkas, J.</a>, <a>Malis, A.</a> and <a>S. Bryant</a>, "<a href="https://tools.ietf.org/html/draft-ietf-detnet-mpls-over-tsn-03">DetNet Data Plane: MPLS over IEEE 802.1 Time Sensitive Networking (TSN)</a>", Internet-Draft draft-ietf-detnet-mpls-over-tsn-03, June 2020.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.ietf-detnet-security">[I-D.ietf-detnet-security]</b></td>
+<td class="top">
+<a>Mizrahi, T.</a> and <a>E. Grossman</a>, "<a href="https://tools.ietf.org/html/draft-ietf-detnet-security-11">Deterministic Networking (DetNet) Security Considerations</a>", Internet-Draft draft-ietf-detnet-security-11, August 2020.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.ietf-detnet-yang">[I-D.ietf-detnet-yang]</b></td>
+<td class="top">
+<a>Geng, X.</a>, <a>Chen, M.</a>, <a>Ryoo, Y.</a>, <a>Fedyk, D.</a>, <a>Li, Z.</a> and <a>R. Rahman</a>, "<a href="https://tools.ietf.org/html/draft-ietf-detnet-yang-07">Deterministic Networking (DetNet) Configuration YANG Model</a>", Internet-Draft draft-ietf-detnet-yang-07, July 2020.</td>
+</tr>
+<tr>
+<td class="reference"><b id="IEEE802.1AE-2018">[IEEE802.1AE-2018]</b></td>
+<td class="top">
+<a>IEEE Standards Association</a>, "<a href="https://ieeexplore.ieee.org/document/8585421">IEEE Std 802.1AE-2018 MAC Security (MACsec)</a>", 2018.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC2205">[RFC2205]</b></td>
+<td class="top">
+<a>Braden, R.</a>, <a>Zhang, L.</a>, <a>Berson, S.</a>, <a>Herzog, S.</a> and <a>S. Jamin</a>, "<a href="https://tools.ietf.org/html/rfc2205">Resource ReSerVation Protocol (RSVP) -- Version 1 Functional Specification</a>", RFC 2205, DOI 10.17487/RFC2205, September 1997.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC2474">[RFC2474]</b></td>
+<td class="top">
+<a>Nichols, K.</a>, <a>Blake, S.</a>, <a>Baker, F.</a> and <a>D. Black</a>, "<a href="https://tools.ietf.org/html/rfc2474">Definition of the Differentiated Services Field (DS Field) in the IPv4 and IPv6 Headers</a>", RFC 2474, DOI 10.17487/RFC2474, December 1998.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC3272">[RFC3272]</b></td>
+<td class="top">
+<a>Awduche, D.</a>, <a>Chiu, A.</a>, <a>Elwalid, A.</a>, <a>Widjaja, I.</a> and <a>X. Xiao</a>, "<a href="https://tools.ietf.org/html/rfc3272">Overview and Principles of Internet Traffic Engineering</a>", RFC 3272, DOI 10.17487/RFC3272, May 2002.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC3985">[RFC3985]</b></td>
+<td class="top">
+<a>Bryant, S.</a> and <a>P. Pate</a>, "<a href="https://tools.ietf.org/html/rfc3985">Pseudo Wire Emulation Edge-to-Edge (PWE3) Architecture</a>", RFC 3985, DOI 10.17487/RFC3985, March 2005.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC4301">[RFC4301]</b></td>
+<td class="top">
+<a>Kent, S.</a> and <a>K. Seo</a>, "<a href="https://tools.ietf.org/html/rfc4301">Security Architecture for the Internet Protocol</a>", RFC 4301, DOI 10.17487/RFC4301, December 2005.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC4448">[RFC4448]</b></td>
+<td class="top">
+<a>Martini, L.</a>, <a>Rosen, E.</a>, <a>El-Aawar, N.</a> and <a>G. Heron</a>, "<a href="https://tools.ietf.org/html/rfc4448">Encapsulation Methods for Transport of Ethernet over MPLS Networks</a>", RFC 4448, DOI 10.17487/RFC4448, April 2006.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC4875">[RFC4875]</b></td>
+<td class="top">
+<a>Aggarwal, R.</a>, <a>Papadimitriou, D.</a> and <a>S. Yasukawa</a>, "<a href="https://tools.ietf.org/html/rfc4875">Extensions to Resource Reservation Protocol - Traffic Engineering (RSVP-TE) for Point-to-Multipoint TE Label Switched Paths (LSPs)</a>", RFC 4875, DOI 10.17487/RFC4875, May 2007.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC5440">[RFC5440]</b></td>
+<td class="top">
+<a>Vasseur, JP.</a> and <a>JL. Le Roux</a>, "<a href="https://tools.ietf.org/html/rfc5440">Path Computation Element (PCE) Communication Protocol (PCEP)</a>", RFC 5440, DOI 10.17487/RFC5440, March 2009.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC5586">[RFC5586]</b></td>
+<td class="top">
+<a>Bocci, M.</a>, <a>Vigoureux, M.</a> and <a>S. Bryant</a>, "<a href="https://tools.ietf.org/html/rfc5586">MPLS Generic Associated Channel</a>", RFC 5586, DOI 10.17487/RFC5586, June 2009.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC5920">[RFC5920]</b></td>
+<td class="top">
+<a>Fang, L.</a>, "<a href="https://tools.ietf.org/html/rfc5920">Security Framework for MPLS and GMPLS Networks</a>", RFC 5920, DOI 10.17487/RFC5920, July 2010.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC5921">[RFC5921]</b></td>
+<td class="top">
+<a>Bocci, M.</a>, <a>Bryant, S.</a>, <a>Frost, D.</a>, <a>Levrau, L.</a> and <a>L. Berger</a>, "<a href="https://tools.ietf.org/html/rfc5921">A Framework for MPLS in Transport Networks</a>", RFC 5921, DOI 10.17487/RFC5921, July 2010.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC6003">[RFC6003]</b></td>
+<td class="top">
+<a>Papadimitriou, D.</a>, "<a href="https://tools.ietf.org/html/rfc6003">Ethernet Traffic Parameters</a>", RFC 6003, DOI 10.17487/RFC6003, October 2010.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC6073">[RFC6073]</b></td>
+<td class="top">
+<a>Martini, L.</a>, <a>Metz, C.</a>, <a>Nadeau, T.</a>, <a>Bocci, M.</a> and <a>M. Aissaoui</a>, "<a href="https://tools.ietf.org/html/rfc6073">Segmented Pseudowire</a>", RFC 6073, DOI 10.17487/RFC6073, January 2011.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC6790">[RFC6790]</b></td>
+<td class="top">
+<a>Kompella, K.</a>, <a>Drake, J.</a>, <a>Amante, S.</a>, <a>Henderickx, W.</a> and <a>L. Yong</a>, "<a href="https://tools.ietf.org/html/rfc6790">The Use of Entropy Labels in MPLS Forwarding</a>", RFC 6790, DOI 10.17487/RFC6790, November 2012.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8306">[RFC8306]</b></td>
+<td class="top">
+<a>Zhao, Q.</a>, <a>Dhody, D.</a>, <a>Palleti, R.</a> and <a>D. King</a>, "<a href="https://tools.ietf.org/html/rfc8306">Extensions to the Path Computation Element Communication Protocol (PCEP) for Point-to-Multipoint Traffic Engineering Label Switched Paths</a>", RFC 8306, DOI 10.17487/RFC8306, November 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8660">[RFC8660]</b></td>
+<td class="top">
+<a>Bashandy, A.</a>, <a>Filsfils, C.</a>, <a>Previdi, S.</a>, <a>Decraene, B.</a>, <a>Litkowski, S.</a> and <a>R. Shakir</a>, "<a href="https://tools.ietf.org/html/rfc8660">Segment Routing with the MPLS Data Plane</a>", RFC 8660, DOI 10.17487/RFC8660, December 2019.</td>
+</tr>
+</tbody></table>
+<h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
+<div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Bal&#225;zs Varga</span> (editor)
+	  <span class="n hidden">
+		<span class="family-name">Varga</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Ericsson</span>
+	<span class="adr">
+	  <span class="vcardline">Magyar Tudosok krt. 11.</span>
+
+	  <span class="vcardline">
+		<span class="locality">Budapest</span>,  
+		<span class="region"></span>
+		<span class="code">1117</span>
+	  </span>
+	  <span class="country-name vcardline">Hungary</span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:balazs.a.varga@ericsson.com">balazs.a.varga@ericsson.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">J&#225;nos Farkas</span> 
+	  <span class="n hidden">
+		<span class="family-name">Farkas</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Ericsson</span>
+	<span class="adr">
+	  <span class="vcardline">Magyar Tudosok krt. 11.</span>
+
+	  <span class="vcardline">
+		<span class="locality">Budapest</span>,  
+		<span class="region"></span>
+		<span class="code">1117</span>
+	  </span>
+	  <span class="country-name vcardline">Hungary</span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:janos.farkas@ericsson.com">janos.farkas@ericsson.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Lou Berger</span> 
+	  <span class="n hidden">
+		<span class="family-name">Berger</span>
+	  </span>
+	</span>
+	<span class="org vcardline">LabN Consulting, L.L.C.</span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:lberger@labn.net">lberger@labn.net</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Andrew G. Malis</span> 
+	  <span class="n hidden">
+		<span class="family-name">Malis</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Malis Consulting</span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:agmalis@gmail.com">agmalis@gmail.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Stewart Bryant</span> 
+	  <span class="n hidden">
+		<span class="family-name">Bryant</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Futurewei Technologies</span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:stewart.bryant@gmail.com">stewart.bryant@gmail.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Jouni Korhonen</span> 
+	  <span class="n hidden">
+		<span class="family-name">Korhonen</span>
+	  </span>
+	</span>
+	<span class="org vcardline"></span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:jouni.nospam@gmail.com">jouni.nospam@gmail.com</a></span>
+
+  </address>
+</div>
+
+</body>
+</html>
