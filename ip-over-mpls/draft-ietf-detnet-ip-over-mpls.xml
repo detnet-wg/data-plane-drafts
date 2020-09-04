@@ -462,6 +462,11 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
           Note that such configuration MAY include support from PREOF on the
           incoming DetNet MPLS flow.
         </t>
+		<t>
+          Note: using Layer-4 (L4) transport protocols e.g., for multipath are 
+		  out of scope of this document both for a single flow and aggregate 
+		  flows.
+        </t>
       </section>
       <section anchor="iom-svc"
                title="DetNet IP over DetNet MPLS Traffic Treatment Procedures">
