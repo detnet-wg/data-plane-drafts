@@ -505,8 +505,9 @@ DFx = DetNet member flow x over a TE LSP
    as shown in <xref target="fig_detnet_cw"/> MUST be present in all
    DetNet packets containing app-flow data.
    This format of the d-CW was created in order (1) to allow larger S/N 
-   space to avoid S/N rollover frequency in some applications and (2) to 
-   allow non-skip zero S/N what simplifies implementation.
+   space to avoid S/N rollover frequency in some applications 
+   and (2) to allow sequence numbering systems that include the value zero 
+   as a valid sequence number, which simplifies implementation.
   </t>
     <figure title="DetNet Control Word" anchor="fig_detnet_cw">
     <artwork align="center"><![CDATA[
@@ -1480,6 +1481,7 @@ DFx = DetNet member flow x over a TE LSP
    <?rfc include="reference.RFC.4385"?>
    <?rfc include="reference.RFC.8174"?>
    <?rfc include="reference.RFC.8655"?>
+   <?rfc include="reference.I-D.ietf-detnet-data-plane-framework"?>
   </references>
   <references title="Informative References">
    <?rfc include="reference.RFC.2205"?>
@@ -1498,7 +1500,6 @@ DFx = DetNet member flow x over a TE LSP
    <?rfc include="reference.RFC.6790"?>
    <?rfc include="reference.RFC.8306"?>
    <?rfc include="reference.RFC.8660"?>
-   <?rfc include="reference.I-D.ietf-detnet-data-plane-framework"?>
    <?rfc include="reference.I-D.ietf-detnet-ip"?>
    <?rfc include="reference.I-D.ietf-detnet-ip-over-mpls"?>
    <?rfc include="reference.I-D.ietf-detnet-mpls-over-tsn"?>
