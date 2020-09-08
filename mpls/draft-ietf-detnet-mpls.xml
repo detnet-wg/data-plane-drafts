@@ -505,8 +505,9 @@ DFx = DetNet member flow x over a TE LSP
    as shown in <xref target="fig_detnet_cw"/> MUST be present in all
    DetNet packets containing app-flow data.
    This format of the d-CW was created in order (1) to allow larger S/N 
-   space to avoid S/N rollover frequency in some applications and (2) to 
-   allow non-skip zero S/N what simplifies implementation.
+   space to avoid S/N rollover frequency in some applications 
+   and (2) to allow sequence numbering systems that include the value zero 
+   as a valid sequence number, which simplifies implementation.
   </t>
     <figure title="DetNet Control Word" anchor="fig_detnet_cw">
     <artwork align="center"><![CDATA[
@@ -558,7 +559,7 @@ DFx = DetNet member flow x over a TE LSP
     packet sent. When the field length is 16 bits, d-CW bits 4 to 15
     MUST be set to zero (0). The values carried in this field can wrap
     and it is important to note that zero (0) is a valid field value.
-    For example, were the sequence number size is 16 bits, the sequence
+    For example, where the sequence number size is 16 bits, the sequence
     will contain: 65535, 0, 1, where zero (0) is an ordinary
     sequence number.
   </t>
@@ -616,7 +617,7 @@ DFx = DetNet member flow x over a TE LSP
     networks where DetNet flows would otherwise received ECMP treatment.  When
     ELs are used, the same EL value SHOULD be used for all of the packets
     sent using a specific S-Label to force the flow to follow the same path.
-    However, as outlines in <xref
+    However, as outlined in <xref
     target="I-D.ietf-detnet-data-plane-framework"/> the use of ECMP for DetNet
     flows is NOT RECOMMENDED. ECMP MAY be used for non-DetNet flows within a
     DetNet domain.
@@ -738,7 +739,7 @@ DFx = DetNet member flow x over a TE LSP
   </section>
   <section anchor="f-labels" title="F-Labels">
      <t>
-       F-Labels are supported the DetNet forwarding sub-layer. F-Labels
+       F-Labels support the DetNet forwarding sub-layer. F-Labels
        are used to provide LSP-based connectivity between DetNet service
        sub-layer processing nodes.
      </t>
@@ -837,14 +838,14 @@ DFx = DetNet member flow x over a TE LSP
        <t>
          Resources may be allocated in a hierarchical fashion per LSP
          that is represented by each F-Label. Each LSP MAY be
-         provisioned with a service parameters that dictates the
+         provisioned with a service parameter that dictates the
          specific traffic treatment to be received by the traffic
          carried over that LSP.  Implementations of this document MUST
          ensure that traffic carried over each LSP represented by one or more
          F-Labels receives the traffic treatment provisioned for that
          LSP.  Typical mechanisms used to provide different treatment to
          different flows includes the allocation of system resources
-         (such as queues and buffers) and provisioning or related
+         (such as queues and buffers) and provisioning of related
          parameters (such as shaping, and policing) that may be found in
          implementations of <xref target="RFC2205">Resource ReSerVation Protocol
        (RSVP)</xref> (RSVP) and RSVP-TE <xref target="RFC3209"/> and
@@ -880,7 +881,7 @@ DFx = DetNet member flow x over a TE LSP
            <t>
              MUST ensure a CoS flow or service class does not impact the
              service delivered to other flows.  This requirement is
-             similar to requirement for MPLS LSRs to that CoS LSPs do
+             similar to the requirement for MPLS LSRs that CoS LSPs do
              not impact the resources allocated to TE LSPs, e.g., via
              <xref target="RFC3473"/>.
            </t>
@@ -1013,7 +1014,7 @@ DFx = DetNet member flow x over a TE LSP
       aggregation will need to ensure that individual and aggregated
       flows receive the traffic treatment required to ensure the
       required DetNet service is preserved. Also, it is the controller
-      plane's responsibility to to ensure that the service required on
+      plane's responsibility to ensure that the service required on
       the aggregate flow are properly provisioned.
     </t>
    </section>
@@ -1125,7 +1126,7 @@ DFx = DetNet member flow x over a TE LSP
        DetNet provides zero congestion loss and bounded latency and
        jitter.  As described in <xref
        target="RFC8655"/>, there are different
-       mechanisms that maybe used separately or in combination to
+       mechanisms that may be used separately or in combination to
        deliver a zero congestion loss service.  This includes Quality of
        Service (QoS) mechanisms at the MPLS layer, that may be combined
        with the mechanisms defined by the underlying network layer such
@@ -1147,7 +1148,7 @@ DFx = DetNet member flow x over a TE LSP
      </t>
      <t>
        A baseline set of QoS capabilities for DetNet flows carried in PWs
-       and MPLS can provided by MPLS with Traffic Engineering (MPLS-TE)
+       and MPLS can be provided by MPLS with Traffic Engineering (MPLS-TE)
        <xref target="RFC3209"/> and <xref target="RFC3473"/>.  TE LSPs can
        also support explicit routes (path pinning).  Current service
        definitions for packet TE LSPs can be found in "Specification of
@@ -1236,7 +1237,7 @@ DFx = DetNet member flow x over a TE LSP
         If PRF is to be provided for the service.
       </t>
       <t>
-        The outgoing S-Label for each of the service's outgoing DetNet (member) flow.
+        The outgoing S-Label for each of the service's outgoing DetNet (member) flows.
       </t>
       <t>
         The forwarding sub-layer information associated with the output
@@ -1303,8 +1304,8 @@ DFx = DetNet member flow x over a TE LSP
       On the receiving node, the A-Label provides the forwarding context
       of an incoming interface or an F-Label and is used in subsequent
       service or forwarding sub-layer receive processing, as
-      appropriated.  The related addition configuration that may be
-      provided discussed elsewhere in this section.
+      appropriated.  The related additional configuration that may be
+      provided is discussed elsewhere in this section.
     </t>
   </section>
   </section>
@@ -1359,7 +1360,7 @@ DFx = DetNet member flow x over a TE LSP
   <t>
     It is the responsibility of the DetNet controller plane to
     properly provision both flow identification information and
-    the flow specific resources needed to provided the traffic
+    the flow-specific resources needed to provided the traffic
     treatment needed to meet each flow's service requirements.
     This applies for aggregated and individual flows.
   </t>
@@ -1480,6 +1481,7 @@ DFx = DetNet member flow x over a TE LSP
    <?rfc include="reference.RFC.4385"?>
    <?rfc include="reference.RFC.8174"?>
    <?rfc include="reference.RFC.8655"?>
+   <?rfc include="reference.I-D.ietf-detnet-data-plane-framework"?>
   </references>
   <references title="Informative References">
    <?rfc include="reference.RFC.2205"?>
@@ -1498,7 +1500,6 @@ DFx = DetNet member flow x over a TE LSP
    <?rfc include="reference.RFC.6790"?>
    <?rfc include="reference.RFC.8306"?>
    <?rfc include="reference.RFC.8660"?>
-   <?rfc include="reference.I-D.ietf-detnet-data-plane-framework"?>
    <?rfc include="reference.I-D.ietf-detnet-ip"?>
    <?rfc include="reference.I-D.ietf-detnet-ip-over-mpls"?>
    <?rfc include="reference.I-D.ietf-detnet-mpls-over-tsn"?>
