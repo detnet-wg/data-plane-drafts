@@ -641,10 +641,10 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
       <?rfc include="reference.I-D.ietf-detnet-data-plane-framework"?>
           <?rfc include="reference.I-D.ietf-detnet-mpls'?>
       <?rfc include="reference.I-D.ietf-detnet-ip'?>
+      <?rfc include="reference.I-D.ietf-detnet-security"?>
         </references>
 
     <references title="Informative references">
-      <?rfc include="reference.I-D.ietf-detnet-security"?>
       <?rfc include="reference.RFC.4301"?>
       <reference anchor="IEEE802.1AE-2018"
       target="https://ieeexplore.ieee.org/document/8585421">
