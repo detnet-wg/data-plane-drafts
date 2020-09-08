@@ -163,17 +163,15 @@
             <t hangText="DF">DetNet Flow.</t>
             <t hangText="DN">DetNet.</t>
             <t hangText="L2">Layer-2.</t>
-            <t hangText="L3">Layer-3.</t>
             <t hangText="LSP">Label-switched path.</t>
             <t hangText="MPLS">Multiprotocol Label Switching.</t>
-            <t hangText="PE">Provider Edge.</t>
             <t hangText="PEF">Packet Elimination Function.</t>
             <t hangText="PRF">Packet Replication Function.</t>
             <t hangText="PREOF">Packet Replication, Elimination and Ordering Functions.</t>
             <t hangText="POF">Packet Ordering Function.</t>
-            <t hangText="PSN">Packet Switched Network.</t>
             <t hangText="PW">Pseudowire.</t>
 		    <t hangText="S-Label">DetNet "service" label.</t>
+		    <t hangText="S-PE">Switching Provider Edge.</t>
 		    <t hangText="T-PE">Terminating Provider Edge.</t>
             <t hangText="TE">Traffic Engineering.</t>
             <t hangText="TSN">Time-Sensitive Networking, TSN is a Task Group of the IEEE			
@@ -533,8 +531,8 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
       <t>
         It is the responsibility of the DetNet controller plane to
         properly provision both flow identification information and
-        the flow specific resources needed to provided the traffic
-        treatment needed to meet each flow's service requirements.
+        the flow-specific resources needed to provide the traffic
+        treatment to meet each flow's service requirements.
         This applies for aggregated and individual flows.
       </t>
     </section>
