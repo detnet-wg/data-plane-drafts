@@ -505,8 +505,8 @@ DFx = DetNet member flow x over a TE LSP
    Word (PWMCW) defined in <xref target="RFC4385"/>. The d-CW formatted
    as shown in <xref target="fig_detnet_cw"/> MUST be present in all
    DetNet packets containing app-flow data.
-   This format of the d-CW was created in order (1) to allow larger S/N (Sequence Number)
-   space to avoid S/N rollover frequency in some applications 
+   This format of the d-CW was created in order (1) to allow larger sequence number
+   space to avoid sequence number rollover frequency in some applications 
    and (2) to allow sequence numbering systems that include the value zero 
    as a valid sequence number, which simplifies implementation.
   </t>
@@ -780,7 +780,7 @@ DFx = DetNet member flow x over a TE LSP
      </t>
      <t>
        When multiple sets of outgoing F-Labels or interfaces are provisioned for
-       a particular DetNet service, a copy of the outgoing packet, including
+       a particular DetNet service (i.e., for PRF), a copy of the outgoing packet, including
        the pushed member flow-specific S-Label, MUST be made per F-label set and outgoing
        interface. Each set of provisioned F-Labels are then pushed onto
        a copy of the packet.  Each copy is then forwarded as described
@@ -940,7 +940,7 @@ DFx = DetNet member flow x over a TE LSP
      hierarchy and the MPLS label stack <xref target="RFC3032"/>.  DetNet nodes which
      support aggregation (LSP hierarchy) map one or more LSPs (labels)
      into and from an H-LSP.  Both carried LSPs and H-LSPs may or may not
-     use the TC field, i.e., L-LSPs or E-LSPs.  Such nodes will need to
+     use the TC field, i.e., L-LSPs or E-LSPs <xref target="RFC3270"/>.  Such nodes will need to
      ensure that individual LSPs and H-LSPs receive the traffic
      treatment required to ensure the required
      DetNet service is preserved.
@@ -1225,7 +1225,7 @@ DFx = DetNet member flow x over a TE LSP
       </t>
       <t>
         The sequence number length to be used for the service.  Valid
-        values included 0, 16 and 28 bits. 0 bits cannot be used when
+        values include 0, 16 and 28 bits. 0 bits cannot be used when
         PEF or POF is configured for the service.
       </t>
       <t>
@@ -1377,7 +1377,7 @@ DFx = DetNet member flow x over a TE LSP
   </t>
   <t>
    Security aspects which are unique to DetNet are those whose aim is to
-   provide the specific quality of service aspects of DetNet, which are
+   protect the support of specific quality of service aspects of DetNet, which are
    primarily to deliver data flows with extremely low packet loss rates
    and bounded end-to-end delivery latency.
        Achieving such loss rates and bounded latency may not be possible
@@ -1390,7 +1390,7 @@ DFx = DetNet member flow x over a TE LSP
        network node within the boundary of the DetNet domain.
     </t>
     <t>
-    Additional consideration for the DetNet data plane is to maintain
+    An additional consideration for the DetNet data plane is to maintain
     integrity of data and delivery of the associated DetNet service traversing
     the DetNet network.
     Application flows can be protected through whatever means are
@@ -1447,7 +1447,7 @@ DFx = DetNet member flow x over a TE LSP
   <t>
     RFC7322 limits the number of authors listed on the front page of a
     draft to a maximum of 5. The editor wishes to thank and acknowledge
-    the follow author for contributing text to this draft.
+    the following author for contributing text to this draft.
   </t>
 
   <figure> <artwork><![CDATA[
@@ -1475,7 +1475,9 @@ DFx = DetNet member flow x over a TE LSP
    <?rfc include="reference.RFC.5129"?>
    <?rfc include="reference.RFC.5085"?>
    <?rfc include="reference.RFC.5462"?>
+   <?rfc include="reference.RFC.5586"?>
    <?rfc include="reference.RFC.4385"?>
+   <?rfc include="reference.RFC.6790"?>
    <?rfc include="reference.RFC.8174"?>
    <?rfc include="reference.RFC.8655"?>
    <?rfc include="reference.I-D.ietf-detnet-data-plane-framework"?>
@@ -1489,12 +1491,10 @@ DFx = DetNet member flow x over a TE LSP
    <?rfc include="reference.RFC.4875"?>
    <?rfc include="reference.RFC.4301"?>
    <?rfc include="reference.RFC.5440"?>
-   <?rfc include="reference.RFC.5586"?>
    <?rfc include="reference.RFC.5920"?>
    <?rfc include="reference.RFC.5921"?>
    <?rfc include="reference.RFC.6073"?>
    <?rfc include="reference.RFC.6003"?>
-   <?rfc include="reference.RFC.6790"?>
    <?rfc include="reference.RFC.8306"?>
    <?rfc include="reference.RFC.8660"?>
    <?rfc include="reference.I-D.ietf-detnet-ip"?>
