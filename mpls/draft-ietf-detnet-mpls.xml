@@ -530,7 +530,8 @@ DFx = DetNet member flow x over a TE LSP
       <t hangText="Sequence Number (bits 4 to 31)">
         <vspace blankLines="1"/>
         An unsigned value implementing the DetNet sequence number.
-		The sequence number space is a circular one.
+		The sequence number space is a circular one with no
+                restriction on initial value.
       </t>
     </list>
   </t>
