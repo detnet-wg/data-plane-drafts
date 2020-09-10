@@ -547,7 +547,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
       </t>
       <t>
        Security aspects which are unique to DetNet are those whose aim is to
-       provide the specific quality of service aspects of DetNet, which are
+       protect the support of specific quality of service aspects of DetNet, which are
        primarily to deliver data flows with extremely low packet loss rates
        and bounded end-to-end delivery latency.
         </t>
