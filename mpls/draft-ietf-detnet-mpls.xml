@@ -101,10 +101,11 @@
 <!-- Note: There are no dedicated section to procedures like "DetNet IP Data Plane Procedures" here. Do we need it like in DetNet-IP document ??? -->
 
   <t>
-    Deterministic Networking (DetNet) is a service that can be offered by a 
-	network to DetNet flows. DetNet provides a capability to carry specified 
-	unicast or multicast data flows for real-time applications with extremely 
-	low data loss rates and bounded latency within a network domain.
+        Deterministic Networking (DetNet) is a service that can be offered by a
+	network to DetNet flows.
+        DetNet provides a capability for the delivery of data flows with
+        extremely low packet loss rates and bounded end-to-end delivery
+        latency.
 	General background and concepts of DetNet can be found in the DetNet 
 	Architecture <xref target="RFC8655"/>.
   </t>
