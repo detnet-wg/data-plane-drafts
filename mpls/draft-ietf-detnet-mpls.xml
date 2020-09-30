@@ -110,13 +110,21 @@
 	Architecture <xref target="RFC8655"/>.
   </t>
   <t>
-    The DetNet Architecture models the DetNet related data plane functions
-    decomposed
-    into two sub-layers: a service sub-layer and a forwarding sub-layer.  The
-    service sub-layer is used to provide DetNet service functions such as
-    protection and reordering.  The forwarding sub-layer is used to provide
-    forwarding assurance (low loss, assured latency, and limited out-of-order
-	delivery).
+    The purpose of this document is to describe the use of MPLS to 
+    establish and serve a DetNet flow from data plane perspective.
+    The DetNet Architecture models the DetNet related data plane
+    functions decomposed into two sub-layers: a service sub-layer and a
+    forwarding sub-layer.  The service sub-layer is used to provide
+    DetNet service functions such as protection and reordering.  At the
+    DetNet data plane a new set of functions (PREOF) provide the service
+    sub-layer specific tasks. The forwarding sub-layer is used to provide 
+    forwarding assurance (low loss, assured latency, and limited 
+    out-of-order delivery) via already existing Traffic Engineering 
+    and queuing tools. Adding further queuing tools (like the tools 
+    defined by the TSN Task Group of IEEE 802.1 WG) are left for 
+    further study. Functionalities of DetNet specific service and forwarding 
+    sub-layers require careful design and control by the controller plane 
+    in addition to the here defined DetNet MPLS encapsulation.
   </t>
   <t>
     This document specifies the DetNet data plane operation and the on-wire
@@ -652,6 +660,12 @@ DFx = DetNet member flow x over a TE LSP
      encapsulations for consistency but there is no hard requirement in
      this regard.
    </t>
+   <t>
+     Implementation details of PREOF functions is out of scope in this document.
+     Replication and elimination specific aspects are discussed in detail for 
+	 example for Layer-2 networks in the IEEE 802.1 Work Group (e.g., in 
+	 <xref target="IEEE802.1CB-2017"/>).
+   </t>
    
    <section anchor="prf-requirements" title="Packet Replication Function
                                              Processing">
@@ -731,6 +745,22 @@ DFx = DetNet member flow x over a TE LSP
 	   packets that can be processed, on either a platform-wide or per flow
 	   basis.  The number of out of order packets that can be processed also
 	   impacts the latency of a flow.
+     </t>
+     <t>
+	   The latency impact on the system resources needed to support a
+	   specific DetNet flow will need to be evaluated by the controller plane
+	   based on that flow's traffic specification.  An example traffic 
+	   specification that can be used with MPLS with Traffic Engineering 
+	   (MPLS-TE) can be found in <xref target="RFC2212"/>.
+     </t>
+     <t>
+	   DetNet uses flow-specific requirements (e.g., maximum
+	   number of out-of-order packets, maximum latency of the flow) for
+	   configuration of POF-related buffers.  POF implementation details
+	   and its configuration parameters, determined by the controller 
+	   plane, are out-of-scope in this document. In case a PEF is 
+	   combined with POF, then their configurations need 
+	   to be coordinated to ensure the combined functionality.
      </t>
    </section>
   </section>
@@ -1422,11 +1452,15 @@ DFx = DetNet member flow x over a TE LSP
     attacks. To protect against DOS attacks, excess traffic due to
     malicious or malfunctioning devices is prevented or mitigated
     through the use of existing mechanisms, for example by policing and 
-	shaping incoming traffic. To prevent DetNet packets from
-    being delayed by an entity external to a DetNet domain, DetNet
-    technology definition can allow for the mitigation of
-    on-path attackers, for example through use of
-    authentication and authorization of devices within the DetNet domain.
+	shaping incoming traffic. To prevent DetNet packets 
+	having their delay manipulated by an external entity, precautions need 
+	to be taken to ensure that all devices on an LSP are those intended to 
+	be there by the network operator and that they are well behaved. In 
+	addition to physical security, technical methods  such as authentication 
+	and authorization of network equipment and the instrumentation and 
+	monitoring of the LSP packet delay may be used. If a delay attack is 
+	suspected, traffic may be moved to an alternate path, for example 
+	through changing the LSP or management of the PREOF configuration.
   </t>
 </section>
 
@@ -1512,6 +1546,17 @@ DFx = DetNet member flow x over a TE LSP
           <organization>IEEE Standards Association</organization>
         </author>
         <date year="2018" />
+      </front>
+    </reference>
+   <reference anchor="IEEE802.1CB-2017"
+      target="https://ieeexplore.ieee.org/document/8091139">
+      <front>
+        <title>IEEE Std 802.1CB-2017 Frame Replication and Elimination for 
+		Reliability</title>
+        <author>
+          <organization>IEEE Standards Association</organization>
+        </author>
+        <date year="2017" />
       </front>
     </reference>
 
