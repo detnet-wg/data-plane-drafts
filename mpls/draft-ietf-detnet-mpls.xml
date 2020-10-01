@@ -110,21 +110,21 @@
 	Architecture <xref target="RFC8655"/>.
   </t>
   <t>
-    The purpose of this document is to describe the use of MPLS to 
-    establish and serve a DetNet flow from data plane perspective.
-    The DetNet Architecture models the DetNet related data plane
-    functions decomposed into two sub-layers: a service sub-layer and a
-    forwarding sub-layer.  The service sub-layer is used to provide
-    DetNet service functions such as protection and reordering.  At the
-    DetNet data plane a new set of functions (PREOF) provide the service
-    sub-layer specific tasks. The forwarding sub-layer is used to provide 
-    forwarding assurance (low loss, assured latency, and limited 
-    out-of-order delivery) via already existing Traffic Engineering 
-    and queuing tools. Adding further queuing tools (like the tools 
-    defined by the TSN Task Group of IEEE 802.1 WG) are left for 
-    further study. Functionalities of DetNet specific service and forwarding 
-    sub-layers require careful design and control by the controller plane 
-    in addition to the here defined DetNet MPLS encapsulation.
+   The purpose of this document is to describe the use of the MPLS 
+   data plane to establish and support DetNet flows.
+   The DetNet Architecture models the DetNet related data plane
+   functions decomposed into two sub-layers: a service sub-layer and a
+   forwarding sub-layer.  The service sub-layer is used to provide
+   DetNet service functions such as protection and reordering.  At the
+   DetNet data plane a new set of functions (PREOF) provide the service
+   sub-layer specific tasks. The forwarding sub-layer is used to provide
+   forwarding assurance (low loss, assured latency, and limited
+   out-of-order delivery) via already existing Traffic Engineering
+   and queuing tools. The use of the functionalities of the DetNet 
+   service sub-layer and the DetNet forwarding sub-layer require 
+   careful design and control by the  controller plane in addition to the
+   DetNet specific use of MPLS encapsulation as specified by this 
+   document.
   </t>
   <t>
     This document specifies the DetNet data plane operation and the on-wire
@@ -661,10 +661,9 @@ DFx = DetNet member flow x over a TE LSP
      this regard.
    </t>
    <t>
-     Implementation details of PREOF functions is out of scope in this document.
-     Replication and elimination specific aspects are discussed in detail for 
-	 example for Layer-2 networks in the IEEE 802.1 Work Group (e.g., in 
-	 <xref target="IEEE802.1CB-2017"/>).
+     Implementation details of PREOF functions is out of scope for this document.
+     <xref target="IEEE802.1CB-2017"/> specifies replication and elimination 
+	 specific aspects, which can be applied to PRF and PEF.
    </t>
    
    <section anchor="prf-requirements" title="Packet Replication Function
@@ -754,13 +753,14 @@ DFx = DetNet member flow x over a TE LSP
 	   (MPLS-TE) can be found in <xref target="RFC2212"/>.
      </t>
      <t>
-	   DetNet uses flow-specific requirements (e.g., maximum
-	   number of out-of-order packets, maximum latency of the flow) for
-	   configuration of POF-related buffers.  POF implementation details
-	   and its configuration parameters, determined by the controller 
-	   plane, are out-of-scope in this document. In case a PEF is 
-	   combined with POF, then their configurations need 
-	   to be coordinated to ensure the combined functionality.
+        DetNet uses flow-specific requirements (e.g., maximum
+        number of out-of-order packets, maximum latency of the flow) for
+        configuration of POF-related buffers.  POF implementation details
+		are out-of-scope for this document and POF configuration parameters
+		are implementation specific. The Controller Plane determines and 
+		sets the POF configuration parameters. If PEF is combined with POF, 
+		then their configurations need to be coordinated to ensure the
+		combined functionality.
      </t>
    </section>
   </section>
