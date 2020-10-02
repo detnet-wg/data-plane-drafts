@@ -128,14 +128,6 @@
     protection (low loss, assured latency, and limited reordering)
     leveraging MPLS Traffic Engineering mechanisms.
   </t> -->
-  <t>
-  This document specifies use of the MPLS DetNet encapsulation over an IP network.
-  The approach is modeled on the operation of MPLS over
-  an IP Packet Switched Network (PSN) <xref target="RFC7510"/>.
-  It maps the MPLS data plane encapsulation described in <xref
-  target="I-D.ietf-detnet-mpls"/> to the DetNet IP data plane defined in <xref
-  target="I-D.ietf-detnet-ip"/>.
- </t>
  <t>
   To carry DetNet MPLS flows with full functionality at the DetNet layer over an IP network, the
   following components are required (these are a subset of the requirements for MPLS encapsulation
@@ -155,6 +147,22 @@
   (i.e., IP flows can be identified however no DetNet sequence number is carried) 
   by the DetNet IP data plane defined in <xref target="I-D.ietf-detnet-ip"/>
  </t>
+  <t>
+  This document specifies use of the MPLS DetNet encapsulation over an IP network.
+  The approach is modeled on the operation of MPLS over
+  an IP Packet Switched Network (PSN) <xref target="RFC7510"/>.
+  It maps the MPLS data plane encapsulation described in <xref
+  target="I-D.ietf-detnet-mpls"/> to the DetNet IP data plane defined in <xref
+  target="I-D.ietf-detnet-ip"/>.
+ </t>
+  <t>
+    As specified in <xref target="RFC7510"/>: "MPLS-in-UDP MUST NOT be
+    used over the general Internet, or over non-cooperating network
+    operators, to carry traffic that is not congestion controlled."
+	This does apply to DetNet networks as this document focuses on solutions 
+	for networks that are under a single administrative control or within a 
+	closed group of administrative control.
+  </t>
 </section>
 
  <section title="Terminology">
@@ -257,7 +265,7 @@
 
 <section anchor="dp-procs" title="DetNet Data Plane Procedures">
   <t>
-    To support outgoing DetNet MPLS over UDP/IP encapsulation, an implementation MUST support the
+    To support outgoing DetNet MPLS over UDP encapsulation, an implementation MUST support the
     provisioning of UDP and IP header information in addition or in place of
         F-Label(s).
     Note, when PRF is performed at the MPLS service sub-layer, there
@@ -280,12 +288,6 @@
     identify incoming app-flows based on the combination of S-Label and
     incoming encapsulation header information.  Normal receive processing as defined in <xref target="I-D.ietf-detnet-mpls"/>, including PEF and POF,
     can then take place.
-  </t>
-
-  <t>
-    As specified in <xref target="RFC7510"/>: "MPLS-in-UDP MUST NOT be
-    used over the general Internet, or over non-cooperating network
-    operators, to carry traffic that is not congestion controlled."
   </t>
 
 </section>
@@ -316,6 +318,12 @@
             the flow specific resources needed to provide the traffic
             treatment needed to meet each flow's service requirements.
             This applies for aggregated and individual flows.
+          </t>
+          <t>
+		    Note: In the presence of network (and port) address translation 
+			devices/functions it would be up to the controller plane to 
+			determine the appropriate information to ensure proper 
+			mapping at the sender/receiver.
           </t>
 </section>
 
