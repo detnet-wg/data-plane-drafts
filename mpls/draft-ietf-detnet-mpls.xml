@@ -119,8 +119,7 @@
    DetNet data plane a new set of functions (PREOF) provide the service
    sub-layer specific tasks. The forwarding sub-layer is used to provide
    forwarding assurance (low loss, assured latency, and limited
-   out-of-order delivery) via already existing Traffic Engineering
-   and queuing tools. The use of the functionalities of the DetNet 
+   out-of-order delivery). The use of the functionalities of the DetNet 
    service sub-layer and the DetNet forwarding sub-layer require 
    careful design and control by the  controller plane in addition to the
    DetNet specific use of MPLS encapsulation as specified by this 
@@ -661,8 +660,8 @@ DFx = DetNet member flow x over a TE LSP
      this regard.
    </t>
    <t>
-     Implementation details of PREOF functions is out of scope for this document.
-     <xref target="IEEE802.1CB-2017"/> specifies replication and elimination 
+     Implementation details of PREOF functions are out of scope for this document.
+     <xref target="IEEE802.1CB-2017"/> defines equivalent replication and elimination 
 	 specific aspects, which can be applied to PRF and PEF.
    </t>
    
@@ -753,14 +752,12 @@ DFx = DetNet member flow x over a TE LSP
 	   (MPLS-TE) can be found in <xref target="RFC2212"/>.
      </t>
      <t>
-        DetNet uses flow-specific requirements (e.g., maximum
+        DetNet implementations can use flow-specific requirements (e.g., maximum
         number of out-of-order packets, maximum latency of the flow) for
         configuration of POF-related buffers.  POF implementation details
 		are out-of-scope for this document and POF configuration parameters
-		are implementation specific. The Controller Plane determines and 
-		sets the POF configuration parameters. If PEF is combined with POF, 
-		then their configurations need to be coordinated to ensure the
-		combined functionality.
+		are implementation specific. The Controller Plane identifies and 
+		sets the POF configuration parameters. 
      </t>
    </section>
   </section>
