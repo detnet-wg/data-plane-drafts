@@ -427,7 +427,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
 
      <section anchor="iom-proc" title="IP over DetNet MPLS Procedures">
       <t>
-        Main differences of mapping to DetNet MPLS (compared to plain MPLS) are
+        The main differences of mapping IP to DetNet MPLS (compared to plain MPLS) are
 		that (1) there is a mandatory flow identification to make the forwarding 
 		decision (i.e., forwarding is not based on FEC), (2) the d-CW (DetNet 
 		Control Word) is mandatory for the MPLS encapsulation and (3) during 
