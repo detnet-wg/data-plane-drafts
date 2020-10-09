@@ -168,7 +168,7 @@
    <list style="hanging" hangIndent="14">
      <t hangText="F-Label">
        A Detnet "forwarding" label that identifies the LSP used to
-       forward a DetNet flow across an MPLS PSN, e.g., a hop-by-hop
+       forward a DetNet flow across an MPLS PSN, i.e., a hop-by-hop
        label used between label switching routers (LSR).
      </t>
 
@@ -595,7 +595,7 @@ DFx = DetNet member flow x over a TE LSP
    </t>
    <t>
     S-Label values MUST be provisioned per DetNet service via
-    configuration, e.g., via
+    configuration, i.e., via
     the controller plane described in
     <xref target="I-D.ietf-detnet-data-plane-framework"/>.
     Note that S-Labels provide identification at the downstream
@@ -605,7 +605,7 @@ DFx = DetNet member flow x over a TE LSP
     the platform label space <xref target="RFC3031"/>.
     Because S-Labels are local to each node rather than being a
     global identifier within a domain, they must be advertised to their
-    upstream DetNet service-aware peer nodes (e.g., a DetNet MPLS End
+    upstream DetNet service-aware peer nodes (i.e., a DetNet MPLS End
     System or a DetNet Relay or Edge Node) and interpreted in the
     context of their received F-Label(s).
     In some PREOF topologies, the node performing replication will be
@@ -672,7 +672,7 @@ DFx = DetNet member flow x over a TE LSP
        The Packet Replication Function (PRF) function MAY be supported
        by an implementation for outgoing DetNet flows. The use of the PRF
        for a particular DetNet service MUST be provisioned via configuration,
-       e.g., via the controller plane described in
+       i.e., via the controller plane described in
        <xref target="I-D.ietf-detnet-data-plane-framework"/>.  When replication
        is configured, the same app-flow data will be sent over multiple
        outgoing DetNet member flows using forwarding sub-layer LSPs.
@@ -690,7 +690,7 @@ DFx = DetNet member flow x over a TE LSP
        Implementations MAY support the Packet Elimination Function (PEF)
        for received DetNet MPLS flows.  When supported, use of the PEF
        for a particular DetNet service MUST be provisioned via configuration,
-       e.g., via the controller plane described in
+       i.e., via the controller plane described in
        <xref target="I-D.ietf-detnet-data-plane-framework"/>.
      </t>
      <t>
@@ -719,7 +719,7 @@ DFx = DetNet member flow x over a TE LSP
        A function that is related to in-order delivery is the Packet Ordering Function
        (POF).  Implementations MAY support POF. When
        supported, use of the POF for a particular DetNet service MUST be
-       provisioned via configuration, e.g., via the controller plane
+       provisioned via configuration, i.e., via the controller plane
        described by
        <xref target="I-D.ietf-detnet-data-plane-framework"/>.
        Implementations MAY require that PEF and POF be used in combination.
@@ -782,7 +782,7 @@ DFx = DetNet member flow x over a TE LSP
          When sending a DetNet flow, zero or more F-Labels MAY be pushed
          on top of an S-Label by the node pushing an S-Label. The
          F-Label(s) to be pushed when sending a particular DetNet service MUST
-         be provisioned per outgoing S-Label via configuration, e.g., via the
+         be provisioned per outgoing S-Label via configuration, i.e., via the
          controller plane discussed in
          <xref target="I-D.ietf-detnet-data-plane-framework"/>.
          F-Label(s) can also provide context for an S-Label.
