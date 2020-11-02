@@ -281,22 +281,11 @@ System |    +--------+       +--------+       +--------+   |  System
         aware, understand the particular needs of DetNet flows and
         provide both DetNet service and forwarding sub-layer functions.
         They add, remove and process d-CWs, S-Labels and F-labels as
-        needed.  MPLS enabled DetNet nodes can enhance the
-        reliability of delivery by enabling the replication of packets
-        where multiple copies, possibly over multiple paths, are
-        forwarded through the DetNet domain.  They can also eliminate
-        surplus previously replicated copies of DetNet packets.
-        MPLS (DetNet) nodes also include
+        needed.  MPLS DetNet nodes and transit nodes include
         DetNet forwarding sub-layer functions, support for notably
         explicit routes, and resources allocation to eliminate (or
-        reduce) congestion loss and jitter.
- </t>
- <t>
-        DetNet transit nodes reside wholly within a DetNet domain, and
-        also provide DetNet forwarding sub-layer functions in accordance
-        with the performance required by a DetNet flow carried over an
-        LSP. Unlike other DetNet node types, transit nodes provide no
-        service sub-layer processing.
+        reduce) congestion loss and jitter. Unlike other DetNet node types, 
+		transit nodes provide no service sub-layer processing.
  </t>
  </section>
 
@@ -383,7 +372,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
           </t>
           <t>
 		  	  The implementation of TSN entity (i.e., TSN packet processing 
-			  functions) MUST be compliant with the relevant IEEE 802.1 
+			  functions) must be compliant with the relevant IEEE 802.1 
 			  standards.
           </t>
           <t>
@@ -404,17 +393,17 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
     </t>
     <t>		
 			When a PE receives a packet from a CE, on a given AC with DetNet service,
-			it MUST first check via Stream Identification 
+			it first checks via Stream Identification 
 			(see Clause 6. of <xref target="IEEE8021CB">IEEE 802.1CB</xref> and
             <xref target="IEEEP8021CBdb">IEEE P802.1CBdb</xref>) 
 			whether the packet belongs 
 			to a configured TSN Stream (i.e., App-flow from DetNet perspective). 
 			If no Stream ID is matched and no other (VPN) service is configured 
 			for the AC then packet MUST be dropped. If there is a matching TSN 
-			Stream then the Stream-ID specific TSN functions MUST be executed 
+			Stream then the Stream-ID specific TSN functions are executed 
 			(e.g., ingress policing, header field manipulation in case 
 			of active Stream Identification, FRER, etc.). Source MAC lookup 
-			MAY also be used for local MAC address learning.
+			may also be used for local MAC address learning.
     </t>
     <t>		
 			If the PE decides to forward the packet, the packet MUST be forwarded 
@@ -428,28 +417,28 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
     </t>
     <t>		
 			When a TSN entity of the PE receives a packet from the DetNet 
-			Service Proxy, it MUST first check via Stream Identification 
+			Service Proxy, it first checks via Stream Identification 
 			(see Clause 6. of <xref target="IEEE8021CB">IEEE 802.1CB</xref> and
             <xref target="IEEEP8021CBdb">IEEE P802.1CBdb</xref>) whether 
 			the packet belongs to a configured TSN Stream. If no Stream ID is 
-			matched then packet MUST be dropped. If there is a matching TSN 
-			Stream then the Stream ID specific TSN functions MUST be executed 
+			matched then packet is dropped. If there is a matching TSN 
+			Stream then the Stream ID specific TSN functions are executed 
 			(e.g., header field manipulation in case of active Stream 
-			Identification, FRER, etc.). Source MAC lookup MAY also be used for 
+			Identification, FRER, etc.). Source MAC lookup may also be used for 
 			local MAC address learning.
     </t>
     <t>		
-			If the PE decides to forward the packet, the packet MUST be forwarded 
+			If the PE decides to forward the packet, the packet is forwarded 
 			according to the TSN Stream specific configuration to connected CE(s).
 			If there are no TSN Stream specific forwarding configurations the 
-			PE MUST flood the packet to locally attached CE(s). If the 
-			administrative policy on the PE does not allow flooding the PE MUST 
-			drop the packet.
+			PE floods the packet to locally attached CE(s). If the 
+			administrative policy on the PE does not allow flooding the PE  
+			drops the packet.
     </t>
     <t>
-                Implementations of this document SHALL use management and
-                control information to ensure TSN specific functions of the Edge Node
-                according to the expectations of the connected TSN network. 
+            Implementations of this document SHALL use management and
+            control information to ensure TSN specific functions of the Edge Node
+            according to the expectations of the connected TSN network. 
     </t>
   </section>
 
@@ -575,11 +564,16 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
 			     DetNet role of the DetNet MPLS node, as per 
 			     <xref target="I-D.ietf-detnet-mpls"/>. </t>
               <t>App-Flow identification information to map received TSN 
-			  Stream(s) to the DetNet flow. Parameters fo TSN stream 
+			  Stream(s) to the DetNet flow. Parameters of TSN stream 
 			  identification are defined in <xref target="IEEE8021CB"/> and 
 			  <xref target="IEEEP8021CBdb"/>. </t>
             </list>
             This information MUST be provisioned per DetNet flow.
+        </t>
+        <t>
+			Mappings between DetNet and TSN management and control planes are 
+			out of scope of the document. Some of the challanges are 
+			highligthed below.
         </t>
    <t>
         MPLS DetNet Edge nodes are member of both the DetNet domain and the
@@ -696,42 +690,44 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
       </front>
     </reference>
 
-   <reference anchor="IEEE8021Q"
-     target="http://standards.ieee.org/about/get/">
-    <front>
-     <title>Standard for Local and metropolitan area networks--Bridges and Bridged Networks (IEEE Std 802.1Q-2014)</title>
-     <author>
-      <organization>IEEE 802.1</organization>
-     </author>
-     <date year="2014"/>
-    </front>
-    <format type="PDF" target="http://standards.ieee.org/about/get/"/>
-   </reference>
-
-   <reference anchor="IEEE8021CB"
-    target="http://www.ieee802.org/1/files/private/cb-drafts/d2/802-1CB-d2-1.pdf">
-    <front>
-        <title>Draft Standard for Local and metropolitan area networks - Seamless Redundancy</title>
-        <author initials="N. F." surname="Finn" fullname="Norman Finn">
+      <reference anchor="IEEE8021Q"
+                 target="http://standards.ieee.org/about/get/">
+        <front>
+          <title>Standard for Local and metropolitan area networks--Bridges
+          and Bridged Networks (IEEE Std 802.1Q-2018)</title>
+          <author>
             <organization>IEEE 802.1</organization>
-        </author>
-        <date month="December" year="2015"/>
-    </front>
-    <seriesInfo name="IEEE P802.1CB /D2.1" value="P802.1CB"/>
-    <format type="PDF" target="http://www.ieee802.org/1/files/private/cb-drafts/d2/802-1CB-d2-1.pdf"/>
-   </reference>
+          </author>
+          <date year="2018"/>
+        </front>
+        <format type="PDF" target="http://standards.ieee.org/about/get/"/>
+      </reference>
+
+      <reference anchor="IEEE8021CB"
+                 target="http://standards.ieee.org/about/get/">
+        <front>
+          <title>Standard for Local and metropolitan area networks - 
+		  Frame Replication and Elimination for Reliability 
+		  (IEEE Std 802.1CB-2017)</title>
+          <author>
+            <organization>IEEE 802.1</organization>
+          </author>
+          <date year="2017"/>
+        </front>
+        <format type="PDF" target="http://standards.ieee.org/about/get/"/>
+      </reference>
 
       <reference anchor="IEEEP8021CBdb"
-                 target="http://www.ieee802.org/1/files/private/cb-drafts/d2/802-1CB-d2-1.pdf">
+                 target="http://www.ieee802.org/1/files/private/db-drafts/d1/802-1CBdb-d1-0.pdf">
         <front>
           <title>Extended Stream identification functions</title>
           <author initials="C. M." surname="Mangin" fullname="Christophe Mangin">
             <organization>IEEE 802.1</organization>
           </author>
-          <date month="August" year="2019"/>
+          <date month="September" year="2020"/>
         </front>
-        <seriesInfo name="IEEE P802.1CBdb /D0.2" value="P802.1CBdb"/>
-        <format type="PDF" target="http://www.ieee802.org/1/files/private/cb-drafts/d2/802-1CB-d2-1.pdf"/>
+        <seriesInfo name="IEEE P802.1CBdb /D1.0" value="P802.1CBdb"/>
+        <format type="PDF" target="http://www.ieee802.org/1/files/private/db-drafts/d1/802-1CBdb-d1-0.pdf"/>
       </reference>
 
 
