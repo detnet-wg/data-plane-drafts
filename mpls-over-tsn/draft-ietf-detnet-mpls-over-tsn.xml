@@ -12,7 +12,7 @@
 <?rfc strict="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="std"
+<rfc category="info"
      docName="draft-ietf-detnet-mpls-over-tsn-04"
          ipr="trust200902"
          submissionType="IETF">
@@ -66,7 +66,10 @@
   <abstract>
    <t>
      This document specifies the Deterministic Networking MPLS data plane
-     when operating over a TSN sub-network.
+     when operating over a TSN sub-network. This document does not define 
+	 new procedures or processes.  Whenever this document makes requirements 
+	 statements or recommendations, these are taken from normative text in the 
+	 referenced RFCs.
    </t>
   </abstract>
   </front>
@@ -168,58 +171,23 @@
     routes.  The forwarding sub-layer is supported by one or more
     forwarding labels (F-Labels).
   </t>
-
-      <figure align="center" anchor="fig_mpls_detnet_part"
-              title="Part of a Simple DetNet MPLS Network using a TSN sub-net">
-        <artwork><![CDATA[
-      Edge          Transit        Relay       
-      Node           Node           Node        
-     (T-PE)          (LSR)         (S-PE)
-   +---------+                                 
-<--|Svc Proxy|-- End to End Service ----------->
-   +---------+                   +---------+   
-   |IP | |Svc|<-- DetNet flow ---| Service |--->
-   +---+ +---+    +---------+    +---------+   
-   |Fwd| |Fwd|    |   Fwd   |    |Fwd| |Fwd|   
-   +-.-+ +-.-+    +--.----.-+    +-.-+ +-.-+   
-     :    /  ,-----.  \   :  Link  :     :
-.....+    +-[TSN Sub]-+   +........+     +.....
-            [Network]                
-             `-----'                
-        |<----------- LSP ---------->| |<--- LSP -->|
-        |<------------- DetNet MPLS ------------
-                         ]]></artwork>
-      </figure>
-
-      <t>
-        <xref target="fig_mpls_detnet_part"/> illustrates an extract of a 
-        DetNet enabled MPLS network. Edge/relay nodes sit at 
-		MPLS LSP boundaries and transit nodes are LSRs. In this figure, two 
-		MPLS nodes (the edge node and the transit node) are interconnected by 
-		a TSN sub-network.
-      </t>
-      <t>
+  <t>
         DetNet edge/relay nodes are DetNet service sub-layer
         aware, understand the particular needs of DetNet flows and
         provide both DetNet service and forwarding sub-layer functions.
         They add, remove and process d-CWs, S-Labels and F-labels as
-        needed.  MPLS enabled DetNet nodes can enhance the
-        reliability of delivery by enabling the replication of packets
-        where multiple copies, possibly over multiple paths, are
-        forwarded through the DetNet domain.  They can also eliminate
-        surplus previously replicated copies of DetNet packets.
-		MPLS (DetNet) nodes also include
+        needed.  MPLS DetNet nodes and transit nodes include
         DetNet forwarding sub-layer functions, support for notably
         explicit routes, and resources allocation to eliminate (or
-        reduce) congestion loss and jitter.
-      </t>
-      <t>
-        DetNet transit nodes reside wholly within a DetNet domain, and
-        also provide DetNet forwarding sub-layer functions in accordance
-        with the performance required by a DetNet flow carried over an
-        LSP. Unlike other DetNet node types, transit nodes provide no
-        service sub-layer processing.
-      </t>
+        reduce) congestion loss and jitter. Unlike other DetNet node types, 
+		transit nodes provide no service sub-layer processing.
+  </t>
+  <t>
+		MPLS (DetNet) nodes and transit nodes interconnected by a TSN 
+		sub-network are the primary focus of this document. 
+		The mapping of DetNet MPLS flows to TSN streams and TSN protection 
+		mechanisms are covered in <xref target="mpls-over-tsn"/>.
+  </t>
   </section>  <!-- end of data plane overview -->
 
 <!-- ===================================================================== -->
@@ -241,8 +209,7 @@
 			</t>
 		</list>
 		As described in the DetNet architecture 
-		<xref target="RFC8655"/> and also illustrated here 
-		in <xref target="fig_mpls_detnet_part"/> a sub-network provides from 
+		<xref target="RFC8655"/> a sub-network provides from 
 		MPLS perspective a single hop connection between MPLS (DetNet) nodes. 
 		Functions used for resource allocation and explicit routes 
 		are treated as domain internal functions and does not require function
@@ -347,7 +314,7 @@ Note: * no service sub-layer required for transit nodes
             <t>
               This section covers required behavior of a TSN-aware MPLS (DetNet)
 			  node using a TSN sub-network. The implementation of TSN packet 
-			  processing functions MUST be compliant with the relevant IEEE 802.1 
+			  processing functions must be compliant with the relevant IEEE 802.1 
 			  standards.
             </t>
             <t>
@@ -399,11 +366,11 @@ Note: * no service sub-layer required for transit nodes
       </figure>
 
             <t>
-			  A TSN-aware MPLS (DetNet) node impementations MUST support the 
+			  A TSN-aware MPLS (DetNet) node impementations must support the 
 			  Stream Identification TSN component for recognizing flows.
             </t>
             <t>
-              A Stream identification component MUST be able to instantiate
+              A Stream identification component must be able to instantiate
               the following functions (1) Active Destination MAC and VLAN
               Stream identification function, 
 			  (2) Mask-and-Match Stream identification function and 
@@ -412,18 +379,18 @@ Note: * no service sub-layer required for transit nodes
 			  <xref target="IEEEP8021CBdb">IEEE P802.1CBdb</xref>.
             </t>
             <t>
-			  A TSN-aware MPLS (DetNet) node implementations MUST support the 
+			  A TSN-aware MPLS (DetNet) node implementations must support the 
 			  Sequencing function and the Sequence encode/decode function as 
 			  defined in  Clause 7.4 and 7.6 of <xref target="IEEE8021CB">IEEE 802.1CB</xref> if FRER 
 			  is used inside the TSN sub-network.
             </t>
             <t>
-              The Sequence encode/decode function MUST support the Redundancy
+              The Sequence encode/decode function must support the Redundancy
               tag (R-TAG) format as per Clause 7.8 of <xref
               target="IEEE8021CB">IEEE 802.1CB</xref>.
             </t>
             <t>
-			  A TSN-aware MPLS (DetNet) node implementations MUST support the 
+			  A TSN-aware MPLS (DetNet) node implementations must support the 
 			  Stream splitting 
 			  function and the Individual recovery function as defined in 
 			  Clause 7.7 and 7.5 of <xref target="IEEE8021CB">IEEE 802.1CB</xref> when the node is 
@@ -458,11 +425,11 @@ Note: * no service sub-layer required for transit nodes
           </section>
 		  <section title="Aggregation during DetNet flow to TSN Stream mapping">
             <t>
-			Implementations of this document SHALL use management and
+			Implementations of this document shall use management and
 			control information to map a DetNet flow to a TSN
 			Stream. N:1 mapping (aggregating DetNet flows in a single
-			TSN Stream) SHALL be supported. The management or control
-			function that provisions flow mapping SHALL ensure that
+			TSN Stream) shall be supported. The management or control
+			function that provisions flow mapping shall ensure that
 			adequate resources are allocated and configured to provide
 			proper service requirements of the mapped flows.
             </t>
@@ -499,7 +466,12 @@ Note: * no service sub-layer required for transit nodes
 			  found in <xref target="IEEEP8021CBcv"/>.			  
 			  </t>
             </list>
-            This information MUST be provisioned per DetNet flow.
+            This information must be provisioned per DetNet flow.
+        </t>
+        <t>
+			Mappings between DetNet and TSN management and control planes are 
+			out of scope of the document. Some of the challanges are 
+			highligthed below.
         </t>
         <t>
 			TSN-aware MPLS DetNet nodes are member of both the DetNet
@@ -543,7 +515,7 @@ Note: * no service sub-layer required for transit nodes
 	      TSN-aware MPLS (DetNet) node locally based on information
 	      provided for configuration of the TSN Stream
 	      identification functions (Mask-and-match Stream identification 
-		  and active Stream identification function).
+		  and Active Stream identification function).
 	    </t>
 	    <t>
 	      Triggering the setup/modification of a TSN Stream in the
@@ -629,57 +601,59 @@ Note: * no service sub-layer required for transit nodes
       </front>
     </reference>
 
-   <reference anchor="IEEE8021Q"
-     target="http://standards.ieee.org/about/get/">
-    <front>
-     <title>Standard for Local and metropolitan area networks--Bridges and Bridged Networks (IEEE Std 802.1Q-2014)</title>
-     <author>
-      <organization>IEEE 802.1</organization>
-     </author>
-     <date year="2014"/>
-    </front>
-    <format type="PDF" target="http://standards.ieee.org/about/get/"/>
-   </reference>
-
-   <reference anchor="IEEE8021CB"
-    target="http://www.ieee802.org/1/files/private/cb-drafts/d2/802-1CB-d2-1.pdf">
-    <front>
-        <title>Draft Standard for Local and metropolitan area networks - Seamless Redundancy</title>
-        <author initials="N. F." surname="Finn" fullname="Norman Finn">
+      <reference anchor="IEEE8021Q"
+                 target="http://standards.ieee.org/about/get/">
+        <front>
+          <title>Standard for Local and metropolitan area networks--Bridges
+          and Bridged Networks (IEEE Std 802.1Q-2018)</title>
+          <author>
             <organization>IEEE 802.1</organization>
-        </author>
-        <date month="December" year="2015"/>
-    </front>
-    <seriesInfo name="IEEE P802.1CB /D2.1" value="P802.1CB"/>
-    <format type="PDF" target="http://www.ieee802.org/1/files/private/cb-drafts/d2/802-1CB-d2-1.pdf"/>
-   </reference>
+          </author>
+          <date year="2018"/>
+        </front>
+        <format type="PDF" target="http://standards.ieee.org/about/get/"/>
+      </reference>
+
+      <reference anchor="IEEE8021CB"
+                 target="http://standards.ieee.org/about/get/">
+        <front>
+          <title>Standard for Local and metropolitan area networks - 
+		  Frame Replication and Elimination for Reliability 
+		  (IEEE Std 802.1CB-2017)</title>
+          <author>
+            <organization>IEEE 802.1</organization>
+          </author>
+          <date year="2017"/>
+        </front>
+        <format type="PDF" target="http://standards.ieee.org/about/get/"/>
+      </reference>
 
       <reference anchor="IEEEP8021CBdb"
-                 target="http://www.ieee802.org/1/files/private/cb-drafts/d2/802-1CB-d2-1.pdf">
+                 target="http://www.ieee802.org/1/files/private/db-drafts/d1/802-1CBdb-d1-0.pdf">
         <front>
           <title>Extended Stream identification functions</title>
           <author initials="C. M." surname="Mangin" fullname="Christophe Mangin">
             <organization>IEEE 802.1</organization>
           </author>
-          <date month="August" year="2019"/>
+          <date month="September" year="2020"/>
         </front>
-        <seriesInfo name="IEEE P802.1CBdb /D0.2" value="P802.1CBdb"/>
-        <format type="PDF" target="http://www.ieee802.org/1/files/private/cb-drafts/d2/802-1CB-d2-1.pdf"/>
+        <seriesInfo name="IEEE P802.1CBdb /D1.0" value="P802.1CBdb"/>
+        <format type="PDF" target="http://www.ieee802.org/1/files/private/db-drafts/d1/802-1CBdb-d1-0.pdf"/>
       </reference>
 
       <reference anchor="IEEEP8021CBcv"
-                 target="http://www.ieee802.org/1/files/private/cv-drafts/d0/802-1CBcv-d0-3.pdf">
+                 target="https://www.ieee802.org/1/files/private/cv-drafts/d0/802-1CBcv-d0-4.pdf">
         <front>
           <title>FRER YANG Data Model and Management Information Base Module</title>
           <author initials="S." surname="Kehrer" fullname="Stephan Kehrer">
             <organization>IEEE 802.1</organization>
           </author>
-          <date month="May" year="2020"/>
+          <date month="August" year="2020"/>
         </front>
-        <seriesInfo name="IEEE P802.1CBcv /D0.3" value="P802.1CBcv"/>
-        <format type="PDF" target="http://www.ieee802.org/1/files/private/cv-drafts/d0/802-1CBcv-d0-3.pdf"/>
+        <seriesInfo name="IEEE P802.1CBcv /D0.4" value="P802.1CBcv"/>
+        <format type="PDF" target="https://www.ieee802.org/1/files/private/cv-drafts/d0/802-1CBcv-d0-4.pdf"/>
       </reference>
-  </references>
+    </references>
 
  </back>
 </rfc>
