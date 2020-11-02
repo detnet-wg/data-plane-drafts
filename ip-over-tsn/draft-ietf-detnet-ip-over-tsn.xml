@@ -9,7 +9,7 @@
 <?rfc strict="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="std"
+<rfc category="info"
      docName="draft-ietf-detnet-ip-over-tsn-04"
      ipr="trust200902"
      submissionType="IETF">
@@ -63,7 +63,10 @@
     <abstract>
       <t>
      This document specifies the Deterministic Networking IP data plane
-     when operating over a TSN sub-network.
+     when operating over a TSN sub-network. This document does not define 
+	 new procedures or processes.  Whenever this document makes requirements 
+	 statements or recommendations, these are taken from normative text in the 
+	 referenced RFCs.	 
       </t>
     </abstract>
   </front>
@@ -159,52 +162,18 @@
 		(queuing, policing, shaping) are supported using the underlying link 
 		/ sub-net specific mechanisms.  Service protections (packet
         replication and packet elimination functions) are not provided at
-		the DetNet layer end-to-end due the lack of a unified end-to-end 
+		the IP DetNet layer end-to-end due the lack of a unified end-to-end 
 		sequencing information that would be available for intermediate nodes.  
 		However, such service protection can be provided on a per underlying 
 		L2 link and sub-network basis.
 	  </t>
-
-      <figure align="center" anchor="fig_ip_detnet_part"
-              title="Part of a Simple DetNet (DN) Enabled IP Network using a TSN sub-net">
-        <artwork><![CDATA[
-      Edge          Transit        Relay       
-      Node            Node         Node        
-
-   +.........+                                 
-<--:Svc Proxy:-- End to End Service ----------->
-   +-----....+                   +..........+   
-   |IP | :Svc:<-- DetNet flow ---: Service :--->
-   +---+ +---+    +---------+    +---------+   
-   |Fwd| |Fwd|    |   Fwd   |    |Fwd| |Fwd|   
-   +-.-+ +-.-+    +--.----.-+    +-.-+ +-.-+   
-     :    /  ,-----.  \   :  Link  :     :
-.....+    +-[TSN Sub]-+   +........+     +.....
-            [Network]                
-             `-----'                
-         <------------- DetNet IP -------------
-                         ]]></artwork>
-      </figure>
-      <t>
-        <xref target="fig_ip_detnet_part"/> illustrates an extract of a DetNet 
-		enabled IP network, that uses a TSN sub-network as interconnection between
-		two DetNet Nodes.  In this figure, an Edge Node sits at the boundary of 
-		the DetNet domain and provide DetNet service proxies for the end 
-		applications by initiating and terminating DetNet service for the 
-		application's IP flows.  Node and interface resources are allocated to 
-		ensure DetNet service requirements. 
-		Dotted lines around the Service components of the Edge and Relay Nodes 
-		indicate that they are DetNet service aware but do not perform any 
-		DetNet service sub-layer function, e.g., PREOF (Packet Replication, 
-		Elimination, and Ordering Functions).  In this example the 
-		Edge Node and the Transit Node are interconnected by a TSN sub-network, 
-		being the primary focus of this document. 
-      </t>
       <t>
 	    DetNet routers ensure that DetNet service requirements are met per hop 
 		by allocating local resources, both receive and transmit, and by mapping 
 		the service requirements of each flow to appropriate sub-network 
 		mechanisms.  Such mappings are sub-network technology specific.  
+		DetNet nodes interconnected by a TSN sub-network are the primary focus 
+		of this document. 
 		The mapping of DetNet IP flows to TSN streams and TSN protection 
 		mechanisms are covered in <xref target="mapping-tsn"/>.
       </t>
@@ -220,7 +189,11 @@
         This section covers how DetNet IP flows operate over an IEEE 802.1 TSN
         sub-network.  <xref target="fig_ip_detnet_to_tsn"/> illustrates such a
         scenario, where two IP (DetNet) nodes are interconnected by a TSN
-        sub-network. Node-1 is single homed and Node-2 is dual-homed to the TSN
+        sub-network. 
+		Dotted lines around the Service components of the IP (DetNet) Nodes 
+		indicate that they are DetNet service aware but do not perform any 
+		DetNet service sub-layer function.		
+		Node-1 is single homed and Node-2 is dual-homed to the TSN
 		sub-network.  
       </t>
 
@@ -313,7 +286,7 @@
             <t>
               This section covers required behavior of a TSN-aware DetNet node 
 			  using a TSN sub-network. The implementation of TSN packet 
-			  processing functions MUST be compliant with the relevant IEEE 802.1 
+			  processing functions must be compliant with the relevant IEEE 802.1 
 			  standards.
             </t>
             <t>
@@ -363,11 +336,11 @@
             </figure>
 
             <t>
-			  A TSN-aware IP (DetNet) node impementations MUST support the 
+			  A TSN-aware IP (DetNet) node impementations must support the 
 			  Stream Identification TSN component for recognizing flows.
             </t>
             <t>
-              A Stream identification component MUST be able to instantiate
+              A Stream identification component must be able to instantiate
               the following functions (1) Active Destination MAC and VLAN
               Stream identification function, (2) IP Stream identification
               function, (3) Mask-and-Match Stream identification function and 
@@ -376,18 +349,18 @@
 			  <xref target="IEEEP8021CBdb">IEEE P802.1CBdb</xref>.
             </t>
             <t>
-			  A TSN-aware IP (DetNet) node implementations MUST support the 
+			  A TSN-aware IP (DetNet) node implementations must support the 
 			  Sequencing function and the Sequence encode/decode function as 
 			  defined in Clause 7.4 and 7.6 of <xref target="IEEE8021CB">IEEE 802.1CB</xref> if FRER 
 			  is used inside the TSN sub-network.
             </t>
             <t>
-              The Sequence encode/decode function MUST support the Redundancy
+              The Sequence encode/decode function must support the Redundancy
               tag (R-TAG) format as per Clause 7.8 of <xref
               target="IEEE8021CB">IEEE 802.1CB</xref>.
             </t>
             <t>
-			  A TSN-aware IP (DetNet) node implementations MUST support the 
+			  A TSN-aware IP (DetNet) node implementations must support the 
 			  Stream splitting 
 			  function and the Individual recovery function as defined in Clause 7.7 and 7.5 of
 			  <xref target="IEEE8021CB">IEEE 802.1CB</xref> when the node is 
@@ -417,11 +390,11 @@
 
           <section title="Aggregation during DetNet flow to TSN Stream mapping">
             <t>
-			Implementations of this document SHALL use management and
+			Implementations of this document shall use management and
 			control information to map a DetNet flow to a TSN
 			Stream. N:1 mapping (aggregating DetNet flows in a single
-			TSN Stream) SHALL be supported. The management or control
-			function that provisions flow mapping SHALL ensure that
+			TSN Stream) shall be supported. The management or control
+			function that provisions flow mapping shall ensure that
 			adequate resources are allocated and configured to provide
 			proper service requirements of the mapped flows.
             </t>
@@ -457,9 +430,14 @@
 			  found in <xref target="IEEEP8021CBcv"/>.
 			  </t>
             </list>
-            This information MUST be provisioned per DetNet flow.
+            This information must be provisioned per DetNet flow.
         </t>
         <t>
+			Mappings between DetNet and TSN management and control planes are 
+			out of scope of the document. Some of the challanges are 
+			highligthed below.
+        </t>
+		<t>
 			TSN-aware IP DetNet nodes are member of both the DetNet
 			domain and the TSN sub-network.  Within the TSN
 			sub-network the TSN-aware IP (DetNet) node has a TSN-aware
@@ -591,53 +569,53 @@
                  target="http://standards.ieee.org/about/get/">
         <front>
           <title>Standard for Local and metropolitan area networks--Bridges
-          and Bridged Networks (IEEE Std 802.1Q-2014)</title>
+          and Bridged Networks (IEEE Std 802.1Q-2018)</title>
           <author>
             <organization>IEEE 802.1</organization>
           </author>
-          <date year="2014"/>
+          <date year="2018"/>
         </front>
         <format type="PDF" target="http://standards.ieee.org/about/get/"/>
       </reference>
 
       <reference anchor="IEEE8021CB"
-                 target="http://www.ieee802.org/1/files/private/cb-drafts/d2/802-1CB-d2-1.pdf">
+                 target="http://standards.ieee.org/about/get/">
         <front>
-          <title>Draft Standard for Local and metropolitan area networks -
-          Seamless Redundancy</title>
-          <author initials="N. F." surname="Finn" fullname="Norman Finn">
+          <title>Standard for Local and metropolitan area networks - 
+		  Frame Replication and Elimination for Reliability 
+		  (IEEE Std 802.1CB-2017)</title>
+          <author>
             <organization>IEEE 802.1</organization>
           </author>
-          <date month="December" year="2015"/>
+          <date year="2017"/>
         </front>
-        <seriesInfo name="IEEE P802.1CB /D2.1" value="P802.1CB"/>
-        <format type="PDF" target="http://www.ieee802.org/1/files/private/cb-drafts/d2/802-1CB-d2-1.pdf"/>
+        <format type="PDF" target="http://standards.ieee.org/about/get/"/>
       </reference>
 
       <reference anchor="IEEEP8021CBdb"
-                 target="http://www.ieee802.org/1/files/private/cb-drafts/d2/802-1CB-d2-1.pdf">
+                 target="http://www.ieee802.org/1/files/private/db-drafts/d1/802-1CBdb-d1-0.pdf">
         <front>
           <title>Extended Stream identification functions</title>
           <author initials="C. M." surname="Mangin" fullname="Christophe Mangin">
             <organization>IEEE 802.1</organization>
           </author>
-          <date month="August" year="2019"/>
+          <date month="September" year="2020"/>
         </front>
-        <seriesInfo name="IEEE P802.1CBdb /D0.2" value="P802.1CBdb"/>
-        <format type="PDF" target="http://www.ieee802.org/1/files/private/cb-drafts/d2/802-1CB-d2-1.pdf"/>
+        <seriesInfo name="IEEE P802.1CBdb /D1.0" value="P802.1CBdb"/>
+        <format type="PDF" target="http://www.ieee802.org/1/files/private/db-drafts/d1/802-1CBdb-d1-0.pdf"/>
       </reference>
 
       <reference anchor="IEEEP8021CBcv"
-                 target="http://www.ieee802.org/1/files/private/cv-drafts/d0/802-1CBcv-d0-3.pdf">
+                 target="https://www.ieee802.org/1/files/private/cv-drafts/d0/802-1CBcv-d0-4.pdf">
         <front>
           <title>FRER YANG Data Model and Management Information Base Module</title>
           <author initials="S." surname="Kehrer" fullname="Stephan Kehrer">
             <organization>IEEE 802.1</organization>
           </author>
-          <date month="May" year="2020"/>
+          <date month="August" year="2020"/>
         </front>
-        <seriesInfo name="IEEE P802.1CBcv /D0.3" value="P802.1CBcv"/>
-        <format type="PDF" target="http://www.ieee802.org/1/files/private/cv-drafts/d0/802-1CBcv-d0-3.pdf"/>
+        <seriesInfo name="IEEE P802.1CBcv /D0.4" value="P802.1CBcv"/>
+        <format type="PDF" target="https://www.ieee802.org/1/files/private/cv-drafts/d0/802-1CBcv-d0-4.pdf"/>
       </reference>
     </references>
 
