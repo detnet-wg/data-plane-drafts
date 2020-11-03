@@ -26,20 +26,20 @@ TREES := $(MODELS:.yang=.tree)
 %.txt: %.xml
 	@if [ $(WITHXML2RFC) == 0 ] ; then 	\
 		rm -f $@.prev; cp -pf $@ $@.prev > /dev/null 2>&1 ; \
-		xml2rfc $< -o $@		; \
+		xml2rfc --legacy $< -o $@		; \
 		if [ -f $@.prev ] ; then diff $@.prev $@ || exit 0 ; fi ; \
 	fi
 
 %.html: %.xml
 	@if [ $(WITHXML2RFC) == 0 ] ; then 	\
 		rm -f $@.prev; cp -pf $@ $@.prev > /dev/null 2>&1 ; \
-		xml2rfc --html $< -o $@		; \
+		xml2rfc --legacy --html $< -o $@		; \
 	fi
 
 %.raw: %.xml
 	@if [ $(WITHXML2RFC) == 0 ] ; then 	\
 		rm -f $@.prev; cp -pf $@ $@.prev > /dev/null 2>&1 ; \
-		xml2rfc --raw $< -o $@	; \
+		xml2rfc --legacy --raw $< -o $@	; \
 	fi
 
 all:	$(DRAFT).txt $(DRAFT).html $(DRAFT).raw
