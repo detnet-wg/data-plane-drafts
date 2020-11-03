@@ -5,13 +5,13 @@
 DetNet                                                     B. Varga, Ed.
 Internet-Draft                                                 J. Farkas
 Intended status: Standards Track                                Ericsson
-Expires: May 7, 2021                                            A. Malis
+Expires: May 6, 2021                                            A. Malis
                                                         Malis Consulting
                                                                S. Bryant
                                                   Futurewei Technologies
                                                                 D. Fedyk
                                                  LabN Consulting, L.L.C.
-                                                        November 3, 2020
+                                                        November 2, 2020
 
 
    DetNet Data Plane: IEEE 802.1 Time Sensitive Networking over MPLS
@@ -37,7 +37,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on May 7, 2021.
+   This Internet-Draft will expire on May 6, 2021.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Varga, et al.              Expires May 7, 2021                  [Page 1]
+Varga, et al.              Expires May 6, 2021                  [Page 1]
 
 Internet-Draft            TSN over DetNet MPLS             November 2020
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Varga, et al.              Expires May 7, 2021                  [Page 2]
+Varga, et al.              Expires May 6, 2021                  [Page 2]
 
 Internet-Draft            TSN over DetNet MPLS             November 2020
 
@@ -165,7 +165,7 @@ Internet-Draft            TSN over DetNet MPLS             November 2020
 
 
 
-Varga, et al.              Expires May 7, 2021                  [Page 3]
+Varga, et al.              Expires May 6, 2021                  [Page 3]
 
 Internet-Draft            TSN over DetNet MPLS             November 2020
 
@@ -221,7 +221,7 @@ Internet-Draft            TSN over DetNet MPLS             November 2020
 
 
 
-Varga, et al.              Expires May 7, 2021                  [Page 4]
+Varga, et al.              Expires May 6, 2021                  [Page 4]
 
 Internet-Draft            TSN over DetNet MPLS             November 2020
 
@@ -277,7 +277,7 @@ Internet-Draft            TSN over DetNet MPLS             November 2020
 
 
 
-Varga, et al.              Expires May 7, 2021                  [Page 5]
+Varga, et al.              Expires May 6, 2021                  [Page 5]
 
 Internet-Draft            TSN over DetNet MPLS             November 2020
 
@@ -333,7 +333,7 @@ Internet-Draft            TSN over DetNet MPLS             November 2020
 
 
 
-Varga, et al.              Expires May 7, 2021                  [Page 6]
+Varga, et al.              Expires May 6, 2021                  [Page 6]
 
 Internet-Draft            TSN over DetNet MPLS             November 2020
 
@@ -389,7 +389,7 @@ Internet-Draft            TSN over DetNet MPLS             November 2020
 
 
 
-Varga, et al.              Expires May 7, 2021                  [Page 7]
+Varga, et al.              Expires May 6, 2021                  [Page 7]
 
 Internet-Draft            TSN over DetNet MPLS             November 2020
 
@@ -445,7 +445,7 @@ Internet-Draft            TSN over DetNet MPLS             November 2020
 
 
 
-Varga, et al.              Expires May 7, 2021                  [Page 8]
+Varga, et al.              Expires May 6, 2021                  [Page 8]
 
 Internet-Draft            TSN over DetNet MPLS             November 2020
 
@@ -501,7 +501,7 @@ Internet-Draft            TSN over DetNet MPLS             November 2020
 
 
 
-Varga, et al.              Expires May 7, 2021                  [Page 9]
+Varga, et al.              Expires May 6, 2021                  [Page 9]
 
 Internet-Draft            TSN over DetNet MPLS             November 2020
 
@@ -557,7 +557,7 @@ Internet-Draft            TSN over DetNet MPLS             November 2020
 
 
 
-Varga, et al.              Expires May 7, 2021                 [Page 10]
+Varga, et al.              Expires May 6, 2021                 [Page 10]
 
 Internet-Draft            TSN over DetNet MPLS             November 2020
 
@@ -613,7 +613,7 @@ Internet-Draft            TSN over DetNet MPLS             November 2020
 
 
 
-Varga, et al.              Expires May 7, 2021                 [Page 11]
+Varga, et al.              Expires May 6, 2021                 [Page 11]
 
 Internet-Draft            TSN over DetNet MPLS             November 2020
 
@@ -669,7 +669,7 @@ Internet-Draft            TSN over DetNet MPLS             November 2020
 
 
 
-Varga, et al.              Expires May 7, 2021                 [Page 12]
+Varga, et al.              Expires May 6, 2021                 [Page 12]
 
 Internet-Draft            TSN over DetNet MPLS             November 2020
 
@@ -725,7 +725,7 @@ Internet-Draft            TSN over DetNet MPLS             November 2020
 
 
 
-Varga, et al.              Expires May 7, 2021                 [Page 13]
+Varga, et al.              Expires May 6, 2021                 [Page 13]
 
 Internet-Draft            TSN over DetNet MPLS             November 2020
 
@@ -781,7 +781,7 @@ Internet-Draft            TSN over DetNet MPLS             November 2020
 
 
 
-Varga, et al.              Expires May 7, 2021                 [Page 14]
+Varga, et al.              Expires May 6, 2021                 [Page 14]
 
 Internet-Draft            TSN over DetNet MPLS             November 2020
 
@@ -837,4 +837,4 @@ Authors' Addresses
 
 
 
-Varga, et al.              Expires May 7, 2021                 [Page 15]
+Varga, et al.              Expires May 6, 2021                 [Page 15]
