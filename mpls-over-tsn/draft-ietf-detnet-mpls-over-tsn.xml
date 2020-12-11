@@ -134,7 +134,7 @@
    </list>
   </t>
   </section>
-  <section title="Requirements Language">
+<!--  <section title="Requirements Language">
    <t>
     The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
     "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
@@ -142,7 +142,7 @@
     BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/> when, and
     only when, they appear in all capitals, as shown here.
    </t>
-   </section>
+   </section> -->
  </section>  <!-- end of terminology -->
 
  <section title="DetNet MPLS Data Plane Overview" anchor="sec_dt_dp">
@@ -580,14 +580,14 @@ Note: * no service sub-layer required for transit nodes
 
 <back>
   <references title="Normative References">
-   &rfc2119;
+<!--   &rfc2119; -->
    <?rfc include="reference.RFC.3031"?>
-   <?rfc include="reference.RFC.8174"?>
+<!--   <?rfc include="reference.RFC.8174"?> -->
       <?rfc include="reference.I-D.ietf-detnet-mpls"?>
   </references>
   <references title="Informative References">
       <?rfc include="reference.RFC.8655"?>
-      <?rfc include="reference.I-D.ietf-detnet-ip"?>
+<!--      <?rfc include="reference.I-D.ietf-detnet-ip"?> -->
       <?rfc include="reference.I-D.ietf-detnet-security"?>
    
     <reference anchor="IEEE802.1AE-2018"
