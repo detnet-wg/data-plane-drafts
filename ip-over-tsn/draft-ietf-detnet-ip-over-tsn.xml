@@ -80,7 +80,7 @@
         be found in the DetNet Architecture <xref target="RFC8655"/>.
       </t>
       <t>
-        <xref target="I-D.ietf-detnet-ip"/> specifies the DetNet data plane operation for IP
+        <xref target="RFC8939"/> specifies the DetNet data plane operation for IP
         hosts and routers that provide DetNet service to IP encapsulated
         data.  This document focuses on the scenario where DetNet IP nodes
 		are interconnected by a TSN sub-network.
@@ -91,7 +91,7 @@
         sub-layer.  The service sub-layer is used to provide DetNet service
         protection and reordering. The forwarding sub-layer is used to
         provides congestion protection (low loss, assured latency, and
-        limited reordering). As described in <xref target="I-D.ietf-detnet-ip"/> 
+        limited reordering). As described in <xref target="RFC8939"/> 
 		no DetNet specific headers are added to
         support DetNet IP flows, only the forwarding sub-layer functions are
         supported inside the DetNet domain. Service
@@ -128,7 +128,7 @@
         </t>
       </section>
 
-	  <section title="Requirements Language">
+<!--	  <section title="Requirements Language">
       <t>
         The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
         NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
@@ -137,12 +137,12 @@
         target="RFC8174"/> when, and only when, they appear in all
         capitals, as shown here.
       </t>
-	  </section>
+	  </section> -->
 </section>
 
 <section title="DetNet IP Data Plane Overview" anchor="sec_dt_dp">
       <t>
-        <xref target="I-D.ietf-detnet-ip"/> describes how IP is used by DetNet 
+        <xref target="RFC8939"/> describes how IP is used by DetNet 
 		nodes, i.e., hosts and routers, to identify DetNet flows and provide a 
 		DetNet service. From a data plane perspective, an end-to-end IP model
         is followed.  DetNet uses "6-tuple" based flow identification, where 
@@ -415,13 +415,13 @@
             <list style="symbols">
 			  <t>DetNet IP related configuration information according to the 
 			     DetNet role of the DetNet IP node, as per 
-			     <xref target="I-D.ietf-detnet-ip"/>. </t>
+			     <xref target="RFC8939"/>. </t>
 			  <t>TSN related configuration information according to the 
 			     TSN role of the DetNet IP node, as per 
 				 <xref target="IEEE8021Q"/>, <xref target="IEEE8021CB"/> and
 			     <xref target="IEEEP8021CBdb"/>. </t>
               <t>Mapping between DetNet IP flow(s) (as flow identification 
-			  defined in <xref target="I-D.ietf-detnet-ip"/>, it is summarized 
+			  defined in <xref target="RFC8939"/>, it is summarized 
 			  in Section 5.1 of that document, and includes all wildcards, port 
 			  ranges and the ability to ignore specific IP fields) and TSN 
 			  Stream(s) (as stream identification information defined in 
@@ -506,7 +506,7 @@
 	  <xref target="I-D.ietf-detnet-security"/>. General security considerations
       are described in <xref target="RFC8655"/>. 
 	  DetNet IP data plane specific considerations are summarized in 
-	  <xref target="I-D.ietf-detnet-ip"/>. 
+	  <xref target="RFC8939"/>. 
 	  This section considers exclusively security considerations which are 
 	  specific to the DetNet IP over TSN sub-network scenario.
       </t>
@@ -545,13 +545,13 @@
 
   <back>
     <references title="Normative references">
-      <?rfc include="reference.RFC.2119"?>
-      <?rfc include="reference.RFC.8174"?>
-      <?rfc include="reference.I-D.ietf-detnet-ip"?>
+<!--      <?rfc include="reference.RFC.2119"?>
+      <?rfc include="reference.RFC.8174"?> -->
+      <?rfc include="reference.RFC.8939"?>
     </references>
     <references title="Informative references">
       <?rfc include="reference.RFC.8655"?>
-      <?rfc include="reference.I-D.ietf-detnet-flow-information-model"?>
+<!--      <?rfc include="reference.I-D.ietf-detnet-flow-information-model"?>  -->
       <?rfc include="reference.I-D.ietf-detnet-security"?>
 
     <reference anchor="IEEE802.1AE-2018"
