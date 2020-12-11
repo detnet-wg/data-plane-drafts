@@ -295,7 +295,7 @@
 <section anchor="ip-flow-id-info"
                  title="Management and Control Information Summary">
           <t>
-            The following summarizes the set of information that is needed to
+            The following summarizes the minimum set of information that is needed to
             configure DetNet MPLS over UDP/IP:
             <list style="symbols">
                           <t>Label information (A-labels, S-labels and F-labels) to
@@ -307,11 +307,14 @@
               <t>DSCP Field in either IPv4 Type of Service or IPv6 Traffic Class Fields.</t>
               <t>UDP Source Port. </t>
               <t>UDP Destination Port. </t>
+              <t>Use/non-use of UDP checksum. </t>
             </list>
             This information MUST be provisioned per DetNet flow via
             configuration, e.g., via the controller <xref target="RFC8655"/> 
-			or management plane.
-          </t>
+			or management plane. Not using the UDP checksum has to be evaluated 
+			on a case-by-case basis for a given network scenario based on the
+			exception criteria's defined in <xref target="RFC7510"/>, 
+			particularly when IPv6 is used.</t>
           <t>
             It is the responsibility of the DetNet controller plane to
             properly provision both flow identification information and
