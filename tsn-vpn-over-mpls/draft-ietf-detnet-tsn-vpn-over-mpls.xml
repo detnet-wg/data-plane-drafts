@@ -102,7 +102,7 @@
   <t>
         This document uses the terminology and concepts established in the DetNet 
         architecture <xref target="RFC8655"/> and 
-        <xref target="I-D.ietf-detnet-data-plane-framework"/>, and 
+        <xref target="RFC8938"/>, and 
         <xref target="I-D.ietf-detnet-mpls"/>.  The reader is assumed 
         to be familiar with these documents and their terminology.
   </t>
@@ -484,11 +484,6 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
                 However, such interworking is out-of-scope in this document and
                 left for further study.
         </t>
-        <t>
-                A MPLS DetNet flow is configured to carry any number of
-                TSN flows. The DetNet flow specific bandwidth profile SHOULD 
-				match the required bandwidth of the App-flow aggregate.  
-        </t>
   </section>
 
   <section title="Edge Node DetNet Service and Forwarding Sub-Layer Procedures" anchor="tom_dn_sub_proc">
@@ -509,18 +504,9 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
                 (DetNet) Edge node terminates all related information elements 
                 encoded in the MPLS labels.
         </t>
-        <t>
-                The LSP used to forward the DetNet packet may be of any type (MPLS-LDP, 
-                MPLS-TE, MPLS-TP <xref target="RFC5921"/>, or MPLS-SR 
-                <xref target="RFC8660"/>).  The LSP 
-                (F-Label) label and/or the S-Label may be used to indicate the queue 
-                processing as well as the forwarding parameters.
-        </t>
     <t>		
-			When a PE receives a packet from the Service Proxy function it MUST
-			add to the packet the DetNet flow-ID specific S-label and create a 
-			d-CW. The PE MUST forward the packet according to the configured 
-			DetNet Service and Forwarding sub-layer rules to other PE nodes. 
+			When a PE receives a packet from the Service Proxy function it MUST 
+			handle the packet as defined in <xref target="I-D.ietf-detnet-mpls"/>.
     </t>
     <t>		
 			When a PE receives an MPLS packet from a remote PE, then, after 
@@ -674,12 +660,12 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
    &rfc5921;
    &rfc8660;
       <?rfc include="reference.RFC.8655"?>
-      <?rfc include="reference.I-D.ietf-detnet-data-plane-framework"?>
+      <?rfc include="reference.RFC.8938"?>
       <?rfc include="reference.I-D.ietf-detnet-security"?>
-      <?rfc include="reference.RFC.4301"?>
+<!--      <?rfc include="reference.RFC.4301"?> -->
 
 
-    <reference anchor="IEEE802.1AE-2018"
+<!--    <reference anchor="IEEE802.1AE-2018"
       target="https://ieeexplore.ieee.org/document/8585421">
       <front>
         <title>IEEE Std 802.1AE-2018 MAC Security (MACsec)</title>
@@ -688,7 +674,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
         </author>
         <date year="2018" />
       </front>
-    </reference>
+    </reference>  -->
 
       <reference anchor="IEEE8021Q"
                  target="http://standards.ieee.org/about/get/">
