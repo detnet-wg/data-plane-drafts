@@ -104,8 +104,8 @@
   <abstract>
    <t>
      This document specifies the MPLS Deterministic Networking data plane
-     operation and encapsulation over an IP network. The approach is modeled
-     on the operation of MPLS and over UDP/IP packet switched networks.
+     operation and encapsulation over an IP network. The approach is based 
+	 on the operation of MPLS-in-UDP technology.
    </t>
   </abstract>
   </front>
@@ -138,7 +138,7 @@
     <t>A method for identifying DetNet flows to the processing element.</t>
     <t>A method for carrying the DetNet sequence number.</t>
     <t>A method for distinguishing DetNet OAM packets from DetNet data packets.</t>
-    <t>A method for carrying queuing and forwarding indication.</t>
+    <t>A method for carrying queueing and forwarding indication.</t>
    </list>
   </t>
  <t>
@@ -228,7 +228,7 @@
 
  <t>
    Note that this encapsulation works equally well with IPv4, IPv6, and
-   IPv6-based Segment Routing <xref target="I-D.ietf-6man-segment-routing-header"/>.
+   IPv6-based Segment Routing <xref target="RFC8754"/>.
  </t>
 
  <figure title="UDP/IP Encapsulation of DetNet MPLS" anchor="IP-encap-dn">
@@ -266,7 +266,7 @@
 <section anchor="dp-procs" title="DetNet Data Plane Procedures">
   <t>
     To support outgoing DetNet MPLS over UDP encapsulation, an implementation MUST support the
-    provisioning of UDP and IP header information in addition or in place of
+    provisioning of UDP and IP header information in addition to or in place of
         F-Label(s).
     Note, when PRF is performed at the MPLS service sub-layer, there
     will be multiple member flows, and each member flow will require the
@@ -299,7 +299,7 @@
             configure DetNet MPLS over UDP/IP:
             <list style="symbols">
                           <t>Label information (A-labels, S-labels and F-labels) to
-                          be mapped to UDP/IP flow. Note that for example, a single
+                          be mapped to UDP/IP flows. Note that for example, a single
                           S-Label can map to multiple sets of UDP/IP
                           information when PREOF is used.</t>
               <t>IPv4 or IPv6 source address field.</t>
@@ -337,11 +337,11 @@
   <t>
     The solution defined in this document reuses mechanisms specified in
     other documents, and the security considerations in those documents
-    apply equally to this document. Notably <xref target="RFC7510"/>, as
+    apply equally to this document. Of particular note is <xref target="RFC7510"/>, as
     this document is primarily an application of
     MPLS-in-UDP. Additionally, the security considerations of DetNet in
     general are discussed in <xref target="RFC8655"/>
-   and <xref target="I-D.ietf-detnet-security"/>. Finally,MPLS and IP specific
+   and <xref target="I-D.ietf-detnet-security"/>. Finally, MPLS and IP specific
    security considerations are described in <xref target="I-D.ietf-detnet-mpls"/>
    and <xref target="I-D.ietf-detnet-ip"/>. This draft does not have additional
    security considerations.
@@ -386,7 +386,7 @@
   </references>
   <references title="Informative References">
    <?rfc include="reference.RFC.8655"?>
-   <?rfc include="reference.I-D.ietf-6man-segment-routing-header"?>
+   <?rfc include="reference.RFC.8754"?>
    <?rfc include="reference.I-D.ietf-detnet-security"?>
   </references>
  </back>
