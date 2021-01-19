@@ -18,7 +18,7 @@
          submissionType="IETF">
   <front>
     <title abbrev="DetNet MPLS over TSN">
-    DetNet Data Plane: MPLS over IEEE 802.1 Time Sensitive Networking (TSN)</title>
+    DetNet Data Plane: MPLS over IEEE 802.1 Time-Sensitive Networking (TSN)</title>
 
   <author role="editor" fullname="Bal&aacute;zs Varga" initials="B." surname="Varga">
 	<organization>Ericsson</organization>
@@ -66,7 +66,8 @@
   <abstract>
    <t>
      This document specifies the Deterministic Networking MPLS data plane
-     when operating over a TSN sub-network. This document does not define 
+     when operating over an IEEE 802.1 Time-Sensitive Networking (TSN) 
+	 sub-network. This document does not define 
 	 new procedures or processes.  Whenever this document makes requirements 
 	 statements or recommendations, these are taken from normative text in the 
 	 referenced RFCs.
@@ -97,6 +98,7 @@
 	DetNet flows can be carried over network technologies that can provide the 
 	DetNet required level of service. This document focuses on the scenario 
 	where MPLS (DetNet) nodes are interconnected by a IEEE 802.1 TSN sub-network.
+	There is close cooperation between the IETF DetNet WG and the IEEE 802.1 TSN TG.
   </t>
  </section>
 
@@ -115,9 +117,12 @@
   <t>
    The following abbreviations are used in this document:
    <list style="hanging" hangIndent="14">
+    <t hangText="A-Label">Aggregation label, a special case of an S-Label.</t>
     <t hangText="CW">Control Word.</t>
     <t hangText="DetNet">Deterministic Networking.</t>
     <t hangText="DF">DetNet Flow.</t>
+	<t hangText="F-Label">Forwarding label that identifies the LSP used by a 
+	DetNet flow.</t>
     <t hangText="FRER">Frame Replication and Elimination for Redundancy 
 	(TSN function).</t>
     <t hangText="L2">Layer 2.</t>
@@ -129,6 +134,7 @@
     <t hangText="PSN">Packet Switched Network.</t>
     <t hangText="PW">PseudoWire.</t>
     <t hangText="S-PE">Switching Provider Edge.</t>
+	<t hangText="S-Label">Service label.</t>
     <t hangText="T-PE">Terminating Provider Edge.</t>
     <t hangText="TSN">Time-Sensitive Network.</t>
    </list>
@@ -156,8 +162,8 @@
  <t>
   A node operating on a DetNet flow in the Detnet service sub-layer, i.e. 
   a node processing a DetNet packet which has the S-Label as top of stack uses 
-  the local context associated with that S-Label, for example a received 
-  F-Label, to determine what local DetNet operation(s) are applied to that 
+  the local context associated with that service label (S-Label), for example a received 
+  forwarding label (F-Label), to determine what local DetNet operation(s) are applied to that 
   packet. An S-Label may be unique when taken from the platform
   label space <xref target="RFC3031"/>, which would enable correct DetNet flow
   identification regardless of which input interface or LSP the packet arrives 
@@ -169,7 +175,7 @@
     encapsulations and mechanisms to provide a forwarding sub-layer that
     is responsible for providing resource allocation and explicit
     routes.  The forwarding sub-layer is supported by one or more
-    forwarding labels (F-Labels).
+    F-Labels.
   </t>
   <t>
         DetNet edge/relay nodes are DetNet service sub-layer
@@ -196,7 +202,7 @@
          title="DetNet MPLS Operation Over IEEE 802.1 TSN Sub-Networks">
 	<t>
 		The DetNet WG collaborates with IEEE 802.1 TSN in order to define a 
-		common architecture for both Layer 2 and Layer 3, what maintains 
+		common architecture for both Layer 2 and Layer 3, that maintains 
 		consistency across diverse networks. Both DetNet MPLS and TSN use
 		the same techniques to provide their deterministic service:
 		<list style="symbols">
@@ -271,8 +277,8 @@ Note: * no service sub-layer required for transit nodes
 		original Layer-2 destination MAC address and VLAN.
     </t>
     <t>
-        Placement of TSN functions depends on the TSN capabilities of
-        nodes. MPLS (DetNet) Nodes may or may not support TSN functions. For
+        Placement of TSN functions depends on the TSN capabilities of the
+        nodes along the path. MPLS (DetNet) Nodes may or may not support TSN functions. For
         a given TSN Stream (i.e., DetNet flow) an MPLS (DetNet) node is
         treated as a Talker or a Listener inside the TSN sub-network.
     </t>
@@ -366,7 +372,7 @@ Note: * no service sub-layer required for transit nodes
       </figure>
 
             <t>
-			  A TSN-aware MPLS (DetNet) node impementations must support the 
+			  A TSN-aware MPLS (DetNet) node implementation must support the 
 			  Stream Identification TSN component for recognizing flows.
             </t>
             <t>
@@ -379,7 +385,7 @@ Note: * no service sub-layer required for transit nodes
 			  <xref target="IEEEP8021CBdb">IEEE P802.1CBdb</xref>.
             </t>
             <t>
-			  A TSN-aware MPLS (DetNet) node implementations must support the 
+			  A TSN-aware MPLS (DetNet) node implementation must support the 
 			  Sequencing function and the Sequence encode/decode function as 
 			  defined in  Clause 7.4 and 7.6 of <xref target="IEEE8021CB">IEEE 802.1CB</xref> if FRER 
 			  is used inside the TSN sub-network.
@@ -390,7 +396,7 @@ Note: * no service sub-layer required for transit nodes
               target="IEEE8021CB">IEEE 802.1CB</xref>.
             </t>
             <t>
-			  A TSN-aware MPLS (DetNet) node implementations must support the 
+			  A TSN-aware MPLS (DetNet) node implementation must support the 
 			  Stream splitting 
 			  function and the Individual recovery function as defined in 
 			  Clause 7.7 and 7.5 of <xref target="IEEE8021CB">IEEE 802.1CB</xref> when the node is 
@@ -470,8 +476,8 @@ Note: * no service sub-layer required for transit nodes
         </t>
         <t>
 			Mappings between DetNet and TSN management and control planes are 
-			out of scope of the document. Some of the challanges are 
-			highligthed below.
+			out of scope of the document. Some of the challenges are 
+			highlighted below.
         </t>
         <t>
 			TSN-aware MPLS DetNet nodes are member of both the DetNet
