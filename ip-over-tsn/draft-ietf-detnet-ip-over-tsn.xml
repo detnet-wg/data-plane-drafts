@@ -229,7 +229,7 @@
 	  </t>
       <t>
         TSN capabilities of the TSN sub-network are made available for IP
-        (DetNet) flows via the protocol interworking function desribed in Annex C.5 of
+        (DetNet) flows via the protocol interworking function described in Annex C.5 of
         <xref target="IEEE8021CB">IEEE 802.1CB</xref>. For example,
         applied on the TSN edge port it can convert an ingress unicast 
 		IP (DetNet) flow to use a specific Layer-2 multicast destination 
