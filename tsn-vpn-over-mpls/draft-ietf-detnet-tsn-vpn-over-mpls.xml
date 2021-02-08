@@ -3,8 +3,6 @@
 <!ENTITY rfc2119 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY rfc3031 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3031.xml">
 <!ENTITY rfc3985 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3985.xml">
-<!ENTITY rfc5921 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5921.xml">
-<!ENTITY rfc8660 PUBLIC "" "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8660.xml">
 
 ]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
@@ -92,7 +90,7 @@
   <t>
         This document specifies the use of a DetNet MPLS network to interconnect TSN 
         nodes/network segments. DetNet MPLS data plane is defined in 
-        <xref target="I-D.ietf-detnet-mpls"/>.
+        <xref target="RFC8964"/>.
         <vspace blankLines="100" />   </t>
  </section>
 
@@ -103,7 +101,8 @@
         This document uses the terminology and concepts established in the DetNet 
         architecture <xref target="RFC8655"/> and 
         <xref target="RFC8938"/>, and 
-        <xref target="I-D.ietf-detnet-mpls"/>.  The reader is assumed 
+        <xref target="RFC8964"/>.  TSN specific terms are defined in the TSN TG 
+		of IEEE 802.1 Working Group. The reader is assumed 
         to be familiar with these documents and their terminology.
   </t>
   </section>
@@ -238,6 +237,8 @@ System |    +--------+       +--------+       +--------+   |  System
 
     X   = Service protection
     DFx = DetNet member flow x over a TE LSP
+	AC  = Attachment Circuit
+	Tnl = Tunnel
 ]]>
 </artwork>
 </figure>
@@ -252,7 +253,7 @@ System |    +--------+       +--------+       +--------+   |  System
 
  <section title="Overview" anchor="sec_dt_dp_ov">
  <t>
-        The basic approach defined in <xref target="I-D.ietf-detnet-mpls"/>
+        The basic approach defined in <xref target="RFC8964"/>
         supports the DetNet service sub-layer based on existing pseudowire (PW) 
         encapsulations and mechanisms, and supports the DetNet forwarding 
         sub-layer based on existing MPLS Traffic Engineering encapsulations 
@@ -326,7 +327,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
         In the figure, "Application" indicates the application payload carried by 
         the TSN network. "MPLS App-Flow" indicates that the TSN Stream is the 
         payload from the perspective of the DetNet MPLS data plane defined in 
-        <xref target="I-D.ietf-detnet-mpls"/>. A single DetNet MPLS flow 
+        <xref target="RFC8964"/>. A single DetNet MPLS flow 
         can aggregate multiple TSN Streams.
  </t>
  </section>
@@ -379,8 +380,9 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
                 TSN specific functions are executed on the data received by 
                 the DetNet Edge Node from the connected CE before forwarded to 
 				connected CE(s) or presentation to the DetNet Service Proxy function for 
-                transmission across the DetNet domain, or on the data received from 
-                a DetNet PW by a PE before it is output on the Attachment Circuit(s) (AC). 
+                transmission across the DetNet domain. TSN specific functions 
+				are also executed on the data received from a DetNet PW by a PE 
+				before the data is output on the Attachment Circuit(s) (AC). 
           </t>
           <t>
                 TSN packet processing function(s) of Edge Nodes (T-PE) are belonging to the 
@@ -400,7 +402,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
 			to a configured TSN Stream (i.e., App-flow from DetNet perspective). 
 			If no Stream ID is matched and no other (VPN) service is configured 
 			for the AC then packet MUST be dropped. If there is a matching TSN 
-			Stream then the Stream-ID specific TSN functions are executed 
+			Stream then the Stream ID specific TSN functions are executed 
 			(e.g., ingress policing, header field manipulation in case 
 			of active Stream Identification, FRER, etc.). Source MAC lookup 
 			may also be used for local MAC address learning.
@@ -409,7 +411,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
 			If the PE decides to forward the packet, the packet MUST be forwarded 
 			according to the TSN Stream specific configuration to connected CE(s) 
 			(in case of local bridging) and/or to the DetNet Service Proxy 
-			(in case of forwarding to remote CE(s) required). If there are no 
+			(in case of forwarding to remote CE(s)). If there are no 
 			TSN Stream specific forwarding configurations the PE MUST flood 
 			the packet to other locally attached CE(s) and to the DetNet Service 
 			Proxy. If the administrative policy on the PE does not allow 
@@ -488,13 +490,13 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
 
   <section title="Edge Node DetNet Service and Forwarding Sub-Layer Procedures" anchor="tom_dn_sub_proc">
           <t>
-                In the design of <xref target="I-D.ietf-detnet-mpls"/> an MPLS service 
+                In the design of <xref target="RFC8964"/> an MPLS service 
                 label (the S-Label), similar to a pseudowire (PW) label 
                 <xref target="RFC3985"/>, is used to identify both the DetNet flow 
                 identity and the payload MPLS payload type.  The DetNet sequence 
                 number is carried in the DetNet Control word (d-CW) which carries the 
                 Data/OAM discriminator as well. In 
-                <xref target="I-D.ietf-detnet-mpls"/> two sequence number sizes 
+                <xref target="RFC8964"/> two sequence number sizes 
                 are supported: a 16 bit sequence number and a 28 bit sequence number.
     </t>
     <t>
@@ -506,7 +508,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
         </t>
     <t>		
 			When a PE receives a packet from the Service Proxy function it MUST 
-			handle the packet as defined in <xref target="I-D.ietf-detnet-mpls"/>.
+			handle the packet as defined in <xref target="RFC8964"/>.
     </t>
     <t>		
 			When a PE receives an MPLS packet from a remote PE, then, after 
@@ -518,7 +520,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
     </t>
     <t>
                 For further details on DetNet Service and Forwarding sub-layers 
-				see <xref target="I-D.ietf-detnet-mpls"/>.
+				see <xref target="RFC8964"/>.
         </t>
   </section>
 
@@ -548,7 +550,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
 			     <xref target="IEEEP8021CBdb"/>. </t>
 			  <t>DetNet MPLS related configuration information according to the 
 			     DetNet role of the DetNet MPLS node, as per 
-			     <xref target="I-D.ietf-detnet-mpls"/>. </t>
+			     <xref target="RFC8964"/>. </t>
               <t>App-Flow identification information to map received TSN 
 			  Stream(s) to the DetNet flow. Parameters of TSN stream 
 			  identification are defined in <xref target="IEEE8021CB"/> and 
@@ -626,7 +628,7 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
   </t>
   <t>     
      DetNet MPLS data plane specific considerations are summarized and 
-	 described in <xref target="I-D.ietf-detnet-mpls"/> including any 
+	 described in <xref target="RFC8964"/> including any 
 	 application flow types. This document focuses on the scenario where TSN 
 	 Streams are the application flows for DetNet and it is already covered 
 	 by those DetNet MPLS data plane security considerations. 
@@ -653,12 +655,10 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
    &rfc2119;
    <?rfc include="reference.RFC.3031"?>
    <?rfc include="reference.RFC.8174"?>
-   <?rfc include="reference.I-D.ietf-detnet-mpls"?>
+   <?rfc include="reference.RFC.8964"?>
   </references>
   <references title="Informative References">
    &rfc3985;
-   &rfc5921;
-   &rfc8660;
       <?rfc include="reference.RFC.8655"?>
       <?rfc include="reference.RFC.8938"?>
       <?rfc include="reference.I-D.ietf-detnet-security"?>
