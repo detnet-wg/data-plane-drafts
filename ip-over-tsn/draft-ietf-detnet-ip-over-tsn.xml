@@ -106,8 +106,9 @@
         <t>
           This document uses the terminology and concepts established in
           the DetNet architecture <xref
-          target="RFC8655"/>, and the reader is assumed
-          to be familiar with that document and its terminology.
+          target="RFC8655"/>.  TSN specific terms are defined in the TSN TG 
+		of IEEE 802.1 Working Group.  The reader is assumed
+          to be familiar with these documents and their terminology.
         </t>
       </section>
 
