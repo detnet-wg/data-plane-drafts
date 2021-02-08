@@ -401,8 +401,8 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
 			whether the packet belongs 
 			to a configured TSN Stream (i.e., App-flow from DetNet perspective). 
 			If no Stream ID is matched and no other (VPN) service is configured 
-			for the AC then packet MUST be dropped. If there is a matching TSN 
-			Stream then the Stream ID specific TSN functions are executed 
+			for the AC, then packet MUST be dropped. If there is a matching TSN 
+			Stream, then the Stream ID specific TSN functions are executed 
 			(e.g., ingress policing, header field manipulation in case 
 			of active Stream Identification, FRER, etc.). Source MAC lookup 
 			may also be used for local MAC address learning.
@@ -412,10 +412,10 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
 			according to the TSN Stream specific configuration to connected CE(s) 
 			(in case of local bridging) and/or to the DetNet Service Proxy 
 			(in case of forwarding to remote CE(s)). If there are no 
-			TSN Stream specific forwarding configurations the PE MUST flood 
+			TSN Stream specific forwarding configurations, the PE MUST flood 
 			the packet to other locally attached CE(s) and to the DetNet Service 
 			Proxy. If the administrative policy on the PE does not allow 
-			flooding the PE MUST drop the packet.
+			flooding, the PE MUST drop the packet.
     </t>
     <t>		
 			When a TSN entity of the PE receives a packet from the DetNet 
@@ -423,8 +423,8 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
 			(see Clause 6. of <xref target="IEEE8021CB">IEEE 802.1CB</xref> and
             <xref target="IEEEP8021CBdb">IEEE P802.1CBdb</xref>) whether 
 			the packet belongs to a configured TSN Stream. If no Stream ID is 
-			matched then packet is dropped. If there is a matching TSN 
-			Stream then the Stream ID specific TSN functions are executed 
+			matched, then packet is dropped. If there is a matching TSN 
+			Stream, then the Stream ID specific TSN functions are executed 
 			(e.g., header field manipulation in case of active Stream 
 			Identification, FRER, etc.). Source MAC lookup may also be used for 
 			local MAC address learning.
@@ -432,9 +432,9 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
     <t>		
 			If the PE decides to forward the packet, the packet is forwarded 
 			according to the TSN Stream specific configuration to connected CE(s).
-			If there are no TSN Stream specific forwarding configurations the 
+			If there are no TSN Stream specific forwarding configurations, the 
 			PE floods the packet to locally attached CE(s). If the 
-			administrative policy on the PE does not allow flooding the PE  
+			administrative policy on the PE does not allow flooding, the PE  
 			drops the packet.
     </t>
     <t>
