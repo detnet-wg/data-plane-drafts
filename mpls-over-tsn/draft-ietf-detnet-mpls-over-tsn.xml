@@ -79,7 +79,7 @@
  <section title="Introduction" anchor="sec_intro">
   <t>
     Deterministic Networking (DetNet) is a service that can be offered by a
-    network to DetNet flows.  DetNet provides these flows with a low packet loss
+    network to DetNet flows.  DetNet provides these flows with low packet loss
     rates and assured maximum end-to-end delivery latency.  General background
     and concepts of DetNet can be found in <xref
     target="RFC8655"/>.
@@ -88,12 +88,12 @@
     The DetNet Architecture decomposes the DetNet related data plane
     functions into two sub-layers: a service sub-layer and a forwarding sub-layer.
     The service sub-layer is used to provide DetNet service protection and
-    reordering. The forwarding sub-layer is used to provides congestion
+    reordering. The forwarding sub-layer is used to provide congestion
     protection (low loss, assured latency, and limited reordering)
     leveraging MPLS Traffic Engineering mechanisms.
   </t>
   <t>
-	<xref target="I-D.ietf-detnet-mpls"/> specifies the DetNet data plane 
+	<xref target="RFC8964"/> specifies the DetNet data plane 
 	operation for MPLS-based Packet Switched Network (PSN).  MPLS encapsulated 
 	DetNet flows can be carried over network technologies that can provide the 
 	DetNet required level of service. This document focuses on the scenario 
@@ -108,8 +108,9 @@
   <t>
    This document uses the terminology established in the DetNet architecture
    <xref target="RFC8655"/> and 
-   <xref target="I-D.ietf-detnet-mpls"/>, and the reader is assumed
-   to be familiar with that document and its terminology.
+   <xref target="RFC8964"/>.  TSN specific terms are defined in the TSN TG 
+		of IEEE 802.1 Working Group.  The reader is assumed
+   to be familiar with these documents and their terminology.
   </t>
   </section>
 
@@ -153,7 +154,7 @@
 
  <section title="DetNet MPLS Data Plane Overview" anchor="sec_dt_dp">
   <t>
-	The basic approach defined in <xref target="I-D.ietf-detnet-mpls"/>
+	The basic approach defined in <xref target="RFC8964"/>
 	supports the DetNet service sub-layer based on existing pseudowire (PW) 
 	encapsulations and mechanisms, and supports the DetNet forwarding 
 	sub-layer based on existing MPLS Traffic Engineering encapsulations 
@@ -262,7 +263,8 @@ Note: * no service sub-layer required for transit nodes
 		<xref target="IEEE8021CB">IEEE 802.1CB</xref> defines frame replication
 		and elimination functions for reliability that should prove both 
 		compatible with and useful to, DetNet networks. All these functions 
-		have to identify flows those require TSN treatment.
+		have to identify flows those require TSN treatment (i.e., applying TSN 
+		functions during forwarding).
     </t>
     <t>
         TSN capabilities of the TSN sub-network are made available for MPLS
@@ -458,14 +460,14 @@ Note: * no service sub-layer required for transit nodes
             <list style="symbols">
 			  <t>DetNet MPLS related configuration information according to the 
 			     DetNet role of the DetNet MPLS node, as per 
-			     <xref target="I-D.ietf-detnet-mpls"/>. </t>
+			     <xref target="RFC8964"/>. </t>
 			  <t>TSN related configuration information according to the 
 			     TSN role of the DetNet MPLS node, as per 
 				 <xref target="IEEE8021Q"/>, <xref target="IEEE8021CB"/> and
 			     <xref target="IEEEP8021CBdb"/>. </t>
               <t>Mapping between DetNet MPLS flow(s) (label information: 
 			  A-labels, S-labels and F-labels as defined in 
-			  <xref target="I-D.ietf-detnet-mpls"/>) and TSN 
+			  <xref target="RFC8964"/>) and TSN 
 			  Stream(s) (as stream identification information defined in 
 			  <xref target="IEEEP8021CBdb"/>).
 			  Note, that managed objects for TSN Stream identification can be 
@@ -547,7 +549,7 @@ Note: * no service sub-layer required for transit nodes
 	  <xref target="I-D.ietf-detnet-security"/>. General security considerations
       are described in <xref target="RFC8655"/>. 
 	  DetNet MPLS data plane specific considerations are summarized in 
-	  <xref target="I-D.ietf-detnet-mpls"/>. 
+	  <xref target="RFC8964"/>. 
 	  This section considers exclusively security considerations which are 
 	  specific to the DetNet MPLS over TSN sub-network scenario.
       </t>
@@ -589,7 +591,35 @@ Note: * no service sub-layer required for transit nodes
 <!--   &rfc2119; -->
    <?rfc include="reference.RFC.3031"?>
 <!--   <?rfc include="reference.RFC.8174"?> -->
-      <?rfc include="reference.I-D.ietf-detnet-mpls"?>
+      <?rfc include="reference.RFC.8964"?>
+
+      <reference anchor="IEEE8021CB"
+                 target="http://standards.ieee.org/about/get/">
+        <front>
+          <title>Standard for Local and metropolitan area networks - 
+		  Frame Replication and Elimination for Reliability 
+		  (IEEE Std 802.1CB-2017)</title>
+          <author>
+            <organization>IEEE 802.1</organization>
+          </author>
+          <date year="2017"/>
+        </front>
+        <format type="PDF" target="http://standards.ieee.org/about/get/"/>
+      </reference>
+
+      <reference anchor="IEEEP8021CBdb"
+                 target="http://www.ieee802.org/1/files/private/db-drafts/d1/802-1CBdb-d1-0.pdf">
+        <front>
+          <title>Extended Stream identification functions</title>
+          <author initials="C. M." surname="Mangin" fullname="Christophe Mangin">
+            <organization>IEEE 802.1</organization>
+          </author>
+          <date month="September" year="2020"/>
+        </front>
+        <seriesInfo name="IEEE P802.1CBdb /D1.0" value="P802.1CBdb"/>
+        <format type="PDF" target="http://www.ieee802.org/1/files/private/db-drafts/d1/802-1CBdb-d1-0.pdf"/>
+      </reference>
+
   </references>
   <references title="Informative References">
       <?rfc include="reference.RFC.8655"?>
@@ -618,33 +648,6 @@ Note: * no service sub-layer required for transit nodes
           <date year="2018"/>
         </front>
         <format type="PDF" target="http://standards.ieee.org/about/get/"/>
-      </reference>
-
-      <reference anchor="IEEE8021CB"
-                 target="http://standards.ieee.org/about/get/">
-        <front>
-          <title>Standard for Local and metropolitan area networks - 
-		  Frame Replication and Elimination for Reliability 
-		  (IEEE Std 802.1CB-2017)</title>
-          <author>
-            <organization>IEEE 802.1</organization>
-          </author>
-          <date year="2017"/>
-        </front>
-        <format type="PDF" target="http://standards.ieee.org/about/get/"/>
-      </reference>
-
-      <reference anchor="IEEEP8021CBdb"
-                 target="http://www.ieee802.org/1/files/private/db-drafts/d1/802-1CBdb-d1-0.pdf">
-        <front>
-          <title>Extended Stream identification functions</title>
-          <author initials="C. M." surname="Mangin" fullname="Christophe Mangin">
-            <organization>IEEE 802.1</organization>
-          </author>
-          <date month="September" year="2020"/>
-        </front>
-        <seriesInfo name="IEEE P802.1CBdb /D1.0" value="P802.1CBdb"/>
-        <format type="PDF" target="http://www.ieee802.org/1/files/private/db-drafts/d1/802-1CBdb-d1-0.pdf"/>
       </reference>
 
       <reference anchor="IEEEP8021CBcv"
