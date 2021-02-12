@@ -1,0 +1,939 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+
+  <title>DetNet Data Plane: IEEE 802.1 Time Sensitive Networking over MPLS</title>
+
+  <style type="text/css" title="Xml2Rfc (sans serif)">
+  /*<![CDATA[*/
+	  a {
+	  text-decoration: none;
+	  }
+      /* info code from SantaKlauss at http://www.madaboutstyle.com/tooltip2.html */
+      a.info {
+          /* This is the key. */
+          position: relative;
+          z-index: 24;
+          text-decoration: none;
+      }
+      a.info:hover {
+          z-index: 25;
+          color: #FFF; background-color: #900;
+      }
+      a.info span { display: none; }
+      a.info:hover span.info {
+          /* The span will display just on :hover state. */
+          display: block;
+          position: absolute;
+          font-size: smaller;
+          top: 2em; left: -5em; width: 15em;
+          padding: 2px; border: 1px solid #333;
+          color: #900; background-color: #EEE;
+          text-align: left;
+      }
+	  a.smpl {
+	  color: black;
+	  }
+	  a:hover {
+	  text-decoration: underline;
+	  }
+	  a:active {
+	  text-decoration: underline;
+	  }
+	  address {
+	  margin-top: 1em;
+	  margin-left: 2em;
+	  font-style: normal;
+	  }
+	  body {
+	  color: black;
+	  font-family: verdana, helvetica, arial, sans-serif;
+	  font-size: 10pt;
+	  max-width: 55em;
+	  
+	  }
+	  cite {
+	  font-style: normal;
+	  }
+	  dd {
+	  margin-right: 2em;
+	  }
+	  dl {
+	  margin-left: 2em;
+	  }
+	
+	  ul.empty {
+	  list-style-type: none;
+	  }
+	  ul.empty li {
+	  margin-top: .5em;
+	  }
+	  dl p {
+	  margin-left: 0em;
+	  }
+	  dt {
+	  margin-top: .5em;
+	  }
+	  h1 {
+	  font-size: 14pt;
+	  line-height: 21pt;
+	  page-break-after: avoid;
+	  }
+	  h1.np {
+	  page-break-before: always;
+	  }
+	  h1 a {
+	  color: #333333;
+	  }
+	  h2 {
+	  font-size: 12pt;
+	  line-height: 15pt;
+	  page-break-after: avoid;
+	  }
+	  h3, h4, h5, h6 {
+	  font-size: 10pt;
+	  page-break-after: avoid;
+	  }
+	  h2 a, h3 a, h4 a, h5 a, h6 a {
+	  color: black;
+	  }
+	  img {
+	  margin-left: 3em;
+	  }
+	  li {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  ol {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  ol p {
+	  margin-left: 0em;
+	  }
+	  p {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  pre {
+	  margin-left: 3em;
+	  background-color: lightyellow;
+	  padding: .25em;
+	  }
+	  pre.text2 {
+	  border-style: dotted;
+	  border-width: 1px;
+	  background-color: #f0f0f0;
+	  width: 69em;
+	  }
+	  pre.inline {
+	  background-color: white;
+	  padding: 0em;
+	  }
+	  pre.text {
+	  border-style: dotted;
+	  border-width: 1px;
+	  background-color: #f8f8f8;
+	  width: 69em;
+	  }
+	  pre.drawing {
+	  border-style: solid;
+	  border-width: 1px;
+	  background-color: #f8f8f8;
+	  padding: 2em;
+	  }
+	  table {
+	  margin-left: 2em;
+	  }
+	  table.tt {
+	  vertical-align: top;
+	  }
+	  table.full {
+	  border-style: outset;
+	  border-width: 1px;
+	  }
+	  table.headers {
+	  border-style: outset;
+	  border-width: 1px;
+	  }
+	  table.tt td {
+	  vertical-align: top;
+	  }
+	  table.full td {
+	  border-style: inset;
+	  border-width: 1px;
+	  }
+	  table.tt th {
+	  vertical-align: top;
+	  }
+	  table.full th {
+	  border-style: inset;
+	  border-width: 1px;
+	  }
+	  table.headers th {
+	  border-style: none none inset none;
+	  border-width: 1px;
+	  }
+	  table.left {
+	  margin-right: auto;
+	  }
+	  table.right {
+	  margin-left: auto;
+	  }
+	  table.center {
+	  margin-left: auto;
+	  margin-right: auto;
+	  }
+	  caption {
+	  caption-side: bottom;
+	  font-weight: bold;
+	  font-size: 9pt;
+	  margin-top: .5em;
+	  }
+	
+	  table.header {
+	  border-spacing: 1px;
+	  width: 95%;
+	  font-size: 10pt;
+	  color: white;
+	  }
+	  td.top {
+	  vertical-align: top;
+	  }
+	  td.topnowrap {
+	  vertical-align: top;
+	  white-space: nowrap; 
+	  }
+	  table.header td {
+	  background-color: gray;
+	  width: 50%;
+	  }
+	  table.header a {
+	  color: white;
+	  }
+	  td.reference {
+	  vertical-align: top;
+	  white-space: nowrap;
+	  padding-right: 1em;
+	  }
+	  thead {
+	  display:table-header-group;
+	  }
+	  ul.toc, ul.toc ul {
+	  list-style: none;
+	  margin-left: 1.5em;
+	  margin-right: 0em;
+	  padding-left: 0em;
+	  }
+	  ul.toc li {
+	  line-height: 150%;
+	  font-weight: bold;
+	  font-size: 10pt;
+	  margin-left: 0em;
+	  margin-right: 0em;
+	  }
+	  ul.toc li li {
+	  line-height: normal;
+	  font-weight: normal;
+	  font-size: 9pt;
+	  margin-left: 0em;
+	  margin-right: 0em;
+	  }
+	  li.excluded {
+	  font-size: 0pt;
+	  }
+	  ul p {
+	  margin-left: 0em;
+	  }
+	
+	  .comment {
+	  background-color: yellow;
+	  }
+	  .center {
+	  text-align: center;
+	  }
+	  .error {
+	  color: red;
+	  font-style: italic;
+	  font-weight: bold;
+	  }
+	  .figure {
+	  font-weight: bold;
+	  text-align: center;
+	  font-size: 9pt;
+	  }
+	  .filename {
+	  color: #333333;
+	  font-weight: bold;
+	  font-size: 12pt;
+	  line-height: 21pt;
+	  text-align: center;
+	  }
+	  .fn {
+	  font-weight: bold;
+	  }
+	  .hidden {
+	  display: none;
+	  }
+	  .left {
+	  text-align: left;
+	  }
+	  .right {
+	  text-align: right;
+	  }
+	  .title {
+	  color: #990000;
+	  font-size: 18pt;
+	  line-height: 18pt;
+	  font-weight: bold;
+	  text-align: center;
+	  margin-top: 36pt;
+	  }
+	  .vcardline {
+	  display: block;
+	  }
+	  .warning {
+	  font-size: 14pt;
+	  background-color: yellow;
+	  }
+	
+	
+	  @media print {
+	  .noprint {
+		display: none;
+	  }
+	
+	  a {
+		color: black;
+		text-decoration: none;
+	  }
+	
+	  table.header {
+		width: 90%;
+	  }
+	
+	  td.header {
+		width: 50%;
+		color: black;
+		background-color: white;
+		vertical-align: top;
+		font-size: 12pt;
+	  }
+	
+	  ul.toc a::after {
+		content: leader('.') target-counter(attr(href), page);
+	  }
+	
+	  ul.ind li li a {
+		content: target-counter(attr(href), page);
+	  }
+	
+	  .print2col {
+		column-count: 2;
+		-moz-column-count: 2;
+		column-fill: auto;
+	  }
+	  }
+	
+	  @page {
+	  @top-left {
+		   content: "Internet-Draft"; 
+	  } 
+	  @top-right {
+		   content: "December 2010"; 
+	  } 
+	  @top-center {
+		   content: "Abbreviated Title";
+	  } 
+	  @bottom-left {
+		   content: "Doe"; 
+	  } 
+	  @bottom-center {
+		   content: "Expires June 2011"; 
+	  } 
+	  @bottom-right {
+		   content: "[Page " counter(page) "]"; 
+	  } 
+	  }
+	
+	  @page:first { 
+		@top-left {
+		  content: normal;
+		}
+		@top-right {
+		  content: normal;
+		}
+		@top-center {
+		  content: normal;
+		}
+	  }
+  /*]]>*/
+  </style>
+
+  <link href="#rfc.toc" rel="Contents">
+<link href="#rfc.section.1" rel="Chapter" title="1 Introduction">
+<link href="#rfc.section.2" rel="Chapter" title="2 Terminology">
+<link href="#rfc.section.2.1" rel="Chapter" title="2.1 Terms Used in This Document">
+<link href="#rfc.section.2.2" rel="Chapter" title="2.2 Abbreviations">
+<link href="#rfc.section.2.3" rel="Chapter" title="2.3 Requirements Language">
+<link href="#rfc.section.3" rel="Chapter" title="3 IEEE 802.1 TSN Over DetNet MPLS Data Plane Scenario">
+<link href="#rfc.section.4" rel="Chapter" title="4 DetNet MPLS Data Plane">
+<link href="#rfc.section.4.1" rel="Chapter" title="4.1 Overview">
+<link href="#rfc.section.4.2" rel="Chapter" title="4.2 TSN over DetNet MPLS Encapsulation">
+<link href="#rfc.section.5" rel="Chapter" title="5 TSN over MPLS Data Plane Procedures">
+<link href="#rfc.section.5.1" rel="Chapter" title="5.1 Edge Node TSN Procedures">
+<link href="#rfc.section.5.2" rel="Chapter" title="5.2 Edge Node DetNet Service Proxy Procedures">
+<link href="#rfc.section.5.3" rel="Chapter" title="5.3 Edge Node DetNet Service and Forwarding Sub-Layer Procedures">
+<link href="#rfc.section.6" rel="Chapter" title="6 Controller Plane (Management and Control) Considerations">
+<link href="#rfc.section.7" rel="Chapter" title="7 Security Considerations">
+<link href="#rfc.section.8" rel="Chapter" title="8 IANA Considerations">
+<link href="#rfc.section.9" rel="Chapter" title="9 Acknowledgements">
+<link href="#rfc.references" rel="Chapter" title="10 References">
+<link href="#rfc.references.1" rel="Chapter" title="10.1 Normative References">
+<link href="#rfc.references.2" rel="Chapter" title="10.2 Informative References">
+<link href="#rfc.authors" rel="Chapter">
+
+
+  <meta name="generator" content="xml2rfc version 3.3.0 - https://tools.ietf.org/tools/xml2rfc" />
+  <link rel="schema.dct" href="http://purl.org/dc/terms/" />
+
+  <meta name="dct.creator" content="Varga, B., Ed., Farkas, J., Malis, A., Bryant, S., and D. Fedyk" />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-detnet-tsn-vpn-over-mpls-06" />
+  <meta name="dct.issued" scheme="ISO8601" content="2021-12" />
+  <meta name="dct.abstract" content="This document specifies the Deterministic Networking data plane when TSN networks are interconnected over a DetNet MPLS Network.   " />
+  <meta name="description" content="This document specifies the Deterministic Networking data plane when TSN networks are interconnected over a DetNet MPLS Network.   " />
+
+</head>
+
+<body>
+
+  <table class="header">
+    <tbody>
+    
+    	<tr>
+<td class="left">DetNet</td>
+<td class="right">B. Varga, Ed.</td>
+</tr>
+<tr>
+<td class="left">Internet-Draft</td>
+<td class="right">J. Farkas</td>
+</tr>
+<tr>
+<td class="left">Intended status: Standards Track</td>
+<td class="right">Ericsson</td>
+</tr>
+<tr>
+<td class="left">Expires: August 16, 2021</td>
+<td class="right">A. Malis</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">Malis Consulting</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">S. Bryant</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">Futurewei Technologies</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">D. Fedyk</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">LabN Consulting, L.L.C.</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">February 12, 2021</td>
+</tr>
+
+    	
+    </tbody>
+  </table>
+
+  <p class="title">DetNet Data Plane: IEEE 802.1 Time Sensitive Networking over MPLS<br />
+  <span class="filename">draft-ietf-detnet-tsn-vpn-over-mpls-06</span></p>
+  
+  <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
+<p>This document specifies the Deterministic Networking data plane when TSN networks are interconnected over a DetNet MPLS Network.  </p>
+<h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
+<p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
+<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
+<p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
+<p>This Internet-Draft will expire on August 16, 2021.</p>
+<h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
+<p>Copyright (c) 2021 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
+
+  
+  <hr class="noprint" />
+  <h1 class="np" id="rfc.toc"><a href="#rfc.toc">Table of Contents</a></h1>
+  <ul class="toc">
+
+  	<li>1.   <a href="#rfc.section.1">Introduction</a>
+</li>
+<li>2.   <a href="#rfc.section.2">Terminology</a>
+</li>
+<ul><li>2.1.   <a href="#rfc.section.2.1">Terms Used in This Document</a>
+</li>
+<li>2.2.   <a href="#rfc.section.2.2">Abbreviations</a>
+</li>
+<li>2.3.   <a href="#rfc.section.2.3">Requirements Language</a>
+</li>
+</ul><li>3.   <a href="#rfc.section.3">IEEE 802.1 TSN Over DetNet MPLS Data Plane Scenario</a>
+</li>
+<li>4.   <a href="#rfc.section.4">DetNet MPLS Data Plane</a>
+</li>
+<ul><li>4.1.   <a href="#rfc.section.4.1">Overview</a>
+</li>
+<li>4.2.   <a href="#rfc.section.4.2">TSN over DetNet MPLS Encapsulation</a>
+</li>
+</ul><li>5.   <a href="#rfc.section.5">TSN over MPLS Data Plane Procedures</a>
+</li>
+<ul><li>5.1.   <a href="#rfc.section.5.1">Edge Node TSN Procedures</a>
+</li>
+<li>5.2.   <a href="#rfc.section.5.2">Edge Node DetNet Service Proxy Procedures</a>
+</li>
+<li>5.3.   <a href="#rfc.section.5.3">Edge Node DetNet Service and Forwarding Sub-Layer Procedures</a>
+</li>
+</ul><li>6.   <a href="#rfc.section.6">Controller Plane (Management and Control) Considerations</a>
+</li>
+<li>7.   <a href="#rfc.section.7">Security Considerations</a>
+</li>
+<li>8.   <a href="#rfc.section.8">IANA Considerations</a>
+</li>
+<li>9.   <a href="#rfc.section.9">Acknowledgements</a>
+</li>
+<li>10.   <a href="#rfc.references">References</a>
+</li>
+<ul><li>10.1.   <a href="#rfc.references.1">Normative References</a>
+</li>
+<li>10.2.   <a href="#rfc.references.2">Informative References</a>
+</li>
+</ul><li><a href="#rfc.authors">Authors' Addresses</a>
+</li>
+
+
+  </ul>
+
+  <h1 id="rfc.section.1">
+<a href="#rfc.section.1">1.</a> <a href="#sec_intro" id="sec_intro">Introduction</a>
+</h1>
+<p id="rfc.section.1.p.1">The Time-Sensitive Networking Task Group (TSN TG) within IEEE 802.1 Working Group deals with deterministic services through IEEE 802 networks.  Deterministic Networking (DetNet) defined by IETF is a service that can be offered by a L3 network to DetNet flows.  General background and concepts of DetNet can be found in <a href="#RFC8655" class="xref">[RFC8655]</a>.  </p>
+<p id="rfc.section.1.p.2">This document specifies the use of a DetNet MPLS network to interconnect TSN nodes/network segments. DetNet MPLS data plane is defined in <a href="#RFC8964" class="xref">[RFC8964]</a>.  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>   </p>
+<h1 id="rfc.section.2">
+<a href="#rfc.section.2">2.</a> Terminology</h1>
+<h1 id="rfc.section.2.1">
+<a href="#rfc.section.2.1">2.1.</a> Terms Used in This Document</h1>
+<p id="rfc.section.2.1.p.1">This document uses the terminology and concepts established in the DetNet architecture <a href="#RFC8655" class="xref">[RFC8655]</a> and <a href="#RFC8938" class="xref">[RFC8938]</a>, and <a href="#RFC8964" class="xref">[RFC8964]</a>.  TSN specific terms are defined in the TSN TG of IEEE 802.1 Working Group. The reader is assumed to be familiar with these documents and their terminology.  </p>
+<h1 id="rfc.section.2.2">
+<a href="#rfc.section.2.2">2.2.</a> Abbreviations</h1>
+<p id="rfc.section.2.2.p.1">The following abbreviations are used in this document: </p>
+
+<dl>
+<dt>AC</dt>
+<dd style="margin-left: 14">Attachment Circuit.</dd>
+<dt>CE</dt>
+<dd style="margin-left: 14">Customer Edge equipment.</dd>
+<dt>CW</dt>
+<dd style="margin-left: 14">Control Word.</dd>
+<dt>DetNet</dt>
+<dd style="margin-left: 14">Deterministic Networking.</dd>
+<dt>DF</dt>
+<dd style="margin-left: 14">DetNet Flow.</dd>
+<dt>FRER</dt>
+<dd style="margin-left: 14">Frame Replication and Elimination for Redundancy (TSN function).</dd>
+<dt>L2</dt>
+<dd style="margin-left: 14">Layer 2.</dd>
+<dt>L2VPN</dt>
+<dd style="margin-left: 14">Layer 2 Virtual Private Network.</dd>
+<dt>L3</dt>
+<dd style="margin-left: 14">Layer 3.</dd>
+<dt>LSR</dt>
+<dd style="margin-left: 14">Label Switching Router.</dd>
+<dt>MPLS</dt>
+<dd style="margin-left: 14">Multiprotocol Label Switching.</dd>
+<dt>MPLS-TE</dt>
+<dd style="margin-left: 14">Multiprotocol Label Switching - Traffic Engineering.</dd>
+<dt>MPLS-TP</dt>
+<dd style="margin-left: 14">Multiprotocol Label Switching - Transport Profile.</dd>
+<dt>NSP</dt>
+<dd style="margin-left: 14">Native Service Processing.</dd>
+<dt>OAM</dt>
+<dd style="margin-left: 14">Operations, Administration, and Maintenance.</dd>
+<dt>PE</dt>
+<dd style="margin-left: 14">Provider Edge.</dd>
+<dt>PREOF</dt>
+<dd style="margin-left: 14">Packet Replication, Elimination and Ordering Functions.</dd>
+<dt>PW</dt>
+<dd style="margin-left: 14">PseudoWire.</dd>
+<dt>S-PE</dt>
+<dd style="margin-left: 14">Switching Provider Edge.</dd>
+<dt>T-PE</dt>
+<dd style="margin-left: 14">Terminating Provider Edge.</dd>
+<dt>TSN</dt>
+<dd style="margin-left: 14">Time-Sensitive Network.</dd>
+</dl>
+
+<p> </p>
+<h1 id="rfc.section.2.3">
+<a href="#rfc.section.2.3">2.3.</a> Requirements Language</h1>
+<p id="rfc.section.2.3.p.1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 <a href="#RFC2119" class="xref">[RFC2119]</a> <a href="#RFC8174" class="xref">[RFC8174]</a> when, and only when, they appear in all capitals, as shown here.  </p>
+<h1 id="rfc.section.3">
+<a href="#rfc.section.3">3.</a> <a href="#sec_tsn_mpls_dt_dp_scen" id="sec_tsn_mpls_dt_dp_scen">IEEE 802.1 TSN Over DetNet MPLS Data Plane Scenario</a>
+</h1>
+<p><a href="#fig_tsn_mpls_detnet" class="xref">Figure 1</a> shows IEEE 802.1 TSN end stations operating over a TSN aware DetNet service running over an MPLS network.  DetNet Edge Nodes sit at the boundary of a DetNet domain. They are responsible for mapping non-DetNet aware L2 traffic to DetNet services.  They also support the imposition and disposition of the required DetNet encapsulation.  These are functionally similar to pseudowire (PW) Terminating Provider Edge (T-PE) nodes which use MPLS-TE LSPs.  In this example TSN Streams are simple applications over DetNet flows.  The specific of this operation are discussed later in this document.  </p>
+<div id="rfc.figure.1"></div>
+<div id="fig_tsn_mpls_detnet"></div>
+<pre>
+   TSN           Edge          Transit         Edge          TSN
+End System       Node           Node           Node       End System
+                (T-PE)         (LSR)          (T-PE)
+
++----------+                                             +----------+
+|   TSN    | &lt;---------End to End TSN Service----------&gt; |   TSN    |
+|  Applic. |                                             |  Applic. |
++----------+  +.........+                   +.........+  +----------+
+|          |  | \S-Proxy:                   :S-Proxy/ |  |          |
+|   TSN    |  |   +.+---+&lt;-- DetNet flow --&gt;+---+ |   |  |   TSN    |
+|          |  |TSN| |Svc|                   |Svc| |TSN|  |          |
++----------+  +---+ +---+    +----------+   +---+ +---+  +----------+
+|   L2     |  | L2| |Fwd|    |Forwarding|   |Fwd| |L2 |  |   L2     |
++------.---+  +-.-+ +-.-+    +---.----.-+   +--.+ +-.-+  +---.------+
+       :  Link  :     /  ,-----.  \   :  Link  :   /  ,-----. \
+       +........+     +-[  Sub  ]-+   +........+   +-[  TSN  ]-+
+                        [Network]                    [Network]
+                         `-----'                      `-----'
+
+                    |&lt;------ DetNet MPLS ------&gt;|
+        |&lt;---------------------- TSN   ---------------------&gt;|
+
+</pre>
+<p class="figure">Figure 1: A TSN over DetNet MPLS Enabled Network</p>
+<p id="rfc.section.3.p.2">In this example, edge nodes provide a service proxy function that "associates" the DetNet flows and native flows (i.e., TSN Streams) at the edge of the DetNet domain.  TSN streams are treated as App-flows for DetNet. The whole DetNet domain behaves as a TSN relay node for the TSN streams. The service proxy behaves as a port of that TSN relay node.  </p>
+<p><a href="#fig_8021_detnet" class="xref">Figure 2</a> illustrates how DetNet can provide services for IEEE 802.1 TSN end systems, CE1 and CE2, over a DetNet enabled MPLS network.  Edge nodes, E1 and E2, insert and remove required DetNet data plane encapsulation.  The 'X' in the edge nodes and relay node, R1, represent a potential DetNet compound flow  packet replication and elimination point.  This conceptually parallels L2VPN services, and could leverage existing related solutions as discussed below.  </p>
+<div id="rfc.figure.2"></div>
+<div id="fig_8021_detnet"></div>
+<pre>
+     TSN    |&lt;------- End to End DetNet Service ------&gt;|  TSN
+    Service |         Transit          Transit         | Service
+TSN  (AC)   |        |&lt;-Tnl-&gt;|        |&lt;-Tnl-&gt;|        |  (AC)  TSN
+End    |    V        V    1  V        V   2   V        V   |    End
+System |    +--------+       +--------+       +--------+   |  System
++---+  |    |   E1   |=======|   R1   |=======|   E2   |   |   +---+
+|   |--|----|._X_....|..DF1..|.._ _...|..DF3..|...._X_.|---|---|   |
+|CE1|  |    |    \   |       |   X    |       |   /    |   |   |CE2|
+|   |       |     \_.|..DF2..|._/ \_..|..DF4..|._/     |       |   |
++---+       |        |=======|        |=======|        |       +---+
+    ^       +--------+       +--------+       +--------+       ^
+    |        Edge Node       Relay Node        Edge Node       |
+    |          (T-PE)           (S-PE)          (T-PE)         |
+    |                                                          |
+    |&lt;- TSN -&gt; &lt;------- TSN Over DetNet MPLS -------&gt; &lt;- TSN -&gt;|
+    |                                                          |
+    |&lt;-------- Time Sensitive Networking (TSN) Service -------&gt;|
+
+    X   = Service protection
+    DFx = DetNet member flow x over a TE LSP
+	AC  = Attachment Circuit
+	Tnl = Tunnel
+
+</pre>
+<p class="figure">Figure 2: IEEE 802.1TSN Over DetNet</p>
+<h1 id="rfc.section.4">
+<a href="#rfc.section.4">4.</a> <a href="#sec_dt_dp" id="sec_dt_dp">DetNet MPLS Data Plane</a>
+</h1>
+<h1 id="rfc.section.4.1">
+<a href="#rfc.section.4.1">4.1.</a> <a href="#sec_dt_dp_ov" id="sec_dt_dp_ov">Overview</a>
+</h1>
+<p id="rfc.section.4.1.p.1">The basic approach defined in <a href="#RFC8964" class="xref">[RFC8964]</a> supports the DetNet service sub-layer based on existing pseudowire (PW) encapsulations and mechanisms, and supports the DetNet forwarding sub-layer based on existing MPLS Traffic Engineering encapsulations and mechanisms.  </p>
+<p id="rfc.section.4.1.p.2">A node operating on a DetNet flow in the Detnet service sub-layer, i.e.  a node processing a DetNet packet which has the S-Label as top of stack uses the local context associated with that S-Label, for example a received F-Label, to determine what local DetNet operation(s) are applied to that packet. An S-Label may be unique when taken from the platform label space <a href="#RFC3031" class="xref">[RFC3031]</a>, which would enable correct DetNet flow identification regardless of which input interface or LSP the packet arrives on. The service sub-layer functions (i.e., PREOF) use a DetNet control word (d-CW).  </p>
+<p id="rfc.section.4.1.p.3">The DetNet MPLS data plane builds on MPLS Traffic Engineering encapsulations and mechanisms to provide a forwarding sub-layer that is responsible for providing resource allocation and explicit routes.  The forwarding sub-layer is supported by one or more forwarding labels (F-Labels).  </p>
+<p id="rfc.section.4.1.p.4">DetNet edge/relay nodes are DetNet service sub-layer aware, understand the particular needs of DetNet flows and provide both DetNet service and forwarding sub-layer functions.  They add, remove and process d-CWs, S-Labels and F-labels as needed.  MPLS DetNet nodes and transit nodes include DetNet forwarding sub-layer functions, support for notably explicit routes, and resources allocation to eliminate (or reduce) congestion loss and jitter. Unlike other DetNet node types, transit nodes provide no service sub-layer processing.  </p>
+<h1 id="rfc.section.4.2">
+<a href="#rfc.section.4.2">4.2.</a> <a href="#tom-encap" id="tom-encap">TSN over DetNet MPLS Encapsulation</a>
+</h1>
+<p id="rfc.section.4.2.p.1">The basic encapsulation approach is to treat a TSN Stream as an App-flow from the DetNet MPLS perspective. The corresponding example shown in <a href="#fig_tsn_mpls_ex" class="xref">Figure 3</a>.  </p>
+<div id="rfc.figure.3"></div>
+<div id="fig_tsn_mpls_ex"></div>
+<pre>
+
+           /-&gt;     +------+  +------+  +------+   TSN      ^ ^
+           |       |  X   |  |  X   |  |  X   |&lt;- Appli    : :
+App-Flow &lt;-+       +------+  +------+  +------+   cation   : :(1)
+ for MPLS  |       |TSN-L2|  |TSN-L2|  |TSN-L2|            : v
+           \-&gt; +---+======+--+======+--+======+-----+      :
+                   | d-CW |  | d-CW |  | d-CW |            :
+DetNet-MPLS        +------+  +------+  +------+            :(2)
+                   |Labels|  |Labels|  |Labels|            v
+               +---+======+--+======+--+======+-----+
+Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
+                   +------+  +------+  +------+
+                                       |  IP  |
+                                       +------+
+                                       |  L2  |
+                                       +------+
+    (1) TSN Stream 
+    (2) DetNet MPLS Flow
+    
+        </pre>
+<p class="figure">Figure 3: Example TSN over MPLS Encapsulation Formats</p>
+<p id="rfc.section.4.2.p.2">In the figure, "Application" indicates the application payload carried by the TSN network. "MPLS App-Flow" indicates that the TSN Stream is the payload from the perspective of the DetNet MPLS data plane defined in <a href="#RFC8964" class="xref">[RFC8964]</a>. A single DetNet MPLS flow can aggregate multiple TSN Streams.  </p>
+<h1 id="rfc.section.5">
+<a href="#rfc.section.5">5.</a> <a href="#tom_proc" id="tom_proc">TSN over MPLS Data Plane Procedures</a>
+</h1>
+<p id="rfc.section.5.p.1">Description of Edge Nodes procedures and functions for TSN over DetNet MPLS scenario follows the concept of <a href="#RFC3985" class="xref">[RFC3985]</a> and covers the Edge Nodes components shown on <a href="#fig_tsn_mpls_detnet" class="xref">Figure 1</a>. In this section the following procedures of DetNet Edge Nodes are described: </p>
+
+<ul>
+<li>TSN related (<a href="#tom_tsn_proc" class="xref">Section 5.1</a>) </li>
+<li>DetNet Service Proxy (<a href="#tom_svc_prx_proc" class="xref">Section 5.2</a>) </li>
+<li>DetNet service and forwarding sub-layer (<a href="#tom_dn_sub_proc" class="xref">Section 5.3</a>) </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.5.p.2">The sub-sections describe procedures for forwarding packets by DetNet Edge nodes, where such packets are received from either directly connected CEs (TSN nodes) or some other DetNet Edge nodes.  </p>
+<h1 id="rfc.section.5.1">
+<a href="#rfc.section.5.1">5.1.</a> <a href="#tom_tsn_proc" id="tom_tsn_proc">Edge Node TSN Procedures</a>
+</h1>
+<p id="rfc.section.5.1.p.1">The Time-Sensitive Networking (TSN) Task Group of the IEEE 802.1 Working Group have defined (and are defining) a number of amendments to <a href="#IEEE8021Q" class="xref">IEEE 802.1Q</a> that provide zero congestion loss and bounded latency in bridged networks.  <a href="#IEEE8021CB" class="xref">IEEE 802.1CB</a> defines packet replication and elimination functions for a TSN network.  </p>
+<p id="rfc.section.5.1.p.2">The implementation of TSN entity (i.e., TSN packet processing functions) must be compliant with the relevant IEEE 802.1 standards.  </p>
+<p id="rfc.section.5.1.p.3">TSN specific functions are executed on the data received by the DetNet Edge Node from the connected CE before forwarded to connected CE(s) or presentation to the DetNet Service Proxy function for transmission across the DetNet domain. TSN specific functions are also executed on the data received from a DetNet PW by a PE before the data is output on the Attachment Circuit(s) (AC).  </p>
+<p id="rfc.section.5.1.p.4">TSN packet processing function(s) of Edge Nodes (T-PE) are belonging to the native service processing (NSP) <a href="#RFC3985" class="xref">[RFC3985]</a> block. This is similar to other functionalities being defined by standard bodies other than the IETF (for example in case of Ethernet: stripping, overwriting or adding VLAN tags, etc.). Depending on the TSN role of the Edge Node in the end-to-end TSN service selected TSN functions are supported.  </p>
+<p id="rfc.section.5.1.p.5">When a PE receives a packet from a CE, on a given AC with DetNet service, it first checks via Stream Identification (see Clause 6. of <a href="#IEEE8021CB" class="xref">IEEE 802.1CB</a> and <a href="#IEEEP8021CBdb" class="xref">IEEE P802.1CBdb</a>) whether the packet belongs to a configured TSN Stream (i.e., App-flow from DetNet perspective).  If no Stream ID is matched and no other (VPN) service is configured for the AC, then packet MUST be dropped. If there is a matching TSN Stream, then the Stream ID specific TSN functions are executed (e.g., ingress policing, header field manipulation in case of active Stream Identification, FRER, etc.). Source MAC lookup may also be used for local MAC address learning.  </p>
+<p id="rfc.section.5.1.p.6">If the PE decides to forward the packet, the packet MUST be forwarded according to the TSN Stream specific configuration to connected CE(s) (in case of local bridging) and/or to the DetNet Service Proxy (in case of forwarding to remote CE(s)). If there are no TSN Stream specific forwarding configurations, the PE MUST flood the packet to other locally attached CE(s) and to the DetNet Service Proxy. If the administrative policy on the PE does not allow flooding, the PE MUST drop the packet.  </p>
+<p id="rfc.section.5.1.p.7">When a TSN entity of the PE receives a packet from the DetNet Service Proxy, it first checks via Stream Identification (see Clause 6. of <a href="#IEEE8021CB" class="xref">IEEE 802.1CB</a> and <a href="#IEEEP8021CBdb" class="xref">IEEE P802.1CBdb</a>) whether the packet belongs to a configured TSN Stream. If no Stream ID is matched, then packet is dropped. If there is a matching TSN Stream, then the Stream ID specific TSN functions are executed (e.g., header field manipulation in case of active Stream Identification, FRER, etc.). Source MAC lookup may also be used for local MAC address learning.  </p>
+<p id="rfc.section.5.1.p.8">If the PE decides to forward the packet, the packet is forwarded according to the TSN Stream specific configuration to connected CE(s).  If there are no TSN Stream specific forwarding configurations, the PE floods the packet to locally attached CE(s). If the administrative policy on the PE does not allow flooding, the PE drops the packet.  </p>
+<p id="rfc.section.5.1.p.9">Implementations of this document SHALL use management and control information to ensure TSN specific functions of the Edge Node according to the expectations of the connected TSN network.  </p>
+<h1 id="rfc.section.5.2">
+<a href="#rfc.section.5.2">5.2.</a> <a href="#tom_svc_prx_proc" id="tom_svc_prx_proc">Edge Node DetNet Service Proxy Procedures</a>
+</h1>
+<p id="rfc.section.5.2.p.1">The Service Proxy function maps between App-flows and DetNet flows.  The DetNet Edge Node TSN entity MUST support the TSN Stream identification functions and the related managed objects as defined in Clause 6. and Clause 9. of <a href="#IEEE8021CB" class="xref">IEEE 802.1CB</a> and <a href="#IEEEP8021CBdb" class="xref">IEEE P802.1CBdb</a> to recognize the App-flow related packets.  The Service Proxy presents TSN Streams as an App-flow to a DetNet Flow.  </p>
+<p id="rfc.section.5.2.p.2">When a DetNet Service Proxy receives a packet from the TSN Entity it MUST check whether such an App-flow is present in its mapping table.  If present it associates the internal DetNet flow-ID to the packet and MUST forward it to the DetNet Service and Forwarding sub-layers. If no matching statement is present it MUST drop the packet.  </p>
+<p id="rfc.section.5.2.p.3">When a DetNet Service Proxy receives a packet from the DetNet Service and Forwarding sub-layers it MUST be forwarded to the Edge Node TSN Entity.  </p>
+<p id="rfc.section.5.2.p.4">Implementations of this document SHALL use management and control information to map a TSN Stream to a DetNet flow.  N:1 mapping (aggregating multiple TSN Streams in a single DetNet flow) SHALL be supported. The management or control function that provisions flow mapping SHALL ensure that adequate resources are allocated and configured to provide proper service requirements of the mapped flows.  </p>
+<p id="rfc.section.5.2.p.5">Due to the (intentional) similarities of the DetNet PREOF and TSN FRER functions service protection function interworking is possible between the TSN and the DetNet domains. Such service protection interworking scenarios MAY require to copy sequence number fields from TSN (L2) to PW (MPLS) encapsulation.  However, such interworking is out-of-scope in this document and left for further study.  </p>
+<h1 id="rfc.section.5.3">
+<a href="#rfc.section.5.3">5.3.</a> <a href="#tom_dn_sub_proc" id="tom_dn_sub_proc">Edge Node DetNet Service and Forwarding Sub-Layer Procedures</a>
+</h1>
+<p id="rfc.section.5.3.p.1">In the design of <a href="#RFC8964" class="xref">[RFC8964]</a> an MPLS service label (the S-Label), similar to a pseudowire (PW) label <a href="#RFC3985" class="xref">[RFC3985]</a>, is used to identify both the DetNet flow identity and the payload MPLS payload type.  The DetNet sequence number is carried in the DetNet Control word (d-CW) which carries the Data/OAM discriminator as well. In <a href="#RFC8964" class="xref">[RFC8964]</a> two sequence number sizes are supported: a 16 bit sequence number and a 28 bit sequence number.  </p>
+<p id="rfc.section.5.3.p.2">PREOF functions and the provided service recovery is available only within the DetNet domain as the DetNet flow-ID and the DetNet sequence number are not valid outside the DetNet network.  MPLS (DetNet) Edge node terminates all related information elements encoded in the MPLS labels.  </p>
+<p id="rfc.section.5.3.p.3">When a PE receives a packet from the Service Proxy function it MUST handle the packet as defined in <a href="#RFC8964" class="xref">[RFC8964]</a>.  </p>
+<p id="rfc.section.5.3.p.4">When a PE receives an MPLS packet from a remote PE, then, after processing the MPLS label stack, if the top MPLS label ends up being a DetNet S-label that was advertised by this node, then the PE MUST forward the packet according to the configured DetNet Service and Forwarding sub-layer rules to other PE nodes or via the Detnet Service Proxy function towards locally connected CE(s).  </p>
+<p id="rfc.section.5.3.p.5">For further details on DetNet Service and Forwarding sub-layers see <a href="#RFC8964" class="xref">[RFC8964]</a>.  </p>
+<h1 id="rfc.section.6">
+<a href="#rfc.section.6">6.</a> <a href="#cp_considerations" id="cp_considerations">Controller Plane (Management and Control) Considerations</a>
+</h1>
+<p id="rfc.section.6.p.1">TSN Stream(s) to DetNet flow mapping related information are required only for the service proxy function of MPLS (DetNet) Edge nodes.  From the Data Plane perspective there is no practical difference based on the origin of flow mapping related information	(management plane or control plane).  </p>
+<p id="rfc.section.6.p.2">The following summarizes the set of information that is needed to configure TSN over DetNet MPLS: </p>
+
+<ul>
+<li>TSN related configuration information according to the TSN role of the DetNet MPLS node, as per <a href="#IEEE8021Q" class="xref">[IEEE8021Q]</a>, <a href="#IEEE8021CB" class="xref">[IEEE8021CB]</a> and <a href="#IEEEP8021CBdb" class="xref">[IEEEP8021CBdb]</a>. </li>
+<li>DetNet MPLS related configuration information according to the DetNet role of the DetNet MPLS node, as per <a href="#RFC8964" class="xref">[RFC8964]</a>. </li>
+<li>App-Flow identification information to map received TSN Stream(s) to the DetNet flow. Parameters of TSN stream identification are defined in <a href="#IEEE8021CB" class="xref">[IEEE8021CB]</a> and <a href="#IEEEP8021CBdb" class="xref">[IEEEP8021CBdb]</a>. </li>
+</ul>
+
+<p> This information MUST be provisioned per DetNet flow.  </p>
+<p id="rfc.section.6.p.3">Mappings between DetNet and TSN management and control planes are out of scope of the document. Some of the challanges are highligthed below.  </p>
+<p id="rfc.section.6.p.4">MPLS DetNet Edge nodes are member of both the DetNet domain and the connected TSN network. From the TSN network perspective the MPLS (DetNet) Edge node has a "TSN relay node" role, so TSN specific management and control plane functionalities must be implemented.  There are many similarities in the management plane techniques used in DetNet and TSN, but that is not the case for the control plane protocols. For example, RSVP-TE and MSRP behaves differently.  Therefore management and control plane design is an important aspect of scenarios, where	mapping between DetNet and TSN is required.  </p>
+<p id="rfc.section.6.p.5">Note that, as the DetNet network is just a portion of the end to end TSN path (i.e., single hop from Ethernet perspective), some parameters (e.g., delay) may differ significantly.  Since there is no interworking function the bandwidth of DetNet network is assumed to be set large enough to handle all TSN Flows it will support.  At the egress of the Detnet Domain the MPLS headers are stripped and the TSN flow continues on as a normal TSN flow.  </p>
+<p id="rfc.section.6.p.6">In order to use a DetNet network to interconnect TSN segments, TSN specific information must be converted to DetNet domain specific ones. TSN Stream ID(s) and stream(s) related parameters/requirements must be converted to a DetNet flow-ID and flow related parameters/requirements.  </p>
+<p id="rfc.section.6.p.7">In some case it may be challenging to determine some egress node related information. For example, it may be not trivial to locate the egress point/interface of a TSN Streams with a multicast destination MAC address. Such scenarios may require interaction between control and management plane functions and between DetNet and TSN domains.  </p>
+<p id="rfc.section.6.p.8">Mapping between DetNet flow identifiers and TSN Stream identifiers, if not provided explicitly, can be done by the service proxy function of an MPLS (DetNet) Edge node locally based on information provided for configuration of the TSN Stream identification functions (e.g., Mask-and-Match Stream identification).  </p>
+<p id="rfc.section.6.p.9">Triggering the setup/modification of a DetNet flow in the DetNet network is an example where management and/or control plane interactions are required between the DetNet and the TSN network.  </p>
+<p id="rfc.section.6.p.10">Configuration of TSN specific functions (e.g., FRER) inside the TSN network is a TSN domain specific decision and may not be visible in the DetNet domain. Service protection interworking scenarios are left for further study.  </p>
+<h1 id="rfc.section.7">
+<a href="#rfc.section.7">7.</a> Security Considerations</h1>
+<p id="rfc.section.7.p.1">Security considerations for DetNet are described in detail in <a href="#I-D.ietf-detnet-security" class="xref">[I-D.ietf-detnet-security]</a>. General security considerations are described in <a href="#RFC8655" class="xref">[RFC8655]</a>.  </p>
+<p id="rfc.section.7.p.2">DetNet MPLS data plane specific considerations are summarized and described in <a href="#RFC8964" class="xref">[RFC8964]</a> including any application flow types. This document focuses on the scenario where TSN Streams are the application flows for DetNet and it is already covered by those DetNet MPLS data plane security considerations.  </p>
+<h1 id="rfc.section.8">
+<a href="#rfc.section.8">8.</a> <a href="#iana" id="iana">IANA Considerations</a>
+</h1>
+<p id="rfc.section.8.p.1">This document makes no IANA requests.  </p>
+<h1 id="rfc.section.9">
+<a href="#rfc.section.9">9.</a> <a href="#acks" id="acks">Acknowledgements</a>
+</h1>
+<p id="rfc.section.9.p.1">The authors wish to thank Norman Finn, Lou Berger, Craig Gunther, Christophe Mangin and Jouni Korhonen for their various contributions to this work.  </p>
+<h1 id="rfc.references">
+<a href="#rfc.references">10.</a> References</h1>
+<h1 id="rfc.references.1">
+<a href="#rfc.references.1">10.1.</a> Normative References</h1>
+<table><tbody>
+<tr>
+<td class="reference"><b id="RFC2119">[RFC2119]</b></td>
+<td class="top">
+<a>Bradner, S.</a>, "<a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC3031">[RFC3031]</b></td>
+<td class="top">
+<a>Rosen, E.</a>, <a>Viswanathan, A.</a> and <a>R. Callon</a>, "<a href="https://tools.ietf.org/html/rfc3031">Multiprotocol Label Switching Architecture</a>", RFC 3031, DOI 10.17487/RFC3031, January 2001.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8174">[RFC8174]</b></td>
+<td class="top">
+<a>Leiba, B.</a>, "<a href="https://tools.ietf.org/html/rfc8174">Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</a>", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8964">[RFC8964]</b></td>
+<td class="top">
+<a>Varga, B.</a>, <a>Farkas, J.</a>, <a>Berger, L.</a>, <a>Malis, A.</a>, <a>Bryant, S.</a> and <a>J. Korhonen</a>, "<a href="https://tools.ietf.org/html/rfc8964">Deterministic Networking (DetNet) Data Plane: MPLS</a>", RFC 8964, DOI 10.17487/RFC8964, January 2021.</td>
+</tr>
+</tbody></table>
+<h1 id="rfc.references.2">
+<a href="#rfc.references.2">10.2.</a> Informative References</h1>
+<table><tbody>
+<tr>
+<td class="reference"><b id="I-D.ietf-detnet-security">[I-D.ietf-detnet-security]</b></td>
+<td class="top">
+<a>Grossman, E.</a>, <a>Mizrahi, T.</a> and <a>A. Hacker</a>, "<a href="https://tools.ietf.org/html/draft-ietf-detnet-security-13">Deterministic Networking (DetNet) Security Considerations</a>", Internet-Draft draft-ietf-detnet-security-13, December 2020.</td>
+</tr>
+<tr>
+<td class="reference"><b id="IEEE8021CB">[IEEE8021CB]</b></td>
+<td class="top">
+<a>IEEE 802.1</a>, "<a href="http://standards.ieee.org/about/get/">Standard for Local and metropolitan area networks - Frame Replication and Elimination for Reliability (IEEE Std 802.1CB-2017)</a>", 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="IEEE8021Q">[IEEE8021Q]</b></td>
+<td class="top">
+<a>IEEE 802.1</a>, "<a href="http://standards.ieee.org/about/get/">Standard for Local and metropolitan area networks--Bridges and Bridged Networks (IEEE Std 802.1Q-2018)</a>", 2018.</td>
+</tr>
+<tr>
+<td class="reference"><b id="IEEEP8021CBdb">[IEEEP8021CBdb]</b></td>
+<td class="top">
+<a title="IEEE 802.1">Mangin, C.</a>, "<a href="http://www.ieee802.org/1/files/private/db-drafts/d1/802-1CBdb-d1-0.pdf">Extended Stream identification functions</a>", IEEE P802.1CBdb /D1.0 P802.1CBdb, September 2020.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC3985">[RFC3985]</b></td>
+<td class="top">
+<a>Bryant, S.</a> and <a>P. Pate</a>, "<a href="https://tools.ietf.org/html/rfc3985">Pseudo Wire Emulation Edge-to-Edge (PWE3) Architecture</a>", RFC 3985, DOI 10.17487/RFC3985, March 2005.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8655">[RFC8655]</b></td>
+<td class="top">
+<a>Finn, N.</a>, <a>Thubert, P.</a>, <a>Varga, B.</a> and <a>J. Farkas</a>, "<a href="https://tools.ietf.org/html/rfc8655">Deterministic Networking Architecture</a>", RFC 8655, DOI 10.17487/RFC8655, October 2019.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8938">[RFC8938]</b></td>
+<td class="top">
+<a>Varga, B.</a>, <a>Farkas, J.</a>, <a>Berger, L.</a>, <a>Malis, A.</a> and <a>S. Bryant</a>, "<a href="https://tools.ietf.org/html/rfc8938">Deterministic Networking (DetNet) Data Plane Framework</a>", RFC 8938, DOI 10.17487/RFC8938, November 2020.</td>
+</tr>
+</tbody></table>
+<h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
+<div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Bal&#225;zs Varga</span> (editor)
+	  <span class="n hidden">
+		<span class="family-name">Varga</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Ericsson</span>
+	<span class="adr">
+	  <span class="vcardline">Magyar Tudosok krt. 11.</span>
+
+	  <span class="vcardline">
+		<span class="locality">Budapest</span>,  
+		<span class="region"></span>
+		<span class="code">1117</span>
+	  </span>
+	  <span class="country-name vcardline">Hungary</span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:balazs.a.varga@ericsson.com">balazs.a.varga@ericsson.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">J&#225;nos Farkas</span> 
+	  <span class="n hidden">
+		<span class="family-name">Farkas</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Ericsson</span>
+	<span class="adr">
+	  <span class="vcardline">Magyar Tudosok krt. 11.</span>
+
+	  <span class="vcardline">
+		<span class="locality">Budapest</span>,  
+		<span class="region"></span>
+		<span class="code">1117</span>
+	  </span>
+	  <span class="country-name vcardline">Hungary</span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:janos.farkas@ericsson.com">janos.farkas@ericsson.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Andrew G. Malis</span> 
+	  <span class="n hidden">
+		<span class="family-name">Malis</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Malis Consulting</span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:agmalis@gmail.com">agmalis@gmail.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Stewart Bryant</span> 
+	  <span class="n hidden">
+		<span class="family-name">Bryant</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Futurewei Technologies</span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:stewart.bryant@gmail.com">stewart.bryant@gmail.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Don Fedyk</span> 
+	  <span class="n hidden">
+		<span class="family-name">Fedyk</span>
+	  </span>
+	</span>
+	<span class="org vcardline">LabN Consulting, L.L.C.</span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:dfedyk@labn.net">dfedyk@labn.net</a></span>
+
+  </address>
+</div>
+
+</body>
+</html>
