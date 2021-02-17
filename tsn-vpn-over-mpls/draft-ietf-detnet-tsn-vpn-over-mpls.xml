@@ -330,6 +330,13 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
         <xref target="RFC8964"/>. A single DetNet MPLS flow 
         can aggregate multiple TSN Streams.
  </t>
+ <t>
+		Note: In order to avoid fragmentation (see section 5.3 of 
+		<xref target="RFC3985"/>), the network operator has to make sure that 
+		all the DetNet encapsulation overhead plus the TSN App-flow do not 
+		exceed the DetNet network's MTU.
+ </t>
+ 
  </section>
 
  </section>  <!-- end of DetNet MPLS data plane overview -->
@@ -366,9 +373,9 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
     <t>
         The Time-Sensitive Networking (TSN) Task Group of the IEEE 802.1 
                 Working Group have defined (and are defining) a number of amendments 
-                to <xref target="IEEE8021Q">IEEE 802.1Q</xref> that provide zero 
+                to <xref target="IEEE8021Q"/> that provide zero 
                 congestion loss and bounded latency in bridged networks.
-        <xref target="IEEE8021CB">IEEE 802.1CB</xref> defines packet 
+        <xref target="IEEE8021CB"/> defines packet 
                 replication and elimination functions for a TSN network.
           </t>
           <t>
@@ -396,8 +403,8 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
     <t>		
 			When a PE receives a packet from a CE, on a given AC with DetNet service,
 			it first checks via Stream Identification 
-			(see Clause 6. of <xref target="IEEE8021CB">IEEE 802.1CB</xref> and
-            <xref target="IEEEP8021CBdb">IEEE P802.1CBdb</xref>) 
+			(see Clause 6. of <xref target="IEEE8021CB"/> and
+            <xref target="IEEEP8021CBdb"/>) 
 			whether the packet belongs 
 			to a configured TSN Stream (i.e., App-flow from DetNet perspective). 
 			If no Stream ID is matched and no other (VPN) service is configured 
@@ -420,8 +427,8 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
     <t>		
 			When a TSN entity of the PE receives a packet from the DetNet 
 			Service Proxy, it first checks via Stream Identification 
-			(see Clause 6. of <xref target="IEEE8021CB">IEEE 802.1CB</xref> and
-            <xref target="IEEEP8021CBdb">IEEE P802.1CBdb</xref>) whether 
+			(see Clause 6. of <xref target="IEEE8021CB"/> and
+            <xref target="IEEEP8021CBdb"/>) whether 
 			the packet belongs to a configured TSN Stream. If no Stream ID is 
 			matched, then packet is dropped. If there is a matching TSN 
 			Stream, then the Stream ID specific TSN functions are executed 
@@ -451,8 +458,8 @@ Link/Sub-Network   |  L2  |  | TSN  |  | UDP  |
 				The DetNet Edge Node TSN entity MUST support the TSN Stream
                 identification functions and the related managed objects as
                 defined in Clause 6. and Clause 9. of 
-				<xref target="IEEE8021CB">IEEE 802.1CB</xref> and
-                <xref target="IEEEP8021CBdb">IEEE P802.1CBdb</xref> to
+				<xref target="IEEE8021CB"/> and
+                <xref target="IEEEP8021CBdb"/> to
                 recognize the App-flow related packets.  The Service Proxy
                 presents TSN Streams as an App-flow to a DetNet Flow.
 		  </t>
