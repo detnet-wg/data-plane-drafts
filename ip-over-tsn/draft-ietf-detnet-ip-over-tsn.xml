@@ -93,8 +93,8 @@
         provides congestion protection (low loss, assured latency, and
         limited reordering). As described in <xref target="RFC8939"/> 
 		no DetNet specific headers are added to
-        support DetNet IP flows, only the forwarding sub-layer functions are
-        supported inside the DetNet domain. Service
+        support DetNet IP flows. Only the forwarding sub-layer functions are
+        supported inside the DetNet IP domain. Service
         protection can be provided on a per sub-network
         basis as shown here for the IEEE802.1 TSN sub-network scenario.
       </t>
@@ -106,7 +106,7 @@
         <t>
           This document uses the terminology and concepts established in
           the DetNet architecture <xref
-          target="RFC8655"/>.  TSN specific terms are defined in the TSN TG 
+          target="RFC8655"/>.  TSN (Time-Sensitive Networking) specific terms are defined in the TSN TG 
 		of IEEE 802.1 Working Group.  The reader is assumed
           to be familiar with these documents and their terminology.
         </t>
@@ -117,12 +117,10 @@
           The following abbreviations used in this document:
           <list style="hanging" hangIndent="14">
             <t hangText="DetNet">Deterministic Networking.</t>
-            <t hangText="DF">DetNet Flow.</t>
 			<t hangText="FRER">Frame Replication and Elimination for Redundancy 
 			(TSN function).</t>
             <t hangText="L2">Layer-2.</t>
             <t hangText="L3">Layer-3.</t>
-            <t hangText="PREOF">Packet Replication, Ordering and Elimination Function.</t>
             <t hangText="TSN">Time-Sensitive Networking, TSN is a Task Group of the IEEE
             802.1 Working Group.</t>
           </list>
@@ -220,10 +218,10 @@
       <t>
         The Time-Sensitive Networking (TSN) Task Group of the IEEE 802.1
         Working Group have defined (and are defining) a number of
-        amendments to <xref target="IEEE8021Q">IEEE 802.1Q</xref> that
+        amendments to <xref target="IEEE8021Q"/> that
         provide zero congestion loss and bounded latency in bridged
-        networks. Furthermore, <xref target="IEEE8021CB">IEEE
-        802.1CB</xref> defines frame replication and elimination
+        networks. Furthermore, <xref target="IEEE8021CB"/>
+		defines frame replication and elimination
         functions for reliability that should prove both compatible with
         and useful to DetNet networks.  All these functions have to
         identify flows that require TSN treatment.  
@@ -231,14 +229,14 @@
       <t>
         TSN capabilities of the TSN sub-network are made available for IP
         (DetNet) flows via the protocol interworking function described in Annex C.5 of
-        <xref target="IEEE8021CB">IEEE 802.1CB</xref>. For example,
+        <xref target="IEEE8021CB"/>. For example,
         applied on the TSN edge port it can convert an ingress unicast 
-		IP (DetNet) flow to use a specific Layer-2 multicast destination 
+		IP (DetNet) flow to use a specific L2 multicast destination 
 		MAC address and a VLAN, in order to direct the packet through a 
 		specific path inside the bridged network. 
 		A similar interworking function pair at the 
 		other end of the TSN sub-network would restore the packet to its 
-		original Layer-2 destination MAC address and VLAN.
+		original L2 destination MAC address and VLAN.
       </t>
       <t>
         Placement of TSN functions depends on the TSN capabilities of
@@ -258,15 +256,15 @@
 			  Stream.  
             </t>
             <t>
-			  Clause 6.7 of <xref target="IEEE8021CB">IEEE 802.1CB</xref> defines an IP Stream
+			  Clause 6.7 of <xref target="IEEE8021CB"/> defines an IP Stream
 			  identification function that can be used as a passive function
 			  for IP DetNet flows using UDP or TCP. Clause 6.8 of
-			  <xref target="IEEEP8021CBdb">IEEE P802.1CBdb</xref> defines a
+			  <xref target="IEEEP8021CBdb"/> defines a
 			  Mask-and-Match Stream identification function that can be used 
 			  as a passive function for any IP DetNet flows.
             </t>
             <t>
-			  Clause 6.6 of <xref target="IEEE8021CB">IEEE 802.1CB</xref> defines an
+			  Clause 6.6 of <xref target="IEEE8021CB"/> defines an
               Active Destination MAC and VLAN Stream identification function,
               what can replace some Ethernet header fields namely (1) the
               destination MAC-address, (2) the VLAN-ID and (3) priority
@@ -285,7 +283,7 @@
 
           <section title="TSN requirements of IP DetNet nodes">
             <t>
-              This section covers required behavior of a TSN-aware DetNet node 
+              This section covers the required behavior of a TSN-aware DetNet node 
 			  using a TSN sub-network. The implementation of TSN packet 
 			  processing functions must be compliant with the relevant IEEE 802.1 
 			  standards.
@@ -346,25 +344,25 @@
               Stream identification function, (2) IP Stream identification
               function, (3) Mask-and-Match Stream identification function and 
 			  (4) the related managed objects in Clause 9 of
-              <xref target="IEEE8021CB">IEEE 802.1CB</xref> and 
-			  <xref target="IEEEP8021CBdb">IEEE P802.1CBdb</xref>.
+              <xref target="IEEE8021CB"/> and 
+			  <xref target="IEEEP8021CBdb"/>.
             </t>
             <t>
 			  A TSN-aware IP (DetNet) node implementations must support the 
 			  Sequencing function and the Sequence encode/decode function as 
-			  defined in Clause 7.4 and 7.6 of <xref target="IEEE8021CB">IEEE 802.1CB</xref> if FRER 
+			  defined in Clause 7.4 and 7.6 of <xref target="IEEE8021CB"/> if FRER 
 			  is used inside the TSN sub-network.
             </t>
             <t>
               The Sequence encode/decode function must support the Redundancy
               tag (R-TAG) format as per Clause 7.8 of <xref
-              target="IEEE8021CB">IEEE 802.1CB</xref>.
+              target="IEEE8021CB"/>.
             </t>
             <t>
 			  A TSN-aware IP (DetNet) node implementations must support the 
 			  Stream splitting 
 			  function and the Individual recovery function as defined in Clause 7.7 and 7.5 of
-			  <xref target="IEEE8021CB">IEEE 802.1CB</xref> when the node is 
+			  <xref target="IEEE8021CB"/> when the node is 
 			  a replication or elimination point for FRER.
             </t>
           </section>
@@ -373,12 +371,11 @@
             <t>
               TSN Streams supporting DetNet flows may use Frame Replication
               and Elimination for Redundancy (FRER) as defined in Clause 8. of
-			  <xref target="IEEE8021CB">IEEE 802.1CB</xref> based on the
+			  <xref target="IEEE8021CB"/> based on the
               loss service requirements of the TSN Stream, which is derived
               from the DetNet service requirements of the DetNet mapped flow.
               The specific operation of FRER is not modified by the use of
-              DetNet and follows <xref target="IEEE8021CB">IEEE
-              802.1CB</xref>.
+              DetNet and follows <xref target="IEEE8021CB"/>.
             </t>
             <t>
               FRER function and the provided service recovery is available
@@ -435,11 +432,11 @@
         </t>
         <t>
 			Mappings between DetNet and TSN management and control planes are 
-			out of scope of the document. Some of the challanges are 
+			out of scope of this document. Some of the challenges are 
 			highligthed below.
         </t>
 		<t>
-			TSN-aware IP DetNet nodes are member of both the DetNet
+			TSN-aware IP DetNet nodes are members of both the DetNet
 			domain and the TSN sub-network.  Within the TSN
 			sub-network the TSN-aware IP (DetNet) node has a TSN-aware
 			Talker/Listener role, so TSN specific management and
@@ -464,7 +461,7 @@
 	      to the L2 encapsulation used within the TSN sub-network.
 	    </t>
 	    <t>
-	      In some case it may be challenging to determine some TSN
+	      In some cases it may be challenging to determine some TSN
 	      Stream related information. For example, on a TSN-aware IP
 	      (DetNet) node that acts as a Talker, it is quite obvious
 	      which DetNet node is the Listener of the mapped TSN stream
