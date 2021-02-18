@@ -64,7 +64,7 @@
       <t>
      This document specifies the Deterministic Networking IP data plane
      when operating over a TSN sub-network. This document does not define 
-	 new procedures or processes.  Whenever this document makes requirements 
+	 new procedures or processes.  Whenever this document makes 
 	 statements or recommendations, these are taken from normative text in the 
 	 referenced RFCs.	 
       </t>
@@ -93,7 +93,7 @@
         provides congestion protection (low loss, assured latency, and
         limited reordering). As described in <xref target="RFC8939"/> 
 		no DetNet specific headers are added to
-        support DetNet IP flows. Only the forwarding sub-layer functions are
+        support DetNet IP flows. So, only the forwarding sub-layer functions can be
         supported inside the DetNet IP domain. Service
         protection can be provided on a per sub-network
         basis as shown here for the IEEE802.1 TSN sub-network scenario.
@@ -146,7 +146,8 @@
 		DetNet service. From a data plane perspective, an end-to-end IP model
         is followed.  DetNet uses "6-tuple" based flow identification, where 
 		"6-tuple" refers to information carried in IP and higher layer protocol
-        headers. 
+        headers as defined in <xref target="RFC8939"/>.
+. 
       </t>
       <t>
         DetNet flow aggregation may be enabled via the use of
@@ -161,7 +162,7 @@
 		(queuing, policing, shaping) are supported using the underlying link 
 		/ sub-net specific mechanisms.  Service protections (packet
         replication and packet elimination functions) are not provided at
-		the IP DetNet layer end-to-end due the lack of a unified end-to-end 
+		the IP DetNet layer end-to-end due to the lack of a unified end-to-end 
 		sequencing information that would be available for intermediate nodes.  
 		However, such service protection can be provided on a per underlying 
 		L2 link and sub-network basis.
@@ -193,7 +194,10 @@
 		indicate that they are DetNet service aware but do not perform any 
 		DetNet service sub-layer function.		
 		Node-1 is single homed and Node-2 is dual-homed to the TSN
-		sub-network.  
+		sub-network and they are treated as Talker or Listener inside 
+		the TSN sub-network. Note, that from TSN perspective dual-homed 
+		characteristics of Talker or Listener nodes are transparent to 
+		the IP Layer.  
       </t>
 
 <figure align="center" anchor="fig_ip_detnet_to_tsn"
@@ -216,7 +220,8 @@
       </figure>
 
       <t>
-        The Time-Sensitive Networking (TSN) Task Group of the IEEE 802.1
+        At the time of this writing, 
+		the Time-Sensitive Networking (TSN) Task Group of the IEEE 802.1
         Working Group have defined (and are defining) a number of
         amendments to <xref target="IEEE8021Q"/> that
         provide zero congestion loss and bounded latency in bridged
@@ -232,7 +237,7 @@
         <xref target="IEEE8021CB"/>. For example,
         applied on the TSN edge port it can convert an ingress unicast 
 		IP (DetNet) flow to use a specific L2 multicast destination 
-		MAC address and a VLAN, in order to direct the packet through a 
+		MAC address and a VLAN, in order to forward the packet through a 
 		specific path inside the bridged network. 
 		A similar interworking function pair at the 
 		other end of the TSN sub-network would restore the packet to its 
@@ -348,7 +353,7 @@
 			  <xref target="IEEEP8021CBdb"/>.
             </t>
             <t>
-			  A TSN-aware IP (DetNet) node implementations must support the 
+			  A TSN-aware IP (DetNet) node implementation must support the 
 			  Sequencing function and the Sequence encode/decode function as 
 			  defined in Clause 7.4 and 7.6 of <xref target="IEEE8021CB"/> if FRER 
 			  is used inside the TSN sub-network.
@@ -418,11 +423,11 @@
 			     TSN role of the DetNet IP node, as per 
 				 <xref target="IEEE8021Q"/>, <xref target="IEEE8021CB"/> and
 			     <xref target="IEEEP8021CBdb"/>. </t>
-              <t>Mapping between DetNet IP flow(s) (as flow identification 
-			  defined in <xref target="RFC8939"/>, it is summarized 
-			  in Section 5.1 of that document, and includes all wildcards, port 
-			  ranges and the ability to ignore specific IP fields) and TSN 
-			  Stream(s) (as stream identification information defined in 
+              <t>Mapping between DetNet IP flow(s) and TSN Stream(s). DetNet IP
+			  flow identification is summarized in Section 5.1 of 
+			  <xref target="RFC8939"/>, and includes all wildcards, port 
+			  ranges and the ability to ignore specific IP fields). For TSN 
+			  Streams stream identification information are defined in 
 			  <xref target="IEEE8021CB"/> and <xref target="IEEEP8021CBdb"/>). 
 			  Note, that managed objects for TSN Stream identification can be 
 			  found in <xref target="IEEEP8021CBcv"/>.
@@ -545,36 +550,8 @@
     <references title="Normative references">
 <!--      <?rfc include="reference.RFC.2119"?>
       <?rfc include="reference.RFC.8174"?> -->
-      <?rfc include="reference.RFC.8939"?>
-    </references>
-    <references title="Informative references">
       <?rfc include="reference.RFC.8655"?>
-<!--      <?rfc include="reference.I-D.ietf-detnet-flow-information-model"?>  -->
-      <?rfc include="reference.I-D.ietf-detnet-security"?>
-
-    <reference anchor="IEEE802.1AE-2018"
-      target="https://ieeexplore.ieee.org/document/8585421">
-      <front>
-        <title>IEEE Std 802.1AE-2018 MAC Security (MACsec)</title>
-        <author>
-          <organization>IEEE Standards Association</organization>
-        </author>
-        <date year="2018" />
-      </front>
-    </reference>
-
-      <reference anchor="IEEE8021Q"
-                 target="http://standards.ieee.org/about/get/">
-        <front>
-          <title>Standard for Local and metropolitan area networks--Bridges
-          and Bridged Networks (IEEE Std 802.1Q-2018)</title>
-          <author>
-            <organization>IEEE 802.1</organization>
-          </author>
-          <date year="2018"/>
-        </front>
-        <format type="PDF" target="http://standards.ieee.org/about/get/"/>
-      </reference>
+      <?rfc include="reference.RFC.8939"?>
 
       <reference anchor="IEEE8021CB"
                  target="http://standards.ieee.org/about/get/">
@@ -601,6 +578,35 @@
         </front>
         <seriesInfo name="IEEE P802.1CBdb /D1.0" value="P802.1CBdb"/>
         <format type="PDF" target="http://www.ieee802.org/1/files/private/db-drafts/d1/802-1CBdb-d1-0.pdf"/>
+      </reference>
+
+    </references>
+    <references title="Informative references">
+<!--      <?rfc include="reference.I-D.ietf-detnet-flow-information-model"?>  -->
+      <?rfc include="reference.I-D.ietf-detnet-security"?>
+
+    <reference anchor="IEEE802.1AE-2018"
+      target="https://ieeexplore.ieee.org/document/8585421">
+      <front>
+        <title>IEEE Std 802.1AE-2018 MAC Security (MACsec)</title>
+        <author>
+          <organization>IEEE Standards Association</organization>
+        </author>
+        <date year="2018" />
+      </front>
+    </reference>
+
+      <reference anchor="IEEE8021Q"
+                 target="http://standards.ieee.org/about/get/">
+        <front>
+          <title>Standard for Local and metropolitan area networks--Bridges
+          and Bridged Networks (IEEE Std 802.1Q-2018)</title>
+          <author>
+            <organization>IEEE 802.1</organization>
+          </author>
+          <date year="2018"/>
+        </front>
+        <format type="PDF" target="http://standards.ieee.org/about/get/"/>
       </reference>
 
       <reference anchor="IEEEP8021CBcv"
